@@ -9,6 +9,7 @@ enableGitInfo: true
 
 taxonomies:
   tag: tags
+  # category: categories
 
 permalinks:
   post: /:filename/
