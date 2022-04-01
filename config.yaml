@@ -47,21 +47,18 @@ menu:
     - name: Blog
       url: /blog/
       weight: 2
-    - name: Tags
-      url: /tags/
+    - name: Go
+      url: /golang/
       weight: 3
-    - name: Tutorial
-      url: /tutorial/
+    - name: Tools
+      url: /tools/
       weight: 4
-    - name: About
-      url: /about/
-      weight: 5
-    - name: Quote
-      url: /quote/
-      weight: 6
+    - name: okr
+      url: /okr/
+      weight: 4
     - name: RSS
       url: /index.xml
-      weight: 7
+      weight: 8
 
 markup:
   defaultMarkdownHandler: goldmark
