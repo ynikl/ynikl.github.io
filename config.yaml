@@ -48,17 +48,17 @@ menu:
       url: /blog/
       weight: 2
     - name: Go
-      url: /golang/
+      url: /go/
       weight: 3
     - name: Tools
       url: /tools/
       weight: 4
     - name: okr
       url: /okr/
-      weight: 4
+      weight: 5
     - name: question
       url: /q/
-      weight: 5
+      weight: 6
     - name: RSS
       url: /index.xml
       weight: 8
