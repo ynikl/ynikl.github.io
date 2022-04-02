@@ -56,6 +56,9 @@ menu:
     - name: okr
       url: /okr/
       weight: 4
+    - name: question
+      url: /q/
+      weight: 5
     - name: RSS
       url: /index.xml
       weight: 8
