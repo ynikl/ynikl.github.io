@@ -44,9 +44,9 @@ menu:
     - name: Home
       url: /
       weight: 1
-    - name: Blog
-      url: /blog/
-      weight: 2
+    # - name: Blog
+    #   url: /blog/
+    #   weight: 2
     - name: Go
       url: /go/
       weight: 3
@@ -55,13 +55,15 @@ menu:
       weight: 4
     - name: okr
       url: /okr/
+      post: <span class='alert'>New!</span>
+      pre: <i class='fa fa-road'></i>
       weight: 5
     - name: question
       url: /q/
       weight: 6
-    - name: RSS
-      url: /index.xml
-      weight: 8
+    # - name: RSS
+    #   url: /index.xml
+    #   weight: 8
 
 markup:
   defaultMarkdownHandler: goldmark
