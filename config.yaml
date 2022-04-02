@@ -11,8 +11,8 @@ taxonomies:
   tag: tags
   # category: categories
 
-permalinks:
-  post: /:filename/
+# permalinks:
+#   post: /:filename/
 
 imaging:
   quality: 99
@@ -49,14 +49,12 @@ menu:
     #   weight: 2
     - name: Go
       url: /go/
-      weight: 3
+      weight: 2
     - name: Tools
       url: /tools/
       weight: 4
     - name: okr
       url: /okr/
-      post: <span class='alert'>New!</span>
-      pre: <i class='fa fa-road'></i>
       weight: 5
     - name: question
       url: /q/
