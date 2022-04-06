@@ -1,7 +1,9 @@
 ---
-title: "GoHugo 的基本使用"
+title: "Hugo 文章分类管理"
 date: 2022-03-09T11:29:17+08:00
 draft: false
+tags:
+- hugo
 ---
 
 # 文件夹
@@ -37,4 +39,10 @@ taxonomies:
 | section  | 分区         | /section/index.html   |
 | taxonomy | 分类         | /tags/index.html      |
 | term     | 分类系列     | /tags/go/index.html  |
+
+## `_index.md` 和 `index.md`
+在文件夹下方添加`_index.md`会识别成section.
+在文件夹下方添加`index.md`会被识别成文章.
+
+**千万不要在默认的content目录下方添加`index.md`**
 
