@@ -9,3 +9,6 @@ GHissueID : 1
 
 golang 工具链使用总结
 
+# go tool
+
+使用`go tool compile -N -l -S main.go`生成汇编代码

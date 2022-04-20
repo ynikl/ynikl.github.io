@@ -157,7 +157,7 @@ func chansend1(c *hchan, elem unsafe.Pointer) {
  * been closed.  it is easiest to loop and re-run
  * the operation; we'll see that it's now closed.
  */
-// # block 的参数是由是否在 select 中, 编译过程决定的
+// # block 的参数是由是否在 select 中, 由编译过程决定的; 只有在select语句中block = true
 func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 	if c == nil {
 		if !block {
@@ -192,6 +192,7 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 	// channel wasn't closed during the first observation. However, nothing here
 	// guarantees forward progress. We rely on the side effects of lock release in
 	// chanrecv() and closechan() to update this thread's view of c.closed and full().
+	// # select channel 已经满了直接返回
 	if !block && c.closed == 0 && full(c) {
 		return false
 	}
@@ -208,6 +209,7 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 		panic(plainError("send on closed channel"))
 	}
 
+	// # 先从接受协程队列中获取阻塞的协程, 直接将数据发送给阻塞的协程
 	if sg := c.recvq.dequeue(); sg != nil {
 		// Found a waiting receiver. We pass the value we want to send
 		// directly to the receiver, bypassing the channel buffer (if any).
@@ -215,6 +217,7 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 		return true
 	}
 
+	// # channel 的 buffer 中还有剩余空间
 	if c.qcount < c.dataqsiz {
 		// Space is available in the channel buffer. Enqueue the element to send.
 		qp := chanbuf(c, c.sendx)
@@ -223,9 +226,11 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 		}
 		typedmemmove(c.elemtype, qp, ep)
 		c.sendx++
+		// # 环形队列, 当索引到最后从头开始
 		if c.sendx == c.dataqsiz {
 			c.sendx = 0
 		}
+		// # 增加当前 channel buffer 存储的数据个数
 		c.qcount++
 		unlock(&c.lock)
 		return true
@@ -236,6 +241,7 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 		return false
 	}
 
+	// # 发送数据的协程阻塞在当前 channel
 	// Block on the channel. Some receiver will complete our operation for us.
 	gp := getg()
 	mysg := acquireSudog()
@@ -265,6 +271,7 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 	// stack tracer.
 	KeepAlive(ep)
 
+	// # 协程被唤醒了
 	// someone woke us up.
 	if mysg != gp.waiting {
 		throw("G waiting list is corrupted")
@@ -278,6 +285,7 @@ func chansend(c *hchan, ep unsafe.Pointer, block bool, callerpc uintptr) bool {
 	}
 	mysg.c = nil
 	releaseSudog(mysg)
+	// # 挂载在协程上的发送协程会 panic
 	if closed {
 		if c.closed == 0 {
 			throw("chansend: spurious wakeup")
