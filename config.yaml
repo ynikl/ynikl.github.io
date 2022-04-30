@@ -50,6 +50,9 @@ menu:
     - name: Go
       url: /go/
       weight: 2
+    - name: Books
+      url: /books/
+      weight: 3
     - name: Tools
       url: /tools/
       weight: 4
