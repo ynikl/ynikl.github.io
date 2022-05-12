@@ -1,1 +1,41 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tags on Diver-Café</title><link>https://ynikl.github.io/tags/</link><description>Recent content in Tags on Diver-Café</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 02 Apr 2022 10:09:22 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/index.xml" rel="self" type="application/rss+xml"/><item><title>go</title><link>https://ynikl.github.io/tags/go/</link><pubDate>Sat, 02 Apr 2022 10:09:22 +0800</pubDate><guid>https://ynikl.github.io/tags/go/</guid><description/></item><item><title>golang</title><link>https://ynikl.github.io/tags/golang/</link><pubDate>Fri, 01 Apr 2022 19:56:59 +0800</pubDate><guid>https://ynikl.github.io/tags/golang/</guid><description/></item><item><title>hugo</title><link>https://ynikl.github.io/tags/hugo/</link><pubDate>Wed, 09 Mar 2022 11:29:17 +0800</pubDate><guid>https://ynikl.github.io/tags/hugo/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on 潜水员的咖啡小屋</title>
+    <link>https://ynikl.github.io/tags/</link>
+    <description>Recent content in Tags on 潜水员的咖啡小屋</description>
+    <image>
+      <url>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 02 Apr 2022 10:09:22 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>go</title>
+      <link>https://ynikl.github.io/tags/go/</link>
+      <pubDate>Sat, 02 Apr 2022 10:09:22 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>https://ynikl.github.io/tags/golang/</link>
+      <pubDate>Fri, 01 Apr 2022 19:56:59 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://ynikl.github.io/tags/hugo/</link>
+      <pubDate>Wed, 09 Mar 2022 11:29:17 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
