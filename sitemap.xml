@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://ynikl.github.io/blog/</loc>
+    <lastmod>2022-05-15T16:33:13+08:00</lastmod>
+  </url><url>
     <loc>https://ynikl.github.io/tags/hogo/</loc>
     <lastmod>2022-05-15T16:33:13+08:00</lastmod>
   </url><url>
-    <loc>https://ynikl.github.io/posts/hugo_%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%BF%9E%E6%8E%A5/</loc>
-    <lastmod>2022-05-15T16:33:13+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/posts/</loc>
+    <loc>https://ynikl.github.io/blog/hugo_%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%BF%9E%E6%8E%A5/</loc>
     <lastmod>2022-05-15T16:33:13+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/qa/</loc>
@@ -20,7 +20,7 @@
     <loc>https://ynikl.github.io/</loc>
     <lastmod>2022-05-15T16:33:13+08:00</lastmod>
   </url><url>
-    <loc>https://ynikl.github.io/posts/my_first_post/</loc>
+    <loc>https://ynikl.github.io/blog/my-first-post/</loc>
     <lastmod>2022-05-15T16:14:09+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/books/</loc>
