@@ -8,20 +8,23 @@ tag:
 
 ## 概括
 
-**- 我为什么要读这本书?**
+**我为什么要读这本书**
 如何提高自己的影响力
 
-**- 这本书怎样影响了我?**
+**这本书怎样影响了我**
 打算开始分享计划, 学习如何分享, 讲述故事. 
 计划"学术假"
 
     
-**- 书中的三句精华句子?**
+**书中的三句精华句子**
+
 1. You find time the same place you find spare change: in the nooks and crannies
 2. On the spectrum of creative work, the difference between the mediocre and the good is vast. Mediocrity is, however, still on the spectrum; you can move from mediocre to good in increments. The real gap is between doing nothing and doing something
 3. You can turn your flow into stock
     
-**- 三句话总结本书**
+	
+**三句话总结本书**
+
 1. 我们需要把自己展示出来, 这样子别人才能知道你是一个什么样子的人. ( 酒香也怕巷子深)
 2. 把自己当成一个业务爱好者, 对自己分享负责, 但不用追求到完美, 心态开放, 保持热情
 3. 把握自己分享的尺度, 任何事情, 思想, 启发都是值得分享的. 在互联网上保持真诚, 尊重他人, 保护自己.  
@@ -47,9 +50,7 @@ tag:
 
 通勤的好处：分离家庭与工作
 
-
 适当给自己放假，学术假。每七年让自己重新充电🔋。
-
 
 认识你自己
 
