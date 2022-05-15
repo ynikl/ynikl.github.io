@@ -44,10 +44,10 @@
     
     <item>
       <title>Channel</title>
-      <link>https://ynikl.github.io/go/channel/</link>
+      <link>https://ynikl.github.io/cs/go_channel/</link>
       <pubDate>Sat, 02 Apr 2022 10:09:22 +0800</pubDate>
       
-      <guid>https://ynikl.github.io/go/channel/</guid>
+      <guid>https://ynikl.github.io/cs/go_channel/</guid>
       <description>Go 中 channel 中用法和实现总结 以下分析和源码都是基于 go1.17 版本
 channel 简介 Go 语言的基础类型之一, 用于在协程与协程之间传递数据 (channel 数据的传输方式也是值传递, Go语言的数据传输只有值传递)
  Do not communicate by sharing memory; instead, share memory by communicating.
@@ -75,16 +75,6 @@ channel 简介 Go 语言的基础类型之一, 用于在协程与协程之间传
  精通 go 编程语言 精通 redis 精通 mysql  5 月份 OKR O:
  加深对 Go 语言的基础知识理解 熟悉 redis 的所有数据类型  KR:
  输出3篇高质量的 go 语言blog  channel module tools   数据 redis 所有数据类型总结博文一篇   所有数据类型总结博文:    </description>
-    </item>
-    
-    <item>
-      <title>Tools</title>
-      <link>https://ynikl.github.io/go/tools/</link>
-      <pubDate>Fri, 01 Apr 2022 19:56:59 +0800</pubDate>
-      
-      <guid>https://ynikl.github.io/go/tools/</guid>
-      <description>golang 工具链使用总结
-go tool 使用go tool compile -N -l -S main.go生成汇编代码</description>
     </item>
     
     <item>
