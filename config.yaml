@@ -116,7 +116,7 @@ params:
 menu:
   main:
     - identifier: cs
-      name: CS
+      name: "computer science"
       url: /cs/
       weight: 1
     - identifier: books
