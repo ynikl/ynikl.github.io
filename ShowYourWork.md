@@ -2,8 +2,6 @@
 title: ShowYourWork.md
 date: 2022-04-28 13:19:47
 draft: true
-score(1-5) : 3.5
-tag: 
 ---
 
 ## 概括
