@@ -1,3 +1,0 @@
-User-agent: *
-Disallow:
-Sitemap: https://ynikl.github.io/sitemap.xml
