@@ -36,7 +36,7 @@ params:
   comments: true
   hidemeta: false
   hideSummary: false
-  showtoc: true
+  showtoc: false
   tocopen: false
 
   assets:
