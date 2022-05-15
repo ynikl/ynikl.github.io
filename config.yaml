@@ -116,8 +116,8 @@ params:
 menu:
   main:
     - identifier: cs
-      name: codeing
-      url: /go/
+      name: CS
+      url: /cs/
       weight: 1
     - identifier: books
       name: books
