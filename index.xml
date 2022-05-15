@@ -9,7 +9,30 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 14 May 2022 21:06:07 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 May 2022 16:33:13 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo 如何使用已经发布文章做为相对URL</title>
+      <link>https://ynikl.github.io/posts/hugo_%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%BF%9E%E6%8E%A5/</link>
+      <pubDate>Sun, 15 May 2022 16:33:13 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/posts/hugo_%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%BF%9E%E6%8E%A5/</guid>
+      <description>hugo 的默认内容都是在 content/ 路径下方
+在 markdown 文章中使用 \{\{&amp;lt; ref &amp;quot;/blog/my-post.md&amp;quot; &amp;gt;}} 会在编译时发生地址替换, 带/ 是表示从 content/ 目录下的下一个绝对路径
+1 2  [我的文章](\{\{&amp;lt; ref &amp;#34;/blog/已经发布的文章.md&amp;#34; }})   记得是已经发布的文章, 如果使用不存在, 或者是不参加发布的草稿文章就会发生报错
+hugo官方文档</description>
+    </item>
+    
+    <item>
+      <title>My first Post</title>
+      <link>https://ynikl.github.io/posts/my_first_post/</link>
+      <pubDate>Sun, 15 May 2022 16:14:09 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/posts/my_first_post/</guid>
+      <description>我的第一篇杂文
+阅读了卡片写作笔记法, 和Show Your Work之后, 打算重新开始写自己的博客. 用文字记录下自己的想法和收获.
+原先有断断续续写过几次博客, 但是每次都是半途而废的放弃. 希望这次可以坚持的久一点, 目标至少要有一年.</description>
+    </item>
+    
     <item>
       <title>见识</title>
       <link>https://ynikl.github.io/books/%E8%A7%81%E8%AF%86/</link>
@@ -28,6 +51,20 @@
  树立完成的职业思维, 带着发展的目光选择岗位 在职业思维下主动和积极的面对工作 打开自己思维格局, 多去了解行业大局  有了不错的收入之后, 就涉及到了, 如何树立一个正确的金钱观. 要对自己收入有一个正确的认识, 避免过度追求提高收入, 进而牺牲了自己的健康, 家庭等. (现在经常听到我们的工友, 猝死就是这方面没有正确面对)
 下半篇, 作者开始就上升到了人生态度问题. 以一个正确的心态, 面对生活, 面对婚姻, 面对死亡. 分清楚自己生活中的 &amp;ldquo;西瓜和芝麻&amp;rdquo;, 避免习惯于低层次的追求, 会影响我们的心志.
 最后文中讲述对大学生的建议 (我已经错过了), 阐述沟通的重要性, 以及介绍了拉里·佩奇名人, 巴菲特的非凡&amp;quot;见识&amp;quot;.</description>
+    </item>
+    
+    <item>
+      <title>Showyourwork</title>
+      <link>https://ynikl.github.io/books/showyourwork/</link>
+      <pubDate>Sat, 30 Apr 2022 17:22:23 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/books/showyourwork/</guid>
+      <description>Show Your Work 读书总结 概括 我为什么要读这本书
+如何提高自己的影响力
+这本书怎样影响了我
+打算开始分享计划, 学习如何分享, 讲述故事. 计划&amp;quot;学术假&amp;quot;
+书中的三句精华句子
+ You find time the same place you find spare change: in the nooks and crannies On the spectrum of creative work, the difference between the mediocre and the good is vast. Mediocrity is, however, still on the spectrum; you can move from mediocre to good in increments. The real gap is between doing nothing and doing something You can turn your flow into stock  三句话总结本书</description>
     </item>
     
     <item>
