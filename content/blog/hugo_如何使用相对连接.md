@@ -9,12 +9,12 @@ tags:
 
 hugo 的默认内容都是在 `content/` 路径下方
 
-在 markdown 文章中使用 `{{< ref "/blog/my-first-post.md" >}}` 会在编译时发生地址替换, 带`/` 是表示从 `content/` 目录下的下一个绝对路径
+在 markdown 文章中使用 `{ {< ref "/blog/my-first-post.md" >}}` 会在编译时发生地址替换, 带`/` 是表示从 `content/` 目录下的下一个绝对路径
 
 
 ```
 
-[我的文章](\{\{< ref "/blog/my-first-post.md" }})
+[我的文章]({ {< ref "/blog/my-first-post.md" }})
 
 ```
 
