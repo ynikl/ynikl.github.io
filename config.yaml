@@ -116,16 +116,16 @@ params:
 menu:
   main:
     - identifier: cs
-      name: "computer science"
+      name: cs
       url: /cs/
       weight: 1
     - identifier: books
       name: books
       url: /books/
       weight: 2
-    - identifier: posts
-      name: posts
-      url: /posts/
+    - identifier: blog
+      name: blog
+      url: /blog/
       weight: 3
     - identifier: tags
       name: tags
