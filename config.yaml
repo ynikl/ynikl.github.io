@@ -123,9 +123,9 @@ menu:
       name: books
       url: /books/
       weight: 2
-    - identifier: blog
-      name: blog
-      url: /blog/
+    - identifier: posts
+      name: posts
+      url: /posts/
       weight: 3
     - identifier: tags
       name: tags
