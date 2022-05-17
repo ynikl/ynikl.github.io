@@ -5,14 +5,17 @@ theme: PaperMod
 
 enableRobotsTXT: true
 buildDrafts: true
-buildFuture: false
-buildExpired: false
+buildFuture: true
+buildExpired: true
 
 # googleAnalytics: UA-123-45
 
 minify:
   disableXML: true
   minifyOutput: true
+
+profileMode:
+  enabled: true # needs to be explicitly set
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
@@ -25,6 +28,10 @@ params:
   DateFormat: "January 2, 2006"
   defaultTheme: auto # dark, light
   disableThemeToggle: false
+
+  buildDrafts: false
+  buildFuture: false
+  buildExpired: false
 
   ShowReadingTime: true
   ShowShareButtons: true
