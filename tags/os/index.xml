@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>os on 潜水员的咖啡小屋</title>
+    <link>https://ynikl.github.io/tags/os/</link>
+    <description>Recent content in os on 潜水员的咖啡小屋</description>
+    <image>
+      <url>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 19 Apr 2022 10:41:09 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/os/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Memory Alignment</title>
+      <link>https://ynikl.github.io/cs/memory-alignment/</link>
+      <pubDate>Tue, 19 Apr 2022 10:41:09 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/cs/memory-alignment/</guid>
+      <description>内存对齐 为什么需要内存对齐 go 中的结构体是怎么对齐的? go 中内存对齐的大小: 4或8bytes(对应32或64位计算机)
+如果结构体最长的数据字段为64位, 则对齐的大小为8bytes, 或者则为4bytes
+   工具介绍 参考连接: go结构体的内存对齐优化</description>
+    </item>
+    
+  </channel>
+</rss>

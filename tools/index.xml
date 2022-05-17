@@ -9,7 +9,17 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 09 Mar 2022 11:29:17 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tools/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Apr 2022 13:34:55 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker 基本使用</title>
+      <link>https://ynikl.github.io/tools/docker-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Thu, 07 Apr 2022 13:34:55 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/tools/docker-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</guid>
+      <description>Docker 基本使用 外挂文件夹 参数 -v 
+docker run -it -v /home/dock/Downloads:/usr/Downloads ubuntu64 /bin/bash</description>
+    </item>
+    
     <item>
       <title>Hugo 文章分类管理</title>
       <link>https://ynikl.github.io/tools/hugo-%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86/</link>

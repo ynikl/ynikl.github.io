@@ -9,7 +9,47 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 02 Apr 2022 10:09:22 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/cs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 May 2022 23:06:25 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/cs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reds Data Type</title>
+      <link>https://ynikl.github.io/cs/redis-data-type/</link>
+      <pubDate>Sun, 15 May 2022 23:06:25 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/cs/redis-data-type/</guid>
+      <description>redis 的五种基板数据结构
+ String List Hash Set Zset  String 实现方式 SDS 动态字符串
+List Hash Set Sorted Set / ZSet Bitmap HyperLogLog Stream </description>
+    </item>
+    
+    <item>
+      <title>Gmp</title>
+      <link>https://ynikl.github.io/cs/go_gmp/</link>
+      <pubDate>Sun, 15 May 2022 12:36:44 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/cs/go_gmp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Module</title>
+      <link>https://ynikl.github.io/cs/go_module/</link>
+      <pubDate>Tue, 19 Apr 2022 11:55:17 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/cs/go_module/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Memory Alignment</title>
+      <link>https://ynikl.github.io/cs/memory-alignment/</link>
+      <pubDate>Tue, 19 Apr 2022 10:41:09 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/cs/memory-alignment/</guid>
+      <description>内存对齐 为什么需要内存对齐 go 中的结构体是怎么对齐的? go 中内存对齐的大小: 4或8bytes(对应32或64位计算机)
+如果结构体最长的数据字段为64位, 则对齐的大小为8bytes, 或者则为4bytes
+   工具介绍 参考连接: go结构体的内存对齐优化</description>
+    </item>
+    
     <item>
       <title>Channel</title>
       <link>https://ynikl.github.io/cs/go_channel/</link>
@@ -22,6 +62,16 @@ channel 简介 Go 语言的基础类型之一, 用于在协程与协程之间传
  channel 保证:
  数据的先入先出 并发情况下的数据安全 已经关闭的 channel 不可重开  channel 的实现 channel 在内部实现的结构体为 runtime.hchan
  有一个环形链表, 暂存要传输的数据. 无 buffer 的channel 该队列长度为0, 所以不进行数据缓冲. 有一把互斥锁mutex, 在并发情况下, 保护自身数据结构的一致性 有两个协程等待链表, 用于挂载因为发送/接收而阻塞在该 channel 上的协程  1 2 3 4 5 6 7 8 9 10 11 12 13 14  type hchan struct { qcount uint // 当前 buffer 中有暂存着多少个数据 	dataqsiz uint // 环形数据的buffer个数, 由 make 初始化的时候第二个参数容量决定的 	buf unsafe.</description>
+    </item>
+    
+    <item>
+      <title>Tools</title>
+      <link>https://ynikl.github.io/cs/go_cmd_tools/</link>
+      <pubDate>Fri, 01 Apr 2022 19:56:59 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/cs/go_cmd_tools/</guid>
+      <description>golang 工具链使用总结
+go tool 使用go tool compile -N -l -S main.go生成汇编代码</description>
     </item>
     
   </channel>

@@ -9,7 +9,18 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 15 May 2022 17:11:57 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 May 2022 23:06:25 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reds Data Type</title>
+      <link>https://ynikl.github.io/cs/redis-data-type/</link>
+      <pubDate>Sun, 15 May 2022 23:06:25 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/cs/redis-data-type/</guid>
+      <description>redis 的五种基板数据结构
+ String List Hash Set Zset  String 实现方式 SDS 动态字符串
+List Hash Set Sorted Set / ZSet Bitmap HyperLogLog Stream </description>
+    </item>
+    
     <item>
       <title>Five Class Programer</title>
       <link>https://ynikl.github.io/posts/five-class-engineer/</link>
@@ -46,6 +57,15 @@ hugo官方文档</description>
     </item>
     
     <item>
+      <title>Gmp</title>
+      <link>https://ynikl.github.io/cs/go_gmp/</link>
+      <pubDate>Sun, 15 May 2022 12:36:44 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/cs/go_gmp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>见识</title>
       <link>https://ynikl.github.io/books/%E8%A7%81%E8%AF%86/</link>
       <pubDate>Sat, 14 May 2022 21:06:07 +0800</pubDate>
@@ -66,6 +86,16 @@ hugo官方文档</description>
     </item>
     
     <item>
+      <title>内存分配</title>
+      <link>https://ynikl.github.io/os/%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/</link>
+      <pubDate>Sat, 30 Apr 2022 17:35:23 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/os/%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/</guid>
+      <description>什么是堆内存?
+什么是栈内存?</description>
+    </item>
+    
+    <item>
       <title>Show Your Work</title>
       <link>https://ynikl.github.io/books/showyourwork/</link>
       <pubDate>Sat, 30 Apr 2022 17:22:23 +0800</pubDate>
@@ -77,6 +107,36 @@ hugo官方文档</description>
 打算开始分享计划, 学习如何分享, 讲述故事. 计划&amp;quot;学术假&amp;quot;
 书中的三句精华句子
  You find time the same place you find spare change: in the nooks and crannies On the spectrum of creative work, the difference between the mediocre and the good is vast. Mediocrity is, however, still on the spectrum; you can move from mediocre to good in increments. The real gap is between doing nothing and doing something You can turn your flow into stock  三句话总结本书</description>
+    </item>
+    
+    <item>
+      <title>Module</title>
+      <link>https://ynikl.github.io/cs/go_module/</link>
+      <pubDate>Tue, 19 Apr 2022 11:55:17 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/cs/go_module/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Memory Alignment</title>
+      <link>https://ynikl.github.io/cs/memory-alignment/</link>
+      <pubDate>Tue, 19 Apr 2022 10:41:09 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/cs/memory-alignment/</guid>
+      <description>内存对齐 为什么需要内存对齐 go 中的结构体是怎么对齐的? go 中内存对齐的大小: 4或8bytes(对应32或64位计算机)
+如果结构体最长的数据字段为64位, 则对齐的大小为8bytes, 或者则为4bytes
+   工具介绍 参考连接: go结构体的内存对齐优化</description>
+    </item>
+    
+    <item>
+      <title>Docker 基本使用</title>
+      <link>https://ynikl.github.io/tools/docker-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Thu, 07 Apr 2022 13:34:55 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/tools/docker-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</guid>
+      <description>Docker 基本使用 外挂文件夹 参数 -v 
+docker run -it -v /home/dock/Downloads:/usr/Downloads ubuntu64 /bin/bash</description>
     </item>
     
     <item>
@@ -112,6 +172,16 @@ channel 简介 Go 语言的基础类型之一, 用于在协程与协程之间传
  精通 go 编程语言 精通 redis 精通 mysql  5 月份 OKR O:
  加深对 Go 语言的基础知识理解 熟悉 redis 的所有数据类型  KR:
  输出3篇高质量的 go 语言blog  channel module tools   数据 redis 所有数据类型总结博文一篇   所有数据类型总结博文:    </description>
+    </item>
+    
+    <item>
+      <title>Tools</title>
+      <link>https://ynikl.github.io/cs/go_cmd_tools/</link>
+      <pubDate>Fri, 01 Apr 2022 19:56:59 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/cs/go_cmd_tools/</guid>
+      <description>golang 工具链使用总结
+go tool 使用go tool compile -N -l -S main.go生成汇编代码</description>
     </item>
     
     <item>
