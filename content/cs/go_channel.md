@@ -33,8 +33,8 @@ channel 在内部实现的结构体为 `runtime.hchan`
 ``` go
 type hchan struct {
 	qcount   uint           // 当前 buffer 中有暂存着多少个数据
-	dataqsiz uint           // 环形数据的buffer个数, 由 make 初始化的时候第二个参数容量决定的
-	buf      unsafe.Pointer // 环形数据开始地址
+	dataqsiz uint           // 环形数组的buffer个数, 由 make 初始化的时候第二个参数容量决定的
+	buf      unsafe.Pointer // 环形数组开始地址
 	elemsize uint16         // channel 传输的元素大小, 用于计算内存大小
 	closed   uint32         // channel 是否已经关闭 0未关闭, 非0关闭
 	elemtype *_type         // element type # channel 元素的类型
@@ -83,7 +83,7 @@ func makechan(t *chantype, size int) *hchan {
 		c = (*hchan)(mallocgc(hchanSize, nil, true))
 		// Race detector uses this location for synchronization.
 		c.buf = c.raceaddr()
-	case elem.ptrdata == 0: // # channel 元素不存在指针引导数据, 将环形数据分配在 hchan 后面
+	case elem.ptrdata == 0: // # channel 元素不存在指针引导数据, 将环形数组分配在 hchan 后面
 		// Elements do not contain pointers.
 		// Allocate hchan and buf in one call.
 		c = (*hchan)(mallocgc(hchanSize+mem, nil, true))
