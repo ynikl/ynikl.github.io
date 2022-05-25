@@ -24,5 +24,24 @@ channel 简介 Go 语言的基础类型之一, 用于在协程与协程之间传
  有一个环形链表, 暂存要传输的数据. 无 buffer 的channel 该队列长度为0, 所以不进行数据缓冲. 有一把互斥锁mutex, 在并发情况下, 保护自身数据结构的一致性 有两个协程等待链表, 用于挂载因为发送/接收而阻塞在该 channel 上的协程  1 2 3 4 5 6 7 8 9 10 11 12 13 14  type hchan struct { qcount uint // 当前 buffer 中有暂存着多少个数据 	dataqsiz uint // 环形数组的buffer个数, 由 make 初始化的时候第二个参数容量决定的 	buf unsafe.</description>
     </item>
     
+    <item>
+      <title>Go 常用的命令汇总</title>
+      <link>https://ynikl.github.io/blog/go-cmd/</link>
+      <pubDate>Fri, 01 Apr 2022 19:56:59 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/blog/go-cmd/</guid>
+      <description>工具分类 go build 编译源代码文件
+-race 编译出的目标程序，会启用数据竞争检测
+go doc 查看包的文档(定义于doc.go的注释中), 于包中公开的函数签名
+example
+1 2 3  go doc go doc encoding/json   go env 查看 go 相关的环境变量
+1 2 3 4 5  # -w 设置环境变量 go env -w GOPAHT=&amp;#39;/some/path&amp;#39; # -u 恢复成默认设置 go env -u GOPATH   go generate 扫描文件中的指令并执行, 相关指令目的应该是“生成或者修改源文件”
+注释的指令格式
+//go:generate command argument...
+ps: wire 也是利用命令, 生成依赖注入文件
+go get 管理当前module依赖
+1 2 3 4 5 6 7 8  # 添加依赖包 go get example.</description>
+    </item>
+    
   </channel>
 </rss>

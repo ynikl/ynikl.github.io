@@ -4,7 +4,17 @@ channel 简介 Go 语言的基础类型之一, 用于在协程与协程之间传
 Do not communicate by sharing memory; instead, share memory by communicating.
 channel 保证:
 数据的先入先出 并发情况下的数据安全 已经关闭的 channel 不可重开 channel 的实现 channel 在内部实现的结构体为 runtime.hchan
-有一个环形链表, 暂存要传输的数据. 无 buffer 的channel 该队列长度为0, 所以不进行数据缓冲. 有一把互斥锁mutex, 在并发情况下, 保护自身数据结构的一致性 有两个协程等待链表, 用于挂载因为发送/接收而阻塞在该 channel 上的协程 1 2 3 4 5 6 7 8 9 10 11 12 13 14 type hchan struct { qcount uint // 当前 buffer 中有暂存着多少个数据 dataqsiz uint // 环形数组的buffer个数, 由 make 初始化的时候第二个参数容量决定的 buf unsafe....</p></div><footer class=entry-footer><span title="2022-04-02 10:09:22 +0800 +0800">April 2, 2022</span>&nbsp;·&nbsp;11 min&nbsp;·&nbsp;潜水员</footer><a class=entry-link aria-label="post link to Channel" href=https://ynikl.github.io/blog/go-channel/></a></article><article class=post-entry><header class=entry-header><h2>Hugo 文章分类管理</h2></header><div class=entry-content><p>Hugo 文章分类管理 文件夹 内容存放在content/目录下方, content/下方的子目录会形成资源URI,
+有一个环形链表, 暂存要传输的数据. 无 buffer 的channel 该队列长度为0, 所以不进行数据缓冲. 有一把互斥锁mutex, 在并发情况下, 保护自身数据结构的一致性 有两个协程等待链表, 用于挂载因为发送/接收而阻塞在该 channel 上的协程 1 2 3 4 5 6 7 8 9 10 11 12 13 14 type hchan struct { qcount uint // 当前 buffer 中有暂存着多少个数据 dataqsiz uint // 环形数组的buffer个数, 由 make 初始化的时候第二个参数容量决定的 buf unsafe....</p></div><footer class=entry-footer><span title="2022-04-02 10:09:22 +0800 +0800">April 2, 2022</span>&nbsp;·&nbsp;11 min&nbsp;·&nbsp;潜水员</footer><a class=entry-link aria-label="post link to Channel" href=https://ynikl.github.io/blog/go-channel/></a></article><article class=post-entry><header class=entry-header><h2>Go 常用的命令汇总</h2></header><div class=entry-content><p>工具分类 go build 编译源代码文件
+-race 编译出的目标程序，会启用数据竞争检测
+go doc 查看包的文档(定义于doc.go的注释中), 于包中公开的函数签名
+example
+1 2 3 go doc go doc encoding/json go env 查看 go 相关的环境变量
+1 2 3 4 5 # -w 设置环境变量 go env -w GOPAHT='/some/path' # -u 恢复成默认设置 go env -u GOPATH go generate 扫描文件中的指令并执行, 相关指令目的应该是“生成或者修改源文件”
+注释的指令格式
+//go:generate command argument...
+ps: wire 也是利用命令, 生成依赖注入文件
+go get 管理当前module依赖
+1 2 3 4 5 6 7 8 # 添加依赖包 go get example....</p></div><footer class=entry-footer><span title="2022-04-01 19:56:59 +0800 +0800">April 1, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;潜水员</footer><a class=entry-link aria-label="post link to Go 常用的命令汇总" href=https://ynikl.github.io/blog/go-cmd/></a></article><article class=post-entry><header class=entry-header><h2>Hugo 文章分类管理</h2></header><div class=entry-content><p>Hugo 文章分类管理 文件夹 内容存放在content/目录下方, content/下方的子目录会形成资源URI,
 例如 content/blog/doc.md 文章访问目录即为 https//XXX.github.io/blog.doc.md
 分类管理 文章内容表述 (Front Matter) 使用进行分类, 默认只有tags
 1 2 3 tags:- Go- fast 可以在config添加自定的分类选项
