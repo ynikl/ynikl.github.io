@@ -91,10 +91,10 @@ hugo官方文档</description>
     
     <item>
       <title>Channel</title>
-      <link>https://ynikl.github.io/cs/go_channel/</link>
+      <link>https://ynikl.github.io/blog/go-channel/</link>
       <pubDate>Sat, 02 Apr 2022 10:09:22 +0800</pubDate>
       
-      <guid>https://ynikl.github.io/cs/go_channel/</guid>
+      <guid>https://ynikl.github.io/blog/go-channel/</guid>
       <description>Go 中 channel 中用法和实现总结 以下分析和源码都是基于 go1.17 版本
 channel 简介 Go 语言的基础类型之一, 用于在协程与协程之间传递数据 (channel 数据的传输方式也是值传递, Go语言的数据传输只有值传递)
  Do not communicate by sharing memory; instead, share memory by communicating.
@@ -105,10 +105,10 @@ channel 简介 Go 语言的基础类型之一, 用于在协程与协程之间传
     
     <item>
       <title>提升文字留存率</title>
-      <link>https://ynikl.github.io/q/%E6%8F%90%E5%8D%87%E6%96%87%E5%AD%97%E7%95%99%E5%AD%98%E7%8E%87/</link>
+      <link>https://ynikl.github.io/posts/%E6%8F%90%E5%8D%87%E6%96%87%E5%AD%97%E7%95%99%E5%AD%98%E7%8E%87/</link>
       <pubDate>Sat, 02 Apr 2022 09:58:23 +0800</pubDate>
       
-      <guid>https://ynikl.github.io/q/%E6%8F%90%E5%8D%87%E6%96%87%E5%AD%97%E7%95%99%E5%AD%98%E7%8E%87/</guid>
+      <guid>https://ynikl.github.io/posts/%E6%8F%90%E5%8D%87%E6%96%87%E5%AD%97%E7%95%99%E5%AD%98%E7%8E%87/</guid>
       <description>如何提高自己的所编写的文字留存问题? 自己经常写了很多文字, 但是每当自己回顾的时候都不是很满意. 然后就会把已经写下的文字和内容删除掉.</description>
     </item>
     
@@ -136,10 +136,10 @@ channel 简介 Go 语言的基础类型之一, 用于在协程与协程之间传
     
     <item>
       <title>Hugo 文章分类管理</title>
-      <link>https://ynikl.github.io/tools/hugo-%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86/</link>
+      <link>https://ynikl.github.io/blog/hugo-%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86/</link>
       <pubDate>Wed, 09 Mar 2022 11:29:17 +0800</pubDate>
       
-      <guid>https://ynikl.github.io/tools/hugo-%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86/</guid>
+      <guid>https://ynikl.github.io/blog/hugo-%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86/</guid>
       <description>Hugo 文章分类管理 文件夹 内容存放在content/目录下方, content/下方的子目录会形成资源URI,
 例如 content/blog/doc.md 文章访问目录即为 https//XXX.github.io/blog.doc.md
 分类管理  文章内容表述 (Front Matter) 使用进行分类, 默认只有tags
