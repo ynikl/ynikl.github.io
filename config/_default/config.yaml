@@ -20,9 +20,9 @@ profileMode:
 # 中间右上方 标题栏
 menu:
   main:
-    - identifier: cs
-      name: cs
-      url: /cs/
+    - identifier: blog
+      name: blog
+      url: /blog/
       weight: 1
     - identifier: books
       name: books
