@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>think on 潜水员的咖啡小屋</title>
+    <link>https://ynikl.github.io/tags/think/</link>
+    <description>Recent content in think on 潜水员的咖啡小屋</description>
+    <image>
+      <url>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 26 May 2022 13:29:55 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/think/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>我为什么要学微服务</title>
+      <link>https://ynikl.github.io/posts/2022/0526-why-learn-microservices/</link>
+      <pubDate>Thu, 26 May 2022 13:29:55 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/posts/2022/0526-why-learn-microservices/</guid>
+      <description>为什么学  高学习产出转化比 助力下一份工作  公司现在正在初步尝试开始引入微服务，现在学习微服务具有较高的学习工作转化比。 后端架构转变的主流方向, 有利于再次找工作。
+怎么学 想要学习好一个技术，就需要有想学习这门技术的动力。
+首先要对它有较全面的理解：
+ 我们为什么要学习这门技术 技术的使用场景，以及使用的优势和劣势 现在该技术在大环境中的使用情况  再开始学习技术本身。
+针对于“微服务”这种概念性技术。就需要具体落实到某一个框架，进行一个实战项目。过程中掌握框架使用方法，对过程中所涉及到的相关技术有粗略的了解。
+具体方法：
+ 我想先通过快速通过《微服务设计模式》了解微服务的使用场景，以及如何设计。 使用 go-zero 框架完成一个练手项目开发。  </description>
+    </item>
+    
+  </channel>
+</rss>
