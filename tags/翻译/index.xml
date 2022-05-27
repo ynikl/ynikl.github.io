@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>翻译 on 潜水员的咖啡小屋</title>
+    <link>https://ynikl.github.io/tags/%E7%BF%BB%E8%AF%91/</link>
+    <description>Recent content in 翻译 on 潜水员的咖啡小屋</description>
+    <image>
+      <url>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 25 May 2022 16:11:10 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>翻译，使用 Godoc 给 go 代码添加文档</title>
+      <link>https://ynikl.github.io/blog/godoc-documenting-go-code/</link>
+      <pubDate>Wed, 25 May 2022 16:11:10 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/blog/godoc-documenting-go-code/</guid>
+      <description>在看官方文档的时候，突然心血来潮，想翻译一下一篇博客玩玩。
+原文章地址 Godoc: documenting Go code
+Go 语言官方对于代码的文档非常重视，文档对于软件的可阅读性和可维护性有着至关重要的地位。当然，文档必须要是准确可理解的，也需要易于编写和维护。理性情况下，文档应该与代码紧密联系。这样子才能方便于程序员修改和编写。
+所以，我们开发了 godoc 文档工具。本文描述了的 godoc 关于的“文档”的方法论，和解释如何按照使用规范给你自己的项目写出一个好的文档。
+godoc 会解析源文件代码和注释，生成基于HTML的页面或者纯文本格式的文档。这样子文档就与代码紧密联系。举个例子，通过在 godoc 的页面点击，你就可以在一个函数的文档说明和源代码中快速跳转。
+godoc 在概念上与 Python 的“Docstring”和 Java 的“Javadoc&amp;quot;相似，但是 godoc 设计的更加简单化。godoc 读取的代码注释的不需要特定的结构化（Docstring 使用），也不需要特定的语法（JavaDoc 使用），godoc 从代码读取的注释就是简单的“代码注释”，就算你不使用 godoc 也可以直接阅读的注释。
+使用的规范很简单：在类型，变量，常量，函数，包声明的上方写下注释即可， 中间不要有空行。godoc 会把这些注释以文字的形式呈现在被注释的对象旁边。举个例子，下方就是 fmt 包的Fprint函数的注释。
+1 2 3 4  // Fprint formats using the default formats for its operands and writes to w. // Spaces are added between operands when neither is a string. // It returns the number of bytes written and any write error encountered.</description>
+    </item>
+    
+  </channel>
+</rss>
