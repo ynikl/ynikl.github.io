@@ -3,7 +3,7 @@ title: "我为什么要学微服务"
 date: 2022-05-26T13:29:55+08:00
 draft: false
 tags:
-- think
+- self-why
 ---
 
 ## 为什么学
