@@ -1,5 +1,5 @@
 ---
-title: "Autobiography Benjamin_franklin"
+title: "富兰克林自传读后感"
 date: 2022-05-25T23:14:12+08:00
 draft: false
 tags:

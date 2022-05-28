@@ -1,5 +1,5 @@
 ---
-title: "翻译，使用 Godoc 给 go 代码添加文档"
+title: "【翻译】使用 Godoc 给 go 代码添加文档"
 date: 2022-05-25T16:11:10+08:00
 draft: false
 tags:

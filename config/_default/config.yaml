@@ -15,7 +15,7 @@ minify:
   minifyOutput: true
 
 profileMode:
-  enabled: true # needs to be explicitly set
+  enabled: false # needs to be explicitly set
 
 # 中间右上方 标题栏
 menu:
@@ -42,6 +42,7 @@ menu:
       weight: 100
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
+
 markup:
     highlight:
         # anchorLineNos: true
@@ -49,3 +50,4 @@ markup:
         guessSyntax: true
         lineNos: true
         style: monokai
+
