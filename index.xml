@@ -26,7 +26,7 @@
     </item>
     
     <item>
-      <title>Autobiography Benjamin_franklin</title>
+      <title>富兰克林自传读后感</title>
       <link>https://ynikl.github.io/books/autobiography-benjamin_franklin/</link>
       <pubDate>Wed, 25 May 2022 23:14:12 +0800</pubDate>
       
@@ -40,7 +40,7 @@
     </item>
     
     <item>
-      <title>翻译，使用 Godoc 给 go 代码添加文档</title>
+      <title>【翻译】使用 Godoc 给 go 代码添加文档</title>
       <link>https://ynikl.github.io/blog/godoc-documenting-go-code/</link>
       <pubDate>Wed, 25 May 2022 16:11:10 +0800</pubDate>
       
@@ -159,14 +159,15 @@ channel 简介 Go 语言的基础类型之一, 用于在协程与协程之间传
     
     <item>
       <title>2022</title>
-      <link>https://ynikl.github.io/okr/2022/</link>
+      <link>https://ynikl.github.io/okr/okr-2022/</link>
       <pubDate>Fri, 01 Apr 2022 20:09:37 +0800</pubDate>
       
-      <guid>https://ynikl.github.io/okr/2022/</guid>
+      <guid>https://ynikl.github.io/okr/okr-2022/</guid>
       <description>2022 年度目标 提升自己的基础技术竞争力, 确保不会找不到工作
  精通 go 编程语言 精通 redis 精通 mysql  5 月份 OKR O:
- 加深对 Go 语言的基础知识理解 熟悉 redis 的所有数据类型  KR:
- 输出3篇高质量的 go 语言blog  channel module tools   数据 redis 所有数据类型总结博文一篇   所有数据类型总结博文:    </description>
+ 加深对 Go 语言的基础知识理解 熟悉 redis 的所有数据类型  KR: 输出3篇高质量的 go 语言blog
+ channel module tools  数据 redis 所有数据类型总结博文一篇
+ 所有数据类型总结博文  </description>
     </item>
     
     <item>
@@ -195,7 +196,7 @@ go get 管理当前module依赖
       
       <guid>https://ynikl.github.io/me/</guid>
       <description>whoami: 潜水员
- 五流程序员 文字业余爱好者  目前在学  Go Redis 富兰克林自传 在路上  计算机技能  Go Redis Mysql Operating System Algorithm (basic)  想学习的技能  摄影  Bucket List  逃离办公室 去西藏 写一本书  </description>
+ 五流程序员 文字业余爱好者  目前在学  Go Redis 微服务设计模式  计算机技能  Go Redis Mysql Operating System Algorithm (basic)  想学习的技能  摄影  Bucket List  逃离办公室 去西藏 写一本书  </description>
     </item>
     
     <item>
