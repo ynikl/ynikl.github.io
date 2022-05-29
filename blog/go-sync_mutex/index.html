@@ -1,0 +1,290 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Go-互斥锁的实现 | 潜水员的咖啡小屋</title><meta name=keywords content="go"><meta name=description content="Mutex 数据结构 1 2 3 4  type Mutex struct { state int32 sema uint32 }    Mutex 使用过之后是不可被拷贝的 state 等于 0 值的时候才是无锁的状态 sema 字段为信号量字段，通过该字段控制协程的阻塞和唤醒，具体实现在runtime 中。  Mutex 对象总共有三个公开方法
+ Lock 尝试抢占互斥锁，如果已经被锁定，则调用协程进入阻塞 TryLock Unlock 解除互斥锁， 解锁未锁定的互斥锁会发生panic  Mutex 与协程无法关，允许一个协程锁定，另一个协程进行解锁。
+Mutex 实现了一个 sync.Locker 接口, 该接口只有两个方法
+ Lock Unlock  Mutex 锁有几种状态
+ mutexLocked = 1 已经锁定 mutexWoken = 2 表示当前锁的等待队列，有协程正在活跃地获取锁，可以考虑不用释放信号量 mutexStarving = 4 当前锁已经进入了饥饿状态  其他常量
+ mutexWaiterShift = 3 统计的等待在Mutex."><meta name=author content="潜水员"><link rel=canonical href=https://ynikl.github.io/blog/go-sync_mutex/><link crossorigin=anonymous href=/assets/css/stylesheet.min.ec8da366ca2fb647537ccb7a8f6fa5b4e9cd3c7a0d3171dd2d3baad1e49c8bfc.css integrity="sha256-7I2jZsovtkdTfMt6j2+ltOnNPHoNMXHdLTuq0eSci/w=" rel="preload stylesheet" as=style><script defer crossorigin=anonymous src=/assets/js/highlight.min.2840b7fccd34145847db71a290569594bdbdb00047097f75d6495d162f5d7dff.js integrity="sha256-KEC3/M00FFhH23GikFaVlL29sABHCX911kldFi9dff8=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://ynikl.github.io/apple-touch-icon.png><link rel=icon type=image/png sizes=16x16 href=https://ynikl.github.io/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=https://ynikl.github.io/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=https://ynikl.github.io/apple-touch-icon.png><link rel=mask-icon href=https://ynikl.github.io/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:title" content="Go-互斥锁的实现"><meta property="og:description" content="Mutex 数据结构 1 2 3 4  type Mutex struct { state int32 sema uint32 }    Mutex 使用过之后是不可被拷贝的 state 等于 0 值的时候才是无锁的状态 sema 字段为信号量字段，通过该字段控制协程的阻塞和唤醒，具体实现在runtime 中。  Mutex 对象总共有三个公开方法
+ Lock 尝试抢占互斥锁，如果已经被锁定，则调用协程进入阻塞 TryLock Unlock 解除互斥锁， 解锁未锁定的互斥锁会发生panic  Mutex 与协程无法关，允许一个协程锁定，另一个协程进行解锁。
+Mutex 实现了一个 sync.Locker 接口, 该接口只有两个方法
+ Lock Unlock  Mutex 锁有几种状态
+ mutexLocked = 1 已经锁定 mutexWoken = 2 表示当前锁的等待队列，有协程正在活跃地获取锁，可以考虑不用释放信号量 mutexStarving = 4 当前锁已经进入了饥饿状态  其他常量
+ mutexWaiterShift = 3 统计的等待在Mutex."><meta property="og:type" content="article"><meta property="og:url" content="https://ynikl.github.io/blog/go-sync_mutex/"><meta property="og:image" content="https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta property="article:section" content="blog"><meta property="article:published_time" content="2022-05-29T20:52:35+08:00"><meta property="article:modified_time" content="2022-05-29T20:52:35+08:00"><meta property="og:site_name" content="潜水员的咖啡小屋"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="Go-互斥锁的实现"><meta name=twitter:description content="Mutex 数据结构 1 2 3 4  type Mutex struct { state int32 sema uint32 }    Mutex 使用过之后是不可被拷贝的 state 等于 0 值的时候才是无锁的状态 sema 字段为信号量字段，通过该字段控制协程的阻塞和唤醒，具体实现在runtime 中。  Mutex 对象总共有三个公开方法
+ Lock 尝试抢占互斥锁，如果已经被锁定，则调用协程进入阻塞 TryLock Unlock 解除互斥锁， 解锁未锁定的互斥锁会发生panic  Mutex 与协程无法关，允许一个协程锁定，另一个协程进行解锁。
+Mutex 实现了一个 sync.Locker 接口, 该接口只有两个方法
+ Lock Unlock  Mutex 锁有几种状态
+ mutexLocked = 1 已经锁定 mutexWoken = 2 表示当前锁的等待队列，有协程正在活跃地获取锁，可以考虑不用释放信号量 mutexStarving = 4 当前锁已经进入了饥饿状态  其他常量
+ mutexWaiterShift = 3 统计的等待在Mutex."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Blogs","item":"https://ynikl.github.io/blog/"},{"@type":"ListItem","position":2,"name":"Go-互斥锁的实现","item":"https://ynikl.github.io/blog/go-sync_mutex/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Go-互斥锁的实现","name":"Go-互斥锁的实现","description":"Mutex 数据结构 1 2 3 4  type Mutex struct { state int32 sema uint32 }    Mutex 使用过之后是不可被拷贝的 state 等于 0 值的时候才是无锁的状态 sema 字段为信号量字段，通过该字段控制协程的阻塞和唤醒，具体实现在runtime 中。  Mutex 对象总共有三个公开方法\n Lock 尝试抢占互斥锁，如果已经被锁定，则调用协程进入阻塞 TryLock Unlock 解除互斥锁， 解锁未锁定的互斥锁会发生panic  Mutex 与协程无法关，允许一个协程锁定，另一个协程进行解锁。\nMutex 实现了一个 sync.Locker 接口, 该接口只有两个方法\n Lock Unlock  Mutex 锁有几种状态\n mutexLocked = 1 已经锁定 mutexWoken = 2 表示当前锁的等待队列，有协程正在活跃地获取锁，可以考虑不用释放信号量 mutexStarving = 4 当前锁已经进入了饥饿状态  其他常量\n mutexWaiterShift = 3 统计的等待在Mutex.","keywords":["go"],"articleBody":"Mutex 数据结构 1 2 3 4  type Mutex struct { state int32 sema uint32 }    Mutex 使用过之后是不可被拷贝的 state 等于 0 值的时候才是无锁的状态 sema 字段为信号量字段，通过该字段控制协程的阻塞和唤醒，具体实现在runtime 中。  Mutex 对象总共有三个公开方法\n Lock 尝试抢占互斥锁，如果已经被锁定，则调用协程进入阻塞 TryLock Unlock 解除互斥锁， 解锁未锁定的互斥锁会发生panic  Mutex 与协程无法关，允许一个协程锁定，另一个协程进行解锁。\nMutex 实现了一个 sync.Locker 接口, 该接口只有两个方法\n Lock Unlock  Mutex 锁有几种状态\n mutexLocked = 1 已经锁定 mutexWoken = 2 表示当前锁的等待队列，有协程正在活跃地获取锁，可以考虑不用释放信号量 mutexStarving = 4 当前锁已经进入了饥饿状态  其他常量\n mutexWaiterShift = 3 统计的等待在Mutex.state字段等待数量。（前3位，用于表示锁的状态, 即 mutexLocked, mutexWoken, mutexStarving） starvationThresholdNs = 1e6 进入饥饿模式的阈值 1ms  Mutex 锁的竞争方式 Mutex 锁有两种状态\n 正常模式 normal 饥饿模式 starvation  正常模式下，等待获取的锁的协程遵循先进先出的原则。\n但是，当释放锁的时候如果有新协程进入获取锁代码的时候。因为新入协程本身已经运行在CPU上了，所以有抢占锁的优势。由于阻塞在等待队列上的协程，竞争不过新入协程。当等待时间操作 1ms，就会触发饥饿模式。\n饥饿模式，进行互斥锁解锁的协程直接的将锁的所有权直接已经给等待队列的第一个协程。新进协程被禁止抢占互斥锁。\n在转移所有权的时候，如果满足一下任意条件，则进入正常模式：\n 锁的等待者只剩最后一个 等待时间小于1ms  正常模式有利于更好的性能，饥饿模式则避免出现“饿死”情况。\nMutex 的方法详解 Lock 第一步，通过调用 atomic 的 CAS 操作，尝试加锁，如果成功加锁直接返回\n1  atomic.CompareAndSwapInt32(\u0026m.state, 0, mutexLocked)   如果第一步失败，则代表该锁已经被加过锁，锁定了。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91  func (m *Mutex) lockSlow() { // 当前协程的变量, 可以用于表示当前协程的状态 // 用于统计锁的等待时长，是否进入饥饿模式 var waitStartTime int64 starving := false // 当前协程是否处于饥饿 awoke := false // 是否处于唤醒 iter := 0 // 统计自旋次数 old := m.state for { // 进入自旋的状态条件， **已经锁定** 且非饥饿状态。 if old\u0026(mutexLocked|mutexStarving) == mutexLocked \u0026\u0026 runtime_canSpin(iter) { // 如果锁的状态 woken 字段未被标记， 将自身标记位唤醒，且将 Mutex 的 woken 位标记位1 // 当协程自己进入获取锁的第一候选人 if !awoke \u0026\u0026 old\u0026mutexWoken == 0 \u0026\u0026 oldmutexWaiterShift != 0 \u0026\u0026 atomic.CompareAndSwapInt32(\u0026m.state, old, old|mutexWoken) { awoke = true } runtime_doSpin() // 控制自旋次数，大于4次之后不进入自旋状态 iter++ // 获取最新的状态 old = m.state continue } // 有可能，自旋自后已经解锁或者只是单纯不能自旋限制了。下面尝试通过 CAS 竞争锁。 // 新值用于设置新的状态 new := old // 非饥饿状态才设置锁定 if old\u0026mutexStarving == 0 { new |= mutexLocked } if old\u0026(mutexLocked|mutexStarving) != 0 { // 等待者加1 new += 1 } // 当前协程是饥饿状态，尝试标记锁的新状态位饥饿状态。 if starving \u0026\u0026 old\u0026mutexLocked != 0 { new |= mutexStarving } if awoke { // The goroutine has been woken from sleep, // so we need to reset the flag in either case. if new\u0026mutexWoken == 0 { // Mutex 的唤醒位被抢走，出现不一致。协程变量的唤醒位应该与 Mutex 的唤醒位一致 throw(\"sync: inconsistent mutex state\") } // 标志 锁的唤醒位为0 new \u0026^= mutexWoken } // CAS 尝试, Mutex 状态没有被变更 if atomic.CompareAndSwapInt32(\u0026m.state, old, new) { // 非饥饿状态下，CAS 成功新的 new 字段中会有 mutexLocked 标记（在new下的第一个if）。当前协程获取到了互斥锁, if old\u0026(mutexLocked|mutexStarving) == 0 { break // locked the mutex with CAS } // queueLifo 表示该协程是否为第一次获取锁。如果中间被唤醒过，这放在等待队列头部 queueLifo := waitStartTime != 0 if waitStartTime == 0 { waitStartTime = runtime_nanotime() } // 通过信号量，进入阻塞 runtime_SemacquireMutex(\u0026m.sema, queueLifo, 1) // 进入饥饿模式 starving = starving || runtime_nanotime()-waitStartTime  starvationThresholdNs old = m.state // 当前是饥饿模式 if old\u0026mutexStarving != 0 { // 如果当前锁的状态位饥饿模式，但是当前协程可以执行的当前行代码，代表当前协程已经被从阻塞中唤醒。 // 饥饿状态 + 被唤醒 =》当前锁已经已经到当前协程上 if old\u0026(mutexLocked|mutexWoken) != 0 || oldmutexWaiterShift == 0 { // 检查状态一致 throw(\"sync: inconsistent mutex state\") } // 由当协程来设置最新的锁定状态 delta := int32(mutexLocked - 1// 判断是否需要退出饥饿模式 if !starving || oldmutexWaiterShift == 1 { delta -= mutexStarving } atomic.AddInt32(\u0026m.state, delta) break } // 当前是正常模式，通过CAS自由竞争锁。 awoke = true iter = 0 // 重置计数 } else { // 再来 old = m.state } } }   是否可以进入自旋状态代码解释源码地址\nUnlock 第一步直接减去 mutexLocked 标志位常量，如果 new 等于0结束——简单（锁一次开一次，easy）。\n1  new := atomic.AddInt32(\u0026m.state, -mutexLocked)   如果 state 还不等于0（有协程等待，竞争锁）, 进入 unlockSlow\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37  func (m *Mutex) unlockSlow(new int32) { // 上一步已经减过 locked 位， 在加上应该等于1，否则不是正常解锁（解锁未锁定的锁）。 if (new+mutexLocked)\u0026mutexLocked == 0 { fatal(\"sync: unlock of unlocked mutex\") } // 正常模式 if new\u0026mutexStarving == 0 { old := new for { // If there are no waiters or a goroutine has already // been woken or grabbed the lock, no need to wake anyone. // In starvation mode ownership is directly handed off from unlocking // goroutine to the next waiter. We are not part of this chain, // since we did not observe mutexStarving when we unlocked the mutex above. // So get off the way. // 没有等待协程无需通过信号量唤醒 // 1. 如果 mutexLocked 位为1，则代表锁已经被新入协程获取。 // 2. mutexWoken 代表协程有协程正在活动，无需再释放信号量 // 3. mutexStarving 锁的状态一直被抢占，才会导致当前位饥饿状态，无需在释放信号量 if oldmutexWaiterShift == 0 || old\u0026(mutexLocked|mutexWoken|mutexStarving) != 0 { return } // Grab the right to wake someone. new = (old - 1if atomic.CompareAndSwapInt3(\u0026m.state, old, new) { // 信号量唤醒，各自竞争 runtime_Semrelease(\u0026m.sema, false, 1) return } old = m.state } } else { // 饥饿模式，通过信号量直接移交当前CPU时间 runtime_Semrelease(\u0026m.sema, true, 1) } }2   如何把锁移交给等待队列的协程？\n使用 Mutex.sema 信号量实现锁转移\n参考 源代码地址sync.mutex.go 包说明文档\n","wordCount":"730","inLanguage":"en","datePublished":"2022-05-29T20:52:35+08:00","dateModified":"2022-05-29T20:52:35+08:00","author":{"@type":"Person","name":"潜水员"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://ynikl.github.io/blog/go-sync_mutex/"},"publisher":{"@type":"Organization","name":"潜水员的咖啡小屋","logo":{"@type":"ImageObject","url":"https://ynikl.github.io/apple-touch-icon.png"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://ynikl.github.io/ accesskey=h title="Home (Alt + H)"><img src=https://ynikl.github.io/apple-touch-icon_hu580d61a4745e72e64f2a76fb3eea3190_18715_0x35_resize_box_3.png alt=logo aria-label=logo height=35>Home</a>
+<span class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></span></div><ul id=menu><li><a href=https://ynikl.github.io/blog/ title=blog><span>blog</span></a></li><li><a href=https://ynikl.github.io/books/ title=books><span>books</span></a></li><li><a href=https://ynikl.github.io/posts/ title=posts><span>posts</span></a></li><li><a href=https://ynikl.github.io/tags/ title=tags><span>tags</span></a></li><li><a href=https://ynikl.github.io/me/ title=me?><span>me?</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://ynikl.github.io/>Home</a>&nbsp;»&nbsp;<a href=https://ynikl.github.io/blog/>Blogs</a></div><h1 class=post-title>Go-互斥锁的实现</h1><div class=post-meta><span title="2022-05-29 20:52:35 +0800 +0800">May 29, 2022</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;潜水员&nbsp;|&nbsp;<a href=https://github.com/ynikl/ynikl.github.io/tree/main/content/blog/go-sync_mutex.md rel="noopener noreferrer" target=_blank>Suggest Changes</a></div></header><div class=post-content><h2 id=mutex-数据结构>Mutex 数据结构<a hidden class=anchor aria-hidden=true href=#mutex-数据结构>#</a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kd>type</span> <span class=nx>Mutex</span> <span class=kd>struct</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>state</span> <span class=kt>int32</span>
+</span></span><span class=line><span class=cl>	<span class=nx>sema</span> <span class=kt>uint32</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>Mutex 使用过之后是不可被拷贝的</li><li>state 等于 0 值的时候才是无锁的状态</li><li>sema 字段为信号量字段，通过该字段控制协程的阻塞和唤醒，具体实现在runtime 中。</li></ul><p>Mutex 对象总共有三个公开方法</p><ul><li>Lock 尝试抢占互斥锁，如果已经被锁定，则调用协程进入阻塞</li><li>TryLock</li><li>Unlock 解除互斥锁， <strong>解锁未锁定的互斥锁会发生panic</strong></li></ul><p>Mutex 与协程无法关，允许一个协程锁定，另一个协程进行解锁。</p><p>Mutex 实现了一个 <code>sync.Locker</code> 接口, 该接口只有两个方法</p><ul><li>Lock</li><li>Unlock</li></ul><p>Mutex 锁有几种状态</p><ul><li>mutexLocked = 1 已经锁定</li><li>mutexWoken = 2 表示当前锁的等待队列，有协程正在活跃地获取锁，可以考虑不用释放信号量</li><li>mutexStarving = 4 当前锁已经进入了饥饿状态</li></ul><p>其他常量</p><ul><li>mutexWaiterShift = 3 统计的等待在<code>Mutex.state</code>字段等待数量。（前3位，用于表示锁的状态, 即 mutexLocked, mutexWoken, mutexStarving）</li><li>starvationThresholdNs = 1e6 进入饥饿模式的阈值 1ms</li></ul><h2 id=mutex-锁的竞争方式>Mutex 锁的竞争方式<a hidden class=anchor aria-hidden=true href=#mutex-锁的竞争方式>#</a></h2><p>Mutex 锁有两种状态</p><ul><li>正常模式 normal</li><li>饥饿模式 starvation</li></ul><p>正常模式下，等待获取的锁的协程遵循先进先出的原则。</p><p>但是，当释放锁的时候如果有新协程进入获取锁代码的时候。因为新入协程本身已经运行在CPU上了，所以有抢占锁的优势。由于阻塞在等待队列上的协程，竞争不过新入协程。当等待时间操作 1ms，就会触发饥饿模式。</p><p>饥饿模式，进行互斥锁解锁的协程直接的将锁的所有权直接已经给等待队列的第一个协程。新进协程被禁止抢占互斥锁。</p><p>在转移所有权的时候，如果满足一下任意条件，则进入正常模式：</p><ul><li>锁的等待者只剩最后一个</li><li>等待时间小于1ms</li></ul><p>正常模式有利于更好的性能，饥饿模式则避免出现“饿死”情况。</p><h2 id=mutex-的方法详解>Mutex 的方法详解<a hidden class=anchor aria-hidden=true href=#mutex-的方法详解>#</a></h2><h3 id=lock>Lock<a hidden class=anchor aria-hidden=true href=#lock>#</a></h3><p>第一步，通过调用 atomic 的 CAS 操作，尝试加锁，如果成功加锁直接返回</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>	atomic.CompareAndSwapInt32(&amp;m.state, 0, mutexLocked)
+</span></span></code></pre></td></tr></table></div></div><p>如果第一步失败，则代表该锁已经被加过锁，锁定了。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span><span class=lnt>87
+</span><span class=lnt>88
+</span><span class=lnt>89
+</span><span class=lnt>90
+</span><span class=lnt>91
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>func (m *Mutex) lockSlow() {
+</span></span><span class=line><span class=cl>	// 当前协程的变量, 可以用于表示当前协程的状态
+</span></span><span class=line><span class=cl>	// 用于统计锁的等待时长，是否进入饥饿模式
+</span></span><span class=line><span class=cl>	var waitStartTime int64
+</span></span><span class=line><span class=cl>	starving := false // 当前协程是否处于饥饿
+</span></span><span class=line><span class=cl>	awoke := false // 是否处于唤醒
+</span></span><span class=line><span class=cl>	iter := 0 // 统计自旋次数
+</span></span><span class=line><span class=cl>	old := m.state
+</span></span><span class=line><span class=cl>	for {
+</span></span><span class=line><span class=cl>		// 进入自旋的状态条件， **已经锁定** 且非饥饿状态。
+</span></span><span class=line><span class=cl>		if old&amp;(mutexLocked|mutexStarving) == mutexLocked &amp;&amp; runtime_canSpin(iter) {
+</span></span><span class=line><span class=cl>			// 如果锁的状态 woken 字段未被标记， 将自身标记位唤醒，且将 Mutex 的 woken 位标记位1
+</span></span><span class=line><span class=cl>			// 当协程自己进入获取锁的第一候选人
+</span></span><span class=line><span class=cl>			if !awoke &amp;&amp; old&amp;mutexWoken == 0 &amp;&amp; old&gt;&gt;mutexWaiterShift != 0 &amp;&amp;
+</span></span><span class=line><span class=cl>				atomic.CompareAndSwapInt32(&amp;m.state, old, old|mutexWoken) {
+</span></span><span class=line><span class=cl>				awoke = true
+</span></span><span class=line><span class=cl>			}
+</span></span><span class=line><span class=cl>			runtime_doSpin()
+</span></span><span class=line><span class=cl>			// 控制自旋次数，大于4次之后不进入自旋状态
+</span></span><span class=line><span class=cl>			iter++
+</span></span><span class=line><span class=cl>			// 获取最新的状态
+</span></span><span class=line><span class=cl>			old = m.state
+</span></span><span class=line><span class=cl>			continue
+</span></span><span class=line><span class=cl>		}
+</span></span><span class=line><span class=cl>		// 有可能，自旋自后已经解锁或者只是单纯不能自旋限制了。下面尝试通过 CAS 竞争锁。
+</span></span><span class=line><span class=cl>		// 新值用于设置新的状态
+</span></span><span class=line><span class=cl>		new := old
+</span></span><span class=line><span class=cl>		// 非饥饿状态才设置锁定
+</span></span><span class=line><span class=cl>		if old&amp;mutexStarving == 0 {
+</span></span><span class=line><span class=cl>			new |= mutexLocked
+</span></span><span class=line><span class=cl>		}
+</span></span><span class=line><span class=cl>		if old&amp;(mutexLocked|mutexStarving) != 0 {
+</span></span><span class=line><span class=cl>			// 等待者加1
+</span></span><span class=line><span class=cl>			new += 1 &lt;&lt; mutexWaiterShift
+</span></span><span class=line><span class=cl>		}
+</span></span><span class=line><span class=cl>		// 当前协程是饥饿状态，尝试标记锁的新状态位饥饿状态。
+</span></span><span class=line><span class=cl>		if starving &amp;&amp; old&amp;mutexLocked != 0 {
+</span></span><span class=line><span class=cl>			new |= mutexStarving
+</span></span><span class=line><span class=cl>		}
+</span></span><span class=line><span class=cl>		if awoke {
+</span></span><span class=line><span class=cl>			// The goroutine has been woken from sleep,
+</span></span><span class=line><span class=cl>			// so we need to reset the flag in either case.
+</span></span><span class=line><span class=cl>			if new&amp;mutexWoken == 0 {
+</span></span><span class=line><span class=cl>				// Mutex 的唤醒位被抢走，出现不一致。协程变量的唤醒位应该与 Mutex 的唤醒位一致
+</span></span><span class=line><span class=cl>				throw(&#34;sync: inconsistent mutex state&#34;)
+</span></span><span class=line><span class=cl>			}
+</span></span><span class=line><span class=cl>			// 标志 锁的唤醒位为0
+</span></span><span class=line><span class=cl>			new &amp;^= mutexWoken
+</span></span><span class=line><span class=cl>		}
+</span></span><span class=line><span class=cl>		// CAS 尝试, Mutex 状态没有被变更
+</span></span><span class=line><span class=cl>		if atomic.CompareAndSwapInt32(&amp;m.state, old, new) {
+</span></span><span class=line><span class=cl>			// 非饥饿状态下，CAS 成功新的 new 字段中会有 mutexLocked 标记（在new下的第一个if）。当前协程获取到了互斥锁,
+</span></span><span class=line><span class=cl>			if old&amp;(mutexLocked|mutexStarving) == 0 {
+</span></span><span class=line><span class=cl>				break // locked the mutex with CAS
+</span></span><span class=line><span class=cl>			}
+</span></span><span class=line><span class=cl>			// queueLifo 表示该协程是否为第一次获取锁。如果中间被唤醒过，这放在等待队列头部
+</span></span><span class=line><span class=cl>			queueLifo := waitStartTime != 0
+</span></span><span class=line><span class=cl>			if waitStartTime == 0 {
+</span></span><span class=line><span class=cl>				waitStartTime = runtime_nanotime()
+</span></span><span class=line><span class=cl>			}
+</span></span><span class=line><span class=cl>			// 通过信号量，进入阻塞 
+</span></span><span class=line><span class=cl>			runtime_SemacquireMutex(&amp;m.sema, queueLifo, 1)
+</span></span><span class=line><span class=cl>			// 进入饥饿模式
+</span></span><span class=line><span class=cl>			starving = starving || runtime_nanotime()-waitStartTime &gt; starvationThresholdNs
+</span></span><span class=line><span class=cl>			old = m.state
+</span></span><span class=line><span class=cl>			// 当前是饥饿模式
+</span></span><span class=line><span class=cl>			if old&amp;mutexStarving != 0 {
+</span></span><span class=line><span class=cl>				// 如果当前锁的状态位饥饿模式，但是当前协程可以执行的当前行代码，代表当前协程已经被从阻塞中唤醒。
+</span></span><span class=line><span class=cl>				// 饥饿状态 + 被唤醒 =》当前锁已经已经到当前协程上
+</span></span><span class=line><span class=cl>				if old&amp;(mutexLocked|mutexWoken) != 0 || old&gt;&gt;mutexWaiterShift == 0 {
+</span></span><span class=line><span class=cl>					// 检查状态一致
+</span></span><span class=line><span class=cl>					throw(&#34;sync: inconsistent mutex state&#34;)
+</span></span><span class=line><span class=cl>				}
+</span></span><span class=line><span class=cl>				// 由当协程来设置最新的锁定状态
+</span></span><span class=line><span class=cl>				delta := int32(mutexLocked - 1&lt;&lt;mutexWaiterShift)
+</span></span><span class=line><span class=cl>				// 判断是否需要退出饥饿模式
+</span></span><span class=line><span class=cl>				if !starving || old&gt;&gt;mutexWaiterShift == 1 {
+</span></span><span class=line><span class=cl>					delta -= mutexStarving
+</span></span><span class=line><span class=cl>				}
+</span></span><span class=line><span class=cl>				atomic.AddInt32(&amp;m.state, delta)
+</span></span><span class=line><span class=cl>				break
+</span></span><span class=line><span class=cl>			}
+</span></span><span class=line><span class=cl>			// 当前是正常模式，通过CAS自由竞争锁。
+</span></span><span class=line><span class=cl>			awoke = true
+</span></span><span class=line><span class=cl>			iter = 0 // 重置计数
+</span></span><span class=line><span class=cl>		} else {
+</span></span><span class=line><span class=cl>			// 再来
+</span></span><span class=line><span class=cl>			old = m.state
+</span></span><span class=line><span class=cl>		}
+</span></span><span class=line><span class=cl>	}
+</span></span><span class=line><span class=cl>}
+</span></span></code></pre></td></tr></table></div></div><p>是否可以进入自旋状态代码解释<a href="https://cs.opensource.google/go/go/+/master:src/runtime/proc.go;l=6175?q=sync_runtime_canSpin&ss=go%2Fgo">源码地址</a></p><h3 id=unlock>Unlock<a hidden class=anchor aria-hidden=true href=#unlock>#</a></h3><p>第一步直接减去 mutexLocked 标志位常量，如果 new 等于0结束——简单（锁一次开一次，easy）。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>new := atomic.AddInt32(&amp;m.state, -mutexLocked)
+</span></span></code></pre></td></tr></table></div></div><p>如果 state 还不等于0（有协程等待，竞争锁）, 进入 unlockSlow</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>func (m *Mutex) unlockSlow(new int32) {
+</span></span><span class=line><span class=cl>	// 上一步已经减过 locked 位， 在加上应该等于1，否则不是正常解锁（解锁未锁定的锁）。
+</span></span><span class=line><span class=cl>	if (new+mutexLocked)&amp;mutexLocked == 0 {
+</span></span><span class=line><span class=cl>		fatal(&#34;sync: unlock of unlocked mutex&#34;)
+</span></span><span class=line><span class=cl>	}
+</span></span><span class=line><span class=cl>	
+</span></span><span class=line><span class=cl>	// 正常模式
+</span></span><span class=line><span class=cl>	if new&amp;mutexStarving == 0 {
+</span></span><span class=line><span class=cl>		old := new
+</span></span><span class=line><span class=cl>		for {
+</span></span><span class=line><span class=cl>			// If there are no waiters or a goroutine has already
+</span></span><span class=line><span class=cl>			// been woken or grabbed the lock, no need to wake anyone.
+</span></span><span class=line><span class=cl>			// In starvation mode ownership is directly handed off from unlocking
+</span></span><span class=line><span class=cl>			// goroutine to the next waiter. We are not part of this chain,
+</span></span><span class=line><span class=cl>			// since we did not observe mutexStarving when we unlocked the mutex above.
+</span></span><span class=line><span class=cl>			// So get off the way.
+</span></span><span class=line><span class=cl>			// 没有等待协程无需通过信号量唤醒
+</span></span><span class=line><span class=cl>			// 1. 如果 mutexLocked 位为1，则代表锁已经被新入协程获取。
+</span></span><span class=line><span class=cl>			// 2. mutexWoken 代表协程有协程正在活动，无需再释放信号量
+</span></span><span class=line><span class=cl>			// 3. mutexStarving 锁的状态一直被抢占，才会导致当前位饥饿状态，无需在释放信号量
+</span></span><span class=line><span class=cl>			if old&gt;&gt;mutexWaiterShift == 0 || old&amp;(mutexLocked|mutexWoken|mutexStarving) != 0 {
+</span></span><span class=line><span class=cl>				return
+</span></span><span class=line><span class=cl>			}
+</span></span><span class=line><span class=cl>			// Grab the right to wake someone.
+</span></span><span class=line><span class=cl>			new = (old - 1&lt;&lt;mutexWaiterShift) | mutexWoken
+</span></span><span class=line><span class=cl>			if atomic.CompareAndSwapInt3(&amp;m.state, old, new) {
+</span></span><span class=line><span class=cl>				// 信号量唤醒，各自竞争
+</span></span><span class=line><span class=cl>				runtime_Semrelease(&amp;m.sema, false, 1)
+</span></span><span class=line><span class=cl>				return
+</span></span><span class=line><span class=cl>			}
+</span></span><span class=line><span class=cl>			old = m.state
+</span></span><span class=line><span class=cl>		}
+</span></span><span class=line><span class=cl>	} else {
+</span></span><span class=line><span class=cl>		// 饥饿模式，通过信号量直接移交当前CPU时间
+</span></span><span class=line><span class=cl>		runtime_Semrelease(&amp;m.sema, true, 1)
+</span></span><span class=line><span class=cl>	}
+</span></span><span class=line><span class=cl>}2
+</span></span></code></pre></td></tr></table></div></div><p>如何把锁移交给等待队列的协程？</p><p>使用 <code>Mutex.sema</code> 信号量实现锁转移</p><h2 id=参考>参考<a hidden class=anchor aria-hidden=true href=#参考>#</a></h2><p><a href="https://cs.opensource.google/go/go/+/refs/tags/go1.18:src/sync/mutex.go;bpv=1;bpt=1">源代码地址sync.mutex.go</a>
+<a href=https://pkg.go.dev/sync#Mutex>包说明文档</a></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://ynikl.github.io/tags/go/>go</a></li></ul><nav class=paginav><a class=next href=https://ynikl.github.io/posts/2022/0526-why-learn-microservices/><span class=title>Next Page »</span><br><span>我为什么要学微服务</span></a></nav></footer><script src=https://utteranc.es/client.js repo=ynikl/ynikl.github.io issue-term=pathname label=comment theme=preferred-color-scheme crossorigin=anonymous async></script></article></main><footer class=footer><span>&copy; 2022 <a href=https://ynikl.github.io/>潜水员的咖啡小屋</a></span>
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(t){t.preventDefault();var e=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(e)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(e)}']`).scrollIntoView({behavior:"smooth"}),e==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${e}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(t=>{const n=t.parentNode.parentNode,e=document.createElement("button");e.classList.add("copy-code"),e.innerText="copy";function s(){e.innerText="copied!",setTimeout(()=>{e.innerText="copy"},2e3)}e.addEventListener("click",o=>{if("clipboard"in navigator){navigator.clipboard.writeText(t.textContent),s();return}const e=document.createRange();e.selectNodeContents(t);const n=window.getSelection();n.removeAllRanges(),n.addRange(e);try{document.execCommand("copy"),s()}catch(e){}n.removeRange(e)}),n.classList.contains("highlight")?n.appendChild(e):n.parentNode.firstChild==n||(t.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?t.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(e):t.parentNode.appendChild(e))})</script></body></html>
