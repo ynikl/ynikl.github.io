@@ -108,7 +108,12 @@ Commands
 
 ## Set
 
-无序集合
+无序集合, 
+
+与 List 的不同之处，
+
+- Set 的值是唯一的
+- 无序
 
 Commands
 - sadd
@@ -165,6 +170,8 @@ struct sdshdr {
 ## Linked List
 
 [链表]()
+
+是数据类型 List 的实现方法之一， 
 
 节点重排能力？
 
