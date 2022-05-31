@@ -16,12 +16,12 @@
       <pubDate>Sun, 29 May 2022 20:52:35 +0800</pubDate>
       
       <guid>https://ynikl.github.io/blog/go-sync_mutex/</guid>
-      <description>Mutex 数据结构 1 2 3 4  type Mutex struct { state int32 sema uint32 }    Mutex 使用过之后是不可被拷贝的 state 等于 0 值的时候才是无锁的状态 sema 字段为信号量字段，通过该字段控制协程的阻塞和唤醒，具体实现在runtime 中。  Mutex 对象总共有三个公开方法
- Lock 尝试抢占互斥锁，如果已经被锁定，则调用协程进入阻塞 TryLock Unlock 解除互斥锁， 解锁未锁定的互斥锁会发生panic  Mutex 与协程无法关，允许一个协程锁定，另一个协程进行解锁。
+      <description>Mutex 数据结构 1 2 3 4 type Mutex struct { state int32 sema uint32 } Mutex 使用过之后是不可被拷贝的 state 等于 0 值的时候才是无锁的状态 sema 字段为信号量字段，通过该字段控制协程的阻塞和唤醒，具体实现在runtime 中。 Mutex 对象总共有三个公开方法
+Lock 尝试抢占互斥锁，如果已经被锁定，则调用协程进入阻塞 TryLock Unlock 解除互斥锁， 解锁未锁定的互斥锁会发生panic Mutex 与协程无法关，允许一个协程锁定，另一个协程进行解锁。
 Mutex 实现了一个 sync.Locker 接口, 该接口只有两个方法
- Lock Unlock  Mutex 锁有几种状态
- mutexLocked = 1 已经锁定 mutexWoken = 2 表示当前锁的等待队列，有协程正在活跃地获取锁，可以考虑不用释放信号量 mutexStarving = 4 当前锁已经进入了饥饿状态  其他常量
- mutexWaiterShift = 3 统计的等待在Mutex.</description>
+Lock Unlock Mutex 锁有几种状态
+mutexLocked = 1 已经锁定 mutexWoken = 2 表示当前锁的等待队列，有协程正在活跃地获取锁，可以考虑不用释放信号量 mutexStarving = 4 当前锁已经进入了饥饿状态 其他常量
+mutexWaiterShift = 3 统计的等待在Mutex.state字段等待数量。（前3位，用于表示锁的状态, 即 mutexLocked, mutexWoken, mutexStarving） starvationThresholdNs = 1e6 进入饥饿模式的阈值 1ms Mutex 锁的竞争方式 Mutex 锁有两种状态</description>
     </item>
     
     <item>
@@ -37,7 +37,7 @@ Go 语言官方对于代码的文档非常重视，文档对于软件的可阅�
 godoc 会解析源文件代码和注释，生成基于HTML的页面或者纯文本格式的文档。这样子文档就与代码紧密联系。举个例子，通过在 godoc 的页面点击，你就可以在一个函数的文档说明和源代码中快速跳转。
 godoc 在概念上与 Python 的“Docstring”和 Java 的“Javadoc&amp;quot;相似，但是 godoc 设计的更加简单化。godoc 读取的代码注释的不需要特定的结构化（Docstring 使用），也不需要特定的语法（JavaDoc 使用），godoc 从代码读取的注释就是简单的“代码注释”，就算你不使用 godoc 也可以直接阅读的注释。
 使用的规范很简单：在类型，变量，常量，函数，包声明的上方写下注释即可， 中间不要有空行。godoc 会把这些注释以文字的形式呈现在被注释的对象旁边。举个例子，下方就是 fmt 包的Fprint函数的注释。
-1 2 3 4  // Fprint formats using the default formats for its operands and writes to w. // Spaces are added between operands when neither is a string. // It returns the number of bytes written and any write error encountered.</description>
+1 2 3 4 // Fprint formats using the default formats for its operands and writes to w. // Spaces are added between operands when neither is a string. // It returns the number of bytes written and any write error encountered.</description>
     </item>
     
     <item>
@@ -48,10 +48,10 @@ godoc 在概念上与 Python 的“Docstring”和 Java 的“Javadoc&amp;quot;�
       <guid>https://ynikl.github.io/blog/go-channel/</guid>
       <description>Go 中 channel 中用法和实现总结 以下分析和源码都是基于 go1.17 版本
 channel 简介 Go 语言的基础类型之一, 用于在协程与协程之间传递数据 (channel 数据的传输方式也是值传递, Go语言的数据传输只有值传递)
- Do not communicate by sharing memory; instead, share memory by communicating.
- channel 保证:
- 数据的先入先出 并发情况下的数据安全 已经关闭的 channel 不可重开  channel 的实现 channel 在内部实现的结构体为 runtime.hchan
- 有一个环形链表, 暂存要传输的数据. 无 buffer 的channel 该队列长度为0, 所以不进行数据缓冲. 有一把互斥锁mutex, 在并发情况下, 保护自身数据结构的一致性 有两个协程等待链表, 用于挂载因为发送/接收而阻塞在该 channel 上的协程  1 2 3 4 5 6 7 8 9 10 11 12 13 14  type hchan struct { qcount uint // 当前 buffer 中有暂存着多少个数据 	dataqsiz uint // 环形数组的buffer个数, 由 make 初始化的时候第二个参数容量决定的 	buf unsafe.</description>
+Do not communicate by sharing memory; instead, share memory by communicating.
+channel 保证:
+数据的先入先出 并发情况下的数据安全 已经关闭的 channel 不可重开 channel 的实现 channel 在内部实现的结构体为 runtime.hchan
+有一个环形链表, 暂存要传输的数据. 无 buffer 的channel 该队列长度为0, 所以不进行数据缓冲. 有一把互斥锁mutex, 在并发情况下, 保护自身数据结构的一致性 有两个协程等待链表, 用于挂载因为发送/接收而阻塞在该 channel 上的协程 1 2 3 4 5 6 7 8 9 10 11 12 13 14 type hchan struct { qcount uint // 当前 buffer 中有暂存着多少个数据 dataqsiz uint // 环形数组的buffer个数, 由 make 初始化的时候第二个参数容量决定的 buf unsafe.</description>
     </item>
     
     <item>
@@ -64,13 +64,13 @@ channel 简介 Go 语言的基础类型之一, 用于在协程与协程之间传
 -race 编译出的目标程序，会启用数据竞争检测
 go doc 查看包的文档(定义于doc.go的注释中), 于包中公开的函数签名
 example
-1 2 3  go doc go doc encoding/json   go env 查看 go 相关的环境变量
-1 2 3 4 5  # -w 设置环境变量 go env -w GOPAHT=&amp;#39;/some/path&amp;#39; # -u 恢复成默认设置 go env -u GOPATH   go generate 扫描文件中的指令并执行, 相关指令目的应该是“生成或者修改源文件”
+1 2 3 go doc go doc encoding/json go env 查看 go 相关的环境变量
+1 2 3 4 5 # -w 设置环境变量 go env -w GOPAHT=&amp;#39;/some/path&amp;#39; # -u 恢复成默认设置 go env -u GOPATH go generate 扫描文件中的指令并执行, 相关指令目的应该是“生成或者修改源文件”
 注释的指令格式
 //go:generate command argument...
 ps: wire 也是利用命令, 生成依赖注入文件
 go get 管理当前module依赖
-1 2 3 4 5 6 7 8  # 添加依赖包 go get example.</description>
+1 2 3 4 5 6 7 8 # 添加依赖包 go get example.</description>
     </item>
     
     <item>
@@ -81,9 +81,10 @@ go get 管理当前module依赖
       <guid>https://ynikl.github.io/blog/hugo-%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86/</guid>
       <description>Hugo 文章分类管理 文件夹 内容存放在content/目录下方, content/下方的子目录会形成资源URI,
 例如 content/blog/doc.md 文章访问目录即为 https//XXX.github.io/blog.doc.md
-分类管理  文章内容表述 (Front Matter) 使用进行分类, 默认只有tags
-1 2 3  tags:- Go- fast  可以在config添加自定的分类选项
-1 2 3  taxonomies:series:seriescategory:categories  文章路径    类别 描述 地址     home 网站homepage /index.html   page 指定页面 /post/页面/index.html   section 分区 /section/index.html   taxonomy 分类 /tags/index.html   term 分类系列 /tags/go/index.html    _index.md 和 index.</description>
+分类管理 文章内容表述 (Front Matter) 使用进行分类, 默认只有tags
+1 2 3 tags: - Go - fast 可以在config添加自定的分类选项
+1 2 3 taxonomies: series: series category: categories 文章路径 类别 描述 地址 home 网站homepage /index.html page 指定页面 /post/页面/index.html section 分区 /section/index.html taxonomy 分类 /tags/index.html term 分类系列 /tags/go/index.html _index.md 和 index.md 在文件夹下方添加_index.md会识别成section. 在文件夹下方添加index.md会被识别成文章.
+千万不要在默认的content目录下方添加index.md</description>
     </item>
     
   </channel>

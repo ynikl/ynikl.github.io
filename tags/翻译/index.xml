@@ -23,7 +23,7 @@ Go 语言官方对于代码的文档非常重视，文档对于软件的可阅�
 godoc 会解析源文件代码和注释，生成基于HTML的页面或者纯文本格式的文档。这样子文档就与代码紧密联系。举个例子，通过在 godoc 的页面点击，你就可以在一个函数的文档说明和源代码中快速跳转。
 godoc 在概念上与 Python 的“Docstring”和 Java 的“Javadoc&amp;quot;相似，但是 godoc 设计的更加简单化。godoc 读取的代码注释的不需要特定的结构化（Docstring 使用），也不需要特定的语法（JavaDoc 使用），godoc 从代码读取的注释就是简单的“代码注释”，就算你不使用 godoc 也可以直接阅读的注释。
 使用的规范很简单：在类型，变量，常量，函数，包声明的上方写下注释即可， 中间不要有空行。godoc 会把这些注释以文字的形式呈现在被注释的对象旁边。举个例子，下方就是 fmt 包的Fprint函数的注释。
-1 2 3 4  // Fprint formats using the default formats for its operands and writes to w. // Spaces are added between operands when neither is a string. // It returns the number of bytes written and any write error encountered.</description>
+1 2 3 4 // Fprint formats using the default formats for its operands and writes to w. // Spaces are added between operands when neither is a string. // It returns the number of bytes written and any write error encountered.</description>
     </item>
     
   </channel>
