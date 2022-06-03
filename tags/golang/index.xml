@@ -22,5 +22,67 @@
 Concurrency is not Parallelism by Rob Pike</description>
     </item>
     
+    <item>
+      <title>Go-互斥锁的实现</title>
+      <link>https://ynikl.github.io/blog/go-sync_mutex/</link>
+      <pubDate>Sun, 29 May 2022 20:52:35 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/blog/go-sync_mutex/</guid>
+      <description>Mutex 数据结构 1 2 3 4 type Mutex struct { state int32 sema uint32 } Mutex 使用过之后是不可被拷贝的 state 等于 0 值的时候才是无锁的状态 sema 字段为信号量字段，通过该字段控制协程的阻塞和唤醒，具体实现在runtime 中。 Mutex 对象总共有三个公开方法
+Lock 尝试抢占互斥锁，如果已经被锁定，则调用协程进入阻塞 TryLock Unlock 解除互斥锁， 解锁未锁定的互斥锁会发生panic Mutex 与协程无法关，允许一个协程锁定，另一个协程进行解锁。
+Mutex 实现了一个 sync.Locker 接口, 该接口只有两个方法
+Lock Unlock Mutex 锁有几种状态
+mutexLocked = 1 已经锁定 mutexWoken = 2 表示当前锁的等待队列，有协程正在活跃地获取锁，可以考虑不用释放信号量 mutexStarving = 4 当前锁已经进入了饥饿状态 其他常量
+mutexWaiterShift = 3 统计的等待在Mutex.state字段等待数量。（前3位，用于表示锁的状态, 即 mutexLocked, mutexWoken, mutexStarving） starvationThresholdNs = 1e6 进入饥饿模式的阈值 1ms Mutex 锁的竞争方式 Mutex 锁有两种状态</description>
+    </item>
+    
+    <item>
+      <title>小窥 Go 中的 Modules</title>
+      <link>https://ynikl.github.io/blog/go-modules/</link>
+      <pubDate>Tue, 19 Apr 2022 11:55:17 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/blog/go-modules/</guid>
+      <description>是什么 Modules （下文称为模块）是 Go 语言设计用来管理依赖包。
+在中文中我们经常把go中的 Module 和 Package 统称为“包”，其实 Module 是一个版本控制的“包”的集合。
+模块的引入主要用于解决，项目依赖的不同版本的问题。（在旧的 GOPATH 中不同项目依赖不同版本）。引入的模块会声明在go.mod文件中。
+go.mod 文件 1 2 3 4 5 6 7 8 9 module example.com/my/thing go 1.12 require example.com/other/thing v1.0.2 require example.com/new/thing/v2 v2.3.4 exclude example.com/old/thing v1.2.3 replace example.com/bad/thing v1.4.5 =&amp;gt; example.com/good/thing v1.4.5 retract [v1.9.0, v1.9.5] 文件中各行意思
+module 当前自己模块的名的完整路径 go 版本号 require 需要依赖的目标模块以及最小的版本号 exclude 排除目标模块的特定版本 replace 将某个模块版本指向另一个模块版本，也可以指向本地，未发布的模块 retract 当前发布的模块，需要撤回不能用版本，用于处理意外发布版本的情况 go.mod 可以通过相关命令修改，也可以直接修改文件数据
+go.sum 文件 与go.mod经常在一起的会是一个go.sum文件，文件中存放着用于校验依赖源码是否被篡改的 hash 值。
+1 2 3 &amp;gt; cat go.</description>
+    </item>
+    
+    <item>
+      <title>Channel</title>
+      <link>https://ynikl.github.io/blog/go-channel/</link>
+      <pubDate>Sat, 02 Apr 2022 10:09:22 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/blog/go-channel/</guid>
+      <description>Go 中 channel 中用法和实现总结 以下分析和源码都是基于 go1.17 版本
+channel 简介 Go 语言的基础类型之一, 用于在协程与协程之间传递数据 (channel 数据的传输方式也是值传递, Go语言的数据传输只有值传递)
+Do not communicate by sharing memory; instead, share memory by communicating.
+channel 保证:
+数据的先入先出 并发情况下的数据安全 已经关闭的 channel 不可重开 channel 的实现 channel 在内部实现的结构体为 runtime.hchan
+有一个环形链表, 暂存要传输的数据. 无 buffer 的channel 该队列长度为0, 所以不进行数据缓冲. 有一把互斥锁mutex, 在并发情况下, 保护自身数据结构的一致性 有两个协程等待链表, 用于挂载因为发送/接收而阻塞在该 channel 上的协程 1 2 3 4 5 6 7 8 9 10 11 12 13 14 type hchan struct { qcount uint // 当前 buffer 中有暂存着多少个数据 dataqsiz uint // 环形数组的buffer个数, 由 make 初始化的时候第二个参数容量决定的 buf unsafe.</description>
+    </item>
+    
+    <item>
+      <title>Go 常用的命令汇总</title>
+      <link>https://ynikl.github.io/blog/go-cmd/</link>
+      <pubDate>Fri, 01 Apr 2022 19:56:59 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/blog/go-cmd/</guid>
+      <description>工具分类 go build 编译源代码文件
+-race 编译出的目标程序，会启用数据竞争检测
+go doc 查看包的文档(定义于doc.go的注释中), 于包中公开的函数签名
+example
+1 2 3 go doc go doc encoding/json go env 查看 go 相关的环境变量
+1 2 3 4 5 # -w 设置环境变量 go env -w GOPAHT=&amp;#39;/some/path&amp;#39; # -u 恢复成默认设置 go env -u GOPATH go generate 扫描文件中的指令并执行, 相关指令目的应该是“生成或者修改源文件”
+注释的指令格式
+//go:generate command argument...
+ps: wire 也是利用命令, 生成依赖注入文件
+go get 管理当前module依赖
+1 2 3 4 5 6 7 8 # 添加依赖包 go get example.</description>
+    </item>
+    
   </channel>
 </rss>
