@@ -3,7 +3,7 @@ title: "Go 常用的命令汇总"
 date: 2022-04-01T19:56:59+08:00
 draft: false
 tags:
-- go
+- golang
 ---
 
 # 工具分类

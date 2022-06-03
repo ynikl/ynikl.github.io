@@ -3,7 +3,7 @@ title: "Memory Alignment"
 date: 2022-04-19T10:41:09+08:00
 draft: true
 tags:
-- go
+- golang
 - os
 ---
 

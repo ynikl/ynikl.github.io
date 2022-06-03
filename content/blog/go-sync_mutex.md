@@ -3,7 +3,7 @@ title: "Go-互斥锁的实现"
 date: 2022-05-29T20:52:35+08:00
 draft: false
 tags:
-- go
+- golang
 ---
 
 ## Mutex 数据结构
