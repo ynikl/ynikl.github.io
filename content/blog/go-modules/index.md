@@ -1,7 +1,6 @@
 ---
 title: "小窥 Go 中的 Modules"
-date: 2022-04-19T11:55:17+08:00
-publishDate: 2022-06-03T18:16:55+08:00
+date: 2022-06-03T18:16:55+08:00
 draft: false
 tags:
 - golang
