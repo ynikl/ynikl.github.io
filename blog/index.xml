@@ -9,7 +9,22 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 29 May 2022 20:52:35 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 03 Jun 2022 18:16:55 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>小窥 Go 中的 Modules</title>
+      <link>https://ynikl.github.io/blog/go-modules/</link>
+      <pubDate>Fri, 03 Jun 2022 18:16:55 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/blog/go-modules/</guid>
+      <description>是什么 Modules （下文称为模块）是 Go 语言设计用来管理依赖包。
+在中文中我们经常把go中的 Module 和 Package 统称为“包”，其实 Module 是一个版本控制的“包”的集合。
+模块的引入主要用于解决，项目依赖的不同版本的问题。（在旧的 GOPATH 中不同项目依赖不同版本）。引入的模块会声明在go.mod文件中。
+go.mod 文件 1 2 3 4 5 6 7 8 9 module example.com/my/thing go 1.12 require example.com/other/thing v1.0.2 require example.com/new/thing/v2 v2.3.4 exclude example.com/old/thing v1.2.3 replace example.com/bad/thing v1.4.5 =&amp;gt; example.com/good/thing v1.4.5 retract [v1.9.0, v1.9.5] 文件中各行意思
+module 当前自己模块的名的完整路径 go 版本号 require 需要依赖的目标模块以及最小的版本号 exclude 排除目标模块的特定版本 replace 将某个模块版本指向另一个模块版本，也可以指向本地，未发布的模块 retract 当前发布的模块，需要撤回不能用版本，用于处理意外发布版本的情况 go.mod 可以通过相关命令修改，也可以直接修改文件数据
+go.sum 文件 与go.mod经常在一起的会是一个go.sum文件，文件中存放着用于校验依赖源码是否被篡改的 hash 值。
+1 2 3 &amp;gt; cat go.</description>
+    </item>
+    
     <item>
       <title>Go-互斥锁的实现</title>
       <link>https://ynikl.github.io/blog/go-sync_mutex/</link>
@@ -38,21 +53,6 @@ godoc 会解析源文件代码和注释，生成基于HTML的页面或者纯文�
 godoc 在概念上与 Python 的“Docstring”和 Java 的“Javadoc&amp;quot;相似，但是 godoc 设计的更加简单化。godoc 读取的代码注释的不需要特定的结构化（Docstring 使用），也不需要特定的语法（JavaDoc 使用），godoc 从代码读取的注释就是简单的“代码注释”，就算你不使用 godoc 也可以直接阅读的注释。
 使用的规范很简单：在类型，变量，常量，函数，包声明的上方写下注释即可， 中间不要有空行。godoc 会把这些注释以文字的形式呈现在被注释的对象旁边。举个例子，下方就是 fmt 包的Fprint函数的注释。
 1 2 3 4 // Fprint formats using the default formats for its operands and writes to w. // Spaces are added between operands when neither is a string. // It returns the number of bytes written and any write error encountered.</description>
-    </item>
-    
-    <item>
-      <title>小窥 Go 中的 Modules</title>
-      <link>https://ynikl.github.io/blog/go-modules/</link>
-      <pubDate>Tue, 19 Apr 2022 11:55:17 +0800</pubDate>
-      
-      <guid>https://ynikl.github.io/blog/go-modules/</guid>
-      <description>是什么 Modules （下文称为模块）是 Go 语言设计用来管理依赖包。
-在中文中我们经常把go中的 Module 和 Package 统称为“包”，其实 Module 是一个版本控制的“包”的集合。
-模块的引入主要用于解决，项目依赖的不同版本的问题。（在旧的 GOPATH 中不同项目依赖不同版本）。引入的模块会声明在go.mod文件中。
-go.mod 文件 1 2 3 4 5 6 7 8 9 module example.com/my/thing go 1.12 require example.com/other/thing v1.0.2 require example.com/new/thing/v2 v2.3.4 exclude example.com/old/thing v1.2.3 replace example.com/bad/thing v1.4.5 =&amp;gt; example.com/good/thing v1.4.5 retract [v1.9.0, v1.9.5] 文件中各行意思
-module 当前自己模块的名的完整路径 go 版本号 require 需要依赖的目标模块以及最小的版本号 exclude 排除目标模块的特定版本 replace 将某个模块版本指向另一个模块版本，也可以指向本地，未发布的模块 retract 当前发布的模块，需要撤回不能用版本，用于处理意外发布版本的情况 go.mod 可以通过相关命令修改，也可以直接修改文件数据
-go.sum 文件 与go.mod经常在一起的会是一个go.sum文件，文件中存放着用于校验依赖源码是否被篡改的 hash 值。
-1 2 3 &amp;gt; cat go.</description>
     </item>
     
     <item>
