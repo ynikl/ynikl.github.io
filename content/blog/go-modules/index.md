@@ -41,7 +41,7 @@ retract [v1.9.0, v1.9.5]
 
 ### go.sum 文件
 
-与`go.mod`经常在一起的会是一个`go.sum`文件，文件中存放着用于校验依赖源码是否被篡改的 hash 值。
+与`go.mod`经常在一起的会是一个`go.sum`文件，文件中存放着第一次添加依赖模块时，的模块源码的 hash 值。主要是用于校验，防止依赖模块代码被意外地修改到。
 
 ```
 > cat go.sum
@@ -73,8 +73,8 @@ go 采用语义化版本 v1.18.1
 
 版本号 = "v" + 主版本号 + 小版本号 + 补丁号
 
-- 主版本号的增加后，小版本号和补丁号要重新置零。主版本号增加，代表该版本出现不向前兼容的改动。比如移除旧的包
-- 小版本号增加后，补丁号重新置零。表示版本改动公共接口但是向前兼容的，比如增加一个函数
+- 主版本号的增加后，小版本号和补丁号要重新置零。主版本号增加，代表该版本出现不向后兼容的改动。比如移除旧的包
+- 小版本号增加后，补丁号重新置零。表示版本改动公共接口但是向后兼容的，比如增加一个函数
 - 补丁号增加，表示该版本对公开接口没有改动。比如修改bug
 
 版本的后面可能还会增加一些提前发布的标识，比如 v1.18.1-beta v1.18.1-pre
@@ -144,6 +144,8 @@ go mod edit -replace example.com/a@v1.0.0=./a
 
 **go mod vendor**
 
+将依赖一并放在自己项目的中，可以省去自己拉取依赖的很多麻烦，提高可用性。go 项目的根目录中的 vendor 文件夹就是用来干这个事的
+
 将项目依赖移入`vendor`文件中，当存在了vendor文件夹，项目会使用vendor中的依赖。大于 1.14 版本需要指定参数`-mod=vendor`才会启用
 
 本地修改之后模块版本之后需要，重新使用`go mod vendor`将新的依赖模块同步入`vendor`中。
@@ -190,5 +192,7 @@ A.12 与 B1.2 分别需要 C1.3 和 C1.4 为了是项目能正常进行，需要
 
 - [官网Go Modules参考](https://go.dev/ref/mod)
 - [Minimal Version Seletion](https://research.swtch.com/vgo-mvs)
+- [官方介绍 Modules 博文](https://go.dev/blog/modules2019)
+- [提议](https://go.googlesource.com/proposal/+/master/design/25530-sumdb.md#checksum-database)
 
 
