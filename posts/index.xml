@@ -22,6 +22,23 @@
     </item>
     
     <item>
+      <title>设计模式 -- 策略模式</title>
+      <link>https://ynikl.github.io/posts/strategy-pattern/</link>
+      <pubDate>Wed, 08 Jun 2022 19:50:42 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/posts/strategy-pattern/</guid>
+      <description>场景 在有多种算法, 计算策略, 甚至业务流程以一种可相互替换的场景出现时. 就可以考虑该设计模式.
+比如: 地图导航的出行路线计算, 商品购买的捆绑促销方式等.
+分析 优点:
+将具体的策略与调用策略的流程代码解耦, 修改策略代码时候可以仅修改策略对象 在不同策略之间划清界限 增加单独策略的可测试性 缺点:
+后续变更有一定束缚性 ( 限制在抽象接口中 ) . 若需要打破策略的抽象接口, 就会造成较大的改动 会带来的问题:
+可能将原先一个流程代码, 拆分成了多分. 如果代码结构没有组织好, 想要大局把握可能比较费力 总结:
+在流程算法策略有多个 ( 如果只有一个就没有必要抽象了, 一梭子写完就行 ), 且各个策略都有一定复杂性 ( 只是简单几个 if 的也略了吧 ) 的场景下. 就可以使用 ( 接口的签名可以写的比较松一点, 传递和返回较高层级的数据对象 ).
+实现流程 主要的思想, 我觉得还是 面向接口编程
+分析要拆分的算法或者策略, 将主流程和策略部分, 提取抽象成一个通用接口(interface) 将算法或策略剥离成独立的策略对象, 并实现上述抽象接口 主流程代码根据业务逻辑, 初始化策略对象, 将需要的策略&amp;quot;插入&amp;quot;(plugin)流程, 调用, 获取结果, ok. 参考 refactoringguru - strategy </description>
+    </item>
+    
+    <item>
       <title>计算机中的：大端和小端</title>
       <link>https://ynikl.github.io/posts/endianness/</link>
       <pubDate>Sat, 04 Jun 2022 00:19:23 +0800</pubDate>
