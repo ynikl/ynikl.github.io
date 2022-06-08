@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>data structures on 潜水员的咖啡小屋</title>
+    <link>https://ynikl.github.io/tags/data-structures/</link>
+    <description>Recent content in data structures on 潜水员的咖啡小屋</description>
+    <image>
+      <url>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 06 Jun 2022 19:18:31 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/data-structures/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linked List</title>
+      <link>https://ynikl.github.io/dsa/linked-list/</link>
+      <pubDate>Mon, 06 Jun 2022 19:18:31 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/dsa/linked-list/</guid>
+      <description>链表的定义： wiki 百科给出定义:
+In computer science, a linked list is a linear collection of data elemetns whose order is not given by their physical placement in memory. Instead, each element points to the next.
+翻译一下：
+一个线性表 每个元素会指向下一个元素的位置 链表的优缺点 优点:
+不需要提前分配内存 在查找到元素位置的提前下，插入和删除动作是一个常量，即 O(1) 没有容量上限，可以自由扩容 缺点:
+查询某个元素，需要从头开始遍历，即 O(n) 实现代码
+单向链表 最普通的链表
+双向链表 循环链表 </description>
+    </item>
+    
+    <item>
+      <title>基础数据结构列表</title>
+      <link>https://ynikl.github.io/dsa/datastructures-list/</link>
+      <pubDate>Sun, 05 Jun 2022 21:40:30 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/dsa/datastructures-list/</guid>
+      <description>github code
+非科班出身的我，有好几次尝试过跟着国外大学的课程重新学习计算机基础， 但是每次都是半途放弃了，这次尝试根据数据结构主题进行学习。
+主流的数据结构类型
+Linked List（链表） List （线性表） 2D Arrays Strings（串） Stack （栈） Queue（队列） Hash Table（哈希表） Heap （堆） Tree （树） Graphs（图） Binary Tree Binary Search Tree </description>
+    </item>
+    
+  </channel>
+</rss>
