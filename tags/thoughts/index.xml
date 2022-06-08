@@ -9,7 +9,18 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 06 Jun 2022 19:18:31 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/thoughts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 Jun 2022 20:15:26 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/thoughts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>我们为何选择 XXX 技术方案</title>
+      <link>https://ynikl.github.io/posts/thinking-choosing-tech/</link>
+      <pubDate>Wed, 08 Jun 2022 20:15:26 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/posts/thinking-choosing-tech/</guid>
+      <description>一个完善的方案的需要考虑的三个方面
+当前需求 理清楚初心，当前方案要解决的问题。聚焦到主要解决的问题。
+结果上下文 好处：当前方案的好处，解决了什么 弊端: 什么是它不能解决的 问题：引入什么新的问题 与其他方案的关系 前导：当前方案是怎么演变出来。 后续：当前方案会引入什么新问题，有什么后续的解决方案 替换：可以解决同样需求的情况下，还没什么备选方案。为什么选择了当前方案 参考《微服务设计模式》的1.6.2&amp;quot;模式和模式语言&amp;quot;, 相对减少了模式关系中的泛化和特化。</description>
+    </item>
+    
     <item>
       <title>Linked List</title>
       <link>https://ynikl.github.io/dsa/linked-list/</link>
