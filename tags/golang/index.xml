@@ -9,7 +9,20 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 03 Jun 2022 18:16:55 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Jun 2022 23:52:30 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go中slice[i:j:k]第三个参数是做什么的</title>
+      <link>https://ynikl.github.io/posts/golang-reslicing-slice/</link>
+      <pubDate>Thu, 09 Jun 2022 23:52:30 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/posts/golang-reslicing-slice/</guid>
+      <description>今天, 突然被同事卷到了, 被问到 golang 中 slice 的三个参数是干嘛的? 我突然一时间忘记了, golang 的重切片居然是可以接受第三个参数的, 枉费我已经了写了快两年的 go 了. 赶紧 google 一下, 并总结备忘.
+简单介绍 slice 的数据结构 首先, 介绍一下 golang 中切片的结构体:
+1 2 3 4 5 type slice struct { array unsafe.Pointer len int cap int } 有三个字段:
+array 是切片所指向的底层数组数据 len 就是切片的长度 cap 即容量, 很明显 源码地址
+简单版重切片 a[low:high] 接受切片中的开始下标和结束下标, &amp;ldquo;左闭右开原则&amp;rdquo; 即重的切片数据会包含 low 下标的值, 但没有 high 下标的值 新切片的 容量(cap) 即为开始下标到原 slice 数据容量结束, 即&amp;quot;cap(a) - low&amp;quot; low 参数可以省略 默认从 0 下标开始 1 2 3 4 5 6 7 8 a := [10]int{} oldSlice := a[:5] newSlice := a[2:4] fmt.</description>
+    </item>
+    
     <item>
       <title>小窥 Go 中的 Modules</title>
       <link>https://ynikl.github.io/blog/go-modules/</link>
