@@ -9,7 +9,18 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 09 Jun 2022 23:52:30 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 18 Jun 2022 20:04:38 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>什么是 &#34;胶水代码&#34;</title>
+      <link>https://ynikl.github.io/posts/what-is-glue-code/</link>
+      <pubDate>Sat, 18 Jun 2022 20:04:38 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/posts/what-is-glue-code/</guid>
+      <description>胶水代码(glue code), 可以了解为是大号的适配器, 没有业务意义, 主要的目的是用于 连接 两个 不兼容 的组件, 或是两个不兼容的服务.
+胶水代码可以是一段代码, 也可以是一个脚本文件, 甚至可以是新的组件.
+参考 Quora 回答 wiki</description>
+    </item>
+    
     <item>
       <title>Go中slice[i:j:k]第三个参数是做什么的</title>
       <link>https://ynikl.github.io/posts/golang-reslicing-slice/</link>
