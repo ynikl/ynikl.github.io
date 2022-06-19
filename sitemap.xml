@@ -2,19 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://ynikl.github.io/tags/books/</loc>
+    <lastmod>2022-06-19T22:20:56+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/books/</loc>
+    <lastmod>2022-06-19T22:20:56+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/tags/</loc>
+    <lastmod>2022-06-19T22:20:56+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
+    <lastmod>2022-06-19T22:20:56+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/books/miscroservices-patterns/</loc>
+    <lastmod>2022-06-19T22:20:56+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/</loc>
+    <lastmod>2022-06-19T22:20:56+08:00</lastmod>
+  </url><url>
     <loc>https://ynikl.github.io/tags/misc/</loc>
     <lastmod>2022-06-18T20:04:38+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/posts/</loc>
     <lastmod>2022-06-18T20:04:38+08:00</lastmod>
   </url><url>
-    <loc>https://ynikl.github.io/tags/</loc>
-    <lastmod>2022-06-18T20:04:38+08:00</lastmod>
-  </url><url>
     <loc>https://ynikl.github.io/posts/what-is-glue-code/</loc>
-    <lastmod>2022-06-18T20:04:38+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/</loc>
     <lastmod>2022-06-18T20:04:38+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/golang/</loc>
@@ -82,12 +94,6 @@
   </url><url>
     <loc>https://ynikl.github.io/posts/2022/0526-why-learn-microservices/</loc>
     <lastmod>2022-05-26T13:29:55+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/tags/books/</loc>
-    <lastmod>2022-05-25T23:14:12+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/books/</loc>
-    <lastmod>2022-05-25T23:14:12+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/books/autobiography-benjamin_franklin/</loc>
     <lastmod>2022-05-25T23:14:12+08:00</lastmod>

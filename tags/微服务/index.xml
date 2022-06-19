@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>books on 潜水员的咖啡小屋</title>
-    <link>https://ynikl.github.io/tags/books/</link>
-    <description>Recent content in books on 潜水员的咖啡小屋</description>
+    <title>微服务 on 潜水员的咖啡小屋</title>
+    <link>https://ynikl.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+    <description>Recent content in 微服务 on 潜水员的咖啡小屋</description>
     <image>
       <url>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 19 Jun 2022 22:20:56 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/books/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Jun 2022 22:20:56 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>我理解的微服务 -- 读《微服务设计模式》总结</title>
       <link>https://ynikl.github.io/books/miscroservices-patterns/</link>
@@ -26,33 +26,6 @@
 不用刻意地去追求服务的大小. 微服务的落地, 往往就会伴随着, 组织结构和开发的流程的改变, 由不同的 小团队 独立负某一服务.
 像我们现在如果提到微服务, 就经常也会提到一些微服务框架 go-zero, go-micro 或者基础设施 docker, k8s 或者工具 gRPC, prometheus 之类的.
 像这种框架和组件之类的只是一种技术工具. 他们并不能定义微服务, 他们可能只是为了克服微服务架构设计带来的某一些缺陷, 或者与微服务结合可以发挥出更大的价值.</description>
-    </item>
-    
-    <item>
-      <title>富兰克林自传读后感</title>
-      <link>https://ynikl.github.io/books/autobiography-benjamin_franklin/</link>
-      <pubDate>Wed, 25 May 2022 23:14:12 +0800</pubDate>
-      
-      <guid>https://ynikl.github.io/books/autobiography-benjamin_franklin/</guid>
-      <description>富兰克林自传
-富兰克林, 美国独立宣言的签署者之一，白手起家致富，发明了避雷针路灯，组织了社区消防队，写下了《富兰克林自传》，一个丰富多产的人生。
-年少时勤奋读书，诚信独立，中年时勤勉奋斗，注重自身美德修养。又积极参与社会活动。
-摘录富兰克林十三美德：
-节制:食不过饱，饮酒不醉； 寡言:言必于人于己有益，避免无益的聊天； 生活:每一样东西应有一定的安放地方；每件日常事物当有一定的时间去做； 决心:当做必做；决心要做的事应坚持不懈； 俭朴:用钱必须于人或于己有益，换言之，切戒浪费； 勤勉:不浪费时间；每时每刻做些有用的事，戒掉一切不必要的行动； 诚恳:不欺骗人；思想要纯洁公正；说话也要如此； 公正:不做损人利己的事；不要忘记履行对人有益而又是你应尽的义务； 适度:避免极端；人若给你应得的处罚，你当容忍之； 清洁:身体、衣服和住所力求清洁； 镇静:勿因小事或普遍不可避免的事故而惊慌失措； 贞节:除了为了健康或生育后代起见，不常进行房事，切戒房事过度，伤害身体或损害你自己及他人的安宁或名誉； 谦虚:仿效耶稣和苏格拉底。</description>
-    </item>
-    
-    <item>
-      <title>Show Your Work</title>
-      <link>https://ynikl.github.io/books/showyourwork/</link>
-      <pubDate>Sat, 30 Apr 2022 17:22:23 +0800</pubDate>
-      
-      <guid>https://ynikl.github.io/books/showyourwork/</guid>
-      <description>Show Your Work 读书总结 概括 我为什么要读这本书
-如何提高自己的影响力
-这本书怎样影响了我
-打算开始分享计划, 学习如何分享, 讲述故事. 计划&amp;quot;学术假&amp;quot;
-书中的三句精华句子
-You find time the same place you find spare change: in the nooks and crannies On the spectrum of creative work, the difference between the mediocre and the good is vast. Mediocrity is, however, still on the spectrum; you can move from mediocre to good in increments. The real gap is between doing nothing and doing something You can turn your flow into stock 三句话总结本书</description>
     </item>
     
   </channel>
