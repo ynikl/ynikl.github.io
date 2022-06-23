@@ -107,6 +107,8 @@ go test -v -bench . -benchtime 50s
 # 单元测试覆盖率
 go test -cover
 
+# 强制重新跑测试, 不使用缓存的结果 source: https://stackoverflow.com/a/48882892/9992963
+go test -count=1
 ```
 
 ## go tool
