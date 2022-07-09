@@ -1,0 +1,101 @@
+{
+  "main": {
+    "id": "02dc178bbda70018",
+    "type": "split",
+    "children": [
+      {
+        "id": "e845f915691f6178",
+        "type": "leaf",
+        "state": {
+          "type": "empty",
+          "state": {}
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "da5bb36f42b02fa1",
+    "type": "split",
+    "children": [
+      {
+        "id": "4e73b791187a3bad",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "45d077c89d8a537a",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "313750f902852c69",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "rabbitmq/",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "92183ed7e72857aa",
+    "type": "split",
+    "children": [
+      {
+        "id": "99dd9ec3955c9b42",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c17c06c3a7f63d92",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "cb518aa1ea58d71f",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "e845f915691f6178",
+  "lastOpenFiles": [
+    "content/blog/rabbitmq-learning-note/index.md",
+    "content/blog/docker-基本使用.md",
+    "Untitled 1.md",
+    "Untitled.md"
+  ]
+}

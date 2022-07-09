@@ -1,5 +1,7 @@
 {
   "legacyEditor": false,
   "livePreview": false,
-  "defaultViewMode": "source"
+  "defaultViewMode": "source",
+  "promptDelete": false,
+  "vimMode": true
 }

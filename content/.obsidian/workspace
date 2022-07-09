@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "okr/okr-2022.md",
+            "file": "blog/rabbitmq-learning-note/index.md",
             "mode": "source",
             "source": true
           }
@@ -69,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "okr/okr-2022.md",
+                "file": "blog/rabbitmq-learning-note/index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,7 +89,10 @@
   },
   "active": "8d63a20647e7342d",
   "lastOpenFiles": [
-    "okr/okr-2022.md",
-    "blog/rabbitmq-learning-note.md"
+    "blog/rabbitmq-learning-note/index.md",
+    "blog/rabbitmq-learning-note/Pasted image 20220703183326.png",
+    "blog/memory-alignment.md",
+    "blog/redis-data-type.md",
+    "okr/okr-2022.md"
   ]
 }
