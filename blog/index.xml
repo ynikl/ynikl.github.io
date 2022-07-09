@@ -9,7 +9,21 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 03 Jun 2022 18:16:55 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 09 Jul 2022 16:43:26 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RabbitMQ 学习笔记</title>
+      <link>https://ynikl.github.io/blog/rabbitmq-learning-note/</link>
+      <pubDate>Sat, 09 Jul 2022 16:43:26 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/blog/rabbitmq-learning-note/</guid>
+      <description>公司有一个项目要使用到 RabbitMQ, 本文是我自己学习 RabbitMQ 的记录.
+介绍一下 RabbitMQ Erlang 语言实现 AMQP (Advanced Message Queuing Protocal) 的消息中间件
+消息中间件的作用
+解耦: 可以不需要依赖下游的可用性, 提高单独项目的可用性. 冗余存储: 保存失败的消息 拓展性 削峰 缓冲 结构 涉及的名词简单解释
+Producer Consumer Broker: 服务节点 Queue: 内存存储消息数据的对象 Exchange: 选择器, 生产者投递消息后, 提交给交换器, 由交换器根据routingkey 和 bindingkey 决定投递到哪个队列 RoutingKey: 生产消息提供routingkey 给交换器用于指定要投递的队列 BindingKey: 交换器, 通过 bindingkey 与对应的队列关联起来 Connection: 客户端与 Broke 建立的 TCP 连接 Channel: 是建立在 Connection 上抽象的虚拟连接. 实现多线程可以 TCP 连接, 多个信道可能复用同一个 TCP 连接 交换器的类型
+fanout : 投递到所有队列 direct: 投递到 routingkey 和 bindingkey 匹配的 topic: direct 的拓展, 支持模糊匹配 headers : 性能差, 少用 消息投递流程:</description>
+    </item>
+    
     <item>
       <title>小窥 Go 中的 Modules</title>
       <link>https://ynikl.github.io/blog/go-modules/</link>
@@ -100,25 +114,6 @@ go get 管理当前module依赖
 1 2 3 tags: - Go - fast 可以在config添加自定的分类选项
 1 2 3 taxonomies: series: series category: categories 文章路径 类别 描述 地址 home 网站homepage /index.html page 指定页面 /post/页面/index.html section 分区 /section/index.html taxonomy 分类 /tags/index.html term 分类系列 /tags/go/index.html _index.md 和 index.md 在文件夹下方添加_index.md会识别成section. 在文件夹下方添加index.md会被识别成文章.
 千万不要在默认的content目录下方添加index.md</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://ynikl.github.io/blog/rabbitmq-learning-note/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://ynikl.github.io/blog/rabbitmq-learning-note/</guid>
-      <description>部署 在你的机子上部署一个玩具吧
-采用 docker 部署 docker run -itd --name rabbitmq -p 5671:5671 -p 5672:5672 -p 4369:4369 -p 25672:25672 -p 15671:15671 -p 15672:15672 rabbitmq:management
-进入管理页面 访问 http://127.0.0.1:15672/
-登入 用户名: guest 密码: guest
-更多默认配置
-管理 进入交互 shell docker exec -it rabbitmq bash
-增加一个用户 rabbitmqctl add_user ian 123456
-增加一个 vhost rabbitmqctl add_vhost playground
-vhost是什么? vhost (virtual host), 虚拟主机, 在实例间提供逻辑上的分离 &amp;ndash; 实现数据隔离. RabbitMQ 默认创建一个名为 &amp;ldquo;/&amp;rdquo; 的 vhost
-查看 vhost rabbitmqctl list_vhosts
-设置权限 rabbitmqctl set_permissions --vhost playground ian &amp;quot;.</description>
     </item>
     
   </channel>
