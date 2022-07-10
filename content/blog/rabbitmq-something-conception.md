@@ -1,5 +1,5 @@
 ---
-title: "RabbitMQ 概念简单了解"
+title: "RabbitMQ 其他概念简单了解"
 date: 2022-07-10T16:48:03+08:00
 publishDate: 2022-07-10T16:48:03+08:00
 draft: true
