@@ -1,12 +1,12 @@
 ---
-title: "RabbitMQ 基本实践"
+title: "RabbitMQ 基本入门实践"
 date: 2022-07-09T16:43:26+08:00
 draft: false
 tags:
 - rabbitmq
 ---
 
-公司有一个项目要使用到 RabbitMQ, 本文是我自己学习 RabbitMQ 的记录. 
+公司刚好有一个项目要使用到 RabbitMQ, 本文是我自己了解学习 RabbitMQ 的记录. 
 
 ## 介绍一下 RabbitMQ
 Erlang 语言实现 AMQP (Advanced Message Queuing Protocal) 的消息中间件
