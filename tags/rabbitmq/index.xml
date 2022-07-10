@@ -11,12 +11,12 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sat, 09 Jul 2022 16:43:26 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/rabbitmq/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>RabbitMQ 基本实践</title>
+      <title>RabbitMQ 基本入门实践</title>
       <link>https://ynikl.github.io/blog/rabbitmq-learning-note/</link>
       <pubDate>Sat, 09 Jul 2022 16:43:26 +0800</pubDate>
       
       <guid>https://ynikl.github.io/blog/rabbitmq-learning-note/</guid>
-      <description>公司有一个项目要使用到 RabbitMQ, 本文是我自己学习 RabbitMQ 的记录.
+      <description>公司刚好有一个项目要使用到 RabbitMQ, 本文是我自己了解学习 RabbitMQ 的记录.
 介绍一下 RabbitMQ Erlang 语言实现 AMQP (Advanced Message Queuing Protocal) 的消息中间件
 消息中间件的作用
 解耦: 可以不需要依赖下游的可用性, 提高单独项目的可用性. 冗余存储: 保存失败的消息 拓展性 削峰 缓冲 结构 涉及的名词简单解释
