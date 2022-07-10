@@ -1,5 +1,5 @@
 ---
-title: "RabbitMQ 学习笔记"
+title: "RabbitMQ 基本实践"
 date: 2022-07-09T16:43:26+08:00
 draft: false
 tags:
