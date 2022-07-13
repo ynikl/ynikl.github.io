@@ -42,19 +42,20 @@ case 2: git 提交代码自动化操作
 .PHONY: dev
 ProjectName="Your Project Name"
 TargetBranch="Your want to merge branch"
+CurBranch=$(shell git branch --show-current)
 dev:
-	go build 
+	go build .
 	rm -f $(ProjectName)
 	git add .
 	git commit -m $(msg)
 	git push
-	CurBranch=$(git branch --show-current)
-	git checkout ${TargetBranch}
-	git pull 
-	git merge ${CurBranch} -m "Merge branch '${CurBranch}' into ${TargetBranch}"
+	git checkout ${DevBranch}
+	git pull --rebase
+	git merge ${CurBranch} -m "Merge branch '${CurBranch}' into ${DevBranch}"
 	go build
 	rm -f $(ProjectName) 
 	git push
+	git checkout ${CurBranch}
 ```
 
 简化 git 的操作流程, 现在只需要`make dev`就可以完成, 还可以在合并之前和之后增加测试, 我自己目前知识简单的 `build` 下而已 QAQ. 
