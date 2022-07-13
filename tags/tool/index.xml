@@ -25,7 +25,7 @@ case 1: 简化本地编译和测试, 自动做 setup 和 teardown
 1 2 3 4 .PHONY: build build: go build . rm -rf [PROJECT NAME] 使用上面的 makefile, 我就只需要 make build, 就不用再删除编译出来文件. QAQ, 可以再加一些单元测试命令, 检测测试是否通过. 因为公司的项目, 在单测这方面做的不是很好, 我自己就是简单 build 一下
 case 2: git 提交代码自动化操作
 当我想要把我代码推送到, 测试分支, 进行集成测试
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 .</description>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 .</description>
     </item>
     
   </channel>
