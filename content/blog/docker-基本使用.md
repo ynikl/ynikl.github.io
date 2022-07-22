@@ -1,7 +1,9 @@
 ---
 title: "Docker 基本使用"
 date: 2022-04-07T13:34:55+08:00
-draft: true
+draft: false
+tags:
+- docker
 ---
 
 ## 启动一个容器
@@ -46,12 +48,30 @@ exex 会再目标容器内部执行一个命令, 命令名为 bash, 就是起一
 
 ## 管理容器
 启动
+```
+docker start CONTAINER
+```
 
 暂停
-
-
+```
+docker stop CONTAINER
+```
 
 ## 管理镜像
 
+查看所有的镜像列表
+```
+docker image ls
+```
+
+删除镜像
+``` 
+docker rmi IMAGE
+```
+
+删除 `<none>` 名称的镜像
+```
+docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+```
 
 
