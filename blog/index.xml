@@ -70,6 +70,28 @@ godoc 在概念上与 Python 的“Docstring”和 Java 的“Javadoc&amp;quot;�
     </item>
     
     <item>
+      <title>Docker 基本使用</title>
+      <link>https://ynikl.github.io/blog/docker-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Thu, 07 Apr 2022 13:34:55 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/blog/docker-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</guid>
+      <description>启动一个容器 打个样
+1 docker run -itd --rm --name hello image_name &amp;ndash; it 将当前的终端和容器内的终端连接在一起, 正式所谓的交互模式
+&amp;ndash;rm 当容器停止之后, 会自动删除改容器
+外挂文件夹 参数 -v docker run -it -v /home/dock/Downloads:/usr/Downloads ubuntu64 /bin/bash
+与容器交互 进入容器 docker attach
+exec
+docker -it exec CONTAIN_NAME bash
+exex 会再目标容器内部执行一个命令, 命令名为 bash, 就是起一个 shell 咯. 加上 -it, 进入交互的终端模式
+查看日志 docker logs CONTAINER 可以查看容器日志
+-f 可以持续输出容器内部的最新日志
+管理容器 启动
+1 docker start CONTAINER 暂停
+1 docker stop CONTAINER 管理镜像 查看所有的镜像列表
+1 docker image ls 删除镜像</description>
+    </item>
+    
+    <item>
       <title>Channel</title>
       <link>https://ynikl.github.io/blog/go-channel/</link>
       <pubDate>Sat, 02 Apr 2022 10:09:22 +0800</pubDate>
