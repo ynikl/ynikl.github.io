@@ -4,7 +4,7 @@
     "type": "split",
     "children": [
       {
-        "id": "e845f915691f6178",
+        "id": "7f5953ba4a0d13a6",
         "type": "leaf",
         "state": {
           "type": "empty",
@@ -49,8 +49,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "92183ed7e72857aa",
@@ -91,8 +90,10 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "e845f915691f6178",
+  "active": "7f5953ba4a0d13a6",
   "lastOpenFiles": [
+    "content/books/在路上.md",
+    "content/books/autobiography-benjamin_franklin.md",
     "content/blog/rabbitmq-learning-note/index.md",
     "content/blog/docker-基本使用.md",
     "Untitled 1.md",
