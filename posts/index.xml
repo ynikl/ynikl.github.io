@@ -9,7 +9,17 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 10 Jul 2022 17:47:42 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Jul 2022 19:08:05 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>xorm 的 session 和 salve 的区别</title>
+      <link>https://ynikl.github.io/posts/xorm-slave-newsseion/</link>
+      <pubDate>Fri, 22 Jul 2022 19:08:05 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/posts/xorm-slave-newsseion/</guid>
+      <description>简单分析下xorm 里面 session 和 slave 里面 close 的代码
+1 xorm.EngineGroup.Slave() Slave () 会直接返回 xorm.Engine对象（指代我们项目到数据库的逻辑连接（里面有tcp复用）） 如果这时候再调用 close 的会，会直接把 xorm.Engine 关闭（即数据库连接关闭）。 如果用这个 engine， 执行查询动作如 find， get时. 内部会有自动执行 NewSsession 和 Close, 所以不在需要手动调用close 1 xorm.EngineGroup.NewSsession() 会返回一个xorm.Session对象, 对应我们数据库操作中的&amp;quot;会话事务&amp;quot;, 是否自动提交之类选项.(未手动开始事务时,都是自动提交) 调用 close, 对清除 session 中未提交的事务和一些缓存的 sql 前置处理语句 对于普通 select 语句调不调用是没什么太大影响 (但是还是建议new之后调用close) </description>
+    </item>
+    
     <item>
       <title>Make 的基本使用</title>
       <link>https://ynikl.github.io/posts/makefile-basic-use/</link>

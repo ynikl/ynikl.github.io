@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://ynikl.github.io/tags/golang/</loc>
+    <lastmod>2022-07-22T19:08:05+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/posts/</loc>
+    <lastmod>2022-07-22T19:08:05+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/tags/</loc>
+    <lastmod>2022-07-22T19:08:05+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/posts/xorm-slave-newsseion/</loc>
+    <lastmod>2022-07-22T19:08:05+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/</loc>
+    <lastmod>2022-07-22T19:08:05+08:00</lastmod>
+  </url><url>
     <loc>https://ynikl.github.io/posts/makefile-basic-use/</loc>
     <lastmod>2022-07-10T17:47:42+08:00</lastmod>
   </url><url>
-    <loc>https://ynikl.github.io/posts/</loc>
-    <lastmod>2022-07-10T17:47:42+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/tags/</loc>
-    <lastmod>2022-07-10T17:47:42+08:00</lastmod>
-  </url><url>
     <loc>https://ynikl.github.io/tags/tool/</loc>
-    <lastmod>2022-07-10T17:47:42+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/</loc>
     <lastmod>2022-07-10T17:47:42+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/blog/</loc>
@@ -49,9 +55,6 @@
   </url><url>
     <loc>https://ynikl.github.io/posts/what-is-glue-code/</loc>
     <lastmod>2022-06-18T20:04:38+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/tags/golang/</loc>
-    <lastmod>2022-06-09T23:52:30+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/posts/golang-reslicing-slice/</loc>
     <lastmod>2022-06-09T23:52:30+08:00</lastmod>
