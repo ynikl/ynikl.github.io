@@ -55,4 +55,30 @@ Decimal(5,2) 的精度为 `-999.99 - 999.99`
 
 ### 位 ( Bit-Value )
 
+`BIT(M)` 用于存储位值, M范围(1-64), 当存储的数值小于 M, 会进行左边补0
 
+example
+```
+mysql> CREATE TABLE t (b BIT(8));
+mysql> INSERT INTO t SET b = b'11111111';
+mysql> INSERT INTO t SET b = b'1010';
+mysql> INSERT INTO t SET b = b'0101';
+```
+
+```
+mysql> SELECT b+0, BIN(b), OCT(b), HEX(b) FROM t;
++------+----------+--------+--------+
+| b+0  | BIN(b)   | OCT(b) | HEX(b) |
++------+----------+--------+--------+
+|  255 | 11111111 | 377    | FF     |
+|   10 | 1010     | 12     | A      |
+|    5 | 101      | 5      | 5      |
++------+----------+--------+--------+
+```
+
+
+## 串类型
+
+
+## 参考
+[Mysql 8.0 官方文档](https://dev.mysql.com/doc/refman/8.0/en/)
