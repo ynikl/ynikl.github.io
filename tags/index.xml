@@ -9,7 +9,16 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 22 Jul 2022 19:08:05 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Aug 2022 23:40:37 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>thoughts</title>
+      <link>https://ynikl.github.io/tags/thoughts/</link>
+      <pubDate>Tue, 09 Aug 2022 23:40:37 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/tags/thoughts/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>golang</title>
       <link>https://ynikl.github.io/tags/golang/</link>
@@ -34,15 +43,6 @@
       <pubDate>Sat, 09 Jul 2022 16:43:26 +0800</pubDate>
       
       <guid>https://ynikl.github.io/tags/rabbitmq/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>thoughts</title>
-      <link>https://ynikl.github.io/tags/thoughts/</link>
-      <pubDate>Fri, 01 Jul 2022 08:55:44 +0800</pubDate>
-      
-      <guid>https://ynikl.github.io/tags/thoughts/</guid>
       <description></description>
     </item>
     

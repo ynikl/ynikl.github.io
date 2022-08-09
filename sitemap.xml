@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://ynikl.github.io/posts/</loc>
+    <lastmod>2022-08-09T23:40:37+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/tags/</loc>
+    <lastmod>2022-08-09T23:40:37+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/tags/thoughts/</loc>
+    <lastmod>2022-08-09T23:40:37+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/posts/the-meaning-of-living/</loc>
+    <lastmod>2022-08-09T23:40:37+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/</loc>
+    <lastmod>2022-08-09T23:40:37+08:00</lastmod>
+  </url><url>
     <loc>https://ynikl.github.io/tags/golang/</loc>
     <lastmod>2022-07-22T19:08:05+08:00</lastmod>
   </url><url>
-    <loc>https://ynikl.github.io/posts/</loc>
-    <lastmod>2022-07-22T19:08:05+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/tags/</loc>
-    <lastmod>2022-07-22T19:08:05+08:00</lastmod>
-  </url><url>
     <loc>https://ynikl.github.io/posts/xorm-slave-newsseion/</loc>
-    <lastmod>2022-07-22T19:08:05+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/</loc>
     <lastmod>2022-07-22T19:08:05+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/posts/makefile-basic-use/</loc>
@@ -33,9 +39,6 @@
     <lastmod>2022-07-09T16:43:26+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/posts/life-is-not-short/</loc>
-    <lastmod>2022-07-01T08:55:44+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/tags/thoughts/</loc>
     <lastmod>2022-07-01T08:55:44+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/books/</loc>
