@@ -9,7 +9,16 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 09 Aug 2022 23:40:37 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Aug 2022 15:27:33 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CI/CD</title>
+      <link>https://ynikl.github.io/posts/ci-cd/</link>
+      <pubDate>Sun, 14 Aug 2022 15:27:33 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/posts/ci-cd/</guid>
+      <description>CI 自动化发布流程 可重复 可快速回滚 发布流程快速 在合并的时候可以对代码进行快速验证 CD 部署流程平台化 一键部署 总结 所谓的 CI/CD 就是通过自动化操作, 比如自动化测试, 自动化部署. 使用项目拥有快速上线的能力 &amp;ndash; 可以快速验证, 快速回滚, 快速发布.</description>
+    </item>
+    
     <item>
       <title>活着的意义</title>
       <link>https://ynikl.github.io/posts/the-meaning-of-living/</link>
