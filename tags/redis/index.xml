@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>redis on 潜水员的咖啡小屋</title>
+    <link>https://ynikl.github.io/tags/redis/</link>
+    <description>Recent content in redis on 潜水员的咖啡小屋</description>
+    <image>
+      <url>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 18 Aug 2022 12:18:53 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redis 用于做分布式锁</title>
+      <link>https://ynikl.github.io/blog/redis-do-distributed-lock/</link>
+      <pubDate>Thu, 18 Aug 2022 12:18:53 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/blog/redis-do-distributed-lock/</guid>
+      <description>操作 演进 加锁后进程挂掉了 加锁成功之后, 进程挂掉了没有进行解锁操作. 导致进入死锁状态.
+引入 expire 设置超时时长, 自动释放 key
+1 2 3 4 5 6 7 8 &amp;gt; setnx lock:key true &amp;gt; OK &amp;gt; expire lock:key 5 &amp;#34; ... do something critical ... &amp;gt; del lock:codehole 加锁动作 到 expire 之间挂掉了 redis 2.8 之后支持 set 拓展指令
+1 &amp;gt; set lock:key true ex 5 nx 加锁互斥锁, 并同时设置超时时长
+执行超时, 被其他进程获取到了锁 加锁之后, 本身进程执行时间超过了预先设置的 expire 的时间. 就会导致锁被提前释放.
+解决方案:
+尽量不要用与锁住时间教长的任务, 尝试缩小锁定的&amp;quot;关键区域&amp;quot; 续锁 (会使客户端负责化) : 起一个支线进程, 定期(在超时时间内) 检查锁和value(保证是自己的锁), 重新设置超时时间 执行超时, 被其他进程获取到了锁之后, 超时进程误删其他进程的锁 Redis 的分布式锁不能解决超时问题，如果在加锁和释放锁之间的逻辑执行的太长，以至 于超出了锁的超时限制，就会出现问题。因为这时候锁过期了，第二个线程重新持有了这把锁， 但是紧接着第一个线程执行完了业务逻辑，就把锁给释放了，第三个线程就会在第二个线程逻 辑执行完之间拿到了锁。 &amp;ndash; Redis深度历险</description>
+    </item>
+    
+  </channel>
+</rss>

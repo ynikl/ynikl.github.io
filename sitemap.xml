@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://ynikl.github.io/blog/</loc>
+    <lastmod>2022-08-18T12:18:53+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/tags/redis/</loc>
+    <lastmod>2022-08-18T12:18:53+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/blog/redis-do-distributed-lock/</loc>
+    <lastmod>2022-08-18T12:18:53+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/tags/</loc>
+    <lastmod>2022-08-18T12:18:53+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/</loc>
+    <lastmod>2022-08-18T12:18:53+08:00</lastmod>
+  </url><url>
     <loc>https://ynikl.github.io/posts/ci-cd/</loc>
     <lastmod>2022-08-14T15:27:33+08:00</lastmod>
   </url><url>
@@ -9,12 +24,6 @@
     <lastmod>2022-08-14T15:27:33+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/posts/</loc>
-    <lastmod>2022-08-14T15:27:33+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/tags/</loc>
-    <lastmod>2022-08-14T15:27:33+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/</loc>
     <lastmod>2022-08-14T15:27:33+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/thoughts/</loc>
@@ -40,9 +49,6 @@
   </url><url>
     <loc>https://ynikl.github.io/tags/tool/</loc>
     <lastmod>2022-07-10T17:47:42+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/blog/</loc>
-    <lastmod>2022-07-09T16:43:26+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/rabbitmq/</loc>
     <lastmod>2022-07-09T16:43:26+08:00</lastmod>
