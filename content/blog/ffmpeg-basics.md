@@ -91,7 +91,7 @@ Metadata:
 
 `-y` 输出文件会强制覆盖已经存在的文件
 
-### 帮助相互
+### 帮助
 
 ``` 
 " 查看支持格式
@@ -113,7 +113,7 @@ ffmpeg -i input.avi -r 30 output.mp4
 ffmpeg -i input.avi -b:v 1500k output.mp4
 ```
 
-### 调试视频大小
+### 缩放视频大小
 
 - s : w x h 参数 宽乘以高
 
@@ -125,7 +125,7 @@ ffmpeg -i input.avi -s 640x480 output.avi
 ffmpeg -i input.mpg -vf scale=iw/PHI:ih/PHI output.mp4
 ```
 
-### 视频旋转, 翻转
+### 旋转, 翻转
 
 旋转
 ```
@@ -146,7 +146,7 @@ ffmpeg -i input.avi -vf crop=iw/2:ih/2 output.avi
 ```
 
 ### 模糊化
-
+模糊化
 ```
 ffmpeg -i input.mpg -vf boxblur=1.5:1 output.mp4
 ```
@@ -186,7 +186,7 @@ ffmpeg -i input.mp4 -ss 180 -t 60 clip_4th_min.mp4
 
 ### 图片操作
 
-从视频中截图
+从视频中截取某一帧
 ```
 ffmpeg -i videoclip.avi -ss 01:23:45 image.jpg
 ```
