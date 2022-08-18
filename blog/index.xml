@@ -9,7 +9,22 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 18 Aug 2022 12:18:53 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Aug 2022 00:14:54 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FFmpeg 基本使用</title>
+      <link>https://ynikl.github.io/blog/ffmpeg-basics/</link>
+      <pubDate>Fri, 19 Aug 2022 00:14:54 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/blog/ffmpeg-basics/</guid>
+      <description>接手公司一个视频相关项目, 也是使用ffmpeg工具. 需要快速了解下.
+概念 码率, 帧率, 文件大小 帧率(frame rate) : 视频一秒中有多少帧画面(frames per second, fps), 决定视频流畅度.
+interlaced: 古代黑白相机的交错扫描呈现, 描述单位i : 50i progressive: 现代整页整页呈现, 描述单位p: 60p 码率(bit rate) :视频一秒中有多少位, 决定视频的质量
+ABR: 平均码率 CBR: 常量码率 VBR: 动态码率 文件大小 = 视频文件 + 音频文件
+视频文件 = 码率 * 时间(s) / 8 音频文件 = 码率 * 时间(s) / 8
+文件格式 不同的视频文件类型, 用户存储特定的数据流( 在 ffmpeg 中称为 containers) 可以存储声音或者视频数据.
+相关缩写 encoding (E) decoding (D) video (V) audio (A) subtitles (S) 文件元数据 metadata 描述媒体文件自身的信息, 比如:</description>
+    </item>
+    
     <item>
       <title>Redis 用于做分布式锁</title>
       <link>https://ynikl.github.io/blog/redis-do-distributed-lock/</link>
@@ -23,21 +38,6 @@
 执行超时, 被其他进程获取到了锁 加锁之后, 本身进程执行时间超过了预先设置的 expire 的时间. 就会导致锁被提前释放.
 解决方案:
 尽量不要用与锁住时间教长的任务, 尝试缩小锁定的&amp;quot;关键区域&amp;quot; 续锁 (会使客户端负责化) : 起一个支线进程, 定期(在超时时间内) 检查锁和value(保证是自己的锁), 重新设置超时时间 执行超时, 被其他进程获取到了锁之后, 超时进程误删其他进程的锁 Redis 的分布式锁不能解决超时问题，如果在加锁和释放锁之间的逻辑执行的太长，以至 于超出了锁的超时限制，就会出现问题。因为这时候锁过期了，第二个线程重新持有了这把锁， 但是紧接着第一个线程执行完了业务逻辑，就把锁给释放了，第三个线程就会在第二个线程逻 辑执行完之间拿到了锁。 &amp;ndash; Redis深度历险</description>
-    </item>
-    
-    <item>
-      <title>FFmpeg 基本使用</title>
-      <link>https://ynikl.github.io/blog/ffmpeg-basics/</link>
-      <pubDate>Tue, 16 Aug 2022 20:58:41 +0800</pubDate>
-      
-      <guid>https://ynikl.github.io/blog/ffmpeg-basics/</guid>
-      <description>接手公司一个视频相关项目, 也是使用ffmpeg工具. 需要快速了解下.
-概念 码率, 帧率, 文件大小 帧率(frame rate) : 视频一秒中有多少帧画面(frames per second, fps), 决定视频流畅度.
-interlaced: 古代黑白相机的交错扫描呈现, 描述单位i : 50i progressive: 现代整页整页呈现, 描述单位p: 60p 码率(bit rate) :视频一秒中有多少位, 决定视频的质量
-ABR: 平均码率 CBR: 常量码率 VBR: 动态码率 文件大小 = 视频文件 + 音频文件
-视频文件 = 码率 * 时间(s) / 8 音频文件 = 码率 * 时间(s) / 8
-文件格式 不同的视频文件类型, 用户存储特定的数据流( 在 ffmpeg 中称为 containers) 可以存储声音或者视频数据.
-相关缩写 encoding (E) decoding (D) video (V) audio (A) subtitles (S) 文件元数据 metadata 描述媒体文件自身的信息, 比如:</description>
     </item>
     
     <item>

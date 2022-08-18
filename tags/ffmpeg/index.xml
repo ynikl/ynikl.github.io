@@ -9,11 +9,11 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 16 Aug 2022 20:58:41 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/ffmpeg/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Aug 2022 00:14:54 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/ffmpeg/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>FFmpeg 基本使用</title>
       <link>https://ynikl.github.io/blog/ffmpeg-basics/</link>
-      <pubDate>Tue, 16 Aug 2022 20:58:41 +0800</pubDate>
+      <pubDate>Fri, 19 Aug 2022 00:14:54 +0800</pubDate>
       
       <guid>https://ynikl.github.io/blog/ffmpeg-basics/</guid>
       <description>接手公司一个视频相关项目, 也是使用ffmpeg工具. 需要快速了解下.
