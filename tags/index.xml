@@ -9,7 +9,25 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 19 Aug 2022 00:14:54 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 23 Aug 2022 13:25:15 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>books</title>
+      <link>https://ynikl.github.io/tags/books/</link>
+      <pubDate>Tue, 23 Aug 2022 13:25:15 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/tags/books/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>人生的意义</title>
+      <link>https://ynikl.github.io/tags/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%84%8F%E4%B9%89/</link>
+      <pubDate>Tue, 23 Aug 2022 13:25:15 +0800</pubDate>
+      
+      <guid>https://ynikl.github.io/tags/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%84%8F%E4%B9%89/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>ffmpeg</title>
       <link>https://ynikl.github.io/tags/ffmpeg/</link>
@@ -70,15 +88,6 @@
       <pubDate>Sat, 09 Jul 2022 16:43:26 +0800</pubDate>
       
       <guid>https://ynikl.github.io/tags/rabbitmq/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>books</title>
-      <link>https://ynikl.github.io/tags/books/</link>
-      <pubDate>Sun, 19 Jun 2022 22:20:56 +0800</pubDate>
-      
-      <guid>https://ynikl.github.io/tags/books/</guid>
       <description></description>
     </item>
     

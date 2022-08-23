@@ -16,7 +16,7 @@
       <pubDate>Fri, 19 Aug 2022 00:14:54 +0800</pubDate>
       
       <guid>https://ynikl.github.io/blog/ffmpeg-basics/</guid>
-      <description>接手公司一个视频相关项目, 也是使用ffmpeg工具. 需要快速了解下.
+      <description>最近接手公司一个视频相关项目, 也是使用ffmpeg工具. 需要快速了解下.
 概念 码率, 帧率, 文件大小 帧率(frame rate) : 视频一秒中有多少帧画面(frames per second, fps), 决定视频流畅度.
 interlaced: 古代黑白相机的交错扫描呈现, 描述单位i : 50i progressive: 现代整页整页呈现, 描述单位p: 60p 码率(bit rate) :视频一秒中有多少位, 决定视频的质量
 ABR: 平均码率 CBR: 常量码率 VBR: 动态码率 文件大小 = 视频文件 + 音频文件
