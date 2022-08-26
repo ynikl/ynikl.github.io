@@ -3,6 +3,12 @@ title: 潜水员的咖啡小屋
 paginate: 5
 theme: PaperMod
 
+author:
+  name: 潜水员
+  email: gilfoyle.k@outlook.com
+copyright: "2022 Ian Lin All rights reserved"
+languageCode: en-us
+
 enableRobotsTXT: true
 buildDrafts: false
 buildFuture: false
@@ -16,6 +22,12 @@ minify:
 
 profileMode:
   enabled: false # needs to be explicitly set
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
 
 # 中间右上方 标题栏
 menu:
@@ -50,4 +62,5 @@ markup:
         guessSyntax: true
         lineNos: true
         style: monokai
+
 

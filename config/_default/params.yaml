@@ -8,6 +8,7 @@ DateFormat: "January 2, 2006"
 defaultTheme: auto # dark, light
 disableThemeToggle: false
 
+ShowFullTextinRSS: true
 ShowReadingTime: true
 ShowShareButtons: false
 ShowPostNavLinks:  true
@@ -56,6 +57,8 @@ homeInfoParams:
   Content: Welcome to my blog
 
 socialIcons:
+  - name: "rss"
+    url: "https://ynikl.github.io/index.xml"
   - name: twitter
     url: "https://twitter.com/k35402"
   - name: stackoverflow
