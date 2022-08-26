@@ -9,30 +9,200 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
+    <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
+    <copyright>2022 Ian Lin All rights reserved</copyright>
     <lastBuildDate>Thu, 09 Jun 2022 23:52:30 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/qa/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go中slice[i:j:k]第三个参数是做什么的</title>
       <link>https://ynikl.github.io/posts/golang-reslicing-slice/</link>
       <pubDate>Thu, 09 Jun 2022 23:52:30 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/golang-reslicing-slice/</guid>
       <description>今天, 突然被同事卷到了, 被问到 golang 中 slice 的三个参数是干嘛的? 我突然一时间忘记了, golang 的重切片居然是可以接受第三个参数的, 枉费我已经了写了快两年的 go 了. 赶紧 google 一下, 并总结备忘.
 简单介绍 slice 的数据结构 首先, 介绍一下 golang 中切片的结构体:
 1 2 3 4 5 type slice struct { array unsafe.Pointer len int cap int } 有三个字段:
 array 是切片所指向的底层数组数据 len 就是切片的长度 cap 即容量, 很明显 源码地址
 简单版重切片 a[low:high] 接受切片中的开始下标和结束下标, &amp;ldquo;左闭右开原则&amp;rdquo; 即重的切片数据会包含 low 下标的值, 但没有 high 下标的值 新切片的 容量(cap) 即为开始下标到原 slice 数据容量结束, 即&amp;quot;cap(a) - low&amp;quot; low 参数可以省略, 默认从 0 下标开始 high 参数也可以省略, 默认就是 slice 的长度, 即 len 的 value 1 2 3 4 5 6 7 8 a := [10]int{} oldSlice := a[:5] newSlice := a[2:4] fmt.</description>
+      <content:encoded><![CDATA[<p>今天, 突然被同事卷到了, 被问到 golang 中 slice 的三个参数是干嘛的? 我突然一时间忘记了, golang 的重切片居然是可以接受第三个参数的, 枉费我已经了写了快两年的 go 了. 赶紧 google 一下, 并总结备忘.</p>
+<h2 id="简单介绍-slice-的数据结构">简单介绍 slice 的数据结构</h2>
+<p>首先, 介绍一下 golang 中切片的结构体:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">type slice struct {
+</span></span><span class="line"><span class="cl">	array unsafe.Pointer
+</span></span><span class="line"><span class="cl">	len   int
+</span></span><span class="line"><span class="cl">	cap   int
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>有三个字段:</p>
+<ul>
+<li>array 是切片所指向的底层数组数据</li>
+<li>len 就是切片的长度</li>
+<li>cap 即容量, 很明显</li>
+</ul>
+<p><a href="https://cs.opensource.google/go/go/+/master:src/runtime/slice.go;l=15?q=slice&amp;ss=go%2Fgo">源码地址</a></p>
+<h2 id="简单版重切片-alowhigh">简单版重切片 <code>a[low:high]</code></h2>
+<ul>
+<li>接受切片中的开始下标和结束下标, &ldquo;左闭右开原则&rdquo; 即重的切片数据会包含 low 下标的值, 但没有 high 下标的值</li>
+<li>新切片的 容量(cap) 即为开始下标到原 slice 数据容量结束, 即&quot;cap(a) - low&quot;</li>
+<li>low 参数可以省略, 默认从 0 下标开始</li>
+<li>high 参数也可以省略, 默认就是 slice 的长度, 即 len 的 value</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">a := [10]int{}
+</span></span><span class="line"><span class="cl">oldSlice := a[:5]
+</span></span><span class="line"><span class="cl">newSlice := a[2:4]
+</span></span><span class="line"><span class="cl">fmt.Printf(&#34;b: len %d, cap %d, c: len %d, c:cap %d&#34;, len(b), cap(b), len(c), cap(c))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">输出:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">b: len 5, cap 10, c: len 2, c:cap 8
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>底层分配情况如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">底层数组       : [0 0 0 0 0 0 0 0 0 0]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">旧切片容量: 10 : [0 0 0 0 0 0 0 0 0 0]
+</span></span><span class="line"><span class="cl">旧切片长度: 5  : [0 0 0 0 0]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">新切片容量: 8  :     [0 0 0 0 0 0 0 0]
+</span></span><span class="line"><span class="cl">新切片长度: 2  :     [0 0]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="完整版重切片-alowhighmax">完整版重切片 <code>a[low:high:max]</code></h2>
+<p>完整版是为了补充简单版, 新切片会默认拥有从开始下标后的所有底层数组容量. 即新数组拥有修改全部数据底层能力 (<strong>重切片出来的不同切片, 在没有 append 操作触发重新分配底层数组的前提下, 指向的都是同一个数据, 修改数据相互可见</strong>)</p>
+<ul>
+<li>增加了 max 参数, 表示新切片可以获取到最大的原切片的容量大小.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">a := [10]int{}
+</span></span><span class="line"><span class="cl">oldSlice := a[:5]
+</span></span><span class="line"><span class="cl">newSlice := a[2:4:6]
+</span></span><span class="line"><span class="cl">fmt.Printf(&#34;b: len %d, cap %d, c: len %d, c:cap %d&#34;, len(b), cap(b), len(c), cap(c))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">输出:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">b: len 5, cap 10, c: len 2, c:cap 4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>底层分配情况如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">底层数组       : [0 0 0 0 0 0 0 0 0 0]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">旧切片容量:10  : [0 0 0 0 0 0 0 0 0 0] 
+</span></span><span class="line"><span class="cl">旧切片长度:5   : [0 0 0 0 0]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">新切片容量:4   :     [0 0 0 0] 
+</span></span><span class="line"><span class="cl">新切片长度:2   :     [0 0]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是, 如果 max 要求获取的容量大于旧数据容量. 可想而知, 那一定会 <code>panic</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">a</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="kt">int</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">b</span> <span class="o">:=</span> <span class="nx">a</span><span class="p">[:</span><span class="mi">4</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">c</span> <span class="o">:=</span> <span class="nx">b</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">输出</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">panic</span><span class="p">:</span> <span class="nx">runtime</span> <span class="kt">error</span><span class="p">:</span> <span class="nx">slice</span> <span class="nx">bounds</span> <span class="nx">out</span> <span class="nx">of</span> <span class="k">range</span> <span class="p">[::</span><span class="mi">5</span><span class="p">]</span> <span class="nx">with</span> <span class="nx">capacity</span> <span class="mi">4</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所以参数要求: <code>0 &lt;= low &lt;= high &lt;= max &lt;= cap(a)</code></p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://stackoverflow.com/questions/27938177/golang-slice-slicing-a-slice-with-sliceabc">stack overflow 问题1 简单版</a></li>
+<li><a href="https://stackoverflow.com/questions/12768744/re-slicing-slices-in-golang/18911267#18911267">stack overflow 问题2 详细版</a></li>
+<li><a href="https://go.dev/ref/spec#Slice_expressions">golang 官方文档</a></li>
+</ul>
+]]></content:encoded>
     </item>
     
     <item>
       <title>Hugo 如何使用已经发布文章做为相对URL</title>
       <link>https://ynikl.github.io/posts/hugo_%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%BF%9E%E6%8E%A5/</link>
       <pubDate>Sun, 15 May 2022 16:33:13 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/hugo_%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%BF%9E%E6%8E%A5/</guid>
       <description>hugo 的默认内容都是在 content/ 路径下方
 在 markdown 文章中使用 { {&amp;lt; ref &amp;quot;/blog/my-first-post.md&amp;quot; &amp;gt;}}(两个左花括号中间是没有空格的), 会在编译时发生地址替换, 带/ 是表示从 content/ 目录下的下一个绝对路径
 1 [我的文章]({ {&amp;lt; ref &amp;#34;/blog/my-first-post.md&amp;#34; }}) 记得是已经发布的文章, 如果使用不存在, 或者是不参加发布的草稿文章就会发生报错
 hugo官方文档</description>
+      <content:encoded><![CDATA[<p>hugo 的默认内容都是在 <code>content/</code> 路径下方</p>
+<p>在 markdown 文章中使用 <code>{ {&lt; ref &quot;/blog/my-first-post.md&quot; &gt;}}</code>(两个左花括号中间是没有空格的), 会在编译时发生地址替换, 带<code>/</code> 是表示从 <code>content/</code> 目录下的下一个绝对路径</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[我的文章]({ {&lt; ref &#34;/blog/my-first-post.md&#34; }})
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>记得是已经发布的文章, 如果使用不存在, 或者是不参加发布的草稿文章就会发生报错</strong></p>
+<p><a href="https://gohugo.io/content-management/cross-references/">hugo官方文档</a></p>
+]]></content:encoded>
     </item>
     
   </channel>

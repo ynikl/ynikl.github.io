@@ -9,12 +9,16 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
+    <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
+    <copyright>2022 Ian Lin All rights reserved</copyright>
     <lastBuildDate>Mon, 06 Jun 2022 19:18:31 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/data-structures/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linked List</title>
       <link>https://ynikl.github.io/dsa/linked-list/</link>
       <pubDate>Mon, 06 Jun 2022 19:18:31 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/dsa/linked-list/</guid>
       <description>链表的定义： wiki 百科给出定义:
 In computer science, a linked list is a linear collection of data elemetns whose order is not given by their physical placement in memory. Instead, each element points to the next.
@@ -24,18 +28,70 @@ In computer science, a linked list is a linear collection of data elemetns whose
 查询某个元素，需要从头开始遍历，即 O(n) 实现代码
 单向链表 最普通的链表
 双向链表 循环链表 </description>
+      <content:encoded><![CDATA[<h2 id="链表的定义">链表的定义：</h2>
+<p>wiki 百科给出定义:</p>
+<blockquote>
+<p>In computer science, a linked list is a linear collection of data elemetns whose order is not given by their physical placement in memory. Instead, each element points to the next.</p>
+</blockquote>
+<p>翻译一下：</p>
+<ul>
+<li>一个线性表</li>
+<li>每个元素会指向下一个元素的位置</li>
+</ul>
+<h2 id="链表的优缺点">链表的优缺点</h2>
+<p>优点:</p>
+<ul>
+<li>不需要提前分配内存</li>
+<li>在查找到元素位置的提前下，插入和删除动作是一个常量，即 O(1)</li>
+<li>没有容量上限，可以自由扩容</li>
+</ul>
+<p>缺点:</p>
+<ul>
+<li>查询某个元素，需要从头开始遍历，即 O(n)</li>
+</ul>
+<p><a href="https://github.com/ynikl/dsa/blob/main/linked-list.go">实现代码</a></p>
+<h2 id="单向链表">单向链表</h2>
+<p>最普通的链表</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></td></tr></table>
+</div>
+</div><h2 id="双向链表">双向链表</h2>
+<h2 id="循环链表">循环链表</h2>
+]]></content:encoded>
     </item>
     
     <item>
       <title>基础数据结构列表</title>
       <link>https://ynikl.github.io/dsa/datastructures-list/</link>
       <pubDate>Sun, 05 Jun 2022 21:40:30 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/dsa/datastructures-list/</guid>
       <description>github code
 非科班出身的我，有好几次尝试过跟着国外大学的课程重新学习计算机基础， 但是每次都是半途放弃了，这次尝试根据数据结构主题进行学习。
 主流的数据结构类型
 Linked List（链表） List （线性表） 2D Arrays Strings（串） Stack （栈） Queue（队列） Hash Table（哈希表） Heap （堆） Tree （树） Graphs（图） Binary Tree Binary Search Tree </description>
+      <content:encoded><![CDATA[<p><a href="https://github.com/ynikl/dsa">github code</a></p>
+<p>非科班出身的我，有好几次尝试过跟着国外大学的课程重新学习计算机基础，
+但是每次都是半途放弃了，这次尝试根据数据结构主题进行学习。</p>
+<p><strong>主流的数据结构类型</strong></p>
+<ul>
+<li><a href="">Linked List（链表）</a></li>
+<li>List （线性表）</li>
+<li>2D Arrays</li>
+<li>Strings（串）</li>
+<li>Stack （栈）</li>
+<li>Queue（队列）</li>
+<li>Hash Table（哈希表）</li>
+<li>Heap （堆）</li>
+<li>Tree （树）</li>
+<li>Graphs（图）</li>
+<li>Binary Tree</li>
+<li>Binary Search Tree</li>
+</ul>
+]]></content:encoded>
     </item>
     
   </channel>

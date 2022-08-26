@@ -9,12 +9,16 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
+    <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
+    <copyright>2022 Ian Lin All rights reserved</copyright>
     <lastBuildDate>Fri, 01 Apr 2022 20:09:37 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/okr/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2022</title>
       <link>https://ynikl.github.io/okr/okr-2022/</link>
       <pubDate>Fri, 01 Apr 2022 20:09:37 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/okr/okr-2022/</guid>
       <description>2022 年度目标 提升自己的基础技术竞争力, 确保不会找不到工作
 精通 go 编程语言 精通 redis 精通 mysql 5 月份 OKR O:
@@ -27,6 +31,90 @@ Go GMP 调度总结博文 做一个部门内部的 GMP 调度培训 成为一个
 开发一个 macos 蕃茄钟小程序雏形 总结 6 月份只完成了一项 微服务架构设计模式 书籍的阅读. 完成情况比较差.
 主要原因: 对设定的目标不够上心. 6月份对健身很感兴趣, 一心扑在了健身上了, 对于月初制定的计划也就淡忘了.
 7 月份 OKR K1: 首要目标, 还是要技术总结和输出 go 语言的基础知识, 成为一个 资深的 golang 开发者</description>
+      <content:encoded><![CDATA[<h1 id="2022-年度目标">2022 年度目标</h1>
+<p>提升自己的基础技术竞争力, 确保不会找不到工作</p>
+<ul>
+<li>精通 go 编程语言</li>
+<li>精通 redis</li>
+<li>精通 mysql</li>
+</ul>
+<h1 id="5-月份-okr">5 月份 OKR</h1>
+<p>O:</p>
+<ul>
+<li>加深对 Go 语言的基础知识理解</li>
+<li>熟悉 redis 的所有数据类型</li>
+</ul>
+<p>KR:</p>
+<p>输出3篇高质量的 go 语言blog</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> channel</li>
+<li><input disabled="" type="checkbox"> module</li>
+<li><input checked="" disabled="" type="checkbox"> tools</li>
+</ul>
+<p>数据 redis 所有数据类型总结博文一篇</p>
+<ul>
+<li><input disabled="" type="checkbox"> 所有数据类型总结博文</li>
+</ul>
+<h1 id="6-月份-okr">6 月份 OKR</h1>
+<p>成为一个 golang 资深开发工程师</p>
+<ul>
+<li><input disabled="" type="checkbox"> Go GMP 调度总结博文</li>
+<li><input disabled="" type="checkbox"> 做一个部门内部的 GMP 调度培训</li>
+</ul>
+<p>成为一个优秀的软件工程师</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 微服务架构设计模式通读并完成博文输出</li>
+<li><input disabled="" type="checkbox"> Mysql 表结构数据类型总结博文</li>
+</ul>
+<p>成为一个独立的 apple 软件开发者</p>
+<ul>
+<li><input disabled="" type="checkbox"> 开发一个 macos 蕃茄钟小程序雏形</li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>6 月份只完成了一项 <em>微服务架构设计模式</em>  书籍的阅读. 完成情况比较差.</p>
+<p>主要原因:
+对设定的目标不够上心. 6月份对健身很感兴趣, 一心扑在了健身上了, 对于月初制定的计划也就淡忘了.</p>
+<h1 id="7-月份-okr">7 月份 OKR</h1>
+<p>K1: 首要目标, 还是要技术总结和输出 go 语言的基础知识, 成为一个 资深的 golang 开发者</p>
+<ul>
+<li><input disabled="" type="checkbox"> go gmp 调度总结博文</li>
+<li><input disabled="" type="checkbox"> map channel context 总结博文输出</li>
+<li><input disabled="" type="checkbox"> Mysql 表结构数据类型总结博文 (6月份遗留)</li>
+</ul>
+<p>K2: 学习计算机基础知识</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 学习 <em>RabbitMQ 实战指南</em>  (因为当前公司项目有用到相关的组件, 需要快速学习一下)</li>
+<li><input checked="" disabled="" type="checkbox"> 总结 docker 的基本使用</li>
+<li><input disabled="" type="checkbox"> 学习 <em>unix 网络编程 卷一</em></li>
+</ul>
+<p>K3: 保持健康, 保持阅读</p>
+<ul>
+<li><input disabled="" type="checkbox"> 有 25 天完成, 每天阅读 4 番茄钟的.</li>
+<li><input checked="" disabled="" type="checkbox"> 每周 至少健身 4次.</li>
+</ul>
+<h2 id="总结-1">总结</h2>
+<p>执行力不够. 每天制定目标早起, 前天晚上又要早睡. 再加上健身时间, 周一至周五非工作时间都已经排满了.</p>
+<p>周末, 执行力不够, 会比较懒散地趴在床上刷抖音, 刷视频之类的. 没有有效地利用时间, 导致制定的计划都完不成.</p>
+<h1 id="8-月份-okr">8 月份 OKR</h1>
+<p>K1: 高级 go 语言开发者</p>
+<ul>
+<li><input disabled="" type="checkbox"> go gmp 调度总结博文</li>
+<li><input disabled="" type="checkbox"> map, context 总结博文输出</li>
+</ul>
+<p>K2: 补充计算机基础知识
+<del>- [ ] Tree 数据结构类型</del></p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Mysql 表结构数据类型总结博文 (6月份遗留)
+<del>- <input disabled="" type="checkbox"> Unix 网络编程 卷一</del></li>
+</ul>
+<p>K3: 保持健康, 保持阅读</p>
+<ul>
+<li><input disabled="" type="checkbox"> 有 25 天完成, 每天阅读 4 番茄钟的.
+<del>- <input disabled="" type="checkbox"> 有 25 天完成, 当天的总结和第二天的规划.</del></li>
+<li><input disabled="" type="checkbox"> 每周有4点,8点半之前到公司</li>
+<li><input checked="" disabled="" type="checkbox"> 每周 至少健身 4次.</li>
+</ul>
+]]></content:encoded>
     </item>
     
   </channel>

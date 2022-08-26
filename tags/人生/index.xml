@@ -9,24 +9,42 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
+    <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
+    <copyright>2022 Ian Lin All rights reserved</copyright>
     <lastBuildDate>Sun, 15 May 2022 17:11:57 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/%E4%BA%BA%E7%94%9F/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Five Class Programer</title>
       <link>https://ynikl.github.io/posts/five-class-engineer/</link>
       <pubDate>Sun, 15 May 2022 17:11:57 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/five-class-engineer/</guid>
       <description>以前有一段时间, 怀疑过自己&amp;quot;软件工程师&amp;quot;和以前工程意义上的&amp;quot;工程师&amp;quot;有什么区别, 自己只是将需求文档换成了代码, 这种活动并没有什么太大的突破. 然后我在吴军的见识书中看了一个五级工程师的概念, 算是解惑了我做为一个&amp;quot;码农&amp;quot;和工程师的区别.
 (图片来源于图书截图)
 第五级工程师: 有能够独自解决问题的能力, 但是问题规模较小, 属于个人能力可以解决的范围. 第四级工程师: 有沟通和领导能力, 可以带领一个团队, 完成一个规模化的工程. 第三级工程师: 能设计和完成一款产品, 取得市场成功. 对行业的商业环境有较深理解, 且有产品思维. 第二级工程师: 能够在行业做出有创造性, 有突破性的产品. 世界因为能够因为他们有一点点不一样. 第一级工程师: 开创一个行业的鼻祖. 能够改变世界. 反思自己的工程能力, 目前的所有项目技术上的问题都可以独立解决, 也能够针对某一棘手问题独立设计出可行的解决方案. 但是没有带领过团队解决过规模化问题, 亦没有技术创新.
 所以我自己应该就是 5.0, 五级工程师, 五流程序员.</description>
+      <content:encoded><![CDATA[<p>以前有一段时间, 怀疑过自己&quot;软件工程师&quot;和以前工程意义上的&quot;工程师&quot;有什么区别, 自己只是将需求文档换成了代码, 这种活动并没有什么太大的突破. 然后我在吴军的<a href="https://ynikl.github.io/books/%E8%A7%81%E8%AF%86/">见识</a>书中看了一个五级工程师的概念, 算是解惑了我做为一个&quot;码农&quot;和工程师的区别.</p>
+<p><img loading="lazy" src="five_class_engineer.png" alt="五级工程师"  />
+
+(图片来源于图书截图)</p>
+<ul>
+<li>第五级工程师: 有能够独自解决问题的能力, 但是问题规模较小, 属于个人能力可以解决的范围.</li>
+<li>第四级工程师: 有沟通和领导能力, 可以带领一个团队, 完成一个规模化的工程.</li>
+<li>第三级工程师: 能设计和完成一款产品, 取得市场成功. 对行业的商业环境有较深理解, 且有产品思维.</li>
+<li>第二级工程师: 能够在行业做出有创造性, 有突破性的产品. 世界因为能够因为他们有一点点不一样.</li>
+<li>第一级工程师: 开创一个行业的鼻祖. 能够改变世界.</li>
+</ul>
+<p>反思自己的工程能力, 目前的所有项目技术上的问题都可以独立解决, 也能够针对某一棘手问题独立设计出可行的解决方案. 但是没有带领过团队解决过规模化问题, 亦没有技术创新.</p>
+<p>所以我自己应该就是 5.0, 五级工程师, 五流程序员.</p>
+]]></content:encoded>
     </item>
     
     <item>
       <title>Show Your Work</title>
       <link>https://ynikl.github.io/books/showyourwork/</link>
       <pubDate>Sat, 30 Apr 2022 17:22:23 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/books/showyourwork/</guid>
       <description>Show Your Work 读书总结 概括 我为什么要读这本书
 如何提高自己的影响力
@@ -34,6 +52,38 @@
 打算开始分享计划, 学习如何分享, 讲述故事. 计划&amp;quot;学术假&amp;quot;
 书中的三句精华句子
 You find time the same place you find spare change: in the nooks and crannies On the spectrum of creative work, the difference between the mediocre and the good is vast. Mediocrity is, however, still on the spectrum; you can move from mediocre to good in increments. The real gap is between doing nothing and doing something You can turn your flow into stock 三句话总结本书</description>
+      <content:encoded><![CDATA[<h1 id="show-your-work-读书总结">Show Your Work 读书总结</h1>
+<h2 id="概括">概括</h2>
+<p><strong>我为什么要读这本书</strong></p>
+<p>如何提高自己的影响力</p>
+<p><strong>这本书怎样影响了我</strong></p>
+<p>打算开始分享计划, 学习如何分享, 讲述故事.
+计划&quot;学术假&quot;</p>
+<p><strong>书中的三句精华句子</strong></p>
+<ol>
+<li>You find time the same place you find spare change: in the nooks and crannies</li>
+<li>On the spectrum of creative work, the difference between the mediocre and the good is vast. Mediocrity is, however, still on the spectrum; you can move from mediocre to good in increments. The real gap is between doing nothing and doing something</li>
+<li>You can turn your flow into stock</li>
+</ol>
+<p><strong>三句话总结本书</strong></p>
+<ol>
+<li>我们需要把自己展示出来, 这样子别人才能知道你是一个什么样子的人. ( 酒香也怕巷子深)</li>
+<li>把自己当成一个业务爱好者, 对自己分享负责, 但不用追求到完美, 心态开放, 保持热情</li>
+<li>把握自己分享的尺度, 任何事情, 思想, 启发都是值得分享的. 在互联网上保持真诚, 尊重他人, 保护自己.</li>
+</ol>
+<h2 id="感悟点">感悟点</h2>
+<p>不要觉得你没有什么事情可以分享, 一定会有人对你做的事情感兴趣. 比如一天结束，可以分享自己在做什么，做什么什么决定，收获了什么，受到了什么启发，有什么成果</p>
+<p>互联网上的人们都很烂，如果不包含链接，99.9%的就不会去找目标网页</p>
+<p>如果虚假的分享你的成功，你不仅抢夺了他人的成功，还欺骗了分享成果的人们</p>
+<p>要能解释自己正在做什么</p>
+<p>分享自己的知识，也可以让别人知道你在干嘛，知道你的工作，也是自己的一种再学习过程</p>
+<p>要倾听别人的意见，不要一味地分享自己</p>
+<p>要用内容去吸引读者，不要悲哀地要求别人粉你</p>
+<p>学会在网上保护自己，过滤垃圾评论</p>
+<p>通勤的好处：分离家庭与工作</p>
+<p>适当给自己放假，学术假。每七年让自己重新充电🔋。</p>
+<p>认识你自己</p>
+]]></content:encoded>
     </item>
     
   </channel>

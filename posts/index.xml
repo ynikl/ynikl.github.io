@@ -9,41 +9,94 @@
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
+    <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
+    <copyright>2022 Ian Lin All rights reserved</copyright>
     <lastBuildDate>Sun, 14 Aug 2022 15:27:33 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CI/CD</title>
       <link>https://ynikl.github.io/posts/ci-cd/</link>
       <pubDate>Sun, 14 Aug 2022 15:27:33 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/ci-cd/</guid>
       <description>CI 自动化发布流程 可重复 可快速回滚 发布流程快速 在合并的时候可以对代码进行快速验证 CD 部署流程平台化 一键部署 总结 所谓的 CI/CD 就是通过自动化操作, 比如自动化测试, 自动化部署. 使用项目拥有快速上线的能力 &amp;ndash; 可以快速验证, 快速回滚, 快速发布.</description>
+      <content:encoded><![CDATA[<h2 id="ci">CI</h2>
+<ul>
+<li>自动化发布流程</li>
+<li>可重复</li>
+<li>可快速回滚</li>
+<li>发布流程快速</li>
+<li>在合并的时候可以对代码进行快速验证</li>
+</ul>
+<h2 id="cd">CD</h2>
+<ul>
+<li>部署流程平台化</li>
+<li>一键部署</li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>所谓的 CI/CD 就是通过自动化操作, 比如自动化测试, 自动化部署. 使用项目拥有快速上线的能力 &ndash; 可以快速验证, 快速回滚, 快速发布.</p>
+]]></content:encoded>
     </item>
     
     <item>
       <title>活着的意义</title>
       <link>https://ynikl.github.io/posts/the-meaning-of-living/</link>
       <pubDate>Tue, 09 Aug 2022 23:40:37 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/the-meaning-of-living/</guid>
       <description>我觉得人生活着没有意义，但是我又为什么还活着呢？今天， 刚好看到了史铁生的《我与地坛》里面给了我答案
 可我为什么还想活呢? 因为你还想得到点儿什么, 你觉得你还是可以得到点儿什么的, 比如说爱情, 比如说价值感之类的, 人真正的名字叫欲望</description>
+      <content:encoded><![CDATA[<p>我觉得人生活着没有意义，但是我又为什么还活着呢？今天， 刚好看到了史铁生的《我与地坛》里面给了我答案</p>
+<blockquote>
+<p>可我为什么还想活呢? 因为你还想得到点儿什么, 你觉得你还是可以得到点儿什么的, 比如说爱情, 比如说价值感之类的, 人真正的名字叫欲望</p>
+</blockquote>
+]]></content:encoded>
     </item>
     
     <item>
       <title>xorm 的 session 和 salve 的区别</title>
       <link>https://ynikl.github.io/posts/xorm-slave-newsseion/</link>
       <pubDate>Fri, 22 Jul 2022 19:08:05 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/xorm-slave-newsseion/</guid>
       <description>简单分析下xorm 里面 session 和 slave 里面 close 的代码
 1 xorm.EngineGroup.Slave() Slave () 会直接返回 xorm.Engine对象（指代我们项目到数据库的逻辑连接（里面有tcp复用）） 如果这时候再调用 close 的会，会直接把 xorm.Engine 关闭（即数据库连接关闭）。 如果用这个 engine， 执行查询动作如 find， get时. 内部会有自动执行 NewSsession 和 Close, 所以不在需要手动调用close 1 xorm.EngineGroup.NewSsession() 会返回一个xorm.Session对象, 对应我们数据库操作中的&amp;quot;会话事务&amp;quot;, 是否自动提交之类选项.(未手动开始事务时,都是自动提交) 调用 close, 对清除 session 中未提交的事务和一些缓存的 sql 前置处理语句 对于普通 select 语句调不调用是没什么太大影响 (但是还是建议new之后调用close) </description>
+      <content:encoded><![CDATA[<p>简单分析下xorm 里面 session 和 slave 里面 close 的代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">xorm.EngineGroup.Slave()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Slave () 会直接返回 xorm.Engine对象（指代我们项目到数据库的逻辑连接（里面有tcp复用））</li>
+<li>如果这时候再调用 <code>close</code> 的会，会直接把 xorm.Engine 关闭（即数据库连接关闭）。</li>
+<li>如果用这个 engine， 执行查询动作如 find， get时. 内部会有自动执行 <code>NewSsession</code> 和 <code>Close</code>, 所以不在需要手动调用<code>close</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">xorm.EngineGroup.NewSsession()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>会返回一个<code>xorm.Session</code>对象, 对应我们数据库操作中的&quot;会话事务&quot;, 是否自动提交之类选项.(未手动开始事务时,都是自动提交)</li>
+<li>调用 <code>close</code>, 对清除 session 中未提交的事务和一些缓存的 <code>sql</code> 前置处理语句</li>
+<li>对于普通 <code>select</code> 语句调不调用是没什么太大影响 (但是还是建议<code>new</code>之后调用<code>close</code>)</li>
+</ul>
+]]></content:encoded>
     </item>
     
     <item>
       <title>Make 的基本使用</title>
       <link>https://ynikl.github.io/posts/makefile-basic-use/</link>
       <pubDate>Sun, 10 Jul 2022 17:47:42 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/makefile-basic-use/</guid>
       <description>想自己整理一篇基本的 make 指令用法, 突然发现 阮一峰大佬已经整理了一篇很完整的博客, 遂放弃.
 阮一峰文章地址
@@ -55,58 +108,316 @@ case 1: 简化本地编译和测试, 自动做 setup 和 teardown
 case 2: git 提交代码自动化操作
 当我想要把我代码推送到, 测试分支, 进行集成测试
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 .</description>
+      <content:encoded><![CDATA[<p>想自己整理一篇基本的 <code>make</code> 指令用法, 突然发现 阮一峰大佬已经整理了一篇很完整的博客, 遂放弃.</p>
+<p><a href="https://www.ruanyifeng.com/blog/2015/02/make.html">阮一峰文章地址</a></p>
+<p>如果不写 c, 主要理解就几个概念就可以使用了</p>
+<ul>
+<li>target 可以用来当作想要执行的命令集的名称</li>
+<li>.PHONY:  可以用来声明命令集名称</li>
+<li>recipes 实际执行的命令集合</li>
+</ul>
+<h2 id="介绍一下我自己的应用场景">介绍一下我自己的应用场景</h2>
+<p>我目前主力编程语言是 go, 我用的编辑器是 vim, 所以我基本就在 shell 里面完成编码任务.</p>
+<p>case 1: 简化本地编译和测试, 自动做 <code>setup</code> 和 <code>teardown</code></p>
+<p>当我想要尝试一下整个项目是否编译</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">.</span><span class="nx">PHONY</span><span class="p">:</span> <span class="nx">build</span>
+</span></span><span class="line"><span class="cl"><span class="nx">build</span><span class="p">:</span> 
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="nx">build</span> <span class="p">.</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">rm</span> <span class="o">-</span><span class="nx">rf</span> <span class="p">[</span><span class="nx">PROJECT</span> <span class="nx">NAME</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用上面的 <code>makefile</code>, 我就只需要 <code>make build</code>, 就不用再删除编译出来文件. QAQ, 可以再加一些单元测试命令, 检测测试是否通过. 因为公司的项目, 在单测这方面做的不是很好, 我自己就是简单 <code>build</code> 一下</p>
+<p>case 2: git 提交代码自动化操作</p>
+<p>当我想要把我代码推送到, 测试分支, 进行集成测试</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">.PHONY: dev
+</span></span><span class="line"><span class="cl">ProjectName=&#34;Your Project Name&#34;
+</span></span><span class="line"><span class="cl">TargetBranch=&#34;Your want to merge branch&#34;
+</span></span><span class="line"><span class="cl">CurBranch=$(shell git branch --show-current)
+</span></span><span class="line"><span class="cl">dev:
+</span></span><span class="line"><span class="cl">	go build .
+</span></span><span class="line"><span class="cl">	rm -f $(ProjectName)
+</span></span><span class="line"><span class="cl">	git add .
+</span></span><span class="line"><span class="cl">	git commit -m $(msg)
+</span></span><span class="line"><span class="cl">	git push
+</span></span><span class="line"><span class="cl">	git checkout ${DevBranch}
+</span></span><span class="line"><span class="cl">	git pull --rebase
+</span></span><span class="line"><span class="cl">	git merge ${CurBranch} -m &#34;Merge branch &#39;${CurBranch}&#39; into ${DevBranch}&#34;
+</span></span><span class="line"><span class="cl">	go build
+</span></span><span class="line"><span class="cl">	rm -f $(ProjectName) 
+</span></span><span class="line"><span class="cl">	git push
+</span></span><span class="line"><span class="cl">	git checkout ${CurBranch}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>简化 git 的操作流程, 现在只需要<code>make dev</code>就可以完成, 还可以在合并之前和之后增加测试, 我自己目前知识简单的 <code>build</code> 下而已 QAQ.</p>
+]]></content:encoded>
     </item>
     
     <item>
       <title>Life Is Not Short</title>
       <link>https://ynikl.github.io/posts/life-is-not-short/</link>
       <pubDate>Fri, 01 Jul 2022 08:55:44 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/life-is-not-short/</guid>
       <description>The most surprising thing is that you wouldn’t let anyone steal your property, but you consistently let people steal your time, which is infinitely more valuable.
 life if not short</description>
+      <content:encoded><![CDATA[<blockquote>
+<p>The most surprising thing is that you wouldn’t let anyone steal your property, but you consistently let people steal your time, which is infinitely more valuable.</p>
+</blockquote>
+<p><a href="https://dkb.show/post/life-is-not-short">life if not short</a></p>
+]]></content:encoded>
     </item>
     
     <item>
       <title>什么是 &#34;胶水代码&#34;</title>
       <link>https://ynikl.github.io/posts/what-is-glue-code/</link>
       <pubDate>Sat, 18 Jun 2022 20:04:38 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/what-is-glue-code/</guid>
       <description>胶水代码(glue code), 可以了解为是大号的适配器, 没有业务意义, 主要的目的是用于 连接 两个 不兼容 的组件, 或是两个不兼容的服务.
 胶水代码可以是一段代码, 也可以是一个脚本文件, 甚至可以是新的组件.
 参考 Quora 回答 wiki</description>
+      <content:encoded><![CDATA[<p>胶水代码(glue code), 可以了解为是大号的适配器, 没有业务意义, 主要的目的是用于 <strong>连接</strong> 两个 <strong>不兼容</strong> 的组件, 或是两个不兼容的服务.</p>
+<p>胶水代码可以是一段代码, 也可以是一个脚本文件, 甚至可以是新的组件.</p>
+<h2 id="参考">参考</h2>
+<p><a href="https://www.quora.com/What-is-glue-code">Quora 回答</a>
+<a href="https://en.wikipedia.org/wiki/Glue_code">wiki</a></p>
+]]></content:encoded>
     </item>
     
     <item>
       <title>Go中slice[i:j:k]第三个参数是做什么的</title>
       <link>https://ynikl.github.io/posts/golang-reslicing-slice/</link>
       <pubDate>Thu, 09 Jun 2022 23:52:30 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/golang-reslicing-slice/</guid>
       <description>今天, 突然被同事卷到了, 被问到 golang 中 slice 的三个参数是干嘛的? 我突然一时间忘记了, golang 的重切片居然是可以接受第三个参数的, 枉费我已经了写了快两年的 go 了. 赶紧 google 一下, 并总结备忘.
 简单介绍 slice 的数据结构 首先, 介绍一下 golang 中切片的结构体:
 1 2 3 4 5 type slice struct { array unsafe.Pointer len int cap int } 有三个字段:
 array 是切片所指向的底层数组数据 len 就是切片的长度 cap 即容量, 很明显 源码地址
 简单版重切片 a[low:high] 接受切片中的开始下标和结束下标, &amp;ldquo;左闭右开原则&amp;rdquo; 即重的切片数据会包含 low 下标的值, 但没有 high 下标的值 新切片的 容量(cap) 即为开始下标到原 slice 数据容量结束, 即&amp;quot;cap(a) - low&amp;quot; low 参数可以省略, 默认从 0 下标开始 high 参数也可以省略, 默认就是 slice 的长度, 即 len 的 value 1 2 3 4 5 6 7 8 a := [10]int{} oldSlice := a[:5] newSlice := a[2:4] fmt.</description>
+      <content:encoded><![CDATA[<p>今天, 突然被同事卷到了, 被问到 golang 中 slice 的三个参数是干嘛的? 我突然一时间忘记了, golang 的重切片居然是可以接受第三个参数的, 枉费我已经了写了快两年的 go 了. 赶紧 google 一下, 并总结备忘.</p>
+<h2 id="简单介绍-slice-的数据结构">简单介绍 slice 的数据结构</h2>
+<p>首先, 介绍一下 golang 中切片的结构体:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">type slice struct {
+</span></span><span class="line"><span class="cl">	array unsafe.Pointer
+</span></span><span class="line"><span class="cl">	len   int
+</span></span><span class="line"><span class="cl">	cap   int
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>有三个字段:</p>
+<ul>
+<li>array 是切片所指向的底层数组数据</li>
+<li>len 就是切片的长度</li>
+<li>cap 即容量, 很明显</li>
+</ul>
+<p><a href="https://cs.opensource.google/go/go/+/master:src/runtime/slice.go;l=15?q=slice&amp;ss=go%2Fgo">源码地址</a></p>
+<h2 id="简单版重切片-alowhigh">简单版重切片 <code>a[low:high]</code></h2>
+<ul>
+<li>接受切片中的开始下标和结束下标, &ldquo;左闭右开原则&rdquo; 即重的切片数据会包含 low 下标的值, 但没有 high 下标的值</li>
+<li>新切片的 容量(cap) 即为开始下标到原 slice 数据容量结束, 即&quot;cap(a) - low&quot;</li>
+<li>low 参数可以省略, 默认从 0 下标开始</li>
+<li>high 参数也可以省略, 默认就是 slice 的长度, 即 len 的 value</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">a := [10]int{}
+</span></span><span class="line"><span class="cl">oldSlice := a[:5]
+</span></span><span class="line"><span class="cl">newSlice := a[2:4]
+</span></span><span class="line"><span class="cl">fmt.Printf(&#34;b: len %d, cap %d, c: len %d, c:cap %d&#34;, len(b), cap(b), len(c), cap(c))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">输出:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">b: len 5, cap 10, c: len 2, c:cap 8
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>底层分配情况如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">底层数组       : [0 0 0 0 0 0 0 0 0 0]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">旧切片容量: 10 : [0 0 0 0 0 0 0 0 0 0]
+</span></span><span class="line"><span class="cl">旧切片长度: 5  : [0 0 0 0 0]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">新切片容量: 8  :     [0 0 0 0 0 0 0 0]
+</span></span><span class="line"><span class="cl">新切片长度: 2  :     [0 0]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="完整版重切片-alowhighmax">完整版重切片 <code>a[low:high:max]</code></h2>
+<p>完整版是为了补充简单版, 新切片会默认拥有从开始下标后的所有底层数组容量. 即新数组拥有修改全部数据底层能力 (<strong>重切片出来的不同切片, 在没有 append 操作触发重新分配底层数组的前提下, 指向的都是同一个数据, 修改数据相互可见</strong>)</p>
+<ul>
+<li>增加了 max 参数, 表示新切片可以获取到最大的原切片的容量大小.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">a := [10]int{}
+</span></span><span class="line"><span class="cl">oldSlice := a[:5]
+</span></span><span class="line"><span class="cl">newSlice := a[2:4:6]
+</span></span><span class="line"><span class="cl">fmt.Printf(&#34;b: len %d, cap %d, c: len %d, c:cap %d&#34;, len(b), cap(b), len(c), cap(c))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">输出:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">b: len 5, cap 10, c: len 2, c:cap 4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>底层分配情况如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">底层数组       : [0 0 0 0 0 0 0 0 0 0]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">旧切片容量:10  : [0 0 0 0 0 0 0 0 0 0] 
+</span></span><span class="line"><span class="cl">旧切片长度:5   : [0 0 0 0 0]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">新切片容量:4   :     [0 0 0 0] 
+</span></span><span class="line"><span class="cl">新切片长度:2   :     [0 0]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是, 如果 max 要求获取的容量大于旧数据容量. 可想而知, 那一定会 <code>panic</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">a</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="kt">int</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">b</span> <span class="o">:=</span> <span class="nx">a</span><span class="p">[:</span><span class="mi">4</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">c</span> <span class="o">:=</span> <span class="nx">b</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">输出</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">panic</span><span class="p">:</span> <span class="nx">runtime</span> <span class="kt">error</span><span class="p">:</span> <span class="nx">slice</span> <span class="nx">bounds</span> <span class="nx">out</span> <span class="nx">of</span> <span class="k">range</span> <span class="p">[::</span><span class="mi">5</span><span class="p">]</span> <span class="nx">with</span> <span class="nx">capacity</span> <span class="mi">4</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所以参数要求: <code>0 &lt;= low &lt;= high &lt;= max &lt;= cap(a)</code></p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://stackoverflow.com/questions/27938177/golang-slice-slicing-a-slice-with-sliceabc">stack overflow 问题1 简单版</a></li>
+<li><a href="https://stackoverflow.com/questions/12768744/re-slicing-slices-in-golang/18911267#18911267">stack overflow 问题2 详细版</a></li>
+<li><a href="https://go.dev/ref/spec#Slice_expressions">golang 官方文档</a></li>
+</ul>
+]]></content:encoded>
     </item>
     
     <item>
       <title>我们为何选择 XXX 技术方案</title>
       <link>https://ynikl.github.io/posts/thinking-choosing-tech/</link>
       <pubDate>Wed, 08 Jun 2022 20:15:26 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/thinking-choosing-tech/</guid>
       <description>一个完善的方案的需要考虑的三个方面
 当前需求 理清楚初心，当前方案要解决的问题。聚焦到主要解决的问题。
 结果上下文 好处：当前方案的好处，解决了什么 弊端: 什么是它不能解决的 问题：引入什么新的问题 与其他方案的关系 前导：当前方案是怎么演变出来。 后续：当前方案会引入什么新问题，有什么后续的解决方案 替换：可以解决同样需求的情况下，还没什么备选方案。为什么选择了当前方案 参考《微服务设计模式》的1.6.2&amp;quot;模式和模式语言&amp;quot;, 相对减少了模式关系中的泛化和特化。</description>
+      <content:encoded><![CDATA[<p>一个完善的方案的需要考虑的三个方面</p>
+<ol>
+<li>当前需求</li>
+</ol>
+<p>理清楚初心，当前方案要解决的问题。聚焦到主要解决的问题。</p>
+<ol start="2">
+<li>结果上下文</li>
+</ol>
+<ul>
+<li>好处：当前方案的好处，解决了什么</li>
+<li>弊端: 什么是它不能解决的</li>
+<li>问题：引入什么新的问题</li>
+</ul>
+<ol start="3">
+<li>与其他方案的关系</li>
+</ol>
+<ul>
+<li>前导：当前方案是怎么演变出来。</li>
+<li>后续：当前方案会引入什么新问题，有什么后续的解决方案</li>
+<li>替换：可以解决同样需求的情况下，还没什么备选方案。为什么选择了当前方案</li>
+</ul>
+<p>参考《微服务设计模式》的1.6.2&quot;模式和模式语言&quot;, 相对减少了模式关系中的泛化和特化。</p>
+]]></content:encoded>
     </item>
     
     <item>
       <title>设计模式 -- 策略模式</title>
       <link>https://ynikl.github.io/posts/strategy-pattern/</link>
       <pubDate>Wed, 08 Jun 2022 19:50:42 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/strategy-pattern/</guid>
       <description>场景 在有多种算法, 计算策略, 甚至业务流程以一种可相互替换的场景出现时. 就可以考虑该设计模式.
 比如: 地图导航的出行路线计算, 商品购买的捆绑促销方式等.
@@ -117,47 +428,99 @@ array 是切片所指向的底层数组数据 len 就是切片的长度 cap 即�
 在流程算法策略有多个 ( 如果只有一个就没有必要抽象了, 一梭子写完就行 ), 且各个策略都有一定复杂性 ( 只是简单几个 if 的也略了吧 ) 的场景下. 就可以使用 ( 接口的签名可以写的比较松一点, 传递和返回较高层级的数据对象 ).
 实现流程 主要的思想, 我觉得还是 面向接口编程
 分析要拆分的算法或者策略, 将主流程和策略部分, 提取抽象成一个通用接口(interface) 将算法或策略剥离成独立的策略对象, 并实现上述抽象接口 主流程代码根据业务逻辑, 初始化策略对象, 将需要的策略&amp;quot;插入&amp;quot;(plugin)流程, 调用, 获取结果, ok. 参考 refactoringguru - strategy </description>
+      <content:encoded><![CDATA[<h2 id="场景">场景</h2>
+<p>在有多种算法, 计算策略, 甚至业务流程以一种可相互替换的场景出现时. 就可以考虑该设计模式.</p>
+<p>比如: 地图导航的出行路线计算, 商品购买的捆绑促销方式等.</p>
+<h2 id="分析">分析</h2>
+<p>优点:</p>
+<ul>
+<li>将具体的策略与调用策略的流程代码解耦, 修改策略代码时候可以仅修改策略对象</li>
+<li>在不同策略之间划清界限</li>
+<li>增加单独策略的可测试性</li>
+</ul>
+<p>缺点:</p>
+<ul>
+<li>后续变更有一定束缚性 ( 限制在抽象接口中 ) . 若需要打破策略的抽象接口, 就会造成较大的改动</li>
+</ul>
+<p>会带来的问题:</p>
+<ul>
+<li>可能将原先一个流程代码, 拆分成了多分. 如果代码结构没有组织好, 想要大局把握可能比较费力</li>
+</ul>
+<p>总结:</p>
+<p>在流程算法策略有多个 ( 如果只有一个就没有必要抽象了, 一梭子写完就行 ), 且各个策略都有一定复杂性 ( 只是简单几个 if 的也略了吧 ) 的场景下. 就可以使用 ( 接口的签名可以写的比较松一点, 传递和返回较高层级的数据对象 ).</p>
+<h2 id="实现流程">实现流程</h2>
+<p>主要的思想, 我觉得还是 <strong>面向接口编程</strong></p>
+<ol>
+<li>分析要拆分的算法或者策略, 将主流程和策略部分, 提取抽象成一个通用接口(<strong>interface</strong>)</li>
+<li>将算法或策略剥离成独立的策略对象, 并实现上述抽象接口</li>
+<li>主流程代码根据业务逻辑, 初始化策略对象, 将需要的策略&quot;插入&quot;(plugin)流程, 调用, 获取结果, ok.</li>
+</ol>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://refactoringguru.cn/design-patterns/strategy">refactoringguru - strategy</a></li>
+</ul>
+]]></content:encoded>
     </item>
     
     <item>
       <title>计算机中的：大端和小端</title>
       <link>https://ynikl.github.io/posts/endianness/</link>
       <pubDate>Sat, 04 Jun 2022 00:19:23 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/endianness/</guid>
       <description>大端和小端的命名出处是来自于《格列佛游记》中吃鸡蛋分成从大端开始吃的“大端派”和从小端开始吃的“小端派”
 大端的优势是高位计算，和可读性 小端的优势的低位运算 各自的优劣分析本质上还是因为内存的连续性，需要修改和读取的位数越少越有优势。
 以上是阅读阮一峰的博文-字节序探析：大端与小端的比较的简单总结。本来自己也是想要整理一篇关于大小端分析的文章。刚好阮老师发文了，收获甚多，就不在自己整理了。
 参考连接 阮一峰的博文-字节序探析：大端与小端的比较 </description>
+      <content:encoded><![CDATA[<p>大端和小端的命名出处是来自于《格列佛游记》中吃鸡蛋分成从大端开始吃的“大端派”和从小端开始吃的“小端派”</p>
+<ul>
+<li>大端的优势是高位计算，和可读性</li>
+<li>小端的优势的低位运算</li>
+</ul>
+<p>各自的优劣分析本质上还是因为内存的连续性，需要修改和读取的位数越少越有优势。</p>
+<p>以上是阅读<a href="https://www.ruanyinfeng.com/blog/2022/06/endianness-analysis.html">阮一峰的博文-字节序探析：大端与小端的比较</a>的简单总结。本来自己也是想要整理一篇关于大小端分析的文章。刚好阮老师发文了，收获甚多，就不在自己整理了。</p>
+<h2 id="参考连接">参考连接</h2>
+<ul>
+<li><a href="https://www.ruanyinfeng.com/blog/2022/06/endianness-analysis.html">阮一峰的博文-字节序探析：大端与小端的比较</a></li>
+</ul>
+]]></content:encoded>
     </item>
     
     <item>
       <title>Mysql 不支持事务嵌套</title>
       <link>https://ynikl.github.io/posts/mysql-nested-transactions/</link>
       <pubDate>Thu, 02 Jun 2022 16:16:58 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/mysql-nested-transactions/</guid>
       <description>mysql 在事务中再开启事务，前一个事务会被自动提交
 stackoverflow</description>
+      <content:encoded><![CDATA[<p>mysql 在事务中再开启事务，前一个事务会被自动提交</p>
+<p><a href="https://stackoverflow.com/questions/1306869/are-nested-transactions-allowed-in-mysql">stackoverflow</a></p>
+]]></content:encoded>
     </item>
     
     <item>
       <title>并发与并行的区别</title>
       <link>https://ynikl.github.io/posts/concurrency-and-parallelism/</link>
       <pubDate>Tue, 31 May 2022 22:36:34 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/concurrency-and-parallelism/</guid>
       <description>举个例子，电脑的鼠标，键盘或者其他设备的驱动程序，他们是并发的，但不是并行的。他们也不需要并行去运行。
 并发是很多程序（形容运行任务，不是广义上的程序）的独立运行，并发是一种程序设计结构
 并行是一次性运行很多程序，并行是一种程序的运行现象，当成程序设计成并发的，他很容易就变成了并行， 但并行不一定是并发的目的。
 Concurrency is not Parallelism by Rob Pike</description>
+      <content:encoded><![CDATA[<p>举个例子，电脑的鼠标，键盘或者其他设备的驱动程序，他们是并发的，但不是并行的。他们也不需要并行去运行。</p>
+<p>并发是很多程序（形容运行任务，不是广义上的程序）的独立运行，并发是一种程序设计结构</p>
+<p>并行是一次性运行很多程序，并行是一种程序的运行现象，当成程序设计成并发的，他很容易就变成了并行， 但并行不一定是并发的目的。</p>
+<p><a href="https://www.youtube.com/watch?v=oV9rvDllKEg&amp;list=WL&amp;index=5&amp;t=9s">Concurrency is not Parallelism by Rob Pike</a></p>
+]]></content:encoded>
     </item>
     
     <item>
       <title>如何做决定——遗憾最小化</title>
       <link>https://ynikl.github.io/posts/how-make-decisions/</link>
       <pubDate>Mon, 30 May 2022 19:17:51 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/how-make-decisions/</guid>
       <description>读Randy&amp;rsquo;s的博客遗憾最小化框架有感
 在面对人生岔路口的时候，很多时候就需要对不同决定做取舍，是否勇于打破自己的人生的桎梏。怎么样要做出让自己十年之后的自己不会后悔的决定
@@ -165,13 +528,25 @@ Concurrency is not Parallelism by Rob Pike</description>
 Jeff Bezos 曾经谈到了自己是如何做决定的，他称之为 Regret Minimization Framwork (遗憾最小化框架) —— 他会想象自己到了 80 岁的时候，是否会认为不做这件事情会让自己遗憾。尽量让人生的遗憾数量最小化。即使当时的选择后来看来是错误的，但也不会后悔尝试过。
 Bezos的视频地址 Cycle.js 作者 staltz 回答是否会对自己做的库没有像 React / Vue 那样火起来而感到气馁
 Ask yourself: in 10 years from now, will you be proud of having done this? &amp;hellip; Do things that your future self will be proud, is my motto for the time being.</description>
+      <content:encoded><![CDATA[<p>读Randy&rsquo;s的博客<a href="https://lutaonan.com/blog/regret-minimization-framework/">遗憾最小化框架</a>有感</p>
+<p><em>在面对人生岔路口的时候，很多时候就需要对不同决定做取舍，是否勇于打破自己的人生的桎梏。怎么样要做出让自己十年之后的自己不会后悔的决定</em></p>
+<p><strong>做决定之前，问问自己的内心，如果我不这么做，几年之后，年老之后会不会后悔，会不会遗憾</strong></p>
+<blockquote>
+<p>Jeff Bezos 曾经谈到了自己是如何做决定的，他称之为 Regret Minimization Framwork (遗憾最小化框架) —— 他会想象自己到了 80 岁的时候，是否会认为不做这件事情会让自己遗憾。尽量让人生的遗憾数量最小化。即使当时的选择后来看来是错误的，但也不会后悔尝试过。</p>
+</blockquote>
+<p><a href="https://www.youtube.com/watch?v=jwG_qR6XmDQ&amp;ab_channel=MickyThompson">Bezos的视频地址</a>
+Cycle.js 作者 staltz 回答是否会对自己做的库没有像 React / Vue 那样火起来而感到气馁</p>
+<blockquote>
+<p>Ask yourself: in 10 years from now, will you be proud of having done this? &hellip; Do things that your future self will be proud, is my motto for the time being.</p>
+</blockquote>
+]]></content:encoded>
     </item>
     
     <item>
       <title>我为什么要学微服务</title>
       <link>https://ynikl.github.io/posts/2022/0526-why-learn-microservices/</link>
       <pubDate>Thu, 26 May 2022 13:29:55 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/2022/0526-why-learn-microservices/</guid>
       <description>为什么学 高学习产出转化比 助力下一份工作 公司现在正在初步尝试开始引入微服务，现在学习微服务具有较高的学习工作转化比。 后端架构转变的主流方向, 有利于再次找工作。
 怎么学 想要学习好一个技术，就需要有想学习这门技术的动力。
@@ -180,60 +555,121 @@ Ask yourself: in 10 years from now, will you be proud of having done this? &amp;
 针对于“微服务”这种概念性技术。就需要具体落实到某一个框架，进行一个实战项目。过程中掌握框架使用方法，对过程中所涉及到的相关技术有粗略的了解。
 具体方法：
 我想先通过快速通过《微服务设计模式》了解微服务的使用场景，以及如何设计。 使用 go-zero 框架完成一个练手项目开发。 </description>
+      <content:encoded><![CDATA[<h2 id="为什么学">为什么学</h2>
+<ol>
+<li>高学习产出转化比</li>
+<li>助力下一份工作</li>
+</ol>
+<p>公司现在正在初步尝试开始引入微服务，现在学习微服务具有较高的学习工作转化比。
+后端架构转变的主流方向, 有利于再次找工作。</p>
+<h2 id="怎么学">怎么学</h2>
+<p>想要学习好一个技术，就需要有想学习这门技术的动力。</p>
+<p>首先要对它有较全面的理解：</p>
+<ol>
+<li>我们为什么要学习这门技术</li>
+<li>技术的使用场景，以及使用的优势和劣势</li>
+<li>现在该技术在大环境中的使用情况</li>
+</ol>
+<p>再开始学习技术本身。</p>
+<p>针对于“微服务”这种概念性技术。就需要具体落实到某一个框架，进行一个实战项目。过程中掌握框架使用方法，对过程中所涉及到的相关技术有粗略的了解。</p>
+<p>具体方法：</p>
+<ol>
+<li>我想先通过快速通过《微服务设计模式》了解微服务的使用场景，以及如何设计。</li>
+<li>使用 <code>go-zero</code> 框架完成一个练手项目开发。</li>
+</ol>
+]]></content:encoded>
     </item>
     
     <item>
       <title>IP表示中 / 代表的意思</title>
       <link>https://ynikl.github.io/posts/cs-the-slash-meaning-of-ip/</link>
       <pubDate>Mon, 23 May 2022 22:01:03 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/cs-the-slash-meaning-of-ip/</guid>
       <description>IP 中斜杠表示的是子网掩码的位数
 例如 202.118.130.0/24 表示 子网页码的位数有24位，即 1111.1111.1111.0000</description>
+      <content:encoded><![CDATA[<p>IP 中斜杠表示的是子网掩码的位数</p>
+<p>例如 202.118.130.0/24 表示 子网页码的位数有24位，即 1111.1111.1111.0000</p>
+]]></content:encoded>
     </item>
     
     <item>
       <title>Five Class Programer</title>
       <link>https://ynikl.github.io/posts/five-class-engineer/</link>
       <pubDate>Sun, 15 May 2022 17:11:57 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/five-class-engineer/</guid>
       <description>以前有一段时间, 怀疑过自己&amp;quot;软件工程师&amp;quot;和以前工程意义上的&amp;quot;工程师&amp;quot;有什么区别, 自己只是将需求文档换成了代码, 这种活动并没有什么太大的突破. 然后我在吴军的见识书中看了一个五级工程师的概念, 算是解惑了我做为一个&amp;quot;码农&amp;quot;和工程师的区别.
 (图片来源于图书截图)
 第五级工程师: 有能够独自解决问题的能力, 但是问题规模较小, 属于个人能力可以解决的范围. 第四级工程师: 有沟通和领导能力, 可以带领一个团队, 完成一个规模化的工程. 第三级工程师: 能设计和完成一款产品, 取得市场成功. 对行业的商业环境有较深理解, 且有产品思维. 第二级工程师: 能够在行业做出有创造性, 有突破性的产品. 世界因为能够因为他们有一点点不一样. 第一级工程师: 开创一个行业的鼻祖. 能够改变世界. 反思自己的工程能力, 目前的所有项目技术上的问题都可以独立解决, 也能够针对某一棘手问题独立设计出可行的解决方案. 但是没有带领过团队解决过规模化问题, 亦没有技术创新.
 所以我自己应该就是 5.0, 五级工程师, 五流程序员.</description>
+      <content:encoded><![CDATA[<p>以前有一段时间, 怀疑过自己&quot;软件工程师&quot;和以前工程意义上的&quot;工程师&quot;有什么区别, 自己只是将需求文档换成了代码, 这种活动并没有什么太大的突破. 然后我在吴军的<a href="https://ynikl.github.io/books/%E8%A7%81%E8%AF%86/">见识</a>书中看了一个五级工程师的概念, 算是解惑了我做为一个&quot;码农&quot;和工程师的区别.</p>
+<p><img loading="lazy" src="five_class_engineer.png" alt="五级工程师"  />
+
+(图片来源于图书截图)</p>
+<ul>
+<li>第五级工程师: 有能够独自解决问题的能力, 但是问题规模较小, 属于个人能力可以解决的范围.</li>
+<li>第四级工程师: 有沟通和领导能力, 可以带领一个团队, 完成一个规模化的工程.</li>
+<li>第三级工程师: 能设计和完成一款产品, 取得市场成功. 对行业的商业环境有较深理解, 且有产品思维.</li>
+<li>第二级工程师: 能够在行业做出有创造性, 有突破性的产品. 世界因为能够因为他们有一点点不一样.</li>
+<li>第一级工程师: 开创一个行业的鼻祖. 能够改变世界.</li>
+</ul>
+<p>反思自己的工程能力, 目前的所有项目技术上的问题都可以独立解决, 也能够针对某一棘手问题独立设计出可行的解决方案. 但是没有带领过团队解决过规模化问题, 亦没有技术创新.</p>
+<p>所以我自己应该就是 5.0, 五级工程师, 五流程序员.</p>
+]]></content:encoded>
     </item>
     
     <item>
       <title>Hugo 如何使用已经发布文章做为相对URL</title>
       <link>https://ynikl.github.io/posts/hugo_%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%BF%9E%E6%8E%A5/</link>
       <pubDate>Sun, 15 May 2022 16:33:13 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/hugo_%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%BF%9E%E6%8E%A5/</guid>
       <description>hugo 的默认内容都是在 content/ 路径下方
 在 markdown 文章中使用 { {&amp;lt; ref &amp;quot;/blog/my-first-post.md&amp;quot; &amp;gt;}}(两个左花括号中间是没有空格的), 会在编译时发生地址替换, 带/ 是表示从 content/ 目录下的下一个绝对路径
 1 [我的文章]({ {&amp;lt; ref &amp;#34;/blog/my-first-post.md&amp;#34; }}) 记得是已经发布的文章, 如果使用不存在, 或者是不参加发布的草稿文章就会发生报错
 hugo官方文档</description>
+      <content:encoded><![CDATA[<p>hugo 的默认内容都是在 <code>content/</code> 路径下方</p>
+<p>在 markdown 文章中使用 <code>{ {&lt; ref &quot;/blog/my-first-post.md&quot; &gt;}}</code>(两个左花括号中间是没有空格的), 会在编译时发生地址替换, 带<code>/</code> 是表示从 <code>content/</code> 目录下的下一个绝对路径</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[我的文章]({ {&lt; ref &#34;/blog/my-first-post.md&#34; }})
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>记得是已经发布的文章, 如果使用不存在, 或者是不参加发布的草稿文章就会发生报错</strong></p>
+<p><a href="https://gohugo.io/content-management/cross-references/">hugo官方文档</a></p>
+]]></content:encoded>
     </item>
     
     <item>
       <title>My first Post</title>
       <link>https://ynikl.github.io/posts/my-first-post/</link>
       <pubDate>Sun, 15 May 2022 16:14:09 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/my-first-post/</guid>
       <description>我的第一篇杂文
 阅读了卡片写作笔记法, 和Show Your Work之后, 打算重新开始写自己的博客. 用文字记录下自己的想法和收获.
 原先有断断续续写过几次博客, 但是每次都是半途而废的放弃. 希望这次可以坚持的久一点, 目标至少要有一年.</description>
+      <content:encoded><![CDATA[<p>我的第一篇杂文</p>
+<p>阅读了<a href="https://book.douban.com/subject/35503571/">卡片写作笔记法</a>, 和<a href="https://ynikl.github.io/books/showyourwork/" title="about me">Show Your Work</a>之后, 打算重新开始写自己的博客. 用文字记录下自己的想法和收获.</p>
+<p>原先有断断续续写过几次博客, 但是每次都是半途而废的放弃. 希望这次可以坚持的久一点, 目标至少要有一年.</p>
+]]></content:encoded>
     </item>
     
     <item>
       <title>提升文字留存率</title>
       <link>https://ynikl.github.io/posts/%E6%8F%90%E5%8D%87%E6%96%87%E5%AD%97%E7%95%99%E5%AD%98%E7%8E%87/</link>
       <pubDate>Sat, 02 Apr 2022 09:58:23 +0800</pubDate>
-      
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/%E6%8F%90%E5%8D%87%E6%96%87%E5%AD%97%E7%95%99%E5%AD%98%E7%8E%87/</guid>
       <description>如何提高自己的所编写的文字留存问题? 自己经常写了很多文字, 但是每当自己回顾的时候都不是很满意. 然后就会把已经写下的文字和内容删除掉.</description>
+      <content:encoded><![CDATA[<p>如何提高自己的所编写的文字留存问题?
+自己经常写了很多文字, 但是每当自己回顾的时候都不是很满意.
+然后就会把已经写下的文字和内容删除掉.</p>
+]]></content:encoded>
     </item>
     
   </channel>
