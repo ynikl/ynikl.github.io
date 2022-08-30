@@ -8,9 +8,14 @@ tags:
 - basic
 ---
 
-## 命令
+## 通用概念
 
-执行子命令
+### IFS 环境变量
+
+内部字段分割符 (internal field separator), 定义 bash shell 用做字段分割符
+
+
+### 执行子命令
 ```
 1. 双顿号
 `` 
@@ -29,13 +34,25 @@ $[]
 bc
 ```
 
-输入输出重定向以及管道
+### 输入输出重定向以及管道
 
 - > 
 - <
 - |
 
-## 结构化语句
+### 位置参数
+
+- $0 : 程序名
+- `$1 到 $9`, 第一个到第9个参数, 两位数可以使用花括号引用 `${11}` 第11个参数
+- `$*`: 所有参数, 合并成一个字符串
+- `$@`: 所有参数
+
+
+**参数和选项分离**:
+
+linux `--` 双破折号, 表示选项列表结束了,后续都是参数
+
+## if
 ``` sh
 # 采用 if 后的 command 语句的退出状态是否为 0, 判断是否为 True
 if command
@@ -59,12 +76,11 @@ elif command
 then
 	commands
 fi
-
 ```
 
 ### test 语句
+
 ```
-# test 语句
 if test command
 then 
 	commands
@@ -107,4 +123,52 @@ fi
 - d file
 - e file
 
+判断数值关系
+
+- 相等 `n1 -eq n2`
+- `n1 -gt n2`
+- `n1 -ge n2` 大于等于
+- `n1 -le n2`
+- `n1 -lt n2`
+- `n1 -ne n2` 不等于
+
+## for
+```
+for var in list
+do 
+	commands
+done
+```
+引用变量时需要使用`$var`
+
+
+C 风格的 for 循环, 允许多变量
+```
+for (( a = 1, b = 10; a <= 10; a++,b-- ))
+do
+	echo "$a - $b"
+done
+```
+
+
+## while && until
+
+```
+while command 
+do 
+	commands
+done
+```
+
+```
+util command 
+do 
+	commands
+done
+```
+
+控制循环, 和其他语言用法一致
+
+- break
+- continue
 
