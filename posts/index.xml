@@ -13,7 +13,101 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Tue, 30 Aug 2022 14:06:10 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 04 Sep 2022 21:32:24 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Content Disposition</title>
+      <link>https://ynikl.github.io/posts/http-content-disposition/</link>
+      <pubDate>Sun, 04 Sep 2022 21:32:24 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/posts/http-content-disposition/</guid>
+      <description>Content-Disposition 常见是用在 http 请求的 Response 的 Header 头部.
+告诉请求客户端(浏览器) 如何处理内容;
+Content-Disposition是在 MIME 标准定义的. http 中的用法只是其中的一小部分.
+语法参数 inline 会在浏览器内部显示
+1 Content-Disposition: inline attachment 会被保存成文件
+1 Content-Disposition: attachment 后面可以跟 filename, 值为预设文件名称, 中间使用;分号隔开.
+1 Content-Disposition: attachment; filename=&amp;#34;filename.jpg&amp;#34; 拓展参数, 有两个文件名称参数可选
+filename* filename filename* 采用了 RFC 5987 中规定的编码方式, 假如两个参数都使用 filename* 的优先级更高
+RFC 5987 该提议最终还是引用 RFC 2231 中的编码方式. 下面简单介绍一下语法
+*星号用于标记该同名参数是支持该编码语法的, 就如( filename* 之于 filename) &#39;单个逗号用于分割 字符集名称 , 语言, 文件名称 %百分号用于标记编码方式, 参考RFC 2047, 所以文件名中不能有% 1 filename*=us-ascii&amp;#39;en-us&amp;#39;This%20is%20%2A%2A%2Afun%2A%2A%2A 使用us-ascii编码, en-us英语</description>
+      <content:encoded><![CDATA[<p><code>Content-Disposition</code> 常见是用在 http 请求的 Response 的 Header 头部.</p>
+<p>告诉请求客户端(浏览器) 如何处理内容;</p>
+<p><code>Content-Disposition</code>是在 MIME 标准定义的. http 中的用法只是其中的一小部分.</p>
+<h2 id="语法参数">语法参数</h2>
+<h3 id="inline">inline</h3>
+<p>会在浏览器内部显示</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Content-Disposition: inline
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="attachment">attachment</h3>
+<p>会被保存成文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Content-Disposition: attachment
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>后面可以跟 filename, 值为预设文件名称, 中间使用<code>;</code>分号隔开.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Content-Disposition: attachment; filename=&#34;filename.jpg&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>拓展参数, 有两个文件名称参数可选</p>
+<ul>
+<li>filename*</li>
+<li>filename</li>
+</ul>
+<p><code>filename*</code> 采用了 RFC 5987 中规定的编码方式,
+假如两个参数都使用 <code>filename*</code> 的优先级更高</p>
+<h4 id="rfc-5987">RFC 5987</h4>
+<p>该提议最终还是引用 <a href="https://www.rfc-editor.org/rfc/rfc2231#section-4">RFC 2231</a>
+中的编码方式. 下面简单介绍一下语法</p>
+<ul>
+<li><code>*</code>星号用于标记该同名参数是支持该编码语法的, 就如( <code>filename*</code> 之于 <code>filename</code>)</li>
+<li><code>'</code>单个逗号用于分割 <strong>字符集名称</strong> , <strong>语言</strong>, <strong>文件名称</strong></li>
+<li><code>%</code>百分号用于标记编码方式, 参考<a href="https://www.rfc-editor.org/rfc/rfc2047">RFC 2047</a>, 所以文件名中不能有<code>%</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">filename*=us-ascii&#39;en-us&#39;This%20is%20%2A%2A%2Afun%2A%2A%2A
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用<code>us-ascii</code>编码, <code>en-us</code>英语</p>
+<h2 id="问题-下载文件名称乱码">问题: 下载文件名称乱码</h2>
+<p>根据上面的知识, 就可以解决有的浏览器下载文件时中文名称乱码.</p>
+<ul>
+<li>Http 返回设置<code>Content-Disposition</code>值</li>
+<li>使用 RFC 2231 的文件名称方式, 制定编码<code>utf-8</code></li>
+<li>将文件名称移除<code>%</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">disposition</span> <span class="o">:=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;attachment;filename*=utf-8&#39;&#39;%s&#34;</span><span class="p">,</span> <span class="nx">url</span><span class="p">.</span><span class="nf">QueryEscape</span><span class="p">(</span><span class="nx">name</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="参考">参考</h2>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Disposition">MDN</a>
+<a href="https://www.rfc-editor.org/rfc/rfc2231#section-4">RFC 2231</a></p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>The Chinese Mayor</title>
       <link>https://ynikl.github.io/posts/the-chinese-mayor/</link>
