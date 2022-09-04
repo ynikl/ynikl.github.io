@@ -3640,7 +3640,7 @@ Go GMP 调度总结博文 做一个部门内部的 GMP 调度培训 成为一个
 微服务架构设计模式通读并完成博文输出 Mysql 表结构数据类型总结博文 成为一个独立的 apple 软件开发者
 开发一个 macos 蕃茄钟小程序雏形 总结 6 月份只完成了一项 微服务架构设计模式 书籍的阅读. 完成情况比较差.
 主要原因: 对设定的目标不够上心. 6月份对健身很感兴趣, 一心扑在了健身上了, 对于月初制定的计划也就淡忘了.
-7 月份 OKR K1: 首要目标, 还是要技术总结和输出 go 语言的基础知识, 成为一个 资深的 golang 开发者</description>
+7 月份 OKR O1: 首要目标, 还是要技术总结和输出 go 语言的基础知识, 成为一个 资深的 golang 开发者</description>
       <content:encoded><![CDATA[<h1 id="2022-年度目标">2022 年度目标</h1>
 <p>提升自己的基础技术竞争力, 确保不会找不到工作</p>
 <ul>
@@ -3685,19 +3685,19 @@ Go GMP 调度总结博文 做一个部门内部的 GMP 调度培训 成为一个
 <p>主要原因:
 对设定的目标不够上心. 6月份对健身很感兴趣, 一心扑在了健身上了, 对于月初制定的计划也就淡忘了.</p>
 <h1 id="7-月份-okr">7 月份 OKR</h1>
-<p>K1: 首要目标, 还是要技术总结和输出 go 语言的基础知识, 成为一个 资深的 golang 开发者</p>
+<p>O1: 首要目标, 还是要技术总结和输出 go 语言的基础知识, 成为一个 资深的 golang 开发者</p>
 <ul>
 <li><input disabled="" type="checkbox"> go gmp 调度总结博文</li>
 <li><input disabled="" type="checkbox"> map channel context 总结博文输出</li>
 <li><input disabled="" type="checkbox"> Mysql 表结构数据类型总结博文 (6月份遗留)</li>
 </ul>
-<p>K2: 学习计算机基础知识</p>
+<p>O2: 学习计算机基础知识</p>
 <ul>
 <li><input checked="" disabled="" type="checkbox"> 学习 <em>RabbitMQ 实战指南</em>  (因为当前公司项目有用到相关的组件, 需要快速学习一下)</li>
 <li><input checked="" disabled="" type="checkbox"> 总结 docker 的基本使用</li>
 <li><input disabled="" type="checkbox"> 学习 <em>unix 网络编程 卷一</em></li>
 </ul>
-<p>K3: 保持健康, 保持阅读</p>
+<p>O3: 保持健康, 保持阅读</p>
 <ul>
 <li><input disabled="" type="checkbox"> 有 25 天完成, 每天阅读 4 番茄钟的.</li>
 <li><input checked="" disabled="" type="checkbox"> 每周 至少健身 4次.</li>
@@ -3706,23 +3706,41 @@ Go GMP 调度总结博文 做一个部门内部的 GMP 调度培训 成为一个
 <p>执行力不够. 每天制定目标早起, 前天晚上又要早睡. 再加上健身时间, 周一至周五非工作时间都已经排满了.</p>
 <p>周末, 执行力不够, 会比较懒散地趴在床上刷抖音, 刷视频之类的. 没有有效地利用时间, 导致制定的计划都完不成.</p>
 <h1 id="8-月份-okr">8 月份 OKR</h1>
-<p>K1: 高级 go 语言开发者</p>
+<p>O1: 高级 go 语言开发者</p>
 <ul>
 <li><input disabled="" type="checkbox"> go gmp 调度总结博文</li>
 <li><input disabled="" type="checkbox"> map, context 总结博文输出</li>
 </ul>
-<p>K2: 补充计算机基础知识
-<del>- [ ] Tree 数据结构类型</del></p>
+<p>O2: 补充计算机基础知识</p>
 <ul>
-<li><input checked="" disabled="" type="checkbox"> Mysql 表结构数据类型总结博文 (6月份遗留)
-<del>- <input disabled="" type="checkbox"> Unix 网络编程 卷一</del></li>
+<li><input disabled="" type="checkbox"> <del>Tree 数据结构类型</del></li>
+<li><input checked="" disabled="" type="checkbox"> Mysql 表结构数据类型总结博文 (6月份遗留)</li>
+<li><input disabled="" type="checkbox"> <del>Unix 网络编程 卷一</del></li>
 </ul>
-<p>K3: 保持健康, 保持阅读</p>
+<p>O3: 保持健康, 保持阅读</p>
 <ul>
-<li><input disabled="" type="checkbox"> 有 25 天完成, 每天阅读 4 番茄钟的.
-<del>- <input disabled="" type="checkbox"> 有 25 天完成, 当天的总结和第二天的规划.</del></li>
+<li><input checked="" disabled="" type="checkbox"> 有 25 天完成, 每天阅读 4 番茄钟的.</li>
+<li><input disabled="" type="checkbox"> <del>有 25 天完成, 当天的总结和第二天的规划.</del></li>
 <li><input disabled="" type="checkbox"> 每周有4点,8点半之前到公司</li>
 <li><input checked="" disabled="" type="checkbox"> 每周 至少健身 4次.</li>
+</ul>
+<h1 id="9-月份-okr">9 月份 OKR</h1>
+<p>O1: 可以在自我介绍上写上 <strong>精通Go语言</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> go gmp 调度总结博文</li>
+<li><input disabled="" type="checkbox"> map, context 总结博文输出</li>
+<li><input disabled="" type="checkbox"> interface 深入学习</li>
+<li><input disabled="" type="checkbox"> reflect 反射包使用</li>
+</ul>
+<p>O2: 拓展知识</p>
+<ul>
+<li><input disabled="" type="checkbox"> Mysql 表结构数据类型总结博文 (6月份遗留)</li>
+</ul>
+<p>O3: 保持健康, 保持阅读</p>
+<ul>
+<li><input disabled="" type="checkbox"> 有 25 天完成, 每天阅读 4 番茄钟的.</li>
+<li><input disabled="" type="checkbox"> 每周有4点,8点半之前到公司</li>
+<li><input disabled="" type="checkbox"> 每周 至少健身 4次.</li>
 </ul>
 ]]></content:encoded>
     </item>
