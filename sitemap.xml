@@ -71,6 +71,12 @@
     <loc>https://ynikl.github.io/books/%E5%B7%B4%E8%8F%B2%E7%89%B9%E8%87%B4%E8%82%A1%E4%B8%9C%E7%9A%84%E4%BF%A1/</loc>
     <lastmod>2022-08-08T13:27:29+08:00</lastmod>
   </url><url>
+    <loc>https://ynikl.github.io/tags/mysql/</loc>
+    <lastmod>2022-07-31T17:49:46+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/blog/mysql-data-type-numbers/</loc>
+    <lastmod>2022-07-31T17:49:46+08:00</lastmod>
+  </url><url>
     <loc>https://ynikl.github.io/posts/xorm-slave-newsseion/</loc>
     <lastmod>2022-07-22T19:08:05+08:00</lastmod>
   </url><url>
@@ -136,9 +142,6 @@
   </url><url>
     <loc>https://ynikl.github.io/blog/go-modules/</loc>
     <lastmod>2022-06-03T18:16:55+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/tags/mysql/</loc>
-    <lastmod>2022-06-02T16:16:58+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/posts/mysql-nested-transactions/</loc>
     <lastmod>2022-06-02T16:16:58+08:00</lastmod>

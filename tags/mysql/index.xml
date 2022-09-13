@@ -13,7 +13,143 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Thu, 02 Jun 2022 16:16:58 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Jul 2022 17:49:46 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mysql- 数据类型 - 数字类型</title>
+      <link>https://ynikl.github.io/blog/mysql-data-type-numbers/</link>
+      <pubDate>Sun, 31 Jul 2022 17:49:46 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/blog/mysql-data-type-numbers/</guid>
+      <description>概览 Mysql 支持以下数据类型
+数字类型 串类型(字符和字节) 日期和时间 空间 JSON 数字类型 整数类型 Interger 类型 存储大小 bytes 其他别名 TinyInt 1 bool, boolean = tinyint(1) SmallInt 2 MediumInt 3 Int 4 BigInt 8 int(M) 表示显示宽度, 最大显示宽度为(255), M 与存储空间的大小无关. 空间大小由具体类型决定.
+如果具体数值达不到宽度, 左边就会用0值补齐至 M 位.
+浮点 ( Floating-Point ) 类型 存储 补充 范围 Float 4 bytes 单精度 Double 8 bytes 双精度 Float(p) p 表示小数点后的精度位数
+Float(M, D) Mysql 语法: M表示总显示位数, D表示小数点后个数 &amp;ndash; 由Mysql自己做约分处理. Mysql 8.0 后废弃该语法.
+定点 ( Fixed-Point ) 用于需要准备保存字段数据, 如金钱相关字段.</description>
+      <content:encoded><![CDATA[<h2 id="概览">概览</h2>
+<p>Mysql 支持以下数据类型</p>
+<ul>
+<li>数字类型</li>
+<li>串类型(字符和字节)</li>
+<li>日期和时间</li>
+<li>空间</li>
+<li>JSON</li>
+</ul>
+<h2 id="数字类型">数字类型</h2>
+<h3 id="整数类型-interger">整数类型 Interger</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>存储大小 bytes</th>
+<th>其他别名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TinyInt</td>
+<td>1</td>
+<td>bool, boolean = tinyint(1)</td>
+</tr>
+<tr>
+<td>SmallInt</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>MediumInt</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td>Int</td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td>BigInt</td>
+<td>8</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>int(M) 表示显示宽度, 最大显示宽度为(255), M 与存储空间的大小无关. 空间大小由具体类型决定.</strong></p>
+<p>如果具体数值达不到宽度, 左边就会用0值补齐至 M 位.</p>
+<h3 id="浮点--floating-point-">浮点 ( Floating-Point )</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>存储</th>
+<th>补充</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Float</td>
+<td>4 bytes</td>
+<td>单精度</td>
+<td></td>
+</tr>
+<tr>
+<td>Double</td>
+<td>8 bytes</td>
+<td>双精度</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><code>Float(p)</code> p 表示小数点后的精度位数</p>
+<p><code>Float(M, D)</code> Mysql 语法: M表示总显示位数, D表示小数点后个数 &ndash; 由Mysql自己做约分处理. Mysql 8.0 后废弃该语法.</p>
+<h3 id="定点--fixed-point-">定点 ( Fixed-Point )</h3>
+<p>用于需要准备保存字段数据, 如金钱相关字段.</p>
+<p><code>Decimal(M, D)</code> 其中, M 表示字段中有效数据个数, D 表示小数点后个数</p>
+<p>Decimal(5,2) 的精度为 <code>-999.99 - 999.99</code></p>
+<h3 id="位--bit-value-">位 ( Bit-Value )</h3>
+<p><code>BIT(M)</code> 用于存储位值, M范围(1-64), 当存储的数值小于 M, 会进行左边补0</p>
+<p>example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mysql&gt; CREATE TABLE t (b BIT(8));
+</span></span><span class="line"><span class="cl">mysql&gt; INSERT INTO t SET b = b&#39;11111111&#39;;
+</span></span><span class="line"><span class="cl">mysql&gt; INSERT INTO t SET b = b&#39;1010&#39;;
+</span></span><span class="line"><span class="cl">mysql&gt; INSERT INTO t SET b = b&#39;0101&#39;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mysql&gt; SELECT b+0, BIN(b), OCT(b), HEX(b) FROM t;
+</span></span><span class="line"><span class="cl">+------+----------+--------+--------+
+</span></span><span class="line"><span class="cl">| b+0  | BIN(b)   | OCT(b) | HEX(b) |
+</span></span><span class="line"><span class="cl">+------+----------+--------+--------+
+</span></span><span class="line"><span class="cl">|  255 | 11111111 | 377    | FF     |
+</span></span><span class="line"><span class="cl">|   10 | 1010     | 12     | A      |
+</span></span><span class="line"><span class="cl">|    5 | 101      | 5      | 5      |
+</span></span><span class="line"><span class="cl">+------+----------+--------+--------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="参考">参考</h2>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/">Mysql 8.0 官方文档</a></p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>Mysql 不支持事务嵌套</title>
       <link>https://ynikl.github.io/posts/mysql-nested-transactions/</link>
