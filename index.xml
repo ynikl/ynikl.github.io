@@ -13,7 +13,20 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Sun, 04 Sep 2022 21:32:24 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 Sep 2022 13:26:28 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Journal</title>
+      <link>https://ynikl.github.io/journal/</link>
+      <pubDate>Fri, 16 Sep 2022 13:26:28 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/journal/</guid>
+      <description>开这个目录的目的:
+是为了记录一些, 我日常读到的一些文章收获和心得.</description>
+      <content:encoded><![CDATA[<p>开这个目录的目的:</p>
+<p>是为了记录一些, 我日常读到的一些文章收获和心得.</p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>Content Disposition</title>
       <link>https://ynikl.github.io/posts/http-content-disposition/</link>
