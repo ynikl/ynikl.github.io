@@ -106,4 +106,5 @@ INSERT INTO t1 VALUES
 
 ## 参考
 [Mysql 8.0 官方文档](https://dev.mysql.com/doc/refman/8.0/en/)
+[Mysql date 内部数据结构](https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html) 
 [高性能 Mysql]
