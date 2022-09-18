@@ -2,7 +2,7 @@
 title: "Mysql- 数据类型 - 数字类型"
 date: 2022-07-31T17:49:46+08:00
 publishDate: 2022-07-31T17:49:46+08:00
-draft: true
+draft: false
 tags:
 - mysql
 ---
@@ -91,18 +91,36 @@ INSERT INTO t1 VALUES
 
 ### 存储空间
 
-| 类型      | 大小    | 其他           |
-| Year      | 1-bytes |                |
-| DateTime  | 5 bytes | 3-bytes 小数点 |
-| timestamp | 4 bytes | 3-bytes 小数点 |
+| 类型      | 大小    | 其他                 |
+| Year      | 1 bytes |                      |
+| DATE      | 3 bytes |                      |
+| Time      | 3 bytes | 5.6.4 之后支持小数点 |
+| Timestamp | 4 bytes | 同上                 |
+| DateTime  | 8 bytes | 同上                 |
+
+小数点精度的位数 
+
+| 0    | 0 bytes |
+| 1,2  | 1 bytes |
+| 3,4  | 2 bytes |
+| 4,5  | 3 bytes |
 
 ### 使用推荐
 
 *高性能 Mysql* 里面总结 DateTime 和 Timestamp 的使用选择:
 
 - 非特殊情况, 尽量使用 timestamp, 因为空间效率更高.
-- 没有必要用 INT 存储, 保存时间戳. 因为没有任何收益.
+- Timestamp 不会存储时区, 而 Datetime 会存储时区
+- Timestamp 做为索引的话会更加轻量
 
+Timestamp 和 Int 的使用选择
+
+- 没有必要用 INT 存储, 保存时间戳. 因为没有任何收益.
+- Timestamp 可以支持数据变更时自动更新.
+
+### 相关的一些函数
+
+- FROM_UNIXTIME 可以将 Unix 时间戳转化成日期
 
 ## 参考
 [Mysql 8.0 官方文档](https://dev.mysql.com/doc/refman/8.0/en/)
