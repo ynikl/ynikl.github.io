@@ -10,6 +10,13 @@ tags:
 
 ## 内部数据结构
 
+
+## 初始化
+
+map 是一个有"包含内容"的数据结构, 使用之前需要提前初始化, 即调用`make`
+
+真正是调用源码是 [runtime.makemap](https://cs.opensource.google/go/go/+/master:src/runtime/map.go;l=283;bpv=1;bpt=1?q=makemap&ss=go%2Fgo)
+
 ## 获取数据
 
 ## 删除数据
