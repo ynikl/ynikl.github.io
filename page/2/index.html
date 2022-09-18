@@ -54,12 +54,19 @@ CEO们预测公司增长速度，是骗人的和危险的。当然，他们是�
 大多数人宁愿去死，也不愿意思考。很多人就是这样
 巨大的负债可以让管理层前所未有地专注工作，就像在汽车方向盘上装一把匕首，可以提高司机的注意力一样
 衍生品还可能造成连锁反应式的风险，因为很多保险公司或再保险公司将它们的风险分散给其他保险公司...</p></div><footer class=entry-footer><span title='2022-08-08 13:27:29 +0800 +0800'>August 8, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;潜水员</footer><a class=entry-link aria-label="post link to 巴菲特致股东的信" href=https://ynikl.github.io/books/%E5%B7%B4%E8%8F%B2%E7%89%B9%E8%87%B4%E8%82%A1%E4%B8%9C%E7%9A%84%E4%BF%A1/></a></article><article class=post-entry><header class=entry-header><h2>Mysql- 数据类型 - 数字类型</h2></header><div class=entry-content><p>概览 Mysql 支持以下数据类型
+数字类型 串类型(字符和字节) 日期类型 空间 JSON 日期类型 Mysql 支持的数据类型
+DATE TIME DATETIME TIMESTAMP YEAR Date 只存储日期数据, 不包含时间. YYYY-MM-DD, 范围是从 ‘1000-01-01’ to ‘9999-12-31’
+DateTime 存储日期, 也存储时间 'YYYY-MM-DD hh:mm:ss'
+范围是从'1000-01-01 00:00:00’ to ‘9999-12-31 23:59:59’
+TIMESTAMP 存储Unix时间戳数据 会受到服务器时区影响– 存储的时候转化成标准的Unix时间戳(0时区), 取数据时反之 时区环境变量设置 范围 ‘1970-01-01 00:00:01’ UTC to ‘2038-01-19 03:14:07’ UTC.
+相关函数:
+FROM_UNIXTIME 把 Unix 时间戳转化成日期 UNIX_TIMESTAMP 把日期转化成 Unix 时间戳 YEAR 显示形式 YYYY, 可选显示位数YYYY(M)
+默认4位显示 ‘1991’ TIME 只有时间部分,没有日期部分 hh:mm:ss, 范围从 ‘-838:59:59’ 到 ‘838:59:59’...</p></div><footer class=entry-footer><span title='2022-07-31 17:49:46 +0800 +0800'>July 31, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;潜水员</footer><a class=entry-link aria-label="post link to Mysql- 数据类型 - 数字类型" href=https://ynikl.github.io/blog/mysql-data-type-date/></a></article><article class=post-entry><header class=entry-header><h2>Mysql- 数据类型 - 数字类型</h2></header><div class=entry-content><p>概览 Mysql 支持以下数据类型
 数字类型 串类型(字符和字节) 日期和时间 空间 JSON 数字类型 整数类型 Interger 类型 存储大小 bytes 其他别名 TinyInt 1 bool, boolean = tinyint(1) SmallInt 2 MediumInt 3 Int 4 BigInt 8 int(M) 表示显示宽度, 最大显示宽度为(255), M 与存储空间的大小无关. 空间大小由具体类型决定.
 如果具体数值达不到宽度, 左边就会用0值补齐至 M 位.
 浮点 ( Floating-Point ) 类型 存储 补充 范围 Float 4 bytes 单精度 Double 8 bytes 双精度 Float(p) p 表示小数点后的精度位数
 Float(M, D) Mysql 语法: M表示总显示位数, D表示小数点后个数 – 由Mysql自己做约分处理. Mysql 8.0 后废弃该语法.
-定点 ( Fixed-Point ) 用于需要准备保存字段数据, 如金钱相关字段....</p></div><footer class=entry-footer><span title='2022-07-31 17:49:46 +0800 +0800'>July 31, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;潜水员</footer><a class=entry-link aria-label="post link to Mysql- 数据类型 - 数字类型" href=https://ynikl.github.io/blog/mysql-data-type-numbers/></a></article><article class=post-entry><header class=entry-header><h2>xorm 的 session 和 salve 的区别</h2></header><div class=entry-content><p>简单分析下xorm 里面 session 和 slave 里面 close 的代码
-1 xorm.EngineGroup.Slave() Slave () 会直接返回 xorm.Engine对象（指代我们项目到数据库的逻辑连接（里面有tcp复用）） 如果这时候再调用 close 的会，会直接把 xorm.Engine 关闭（即数据库连接关闭）。 如果用这个 engine， 执行查询动作如 find， get时. 内部会有自动执行 NewSsession 和 Close, 所以不在需要手动调用close 1 xorm.EngineGroup.NewSsession() 会返回一个xorm.Session对象, 对应我们数据库操作中的"会话事务", 是否自动提交之类选项.(未手动开始事务时,都是自动提交) 调用 close, 对清除 session 中未提交的事务和一些缓存的 sql 前置处理语句 对于普通 select 语句调不调用是没什么太大影响 (但是还是建议new之后调用close)</p></div><footer class=entry-footer><span title='2022-07-22 19:08:05 +0800 +0800'>July 22, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;潜水员</footer><a class=entry-link aria-label="post link to xorm 的 session 和 salve 的区别" href=https://ynikl.github.io/posts/xorm-slave-newsseion/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://ynikl.github.io/>« Prev Page</a>
+定点 ( Fixed-Point ) 用于需要准备保存字段数据, 如金钱相关字段....</p></div><footer class=entry-footer><span title='2022-07-31 17:49:46 +0800 +0800'>July 31, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;潜水员</footer><a class=entry-link aria-label="post link to Mysql- 数据类型 - 数字类型" href=https://ynikl.github.io/blog/mysql-data-type-numbers/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://ynikl.github.io/>« Prev Page</a>
 <a class=next href=https://ynikl.github.io/page/3/>Next Page »</a></nav></footer></main><footer class=footer><span>2022 Ian Lin All rights reserved</span>
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &

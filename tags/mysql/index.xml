@@ -16,6 +16,136 @@
     <lastBuildDate>Sun, 31 Jul 2022 17:49:46 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Mysql- 数据类型 - 数字类型</title>
+      <link>https://ynikl.github.io/blog/mysql-data-type-date/</link>
+      <pubDate>Sun, 31 Jul 2022 17:49:46 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/blog/mysql-data-type-date/</guid>
+      <description>概览 Mysql 支持以下数据类型
+数字类型 串类型(字符和字节) 日期类型 空间 JSON 日期类型 Mysql 支持的数据类型
+DATE TIME DATETIME TIMESTAMP YEAR Date 只存储日期数据, 不包含时间. YYYY-MM-DD, 范围是从 &amp;lsquo;1000-01-01&amp;rsquo; to &amp;lsquo;9999-12-31&amp;rsquo;
+DateTime 存储日期, 也存储时间 &#39;YYYY-MM-DD hh:mm:ss&#39;
+范围是从&#39;1000-01-01 00:00:00&amp;rsquo; to &amp;lsquo;9999-12-31 23:59:59&amp;rsquo;
+TIMESTAMP 存储Unix时间戳数据 会受到服务器时区影响&amp;ndash; 存储的时候转化成标准的Unix时间戳(0时区), 取数据时反之 时区环境变量设置 范围 &amp;lsquo;1970-01-01 00:00:01&amp;rsquo; UTC to &amp;lsquo;2038-01-19 03:14:07&amp;rsquo; UTC.
+相关函数:
+FROM_UNIXTIME 把 Unix 时间戳转化成日期 UNIX_TIMESTAMP 把日期转化成 Unix 时间戳 YEAR 显示形式 YYYY, 可选显示位数YYYY(M)
+默认4位显示 &amp;lsquo;1991&amp;rsquo; TIME 只有时间部分,没有日期部分 hh:mm:ss, 范围从 &amp;lsquo;-838:59:59&amp;rsquo; 到 &amp;lsquo;838:59:59&amp;rsquo;</description>
+      <content:encoded><![CDATA[<h2 id="概览">概览</h2>
+<p>Mysql 支持以下数据类型</p>
+<ul>
+<li>数字类型</li>
+<li>串类型(字符和字节)</li>
+<li>日期类型</li>
+<li>空间</li>
+<li>JSON</li>
+</ul>
+<h2 id="日期类型">日期类型</h2>
+<p>Mysql 支持的数据类型</p>
+<ul>
+<li>DATE</li>
+<li>TIME</li>
+<li>DATETIME</li>
+<li>TIMESTAMP</li>
+<li>YEAR</li>
+</ul>
+<h3 id="date">Date</h3>
+<p>只存储日期数据, 不包含时间. <code>YYYY-MM-DD</code>, 范围是从 &lsquo;1000-01-01&rsquo; to &lsquo;9999-12-31&rsquo;</p>
+<h3 id="datetime">DateTime</h3>
+<p>存储日期, 也存储时间 <code>'YYYY-MM-DD hh:mm:ss'</code></p>
+<p>范围是从'1000-01-01 00:00:00&rsquo; to &lsquo;9999-12-31 23:59:59&rsquo;</p>
+<h3 id="timestamp">TIMESTAMP</h3>
+<ul>
+<li>存储Unix时间戳数据</li>
+<li>会受到服务器时区影响&ndash; 存储的时候转化成标准的Unix时间戳(0时区), 取数据时反之</li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_time_zone">时区环境变量设置</a></li>
+</ul>
+<p>范围 &lsquo;1970-01-01 00:00:01&rsquo; UTC to &lsquo;2038-01-19 03:14:07&rsquo; UTC.</p>
+<p>相关函数:</p>
+<ul>
+<li>FROM_UNIXTIME 把 Unix 时间戳转化成日期</li>
+<li>UNIX_TIMESTAMP 把日期转化成 Unix 时间戳</li>
+</ul>
+<h3 id="year">YEAR</h3>
+<p>显示形式 <code>YYYY</code>, 可选显示位数<code>YYYY(M)</code></p>
+<ul>
+<li>默认4位显示 &lsquo;1991&rsquo;</li>
+</ul>
+<h3 id="time">TIME</h3>
+<p>只有时间部分,没有日期部分 <code>hh:mm:ss</code>, 范围从 &lsquo;-838:59:59&rsquo; 到 &lsquo;838:59:59&rsquo;</p>
+<h3 id="自动更新">自动更新</h3>
+<p>DateTime 和 Timestamp 在 <strong>Mysql 8.0</strong>, 支持自动初始化和当数据更新时自动更新.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">ts</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">dt</span><span class="w"> </span><span class="n">DATETIME</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="存储毫秒级别的时间">存储毫秒级别的时间</h3>
+<p>支持存储毫秒级别的时间类型有:</p>
+<ul>
+<li>TIME</li>
+<li>DATETIME</li>
+<li>TIMESTAMP</li>
+</ul>
+<p>声明模式为 <code>type_name(fsp)</code>, fsp 为0-6, 表示小数点后个数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">fractest</span><span class="p">(</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="n">TIME</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="n">DATETIME</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">c3</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">VALUES</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="s1">&#39;17:51:04.777&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2018-09-08 17:51:04.777&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2018-09-08 17:51:04.777&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="存储空间">存储空间</h3>
+<p>| 类型      | 大小    | 其他                 |
+| Year      | 1 bytes |                      |
+| DATE      | 3 bytes |                      |
+| Time      | 3 bytes | 5.6.4 之后支持小数点 |
+| Timestamp | 4 bytes | 同上                 |
+| DateTime  | 8 bytes | 同上                 |</p>
+<p>小数点精度的位数</p>
+<p>| 0    | 0 bytes |
+| 1,2  | 1 bytes |
+| 3,4  | 2 bytes |
+| 4,5  | 3 bytes |</p>
+<h3 id="使用推荐">使用推荐</h3>
+<p><em>高性能 Mysql</em> 里面总结 DateTime 和 Timestamp 的使用选择:</p>
+<ul>
+<li>非特殊情况, 尽量使用 timestamp, 因为空间效率更高.</li>
+<li>Timestamp 不会存储时区, 而 Datetime 会存储时区</li>
+<li>Timestamp 做为索引的话会更加轻量</li>
+</ul>
+<p>Timestamp 和 Int 的使用选择</p>
+<ul>
+<li>没有必要用 INT 存储, 保存时间戳. 因为没有任何收益.</li>
+<li>Timestamp 可以支持数据变更时自动更新.</li>
+</ul>
+<h3 id="相关的一些函数">相关的一些函数</h3>
+<ul>
+<li>FROM_UNIXTIME 可以将 Unix 时间戳转化成日期</li>
+</ul>
+<h2 id="参考">参考</h2>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/">Mysql 8.0 官方文档</a>
+<a href="https://dev.mysql.com/doc/internals/en/date-and-time-data-type-representation.html">Mysql date 内部数据结构</a>
+[高性能 Mysql]</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Mysql- 数据类型 - 数字类型</title>
       <link>https://ynikl.github.io/blog/mysql-data-type-numbers/</link>
       <pubDate>Sun, 31 Jul 2022 17:49:46 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
