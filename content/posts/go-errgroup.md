@@ -1,0 +1,100 @@
+---
+title: "Go  errgroup 的基本用法"
+date: 2022-09-19T09:19:31+08:00
+publishDate: 2022-09-19T09:19:31+08:00
+draft: true
+tags:
+- golang
+---
+
+## 实现并发控制
+
+在 golang 代码中如果要对一段代码进行并发限制. 通常的做法都是在写一个 `channel`
+进行传入和传出.
+
+``` go
+func main() {
+
+	concurrencyNum := 10
+	limitCh := make(chan bool, concurrencyNum)
+	wg := new(sync.WaitGroup)
+
+	for i := 0; i < 100; i++ {
+
+		limitCh <- true
+		wg.Add(1)
+		go func() {
+			defer func() {
+				<-limitCh
+				wg.Done()
+			}()
+
+			time.Sleep(1 * time.Second)
+			fmt.Println("do some things...")
+		}()
+	}
+
+	wg.Wait()
+	fmt.Println("ok")
+}
+```
+
+如果如果中间运行代码有可能存在错误, 捕获错误. 有两种方法:
+
+- 声明一个 err channel 用于承接错误
+- 声明一个外部 err 变量, 并通过互斥锁进行保护
+
+```
+func main() {
+
+	concurrencyNum := 10
+	limitCh := make(chan bool, concurrencyNum)
+	errCh := make(chan error, concurrencyNum)
+
+	var externalErr error
+	wg := new(sync.WaitGroup)
+	func() {
+		for i := 0; i < 100; i++ {
+
+			select {
+			case err := <-errCh:
+				externalErr = err
+				return
+			default:
+			}
+
+			wg.Add(1)
+			limitCh <- true
+			go func() {
+				defer func() {
+					<-limitCh
+					wg.Done()
+				}()
+
+				time.Sleep(1 * time.Second)
+				fmt.Println("do some things...")
+				if rand.Intn(5) == 1 {
+					err := errors.New("this is a error")
+					errCh <- err
+				}
+			}()
+		}
+	}()
+
+	wg.Wait()
+	fmt.Println("ok")
+	fmt.Println(externalErr)
+
+}
+```
+
+每个地放都写这么多代码, 就有了重复的感觉. 本质上就两点: 
+
+- 通过 channel 控制并发数
+- 通过 waitgroup 保证所有的协程都执行完毕
+- 通过另一个 errchannel 接受中间执行的错误
+
+## `errgroup`
+
+可以通过使用, 官方的拓展包 `errgroup` 更快实现
+
