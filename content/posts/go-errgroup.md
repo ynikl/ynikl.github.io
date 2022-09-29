@@ -2,7 +2,7 @@
 title: "Go  errgroup 的基本用法"
 date: 2022-09-19T09:19:31+08:00
 publishDate: 2022-09-19T09:19:31+08:00
-draft: true
+draft: false
 tags:
 - golang
 ---
@@ -98,3 +98,42 @@ func main() {
 
 可以通过使用, 官方的拓展包 `errgroup` 更快实现
 
+声明 errgroup
+
+- 普通声明 `new(errgroup.Group)`
+- 使用 context `errgroup.WithContext`
+
+限制开启的协程数据 
+
+`eg.SetLimit(goroutineNum)`
+
+开启协程
+
+- `eg.Go` 
+- `eg.TryGo`
+
+整体代码
+
+```
+	eg := new(errgroup.Group)
+	eg.SetLimit(10)
+
+	for i := 0; i < 100; i++ {
+
+		eg.Go(func() error {
+			time.Sleep(1 * time.Second)
+			fmt.Println("hello go")
+			return nil
+		})
+	}
+
+	err := eg.Wait()
+	fmt.Println("done", err)
+```
+
+目前有个使用场景没办法满足: 
+
+就是没办法在开启协程之前, 知道原先已经执行的协程是否有发生错误.
+如果有发生错误的. 就停止再继续开启协程.
+
+可以通过添加一个 外部的 errChannel , 覆盖到上面的需求.
