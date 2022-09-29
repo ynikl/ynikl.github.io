@@ -2,19 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://ynikl.github.io/posts/go-errgroup/</loc>
+    <lastmod>2022-09-19T09:19:31+08:00</lastmod>
+  </url><url>
     <loc>https://ynikl.github.io/tags/golang/</loc>
-    <lastmod>2022-09-18T21:37:55+08:00</lastmod>
+    <lastmod>2022-09-19T09:19:31+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/posts/</loc>
-    <lastmod>2022-09-18T21:37:55+08:00</lastmod>
+    <lastmod>2022-09-19T09:19:31+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/</loc>
-    <lastmod>2022-09-18T21:37:55+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/posts/go-get-assembly-fn/</loc>
-    <lastmod>2022-09-18T21:37:55+08:00</lastmod>
+    <lastmod>2022-09-19T09:19:31+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/</loc>
+    <lastmod>2022-09-19T09:19:31+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/posts/go-get-assembly-fn/</loc>
     <lastmod>2022-09-18T21:37:55+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/journal/</loc>
