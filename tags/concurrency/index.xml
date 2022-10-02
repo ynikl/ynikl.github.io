@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>concurrency on 潜水员的咖啡小屋</title>
+    <link>https://ynikl.github.io/tags/concurrency/</link>
+    <description>Recent content in concurrency on 潜水员的咖啡小屋</description>
+    <image>
+      <url>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
+    <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
+    <copyright>2022 Ian Lin All rights reserved</copyright>
+    <lastBuildDate>Sun, 02 Oct 2022 14:05:43 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/concurrency/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>乐观锁和悲观锁</title>
+      <link>https://ynikl.github.io/blog/optimitic-concurrency-control/</link>
+      <pubDate>Sun, 02 Oct 2022 14:05:43 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/blog/optimitic-concurrency-control/</guid>
+      <description>乐观锁和悲观锁 首先, 乐观锁和悲观锁和本身并不是一种具体锁.
+而是一种编程的并发控制思想. 原名应该叫做乐观并发控制(Optimistic concurrency control) 简称 OCC 和 悲观并发控制(Pessimistic Concurrency Control) 简称 PCC
+什么是锁 维基百科对锁的定义
+In computer science, a lock or mutex (from mutual exclusion) is a synchronization primitive: a mechanism that enforces limits on access to a resource when there are many threads of execution. A lock is designed to enforce a mutual exclusion concurrency control policy, and with a variety of possible methods there exists multiple unique implementations for different applications.</description>
+      <content:encoded><![CDATA[<h1 id="乐观锁和悲观锁">乐观锁和悲观锁</h1>
+<p>首先, 乐观锁和悲观锁和本身并不是一种具体锁.</p>
+<p>而是一种编程的并发控制思想.
+原名应该叫做乐观并发控制(Optimistic concurrency control) 简称 OCC 和
+悲观并发控制(Pessimistic Concurrency Control) 简称 PCC</p>
+<h2 id="什么是锁">什么是锁</h2>
+<p><a href="https://en.wikipedia.org/wiki/Lock_(computer_science)">维基百科对锁的定义</a></p>
+<blockquote>
+<p>In computer science, a lock or mutex (from mutual exclusion) is a synchronization primitive: a mechanism that enforces limits on access to a resource when there are many threads of execution. A lock is designed to enforce a mutual exclusion concurrency control policy, and with a variety of possible methods there exists multiple unique implementations for different applications.</p>
+</blockquote>
+<p>简单表述一下: 锁是一个同步原语, 是一种控制访问资源的线程的手段</p>
+<h2 id="乐观锁">乐观锁</h2>
+<p>乐观锁是对于要锁定的的访问资源或变量, 持有乐观的态度 &ndash; 即在自己访问该变量的时候,
+不会有其他线程来访问该变量.</p>
+<p>主要思想是在写入数据的时候, 对比一下, 当前变量的值是不是与自己取出来的时候是一致,
+如果一致即表示着 <strong>数据没有被其他线程修改过</strong></p>
+<p>有两种具体的策略</p>
+<ul>
+<li>版本号</li>
+<li>CAS</li>
+</ul>
+<h3 id="版本号">版本号</h3>
+<p>在每一次对加锁数据进行修改时候的, 对版本号进行增加操作. 当回写的数据时候判断版本号
+是否一致.</p>
+<p>如果保持一致, 才会继续进行操作.</p>
+<h3 id="cas">CAS</h3>
+<p>利用CPU硬件层面支持 &ndash; 比较和写入两步为原子性. 直接对当前值进行判断, 是与取出的数
+据一致. 一致才继续进行操作.</p>
+<p>利用CAS, 自增完成数字自增的<a href="https://en.wikipedia.org/wiki/Compare-and-swap#Example%20application:%20atomic%20adder">伪代码</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">function add(p: pointer to int, a: int) returns int
+</span></span><span class="line"><span class="cl">    done ← false
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    while not done
+</span></span><span class="line"><span class="cl">        value ← *p  // Even this operation doesn&#39;t need to be atomic.
+</span></span><span class="line"><span class="cl">        done ← cas(p, value, value + a)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    return value + a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果一直失败的话, cpu就会保持自旋 &ndash; 对cpu算力消耗较大, 直至成功.</p>
+<h3 id="aba-问题">ABA 问题</h3>
+<p>在乐观锁中, 如果值没有变化, 它的背后含义代表该值没有对其他线程修改过.</p>
+<p>但是存在着这种情况.</p>
+<ol>
+<li>线程1, 取值 A</li>
+<li>线程2, 取值 A</li>
+<li>线程2, 修改 B 值 &ndash; 成功</li>
+<li>线程2, 取值 B, 再修改成 A &ndash; 成功</li>
+<li>线程1, 对比 A值, 一致</li>
+</ol>
+<p>修改的对象值已经被其他对象修改过, 但又被修改成旧的值. 对于 ABA 问题有没有危害,要
+看具体的业务场景</p>
+<p>如果使用版本号, 每一次修改值, 都增加版本号, 就可以避免该问题.</p>
+<h2 id="悲观锁">悲观锁</h2>
+<p>悲观锁, 认为自己取值之后, 一定会有其他线程过来修改自己取值的对象.
+采取保守策略 &ndash; 直接对该数据进行锁定.</p>
+<p>按对数据的锁定类型, 可以分成两种锁:</p>
+<ul>
+<li>互斥锁</li>
+<li>读写锁</li>
+</ul>
+<h3 id="互斥锁">互斥锁</h3>
+<p>对数据锁定期间, 不允许其他线程的访问 &ndash; 读取也不允许. 其他线程只能等待当前的线程
+执行完毕</p>
+<p>常见的即是各种语言自带的互斥锁.</p>
+<h3 id="读写锁">读写锁</h3>
+<p>数据锁定期间, 其他线程可以读取数据, 但是不能写入数据.</p>
+<p>常见的也是各种语言的读写锁.</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000016611415">乐观锁、悲观锁，这一篇就够了！</a></li>
+<li><a href="https://en.wikipedia.org/wiki/ABA_problem">ABA问题</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Lock_(computer_science)">锁的定义</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>
