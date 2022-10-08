@@ -164,7 +164,7 @@
 </span></span><span class=line><span class=cl>	err := eg.Wait()
 </span></span><span class=line><span class=cl>	fmt.Println(&#34;done&#34;, err)
 </span></span></code></pre></td></tr></table></div></div><p>目前有个使用场景没办法满足:</p><p>就是没办法在开启协程之前, 知道原先已经执行的协程是否有发生错误.
-如果有发生错误的. 就停止再继续开启协程.</p><p>可以通过添加一个 外部的 errChannel , 覆盖到上面的需求.</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://ynikl.github.io/tags/golang/>golang</a></li></ul><nav class=paginav><a class=prev href=https://ynikl.github.io/blog/optimitic-concurrency-control/><span class=title>« Prev Page</span><br><span>乐观锁和悲观锁</span></a>
+如果有发生错误的. 就停止再继续开启协程.</p><p>可以通过添加一个 外部的 errChannel , 覆盖到上面的需求.</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://ynikl.github.io/tags/golang/>golang</a></li></ul><nav class=paginav><a class=prev href=https://ynikl.github.io/books/practices_of_an_agile_developer/><span class=title>« Prev Page</span><br><span>高效程序员的45个习惯</span></a>
 <a class=next href=https://ynikl.github.io/posts/go-get-assembly-fn/><span class=title>Next Page »</span><br><span>如何查看 golang 编译之后调用的源码方法</span></a></nav></footer><script src=https://utteranc.es/client.js repo=ynikl/ynikl.github.io issue-term=pathname label=comment theme=preferred-color-scheme crossorigin=anonymous async></script></article></main><footer class=footer><span>2022 Ian Lin All rights reserved</span>
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
