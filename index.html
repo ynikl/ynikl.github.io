@@ -6,7 +6,7 @@
 1 du -h 新磁盘的安装流程 对磁盘进行分割，以创建可用的 partition ； 对该 partition 进行格式化( format )，以创建系统可用的 filesystem； 在 Linux 系统上，需要创建挂载点 ( 亦即是目录 )，并将他挂载上来； 操作磁盘分区, fdisk 后面跟具体的物理磁盘
 1 fdisk /dev/hdc 创建一个ext4文件系统
 1 mkfs -t ext4 /dev/vdb1 挂载磁盘分区
-1 2 mkdir /mnt/hdc6 mount /dev/hdc6 /mnt/hdc6</p></div><footer class=entry-footer><span title='2022-11-05 13:52:16 +0800 +0800'>November 5, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;潜水员</footer><a class=entry-link aria-label="post link to Linux 文件系统简单操作流程" href=https://ynikl.github.io/posts/linux-filesystem/></a></article><article class=post-entry><header class=entry-header><h2>Python 基本语法快速学习</h2></header><div class=entry-content><p>学习路径 数据结构 流程控制 代码组织 工程化 数据结构 strings int list tuple dictionary 如何查看一个基本的类型对象拥有的方法
+1 2 mkdir /mnt/hdc6 mount /dev/hdc6 /mnt/hdc6 参考 Linux 磁盘与文件系统管理</p></div><footer class=entry-footer><span title='2022-11-05 13:52:16 +0800 +0800'>November 5, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;潜水员</footer><a class=entry-link aria-label="post link to Linux 文件系统简单操作流程" href=https://ynikl.github.io/posts/linux-filesystem/></a></article><article class=post-entry><header class=entry-header><h2>Python 基本语法快速学习</h2></header><div class=entry-content><p>学习路径 数据结构 流程控制 代码组织 工程化 数据结构 strings int list tuple dictionary 如何查看一个基本的类型对象拥有的方法
 1 2 3 name = "ada" dir(name) dir 获取对象的属性
 字符串 1 name = "ada lovelace" 拼接, 用+
 1 2 3 first_name = "ada" last_name = "lovelace" full_name = first_name + " " + last_name 声明字符串中 '单引号和" 双引号没有区别, 可以用来相互替换 多行字串使用'''连续三个单引号或双引号声明 字符串格式化

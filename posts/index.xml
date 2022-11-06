@@ -26,7 +26,7 @@
 1 du -h 新磁盘的安装流程 对磁盘进行分割，以创建可用的 partition ； 对该 partition 进行格式化( format )，以创建系统可用的 filesystem； 在 Linux 系统上，需要创建挂载点 ( 亦即是目录 )，并将他挂载上来； 操作磁盘分区, fdisk 后面跟具体的物理磁盘
 1 fdisk /dev/hdc 创建一个ext4文件系统
 1 mkfs -t ext4 /dev/vdb1 挂载磁盘分区
-1 2 mkdir /mnt/hdc6 mount /dev/hdc6 /mnt/hdc6 </description>
+1 2 mkdir /mnt/hdc6 mount /dev/hdc6 /mnt/hdc6 参考 Linux 磁盘与文件系统管理</description>
       <content:encoded><![CDATA[<h2 id="文件系统原理">文件系统原理</h2>
 <ul>
 <li>BIOS：启动主动运行的韧体，会认识第一个可启动的装置</li>
@@ -105,7 +105,9 @@
 </span></span><span class="line"><span class="cl">mount /dev/hdc6 /mnt/hdc6
 </span></span></code></pre></td></tr></table>
 </div>
-</div>]]></content:encoded>
+</div><h2 id="参考">参考</h2>
+<p><a href="http://cn.linux.vbird.org/linux_basic/0230filesystem.php#filesys_1">Linux 磁盘与文件系统管理</a></p>
+]]></content:encoded>
     </item>
     
     <item>
