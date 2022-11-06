@@ -59,3 +59,6 @@ mkfs -t ext4 /dev/vdb1
 mkdir /mnt/hdc6
 mount /dev/hdc6 /mnt/hdc6
 ```
+
+## 参考
+[Linux 磁盘与文件系统管理](http://cn.linux.vbird.org/linux_basic/0230filesystem.php#filesys_1)
