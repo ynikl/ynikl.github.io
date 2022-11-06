@@ -17,6 +17,15 @@
     <loc>https://ynikl.github.io/</loc>
     <lastmod>2022-11-05T13:52:16+08:00</lastmod>
   </url><url>
+    <loc>https://ynikl.github.io/tags/golang/</loc>
+    <lastmod>2022-11-01T00:15:50+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/posts/golang-minimal-version-selection/</loc>
+    <lastmod>2022-11-01T00:15:50+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/tags/translate/</loc>
+    <lastmod>2022-11-01T00:15:50+08:00</lastmod>
+  </url><url>
     <loc>https://ynikl.github.io/blog/</loc>
     <lastmod>2022-10-09T17:34:39+08:00</lastmod>
   </url><url>
@@ -42,9 +51,6 @@
     <lastmod>2022-09-30T13:41:00+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/posts/go-errgroup/</loc>
-    <lastmod>2022-09-19T09:19:31+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/tags/golang/</loc>
     <lastmod>2022-09-19T09:19:31+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/posts/go-get-assembly-fn/</loc>
