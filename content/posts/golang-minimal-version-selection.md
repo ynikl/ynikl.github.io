@@ -1,8 +1,8 @@
 ---
-title: "Golang Minimal Version Selection 意识流翻译"
+title: "Golang Minimal Version Selection 意识流翻译(仅开头)"
 date: 2022-11-01T00:15:50+08:00
 publishDate: 2022-11-01T00:15:50+08:00
-draft: true
+draft: false
 tags:
 - golang
 - translate
@@ -48,11 +48,5 @@ Go 构建相关的命令需要决定模块版本. 把这些模块和版本号称
 
 这些操作简单, 高效, 且容易实现
 
-## 例子
-
-在开始检测最小本报选择算法的细节时, 先看看我们为什么需要一个新的算法. 下面举例的
-模块依赖图将贯穿全文
-
-![example](https://s2.loli.net/2022/11/01/35KNQDExo7tgriZ.png)
-
+**剩余内容 略**
 
