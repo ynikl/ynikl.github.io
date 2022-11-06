@@ -162,6 +162,85 @@
     </item>
     
     <item>
+      <title>Golang 解决依赖包版本冲突</title>
+      <link>https://ynikl.github.io/posts/golang-find-module-conflict/</link>
+      <pubDate>Mon, 31 Oct 2022 08:26:33 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/posts/golang-find-module-conflict/</guid>
+      <description>遇到了 grpc 不遵循语义版本, 导致不同版本包之间的冲突.
+更新了目标的版本模块之后, 编译一下就发现原先项目引用的 gozero 框架报错了. 搜索一下 相关的关键词,就可以定位到问题是 grpc 搞的鬼.
+再找到对应的兼容版本, 升级到对应的版本就可以了.
+go 依赖版本选择 [golang 的最小版本选择]https://ynikl.github.io/posts/golang-minimal-version-selection/
+大体意思:
+会选择当前编译需要依赖包的最高版本(使用语义化版本)
+寻找依赖的原因 go mod why
+寻找自己项目引用某个包的 最短引用路径, 导致会引用目标包的
+1 go mod why google.golang.org/grpc 输出目标包的引用依赖层级
+1 2 3 4 5 6 ❯ go mod why google.golang.org/grpc # google.golang.org/grpc hello/world/test git.test.cn/company-open/rpc-pkgs google.golang.org/grpc go mod graph
+可以打印出, 模块的依赖图
+1 2 3 4 5 6 example.com/main example.com/a@v1.1.0 example.com/main example.com/b@v1.2.0 example.com/a@v1.1.0 example.com/b@v1.1.1 example.com/a@v1.1.0 example.com/c@v1.3.0 example.com/b@v1.1.0 example.com/c@v1.1.0 example.</description>
+      <content:encoded><![CDATA[<p>遇到了 grpc 不遵循语义版本, 导致<a href="https://github.com/weaveworks/common/issues/239">不同版本包之间的冲突</a>.</p>
+<p>更新了目标的版本模块之后, 编译一下就发现原先项目引用的 gozero 框架报错了. 搜索一下
+相关的关键词,就可以定位到问题是 grpc 搞的鬼.</p>
+<p>再找到对应的兼容版本, 升级到对应的版本就可以了.</p>
+<h2 id="go-依赖版本选择">go 依赖版本选择</h2>
+<p>[golang 的最小版本选择]https://ynikl.github.io/posts/golang-minimal-version-selection/</p>
+<p>大体意思:</p>
+<p>会选择当前编译需要依赖包的最高版本(使用语义化版本)</p>
+<h2 id="寻找依赖的原因">寻找依赖的原因</h2>
+<p><a href="https://go.dev/ref/mod#go-mod-why">go mod why</a></p>
+<p>寻找自己项目引用某个包的 <strong>最短引用路径</strong>, 导致会引用目标包的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">go mod why google.golang.org/grpc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出目标包的引用依赖层级</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">❯ go mod why google.golang.org/grpc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># google.golang.org/grpc
+</span></span><span class="line"><span class="cl">hello/world/test
+</span></span><span class="line"><span class="cl">git.test.cn/company-open/rpc-pkgs
+</span></span><span class="line"><span class="cl">google.golang.org/grpc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="https://go.dev/ref/mod#go-mod-graph">go mod graph</a></p>
+<p>可以打印出, 模块的依赖图</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">example.com/main example.com/a@v1.1.0
+</span></span><span class="line"><span class="cl">example.com/main example.com/b@v1.2.0
+</span></span><span class="line"><span class="cl">example.com/a@v1.1.0 example.com/b@v1.1.1
+</span></span><span class="line"><span class="cl">example.com/a@v1.1.0 example.com/c@v1.3.0
+</span></span><span class="line"><span class="cl">example.com/b@v1.1.0 example.com/c@v1.1.0
+</span></span><span class="line"><span class="cl">example.com/b@v1.2.0 example.com/c@v1.2.0
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></content:encoded>
+    </item>
+    
+    <item>
       <title>Python 基本语法快速学习</title>
       <link>https://ynikl.github.io/blog/python-basic-quick/</link>
       <pubDate>Sun, 09 Oct 2022 17:34:39 +0800</pubDate>
