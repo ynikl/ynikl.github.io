@@ -13,7 +13,598 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Sun, 02 Oct 2022 14:05:43 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 09 Oct 2022 17:34:39 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python 基本语法快速学习</title>
+      <link>https://ynikl.github.io/blog/python-basic-quick/</link>
+      <pubDate>Sun, 09 Oct 2022 17:34:39 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/blog/python-basic-quick/</guid>
+      <description>学习路径 数据结构 流程控制 代码组织 工程化 数据结构 strings int list tuple dictionary 如何查看一个基本的类型对象拥有的方法
+1 2 3 name = &amp;#34;ada&amp;#34; dir(name) dir 获取对象的属性
+字符串 1 name = &amp;#34;ada lovelace&amp;#34; 拼接, 用+
+1 2 3 first_name = &amp;#34;ada&amp;#34; last_name = &amp;#34;lovelace&amp;#34; full_name = first_name + &amp;#34; &amp;#34; + last_name 声明字符串中 &#39;单引号和&amp;quot; 双引号没有区别, 可以用来相互替换 多行字串使用&#39;&#39;&#39;连续三个单引号或双引号声明 字符串格式化
+format
+1 2 3 &amp;gt;&amp;gt;&amp;gt; &amp;#39;Hey {name}, there is a 0x{errno:x} error!&amp;#39;.format( ... name=name, errno=errno) &amp;#39;Hey Bob, there is a 0xbadc0ffee error!</description>
+      <content:encoded><![CDATA[<h2 id="学习路径">学习路径</h2>
+<ul>
+<li>数据结构</li>
+<li>流程控制</li>
+<li>代码组织</li>
+<li>工程化</li>
+</ul>
+<h2 id="数据结构">数据结构</h2>
+<ul>
+<li>strings</li>
+<li>int</li>
+<li>list</li>
+<li>tuple</li>
+<li>dictionary</li>
+</ul>
+<p>如何查看一个基本的类型对象拥有的方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">name = &#34;ada&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">dir(name)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>dir</code> 获取对象的属性</p>
+<h3 id="字符串">字符串</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">name = &#34;ada lovelace&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>拼接, 用<code>+</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">first_name = &#34;ada&#34;
+</span></span><span class="line"><span class="cl">last_name = &#34;lovelace&#34;
+</span></span><span class="line"><span class="cl">full_name = first_name + &#34; &#34; + last_name
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>声明字符串中 <code>'</code>单引号和<code>&quot;</code> 双引号没有区别, 可以用来相互替换</li>
+<li>多行字串使用<code>'''</code>连续三个单引号或双引号声明</li>
+</ul>
+<p>字符串格式化</p>
+<p>format</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; &#39;Hey {name}, there is a 0x{errno:x} error!&#39;.format(
+</span></span><span class="line"><span class="cl">...     name=name, errno=errno)
+</span></span><span class="line"><span class="cl">&#39;Hey Bob, there is a 0xbadc0ffee error!&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>&lsquo;f&rsquo;string 模版</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;&gt;&gt; f&#39;Hello, {name}!&#39;
+</span></span><span class="line"><span class="cl">&#39;Hello, Bob!&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="数字">数字</h3>
+<ul>
+<li>整数 : 不带小数点</li>
+<li>浮点数 : 带小数点, 存在精度问题</li>
+</ul>
+<p>操作符</p>
+<ul>
+<li><code>+ - * \ %</code></li>
+</ul>
+<p>与字符串的转换:</p>
+<ul>
+<li><code>str()</code> 数字转化成字符串</li>
+<li><code>int()</code> 字符串转化成整数</li>
+<li><code>float()</code> 字符串转化成浮点数</li>
+</ul>
+<h3 id="逻辑">逻辑</h3>
+<p>布尔值</p>
+<ul>
+<li>True</li>
+<li>False</li>
+</ul>
+<p>与或非</p>
+<ul>
+<li>and</li>
+<li>or</li>
+<li>not</li>
+</ul>
+<p>比较</p>
+<ul>
+<li>==</li>
+<li>!=</li>
+<li>&lt;=</li>
+<li>
+<blockquote>
+<p>=</p>
+</blockquote>
+</li>
+<li>&lt;</li>
+<li>
+<blockquote>
+</blockquote>
+</li>
+</ul>
+<p>转化</p>
+<ul>
+<li><code>bool(1)</code> // True</li>
+<li><code>bool(&quot;&quot;)</code> // False</li>
+</ul>
+<h3 id="列表">列表</h3>
+<h4 id="创建">创建</h4>
+<p>声明</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">people</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;alice&#39;</span><span class="p">,</span> <span class="s1">&#39;fred&#39;</span><span class="p">,</span> <span class="s1">&#39;ian&#39;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>range</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">for i in range(1, 5):
+</span></span><span class="line"><span class="cl">	print(i)
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">// 直接创建一个数组
+</span></span><span class="line"><span class="cl">intList = list(range(1, 5)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>列表解析</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">squares = [ value * 2 for value in range(1, 11)]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>切片</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">newPeoples = people[:3]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="操作">操作</h4>
+<p>遍历</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">people</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="元组">元组</h3>
+<p>创建</p>
+<p>使用小括号创建, 创建之后内部值无法修改</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">aTuple = (1, 3, 5)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>遍历</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">for a in aTuple:
+</span></span><span class="line"><span class="cl">	print(a)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="字典">字典</h3>
+<p>声明</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">peopleCity = { &#34;ian&#34;:&#34;xiamen&#34;, &#34;jinx&#34;:&#34;beijing&#34;}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>取值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">print(peopleCity[&#34;ian&#34;])
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>存在修改, 不存在添加</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">peopleCity[&#34;newguy&#34;] = &#34;newcity&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>删除</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">del peopleCity[&#34;ian&#34;]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>遍历</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">for person, city in peopleCity.items():
+</span></span><span class="line"><span class="cl">	print(person)
+</span></span><span class="line"><span class="cl">	print(city)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="流程控制">流程控制</h2>
+<h3 id="if">if</h3>
+<p>if&hellip;else&hellip;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">if True :
+</span></span><span class="line"><span class="cl">	print(&#34;&#34;)
+</span></span><span class="line"><span class="cl">elif True:
+</span></span><span class="line"><span class="cl">	print(&#34;if if &#34;)
+</span></span><span class="line"><span class="cl">else:
+</span></span><span class="line"><span class="cl">	print(&#34;&#34;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>判断是否在列表</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">if person in people: 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>判断列表是否为空</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">if people :
+</span></span><span class="line"><span class="cl">	print(&#34;not empty&#34;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以下略:</p>
+<ul>
+<li>while</li>
+<li>break</li>
+<li>continue</li>
+</ul>
+<h2 id="代码组织">代码组织</h2>
+<h3 id="函数">函数</h3>
+<h4 id="定义">定义</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">def func_name():
+</span></span><span class="line"><span class="cl">	print(&#34;function bdoy&#34;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="普通形参">普通形参</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">def greating(name, words):
+</span></span><span class="line"><span class="cl">	...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="关键字参数">关键字参数</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">greating(naem=&#39;ian&#39;, words=&#39;hello&#39;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="默认值">默认值</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">def greating(name, words=&#39;hello&#39;):
+</span></span><span class="line"><span class="cl">	...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="返回值">返回值</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">def getMeFive():
+</span></span><span class="line"><span class="cl">	return 5
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="可变参数">可变参数</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">def make_pizza(*toppings):
+</span></span><span class="line"><span class="cl">	...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用<code>*</code>表示可变参数, 内部生成一个元组传递到函数内部</p>
+<h3 id="模块">模块</h3>
+<p>模块为文件, 使用<code>import</code>导入模块, 假设有<code>hello.py</code>文件, 里有<code>greating</code>函数</p>
+<h4 id="导入模块">导入模块</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import hello
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">hello.greating()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>不用写前缀</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from hello import *
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="导入函数">导入函数</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from hello import greating
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">greating()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="别名">别名</h3>
+<p>函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from hello import greating as gt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>模块</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import hello as ho
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="类">类</h3>
+<p>面向对象</p>
+<h4 id="声明">声明</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">class Dog():
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def __init__(self, name, age):
+</span></span><span class="line"><span class="cl">		&#34;&#34;&#34;初始化属性name和age&#34;&#34;&#34;
+</span></span><span class="line"><span class="cl">		self.name = name
+</span></span><span class="line"><span class="cl">		self.age = age 6
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">def sit(self):
+</span></span><span class="line"><span class="cl">	&#34;&#34;&#34;模拟小狗被命令时蹲下&#34;&#34;&#34; 
+</span></span><span class="line"><span class="cl">	print(self.name.title() + &#34; is now sitting.&#34;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>初始化函数 <code>__init___</code></p>
+<p>指向自身引用 <code>self</code></p>
+<h4 id="实例化">实例化</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">my_dog = Dog(&#34;kiki&#34;, 3)
+</span></span><span class="line"><span class="cl">my_dog.site()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 访问属性
+</span></span><span class="line"><span class="cl">print(my_dog.name)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>访问不存在的属性, 会出错</p>
+<h4 id="继承">继承</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">class Car():
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	def __init__(self):
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>继承</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">class ElectricCar(Car):
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	def __init__(self):
+</span></span><span class="line"><span class="cl">		super().init()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="从模块导入">从模块导入</h4>
+<p>与导入方法一致</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from dog import Dog
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="工程化">工程化</h2>
+<h3 id="文件">文件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">wiht open(filename) as file_obj:
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>json 转存和加载</p>
+<ul>
+<li>json.dump</li>
+<li>json.load</li>
+</ul>
+<h3 id="异常">异常</h3>
+<p>捕获异常</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">try:
+</span></span><span class="line"><span class="cl">	print(5/0)
+</span></span><span class="line"><span class="cl">except ZeroDivisionError:
+</span></span><span class="line"><span class="cl">	pass
+</span></span><span class="line"><span class="cl">else:
+</span></span><span class="line"><span class="cl">	...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="单元测试">单元测试</h3>
+<p>继承 <code>unittest</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ipmort unittest
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">calss NameTestCase(unittest.TestCase):
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	def test_func_name(self):
+</span></span><span class="line"><span class="cl">		// self.assertEqual()
+</span></span><span class="line"><span class="cl">		...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">unittest.main()
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></content:encoded>
+    </item>
+    
     <item>
       <title>乐观锁和悲观锁</title>
       <link>https://ynikl.github.io/blog/optimitic-concurrency-control/</link>

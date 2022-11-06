@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>linux on 潜水员的咖啡小屋</title>
+    <link>https://ynikl.github.io/tags/linux/</link>
+    <description>Recent content in linux on 潜水员的咖啡小屋</description>
+    <image>
+      <url>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
+    <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
+    <copyright>2022 Ian Lin All rights reserved</copyright>
+    <lastBuildDate>Sat, 05 Nov 2022 13:52:16 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux 文件系统简单操作流程</title>
+      <link>https://ynikl.github.io/posts/linux-filesystem/</link>
+      <pubDate>Sat, 05 Nov 2022 13:52:16 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/posts/linux-filesystem/</guid>
+      <description>文件系统原理 BIOS：启动主动运行的韧体，会认识第一个可启动的装置 MBR：第一个可启动装置的第一个磁区内的主要启动记录区块，内含启动管理程序； 启动管理程序(boot loader)：一支可读取核心文件来运行的软件； 相关命令 查看磁盘信息 1 fdisk -l macOS
+1 diskutil list 查看磁盘用量
+1 df -h 查看文件大小
+1 du -h 新磁盘的安装流程 对磁盘进行分割，以创建可用的 partition ； 对该 partition 进行格式化( format )，以创建系统可用的 filesystem； 在 Linux 系统上，需要创建挂载点 ( 亦即是目录 )，并将他挂载上来； 操作磁盘分区, fdisk 后面跟具体的物理磁盘
+1 fdisk /dev/hdc 创建一个ext4文件系统
+1 mkfs -t ext4 /dev/vdb1 挂载磁盘分区
+1 2 mkdir /mnt/hdc6 mount /dev/hdc6 /mnt/hdc6 </description>
+      <content:encoded><![CDATA[<h2 id="文件系统原理">文件系统原理</h2>
+<ul>
+<li>BIOS：启动主动运行的韧体，会认识第一个可启动的装置</li>
+<li>MBR：第一个可启动装置的第一个磁区内的主要启动记录区块，内含启动管理程序；</li>
+<li>启动管理程序(boot loader)：一支可读取核心文件来运行的软件；</li>
+</ul>
+<h2 id="相关命令">相关命令</h2>
+<h3 id="查看磁盘信息">查看磁盘信息</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">fdisk -l
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>macOS</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">diskutil list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看磁盘用量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">df -h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看文件大小</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">du -h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="新磁盘的安装流程">新磁盘的安装流程</h3>
+<ol>
+<li>对磁盘进行分割，以创建可用的 partition ；</li>
+<li>对该 partition 进行格式化( format )，以创建系统可用的 filesystem；</li>
+<li>在 Linux 系统上，需要创建挂载点 ( 亦即是目录 )，并将他挂载上来；</li>
+</ol>
+<p>操作磁盘分区, fdisk 后面跟具体的物理磁盘</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">fdisk /dev/hdc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>创建一个ext4文件系统</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mkfs -t ext4 /dev/vdb1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>挂载磁盘分区</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mkdir /mnt/hdc6
+</span></span><span class="line"><span class="cl">mount /dev/hdc6 /mnt/hdc6
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>
