@@ -13,7 +13,24 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Sat, 05 Nov 2022 13:52:16 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 09 Nov 2022 14:04:07 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>20221109</title>
+      <link>https://ynikl.github.io/note/20221109/</link>
+      <pubDate>Wed, 09 Nov 2022 14:04:07 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/note/20221109/</guid>
+      <description>吾本乘兴而行，兴尽而返，何必见戴
+&amp;ndash; 世说新语·任诞
+我本来是乘着一时高兴而来，现在兴尽就返回家，为什么非得见到戴逵呢？</description>
+      <content:encoded><![CDATA[<blockquote>
+<p>吾本乘兴而行，兴尽而返，何必见戴<br>
+&ndash; 世说新语·任诞</p>
+</blockquote>
+<p>我本来是乘着一时高兴而来，现在兴尽就返回家，为什么非得见到戴逵呢？</p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>Linux 文件系统简单操作流程</title>
       <link>https://ynikl.github.io/posts/linux-filesystem/</link>

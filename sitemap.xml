@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://ynikl.github.io/note/20221109/</loc>
+    <lastmod>2022-11-09T14:04:07+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/note/</loc>
+    <lastmod>2022-11-09T14:04:07+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/tags/</loc>
+    <lastmod>2022-11-09T14:04:07+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/tags/words/</loc>
+    <lastmod>2022-11-09T14:04:07+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/</loc>
+    <lastmod>2022-11-09T14:04:07+08:00</lastmod>
+  </url><url>
     <loc>https://ynikl.github.io/tags/linux/</loc>
     <lastmod>2022-11-05T13:52:16+08:00</lastmod>
   </url><url>
@@ -9,12 +24,6 @@
     <lastmod>2022-11-05T13:52:16+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/posts/</loc>
-    <lastmod>2022-11-05T13:52:16+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/tags/</loc>
-    <lastmod>2022-11-05T13:52:16+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/</loc>
     <lastmod>2022-11-05T13:52:16+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/golang/</loc>
