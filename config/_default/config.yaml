@@ -44,6 +44,10 @@ menu:
       name: posts
       url: /posts/
       weight: 3
+    - identifier: notes
+      name: notes
+      url: /notes/
+      weight: 4
     - identifier: tags
       name: tags
       url: /tags/
