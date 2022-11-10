@@ -5502,6 +5502,24 @@ channel 保证:
     
     <item>
       <title>2022</title>
+      <link>https://ynikl.github.io/okr/backlog/</link>
+      <pubDate>Fri, 01 Apr 2022 20:09:37 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/okr/backlog/</guid>
+      <description>技术 Go interface 深入学习 reflect 反射包使用 1.17 版本 1.18 版本 </description>
+      <content:encoded><![CDATA[<h1 id="技术">技术</h1>
+<h2 id="go">Go</h2>
+<ul>
+<li><input disabled="" type="checkbox"> interface 深入学习</li>
+<li><input disabled="" type="checkbox"> reflect 反射包使用</li>
+<li><input disabled="" type="checkbox"> 1.17 版本</li>
+<li><input disabled="" type="checkbox"> 1.18 版本</li>
+</ul>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>2022</title>
       <link>https://ynikl.github.io/okr/okr-2022/</link>
       <pubDate>Fri, 01 Apr 2022 20:09:37 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
@@ -5628,6 +5646,26 @@ Go GMP 调度总结博文 做一个部门内部的 GMP 调度培训 成为一个
 <li><input disabled="" type="checkbox"> 有 25 天完成, 每天阅读 4 番茄钟的.</li>
 <li><input disabled="" type="checkbox"> 每周有4点,8点半之前到公司</li>
 <li><input disabled="" type="checkbox"> 每周 至少健身 4次.</li>
+</ul>
+<h1 id="10-月份-okr">10 月份 OKR</h1>
+<p>无</p>
+<h1 id="11-月份-okr">11 月份 OKR</h1>
+<p>技术</p>
+<p>O1: <strong>精通Go语言</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> go map 总结博文输出</li>
+<li><input disabled="" type="checkbox"> go context 总结博文输出</li>
+<li><input disabled="" type="checkbox"> go gmp 调度总结博文</li>
+</ul>
+<p>O2: 拓展技术边界</p>
+<ul>
+<li><input disabled="" type="checkbox"> 前端技术入门</li>
+</ul>
+<p>生活</p>
+<p>O1: 文字沉淀,</p>
+<ul>
+<li><input disabled="" type="checkbox"> 摩托车给我带来了什么文章总结</li>
+<li><input disabled="" type="checkbox"> 摩托车骑行录像整理</li>
 </ul>
 ]]></content:encoded>
     </item>
