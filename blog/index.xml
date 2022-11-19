@@ -2019,6 +2019,94 @@ Muxer ( _ ): 将多个信号数据合并</p>
     </item>
     
     <item>
+      <title>Golang Map 介绍</title>
+      <link>https://ynikl.github.io/blog/golang-map/</link>
+      <pubDate>Sat, 13 Aug 2022 14:14:30 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/blog/golang-map/</guid>
+      <description>本想写一篇关于 golang 中 map 底层的文章， 但是发现已经了相当不错的文章 &amp;ndash; 字节跳动技术团队 - Golang 中 map 探究 这里只补充一下，缺少的 map 的删除操作
+内部数据结构 初始化 map 是一个有&amp;quot;包含内容&amp;quot;的数据结构, 使用之前需要提前初始化, 即调用make
+真正是调用源码是 runtime.makemap
+获取数据 删除 源码地址
+删除的关键代码
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 // Only clear key if there are pointers in it. // # 当 Key 是指针类型的时候会去清空指针 if t.key.ptrdata != 0 { if goarch.</description>
+      <content:encoded><![CDATA[<p>本想写一篇关于 golang 中 map 底层的文章， 但是发现已经了相当不错的文章 &ndash;
+<a href="https://mp.weixin.qq.com/s/UT8tydajjOUJkfc-Brcblw">字节跳动技术团队 - Golang 中 map 探究</a>
+这里只补充一下，缺少的 map 的删除操作</p>
+<h2 id="内部数据结构">内部数据结构</h2>
+<h2 id="初始化">初始化</h2>
+<p>map 是一个有&quot;包含内容&quot;的数据结构, 使用之前需要提前初始化, 即调用<code>make</code></p>
+<p>真正是调用源码是 <a href="https://cs.opensource.google/go/go/+/master:src/runtime/map.go;l=283;bpv=1;bpt=1?q=makemap&amp;ss=go%2Fgo">runtime.makemap</a></p>
+<h2 id="获取数据">获取数据</h2>
+<h2 id="删除">删除</h2>
+<p><a href="https://cs.opensource.google/go/go/+/master:src/runtime/map_fast64.go;drc=3e5c2c155645ebaed62e4481430c455045b0fff5;bpv=1;bpt=1;l=273?q=mapdelete_fast64&amp;ss=go%2Fgo">源码地址</a></p>
+<p>删除的关键代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="c1">// Only clear key if there are pointers in it.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="c1">// # 当 Key 是指针类型的时候会去清空指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="k">if</span> <span class="nx">t</span><span class="p">.</span><span class="nx">key</span><span class="p">.</span><span class="nx">ptrdata</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span> <span class="nx">goarch</span><span class="p">.</span><span class="nx">PtrSize</span> <span class="o">==</span> <span class="mi">8</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">					<span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">)(</span><span class="nx">k</span><span class="p">)</span> <span class="p">=</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">					<span class="c1">// There are three ways to squeeze at one ore more 32 bit pointers into 64 bits.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>					<span class="c1">// Just call memclrHasPointers instead of trying to handle all cases here.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>					<span class="nf">memclrHasPointers</span><span class="p">(</span><span class="nx">k</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">			<span class="nx">e</span> <span class="o">:=</span> <span class="nf">add</span><span class="p">(</span><span class="nx">unsafe</span><span class="p">.</span><span class="nf">Pointer</span><span class="p">(</span><span class="nx">b</span><span class="p">),</span> <span class="nx">dataOffset</span><span class="o">+</span><span class="nx">bucketCnt</span><span class="o">*</span><span class="mi">8</span><span class="o">+</span><span class="nx">i</span><span class="o">*</span><span class="nb">uintptr</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">elemsize</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">// # 当 Value 为指针类型的时候, 指针为空, 解除引用 -&gt; GC
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="k">if</span> <span class="nx">t</span><span class="p">.</span><span class="nx">elem</span><span class="p">.</span><span class="nx">ptrdata</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nf">memclrHasPointers</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nx">elem</span><span class="p">.</span><span class="nx">size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nf">memclrNoHeapPointers</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nx">elem</span><span class="p">.</span><span class="nx">size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">			<span class="c1">// # 讲 hash 值标记为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="nx">b</span><span class="p">.</span><span class="nx">tophash</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">emptyOne</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上述删除代码操作现象</p>
+<ul>
+<li>当<code>map</code>的<code>value</code>类型中包含引用类型, 删除对应的<code>key</code>之后, 经过GC就会释放占用的内存</li>
+<li>当<code>map</code>的<code>value</code> 类型不包含引用类型, 删除对应的<code>key</code>之后, GC无法释放类型</li>
+</ul>
+<p>可以查看我自己的实验结果 {{}}</p>
+https://ynikl.github.io/blog/golang-memory-analyze-with-runtime/
+<h2 id="扩容">扩容</h2>
+<h2 id="参考">参考</h2>
+<p><a href="https://mp.weixin.qq.com/s/UT8tydajjOUJkfc-Brcblw">Golang 中 map 探究</a></p>
+]]></content:encoded>
+    </item>
+    
+    <item>
       <title>Mysql- 数据类型 - 数字</title>
       <link>https://ynikl.github.io/blog/mysql-data-type-numbers/</link>
       <pubDate>Sun, 31 Jul 2022 17:49:46 +0800</pubDate>
