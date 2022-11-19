@@ -16,10 +16,10 @@
     <lastBuildDate>Sun, 02 Oct 2022 14:05:43 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/concurrency/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>乐观锁和悲观锁</title>
-      <link>https://ynikl.github.io/blog/optimitic-concurrency-control/</link>
+      <link>https://ynikl.github.io/blog/cs-optimitic-concurrency-control/</link>
       <pubDate>Sun, 02 Oct 2022 14:05:43 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/blog/optimitic-concurrency-control/</guid>
+      <guid>https://ynikl.github.io/blog/cs-optimitic-concurrency-control/</guid>
       <description>乐观锁和悲观锁 首先, 乐观锁和悲观锁和本身并不是一种具体锁.
 而是一种编程的并发控制思想. 原名应该叫做乐观并发控制(Optimistic concurrency control) 简称 OCC 和 悲观并发控制(Pessimistic Concurrency Control) 简称 PCC
 什么是锁 维基百科对锁的定义

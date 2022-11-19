@@ -607,10 +607,10 @@ format
     
     <item>
       <title>乐观锁和悲观锁</title>
-      <link>https://ynikl.github.io/blog/optimitic-concurrency-control/</link>
+      <link>https://ynikl.github.io/blog/cs-optimitic-concurrency-control/</link>
       <pubDate>Sun, 02 Oct 2022 14:05:43 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/blog/optimitic-concurrency-control/</guid>
+      <guid>https://ynikl.github.io/blog/cs-optimitic-concurrency-control/</guid>
       <description>乐观锁和悲观锁 首先, 乐观锁和悲观锁和本身并不是一种具体锁.
 而是一种编程的并发控制思想. 原名应该叫做乐观并发控制(Optimistic concurrency control) 简称 OCC 和 悲观并发控制(Pessimistic Concurrency Control) 简称 PCC
 什么是锁 维基百科对锁的定义
@@ -1818,10 +1818,10 @@ go.sum 文件 与go.mod经常在一起的会是一个go.sum文件，文件中存
     
     <item>
       <title>Go-互斥锁的实现</title>
-      <link>https://ynikl.github.io/blog/go-sync_mutex/</link>
+      <link>https://ynikl.github.io/blog/golang-sync_mutex/</link>
       <pubDate>Sun, 29 May 2022 20:52:35 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/blog/go-sync_mutex/</guid>
+      <guid>https://ynikl.github.io/blog/golang-sync_mutex/</guid>
       <description>Mutex 数据结构 1 2 3 4 type Mutex struct { state int32 sema uint32 } Mutex 使用过之后是不可被拷贝的 state 等于 0 值的时候才是无锁的状态 sema 字段为信号量字段，通过该字段控制协程的阻塞和唤醒，具体实现在runtime 中。 Mutex 对象总共有三个公开方法
 Lock 尝试抢占互斥锁，如果已经被锁定，则调用协程进入阻塞 TryLock Unlock 解除互斥锁， 解锁未锁定的互斥锁会发生panic Mutex 与协程无法关，允许一个协程锁定，另一个协程进行解锁。
 Mutex 实现了一个 sync.Locker 接口, 该接口只有两个方法
@@ -2188,10 +2188,10 @@ mutexWaiterShift = 3 统计的等待在Mutex.state字段等待数量。（前3�
     
     <item>
       <title>【翻译】使用 Godoc 给 go 代码添加文档</title>
-      <link>https://ynikl.github.io/blog/godoc-documenting-go-code/</link>
+      <link>https://ynikl.github.io/blog/golang-godoc-documenting-go-code/</link>
       <pubDate>Wed, 25 May 2022 16:11:10 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/blog/godoc-documenting-go-code/</guid>
+      <guid>https://ynikl.github.io/blog/golang-godoc-documenting-go-code/</guid>
       <description>在看官方文档的时候，突然心血来潮，想翻译一下一篇博客玩玩。
 原文章地址 Godoc: documenting Go code
 Go 语言官方对于代码的文档非常重视，文档对于软件的可阅读性和可维护性有着至关重要的地位。当然，文档必须要是准确可理解的，也需要易于编写和维护。理性情况下，文档应该与代码紧密联系。这样子才能方便于程序员修改和编写。
@@ -2361,10 +2361,10 @@ exex 会再目标容器内部执行一个命令, 命令名为 bash, 就是起一
     
     <item>
       <title>Channel</title>
-      <link>https://ynikl.github.io/blog/go-channel/</link>
+      <link>https://ynikl.github.io/blog/golang-channel/</link>
       <pubDate>Sat, 02 Apr 2022 10:09:22 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/blog/go-channel/</guid>
+      <guid>https://ynikl.github.io/blog/golang-channel/</guid>
       <description>Go 中 channel 中用法和实现总结 以下分析和源码都是基于 go1.17 版本
 channel 简介 Go 语言的基础类型之一, 用于在协程与协程之间传递数据 (channel 数据的传输方式也是值传递, Go语言的数据传输只有值传递)
 Do not communicate by sharing memory; instead, share memory by communicating.
@@ -3262,10 +3262,10 @@ channel 保证:
     
     <item>
       <title>Go 常用的命令汇总</title>
-      <link>https://ynikl.github.io/blog/go-cmd/</link>
+      <link>https://ynikl.github.io/blog/golang-cmd/</link>
       <pubDate>Fri, 01 Apr 2022 19:56:59 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/blog/go-cmd/</guid>
+      <guid>https://ynikl.github.io/blog/golang-cmd/</guid>
       <description>工具分类 go build 编译源代码文件
 -race 编译出的目标程序，会启用数据竞争检测
 go doc 查看包的文档(定义于doc.go的注释中), 于包中公开的函数签名

@@ -16,10 +16,10 @@
     <lastBuildDate>Wed, 25 May 2022 16:11:10 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【翻译】使用 Godoc 给 go 代码添加文档</title>
-      <link>https://ynikl.github.io/blog/godoc-documenting-go-code/</link>
+      <link>https://ynikl.github.io/blog/golang-godoc-documenting-go-code/</link>
       <pubDate>Wed, 25 May 2022 16:11:10 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/blog/godoc-documenting-go-code/</guid>
+      <guid>https://ynikl.github.io/blog/golang-godoc-documenting-go-code/</guid>
       <description>在看官方文档的时候，突然心血来潮，想翻译一下一篇博客玩玩。
 原文章地址 Godoc: documenting Go code
 Go 语言官方对于代码的文档非常重视，文档对于软件的可阅读性和可维护性有着至关重要的地位。当然，文档必须要是准确可理解的，也需要易于编写和维护。理性情况下，文档应该与代码紧密联系。这样子才能方便于程序员修改和编写。
