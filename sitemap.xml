@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://ynikl.github.io/posts/go-memory-analyze-with-runtime/</loc>
+    <loc>https://ynikl.github.io/blog/</loc>
+    <lastmod>2022-11-18T19:27:35+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/blog/golang-memory-analyze-with-runtime/</loc>
     <lastmod>2022-11-18T19:27:35+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/golang/</loc>
-    <lastmod>2022-11-18T19:27:35+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/posts/</loc>
     <lastmod>2022-11-18T19:27:35+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/</loc>
@@ -41,17 +41,17 @@
     <loc>https://ynikl.github.io/posts/linux-filesystem/</loc>
     <lastmod>2022-11-05T13:52:16+08:00</lastmod>
   </url><url>
-    <loc>https://ynikl.github.io/posts/golang-minimal-version-selection/</loc>
+    <loc>https://ynikl.github.io/posts/</loc>
+    <lastmod>2022-11-05T13:52:16+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/blog/golang-minimal-version-selection/</loc>
     <lastmod>2022-11-01T00:15:50+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/translate/</loc>
     <lastmod>2022-11-01T00:15:50+08:00</lastmod>
   </url><url>
-    <loc>https://ynikl.github.io/posts/golang-find-module-conflict/</loc>
+    <loc>https://ynikl.github.io/blog/golang-find-module-conflict/</loc>
     <lastmod>2022-10-31T08:26:33+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/blog/</loc>
-    <lastmod>2022-10-09T17:34:39+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/python/</loc>
     <lastmod>2022-10-09T17:34:39+08:00</lastmod>
@@ -68,10 +68,10 @@
     <loc>https://ynikl.github.io/books/practices_of_an_agile_developer/</loc>
     <lastmod>2022-09-30T13:41:00+08:00</lastmod>
   </url><url>
-    <loc>https://ynikl.github.io/posts/go-errgroup/</loc>
+    <loc>https://ynikl.github.io/blog/golang-errgroup/</loc>
     <lastmod>2022-09-19T09:19:31+08:00</lastmod>
   </url><url>
-    <loc>https://ynikl.github.io/posts/go-get-assembly-fn/</loc>
+    <loc>https://ynikl.github.io/blog/golang-get-assembly-fn/</loc>
     <lastmod>2022-09-18T21:37:55+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/journal/</loc>
@@ -167,7 +167,7 @@
     <loc>https://ynikl.github.io/posts/what-is-glue-code/</loc>
     <lastmod>2022-06-18T20:04:38+08:00</lastmod>
   </url><url>
-    <loc>https://ynikl.github.io/posts/golang-reslicing-slice/</loc>
+    <loc>https://ynikl.github.io/blog/golang-reslicing-slice/</loc>
     <lastmod>2022-06-09T23:52:30+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/qa/</loc>

@@ -16,10 +16,10 @@
     <lastBuildDate>Thu, 09 Jun 2022 23:52:30 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/qa/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go中slice[i:j:k]第三个参数是做什么的</title>
-      <link>https://ynikl.github.io/posts/golang-reslicing-slice/</link>
+      <link>https://ynikl.github.io/blog/golang-reslicing-slice/</link>
       <pubDate>Thu, 09 Jun 2022 23:52:30 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/golang-reslicing-slice/</guid>
+      <guid>https://ynikl.github.io/blog/golang-reslicing-slice/</guid>
       <description>今天, 突然被同事卷到了, 被问到 golang 中 slice 的三个参数是干嘛的? 我突然一时间忘记了, golang 的重切片居然是可以接受第三个参数的, 枉费我已经了写了快两年的 go 了. 赶紧 google 一下, 并总结备忘.
 简单介绍 slice 的数据结构 首先, 介绍一下 golang 中切片的结构体:
 1 2 3 4 5 type slice struct { array unsafe.Pointer len int cap int } 有三个字段:

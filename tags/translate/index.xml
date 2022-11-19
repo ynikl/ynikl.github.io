@@ -16,10 +16,10 @@
     <lastBuildDate>Tue, 01 Nov 2022 00:15:50 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/translate/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Golang Minimal Version Selection 意识流翻译(仅开头)</title>
-      <link>https://ynikl.github.io/posts/golang-minimal-version-selection/</link>
+      <link>https://ynikl.github.io/blog/golang-minimal-version-selection/</link>
       <pubDate>Tue, 01 Nov 2022 00:15:50 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/golang-minimal-version-selection/</guid>
+      <guid>https://ynikl.github.io/blog/golang-minimal-version-selection/</guid>
       <description>原文: Minimal Version Selection
 意识流翻译, 只是简单的把自己的理解转化成中文. 仅供参考.
 翻译: Go 构建相关的命令需要决定模块版本. 把这些模块和版本号称之为编译列表(build list). 为了稳定的开发, 今天的编译列表必须和明天的编译列表是一致的. 但是开发者也必须支持 编译列表的改变: 升级所有的模块, 升级单个模块, 降级单个模块.
