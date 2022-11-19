@@ -16,7 +16,7 @@ tags:
 
 ## go 依赖版本选择
 
-[golang 的最小版本选择]{{< ref "/posts/golang-minimal-version-selection.md" >}}
+[golang 的最小版本选择]{{< ref "/blog/golang-minimal-version-selection.md" >}}
 
 大体意思:
 

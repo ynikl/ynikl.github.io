@@ -76,7 +76,7 @@ map 是一个有"包含内容"的数据结构, 使用之前需要提前初始化
 
 可以查看我自己的实验结果 {{}}
 
-{{< ref "/posts/go-memory-analyze-with-runtime.md" }}
+{{< ref "/blog/golang-memory-analyze-with-runtime.md" }}
 
 
 ## 重新扩容
