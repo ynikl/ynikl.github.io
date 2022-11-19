@@ -1,44 +1,27 @@
 ---
-title: "Golang Map"
+title: "Golang Map 介绍"
 date: 2022-08-13T14:14:30+08:00
 publishDate: 2022-08-13T14:14:30+08:00
 draft: true
 tags:
 - golang
-- thoughts
 ---
 
+本想写一篇关于 golang 中 map 底层的文章， 但是发现已经了相当不错的文章 -- 
+[字节跳动技术团队 - Golang 中 map 探究](https://mp.weixin.qq.com/s/UT8tydajjOUJkfc-Brcblw) 
+这里只补充一下，缺少的 map 的删除操作
+
 ## 内部数据结构
-
-```
-type hmap struct {
-
-   // map中存入元素的个数， golang中调用len(map)的时候直接返回该字段
-   count     int
-   // 状态标记位，通过与定义的枚举值进行&操作可以判断当前是否处于这种状态
-   flags     uint8
-   B         uint8  // 2^B 表示bucket的数量， B 表示取hash后多少位来做bucket的分组
-   noverflow uint16 // overflow bucket 的数量的近似数
-   hash0     uint32 // hash seed （hash 种子） 一般是一个素数
-
-   buckets    unsafe.Pointer // 共有2^B个 bucket ，但是如果没有元素存入，这个字段可能为nil
-   oldbuckets unsafe.Pointer // 在扩容期间，将旧的bucket数组放在这里， 新buckets会是这个的两倍大
-   nevacuate  uintptr        // 表示已经完成扩容迁移的bucket的指针， 地址小于当前指针的bucket已经迁移完成
-
-   extra *mapextra // optional fields
-}
-```
 
 ## 初始化
 
 map 是一个有"包含内容"的数据结构, 使用之前需要提前初始化, 即调用`make`
 
 真正是调用源码是 [runtime.makemap](https://cs.opensource.google/go/go/+/master:src/runtime/map.go;l=283;bpv=1;bpt=1?q=makemap&ss=go%2Fgo)
-
 ## 获取数据
 
 
-## 删除数据
+## 删除
 
 [源码地址](https://cs.opensource.google/go/go/+/master:src/runtime/map_fast64.go;drc=3e5c2c155645ebaed62e4481430c455045b0fff5;bpv=1;bpt=1;l=273?q=mapdelete_fast64&ss=go%2Fgo)
 
@@ -78,10 +61,7 @@ map 是一个有"包含内容"的数据结构, 使用之前需要提前初始化
 
 {{< ref "/blog/golang-memory-analyze-with-runtime.md" }}
 
-
-## 重新扩容
-
-## Sync map 的基本使用
+## 扩容
 
 ## 参考
 [Golang 中 map 探究](https://mp.weixin.qq.com/s/UT8tydajjOUJkfc-Brcblw)

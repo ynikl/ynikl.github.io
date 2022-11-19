@@ -1,5 +1,5 @@
 ---
-title: "Mysql- 数据类型 - 数字类型"
+title: "Mysql- 数据类型 - 数字"
 date: 2022-07-31T17:49:46+08:00
 publishDate: 2022-07-31T17:49:46+08:00
 draft: false
