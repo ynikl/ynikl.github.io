@@ -59,7 +59,7 @@ map 是一个有"包含内容"的数据结构, 使用之前需要提前初始化
 
 可以查看我自己的实验结果 {{}}
 
-{{< ref "/blog/golang-memory-analyze-with-runtime.md" }}
+[go 使用 runtime 包进行内存占用分析]{{< ref "/blog/golang-memory-analyze-with-runtime.md" }}
 
 ## 扩容
 
