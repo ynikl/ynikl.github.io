@@ -1,6 +1,6 @@
 baseURL: "https://ynikl.github.io/"
 title: 潜水员的咖啡小屋
-paginate: 5
+paginate: 20
 theme: PaperMod
 
 author:
@@ -36,13 +36,13 @@ menu:
       name: blog
       url: /blog/
       weight: 1
-    - identifier: books
-      name: books
-      url: /books/
-      weight: 2
     - identifier: posts
       name: posts
       url: /posts/
+      weight: 2
+    - identifier: books
+      name: books
+      url: /books/
       weight: 3
     - identifier: notes
       name: notes
