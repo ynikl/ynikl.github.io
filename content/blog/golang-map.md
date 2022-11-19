@@ -40,33 +40,13 @@ map 是一个有"包含内容"的数据结构, 使用之前需要提前初始化
 
 ## 删除数据
 
-``` go
-func mapdelete_fast64(t *maptype, h *hmap, key uint64) {
-	if h == nil || h.count == 0 {
-		return
-	}
-	if h.flags&hashWriting != 0 {
-		fatal("concurrent map writes")
-	}
+[源码地址](https://cs.opensource.google/go/go/+/master:src/runtime/map_fast64.go;drc=3e5c2c155645ebaed62e4481430c455045b0fff5;bpv=1;bpt=1;l=273?q=mapdelete_fast64&ss=go%2Fgo)
 
-	hash := t.hasher(noescape(unsafe.Pointer(&key)), uintptr(h.hash0))
+删除的关键代码
+``` go 
 
-	// Set hashWriting after calling t.hasher for consistency with mapdelete
-	h.flags ^= hashWriting
-
-	bucket := hash & bucketMask(h.B)
-	if h.growing() {
-		growWork_fast64(t, h, bucket)
-	}
-	b := (*bmap)(add(h.buckets, bucket*uintptr(t.bucketsize)))
-	bOrig := b
-search:
-	for ; b != nil; b = b.overflow(t) {
-		for i, k := uintptr(0), b.keys(); i < bucketCnt; i, k = i+1, add(k, 8) {
-			if key != *(*uint64)(k) || isEmpty(b.tophash[i]) {
-				continue
-			}
 			// Only clear key if there are pointers in it.
+			// # 当 Key 是指针类型的时候会去清空指针
 			if t.key.ptrdata != 0 {
 				if goarch.PtrSize == 8 {
 					*(*unsafe.Pointer)(k) = nil
@@ -76,59 +56,28 @@ search:
 					memclrHasPointers(k, 8)
 				}
 			}
+			
 			e := add(unsafe.Pointer(b), dataOffset+bucketCnt*8+i*uintptr(t.elemsize))
+			// # 当 Value 为指针类型的时候, 指针为空, 解除引用 -> GC
 			if t.elem.ptrdata != 0 {
 				memclrHasPointers(e, t.elem.size)
 			} else {
 				memclrNoHeapPointers(e, t.elem.size)
 			}
+		
+			// # 讲 hash 值标记为空
 			b.tophash[i] = emptyOne
-			// If the bucket now ends in a bunch of emptyOne states,
-			// change those to emptyRest states.
-			if i == bucketCnt-1 {
-				if b.overflow(t) != nil && b.overflow(t).tophash[0] != emptyRest {
-					goto notLast
-				}
-			} else {
-				if b.tophash[i+1] != emptyRest {
-					goto notLast
-				}
-			}
-			for {
-				b.tophash[i] = emptyRest
-				if i == 0 {
-					if b == bOrig {
-						break // beginning of initial bucket, we're done.
-					}
-					// Find previous bucket, continue at its last entry.
-					c := b
-					for b = bOrig; b.overflow(t) != c; b = b.overflow(t) {
-					}
-					i = bucketCnt - 1
-				} else {
-					i--
-				}
-				if b.tophash[i] != emptyOne {
-					break
-				}
-			}
-		notLast:
-			h.count--
-			// Reset the hash seed to make it more difficult for attackers to
-			// repeatedly trigger hash collisions. See issue 25237.
-			if h.count == 0 {
-				h.hash0 = fastrand()
-			}
-			break search
-		}
-	}
-
-	if h.flags&hashWriting == 0 {
-		fatal("concurrent map writes")
-	}
-	h.flags &^= hashWriting
-}
 ```
+
+上述删除代码操作现象
+
+- 当`map`的`value`类型中包含引用类型, 删除对应的`key`之后, 经过GC就会释放占用的内存
+- 当`map`的`value` 类型不包含引用类型, 删除对应的`key`之后, GC无法释放类型
+
+可以查看我自己的实验结果 {{}}
+
+{{< ref "/posts/go-memory-analyze-with-runtime.md" }}
+
 
 ## 重新扩容
 
