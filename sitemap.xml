@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://ynikl.github.io/posts/go-memory-analyze-with-runtime/</loc>
+    <lastmod>2022-11-18T19:27:35+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/tags/golang/</loc>
+    <lastmod>2022-11-18T19:27:35+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/posts/</loc>
+    <lastmod>2022-11-18T19:27:35+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/tags/</loc>
+    <lastmod>2022-11-18T19:27:35+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/</loc>
+    <lastmod>2022-11-18T19:27:35+08:00</lastmod>
+  </url><url>
     <loc>https://ynikl.github.io/books/asking-the-right-questions/</loc>
     <lastmod>2022-11-17T22:53:21+08:00</lastmod>
   </url><url>
@@ -9,12 +24,6 @@
     <lastmod>2022-11-17T22:53:21+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/books/</loc>
-    <lastmod>2022-11-17T22:53:21+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/tags/</loc>
-    <lastmod>2022-11-17T22:53:21+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/</loc>
     <lastmod>2022-11-17T22:53:21+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/note/20221109/</loc>
@@ -31,12 +40,6 @@
   </url><url>
     <loc>https://ynikl.github.io/posts/linux-filesystem/</loc>
     <lastmod>2022-11-05T13:52:16+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/posts/</loc>
-    <lastmod>2022-11-05T13:52:16+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/tags/golang/</loc>
-    <lastmod>2022-11-01T00:15:50+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/posts/golang-minimal-version-selection/</loc>
     <lastmod>2022-11-01T00:15:50+08:00</lastmod>

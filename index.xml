@@ -13,7 +13,452 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Thu, 17 Nov 2022 22:53:21 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Nov 2022 19:27:35 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>go 使用 runtime 包进行内存占用分析</title>
+      <link>https://ynikl.github.io/posts/go-memory-analyze-with-runtime/</link>
+      <pubDate>Fri, 18 Nov 2022 19:27:35 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/posts/go-memory-analyze-with-runtime/</guid>
+      <description>使用场景 写个demo, 想查看一下程序内部的内存占用情况.
+使用方法 主角 runtime 包
+对象 MemStats 方法 ReadMemStats demo 展示
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 // PrintMemUsage outputs the current, total and OS memory being used. As well as the number // of garage collection cycles completed. func PrintMemUsage() { bToMb := func(b uint64) uint64 { return b / 1024 / 1024 } var m runtime.MemStats runtime.ReadMemStats(&amp;amp;m) // For info on each, see: https://golang.</description>
+      <content:encoded><![CDATA[<h3 id="使用场景">使用场景</h3>
+<p>写个demo, 想查看一下程序内部的内存占用情况.</p>
+<h3 id="使用方法">使用方法</h3>
+<p>主角 runtime 包</p>
+<ul>
+<li>对象 <code>MemStats</code></li>
+<li>方法 <code>ReadMemStats</code></li>
+</ul>
+<p>demo 展示</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// PrintMemUsage outputs the current, total and OS memory being used. As well as the number 
+</span></span></span><span class="line"><span class="cl"><span class="c1">// of garage collection cycles completed.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">PrintMemUsage</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">bToMb</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">b</span> <span class="kt">uint64</span><span class="p">)</span> <span class="kt">uint64</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">b</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">m</span> <span class="nx">runtime</span><span class="p">.</span><span class="nx">MemStats</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">runtime</span><span class="p">.</span><span class="nf">ReadMemStats</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// For info on each, see: https://golang.org/pkg/runtime/#MemStats
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Alloc = %v MiB&#34;</span><span class="p">,</span> <span class="nf">bToMb</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">Alloc</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;\tTotalAlloc = %v MiB&#34;</span><span class="p">,</span> <span class="nf">bToMb</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">TotalAlloc</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;\tSys = %v MiB&#34;</span><span class="p">,</span> <span class="nf">bToMb</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">Sys</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;\tNumGC = %v\n&#34;</span><span class="p">,</span> <span class="nx">m</span><span class="p">.</span><span class="nx">NumGC</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="https://gist.github.com/j33ty/79e8b736141be19687f565ea4c6f4226">代码出处</a></p>
+<h3 id="解释">解释</h3>
+<h4 id="readmemstats">ReadMemStats</h4>
+<p><code>runtime.ReadMemStats</code> 方法会读取到内存分配器的当前时刻最新的内存分配数据, 并将
+其填充到传入参数的<code>MemStats</code> 的变量中.</p>
+<p>可以充当一个内存快照, 用于进行对比.</p>
+<h4 id="memstats-字段">MemStats 字段</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">MemStats</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 当前堆上对象的内存分配大小, 同HeapAlloc字段, 单位 bytes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Alloc</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 历史总的累计分配内存大小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">TotalAlloc</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 从操作系统分配的内存大小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Sys</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 记录指针索引性能, go 语言内部使用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Lookups</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 堆上分配的对象数量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Mallocs</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 堆上剩余的内存大小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Frees</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">HeapAlloc</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 从操作系统分配的 堆 内存大小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">HeapSys</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 未使用的空闲内存分片大小 spans
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">HeapIdle</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 使用中的内存分片大小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">HeapInuse</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 回退的内存大小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">HeapReleased</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 堆上分配的对象数量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">HeapObjects</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 栈上使用的内存片大小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">StackInuse</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 从操作系统分配的栈的内存大小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">StackSys</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// MSpanInuse is bytes of allocated mspan structures.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">MSpanInuse</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// MSpanSys is bytes of memory obtained from the OS for mspan
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// structures.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">MSpanSys</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// MCacheInuse is bytes of allocated mcache structures.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">MCacheInuse</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// MCacheSys is bytes of memory obtained from the OS for
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// mcache structures.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">MCacheSys</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// BuckHashSys is bytes of memory in profiling bucket hash tables.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">BuckHashSys</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// GCSys is bytes of memory in garbage collection metadata.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">GCSys</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// OtherSys is bytes of memory in miscellaneous off-heap
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// runtime allocations.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">OtherSys</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 在多大的堆内存时, 触发GC
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">NextGC</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 上次GC 时间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">LastGC</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// PauseTotalNs is the cumulative nanoseconds in GC
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// stop-the-world pauses since the program started.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// During a stop-the-world pause, all goroutines are paused
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// and only the garbage collector can run.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">PauseTotalNs</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// PauseNs is a circular buffer of recent GC stop-the-world
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// pause times in nanoseconds.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// The most recent pause is at PauseNs[(NumGC+255)%256]. In
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// general, PauseNs[N%256] records the time paused in the most
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// recent N%256th GC cycle. There may be multiple pauses per
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// GC cycle; this is the sum of all pauses during a cycle.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">PauseNs</span> <span class="p">[</span><span class="mi">256</span><span class="p">]</span><span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// PauseEnd is a circular buffer of recent GC pause end times,
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// as nanoseconds since 1970 (the UNIX epoch).
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// This buffer is filled the same way as PauseNs. There may be
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// multiple pauses per GC cycle; this records the end of the
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// last pause in a cycle.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">PauseEnd</span> <span class="p">[</span><span class="mi">256</span><span class="p">]</span><span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// GC 次数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">NumGC</span> <span class="kt">uint32</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 手动调用 GC 的次数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">NumForcedGC</span> <span class="kt">uint32</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// GC 使用的 CPU 时间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">GCCPUFraction</span> <span class="kt">float64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 可以GC,一直是true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">EnableGC</span> <span class="kt">bool</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// BySize reports per-size class allocation statistics.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// BySize[N] gives statistics for allocations of size S where
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// BySize[N-1].Size &lt; S ≤ BySize[N].Size.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// This does not report allocations larger than BySize[60].Size.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">BySize</span> <span class="p">[</span><span class="mi">61</span><span class="p">]</span><span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Size is the maximum byte size of an object in this
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// size class.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">Size</span> <span class="kt">uint32</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// Mallocs is the cumulative count of heap objects
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// allocated in this size class. The cumulative bytes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// of allocation is Size*Mallocs. The number of live
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// objects in this size class is Mallocs - Frees.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">Mallocs</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// Frees is the cumulative count of heap objects freed
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// in this size class.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">Frees</span> <span class="kt">uint64</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="https://pkg.go.dev/runtime#MemStats">源码出处</a></p>
+<h3 id="我用于分析-map-的-delete-操作占用内存">我用于分析 map 的 delete 操作占用内存</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;runtime&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">m</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">m</span><span class="p">[</span><span class="s">&#34;a&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">PrintMemUsage</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">delete</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="s">&#34;a&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">runtime</span><span class="p">.</span><span class="nf">GC</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">PrintMemUsage</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;make storage value&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">mint</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">30</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">2</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">mint</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1024</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">PrintMemUsage</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">runtime</span><span class="p">.</span><span class="nf">GC</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">PrintMemUsage</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 注意: 需要引用, 避免被提前回收
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">m</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="nx">mint</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// go run main.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// Outpu:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// Alloc = 8192 MiB	TotalAlloc = 8192 MiB	Sys = 8464 MiB	NumGC = 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// Alloc = 0 MiB	TotalAlloc = 8192 MiB	Sys = 8465 MiB	NumGC = 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// make storage value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// Alloc = 39168 MiB	TotalAlloc = 47360 MiB	Sys = 48898 MiB	NumGC = 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// Alloc = 39168 MiB	TotalAlloc = 47360 MiB	Sys = 48898 MiB	NumGC = 4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// 0 2048
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">PrintMemUsage</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">bToMb</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">b</span> <span class="kt">uint64</span><span class="p">)</span> <span class="kt">uint64</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">b</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">m</span> <span class="nx">runtime</span><span class="p">.</span><span class="nx">MemStats</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">runtime</span><span class="p">.</span><span class="nf">ReadMemStats</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// For info on each, see: https://golang.org/pkg/runtime/#MemStats
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Alloc = %v MiB&#34;</span><span class="p">,</span> <span class="nf">bToMb</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">Alloc</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;\tTotalAlloc = %v MiB&#34;</span><span class="p">,</span> <span class="nf">bToMb</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">TotalAlloc</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;\tSys = %v MiB&#34;</span><span class="p">,</span> <span class="nf">bToMb</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">Sys</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;\tNumGC = %v\n&#34;</span><span class="p">,</span> <span class="nx">m</span><span class="p">.</span><span class="nx">NumGC</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>分析结果得出, 如果在 map 中存储的 value, 如果是引用值的话, 占用的内存是被 GC 回收
+的. 但是, 如果是值类型如简单的<code>int</code>是不会被回收的.</p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>Asking the Right Questions</title>
       <link>https://ynikl.github.io/books/asking-the-right-questions/</link>

@@ -13,7 +13,17 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Thu, 17 Nov 2022 22:53:21 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Nov 2022 19:27:35 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>golang</title>
+      <link>https://ynikl.github.io/tags/golang/</link>
+      <pubDate>Fri, 18 Nov 2022 19:27:35 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/tags/golang/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
     <item>
       <title>books</title>
       <link>https://ynikl.github.io/tags/books/</link>
@@ -40,16 +50,6 @@
       <pubDate>Sat, 05 Nov 2022 13:52:16 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/tags/linux/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>golang</title>
-      <link>https://ynikl.github.io/tags/golang/</link>
-      <pubDate>Tue, 01 Nov 2022 00:15:50 +0800</pubDate>
-      <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/tags/golang/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
