@@ -6297,7 +6297,7 @@ Go GMP 调度总结博文 做一个部门内部的 GMP 调度培训 成为一个
 <p>技术</p>
 <p>O1: <strong>精通Go语言</strong></p>
 <ul>
-<li><input disabled="" type="checkbox"> go map 总结博文输出</li>
+<li><input checked="" disabled="" type="checkbox"> go map 总结博文输出</li>
 <li><input disabled="" type="checkbox"> go context 总结博文输出</li>
 <li><input disabled="" type="checkbox"> go gmp 调度总结博文</li>
 </ul>
