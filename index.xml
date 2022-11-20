@@ -6164,24 +6164,6 @@ channel 保证:
     
     <item>
       <title>2022</title>
-      <link>https://ynikl.github.io/okr/backlog/</link>
-      <pubDate>Fri, 01 Apr 2022 20:09:37 +0800</pubDate>
-      <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/okr/backlog/</guid>
-      <description>技术 Go interface 深入学习 reflect 反射包使用 1.17 版本 1.18 版本 </description>
-      <content:encoded><![CDATA[<h1 id="技术">技术</h1>
-<h2 id="go">Go</h2>
-<ul>
-<li><input disabled="" type="checkbox"> interface 深入学习</li>
-<li><input disabled="" type="checkbox"> reflect 反射包使用</li>
-<li><input disabled="" type="checkbox"> 1.17 版本</li>
-<li><input disabled="" type="checkbox"> 1.18 版本</li>
-</ul>
-]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>2022</title>
       <link>https://ynikl.github.io/okr/okr-2022/</link>
       <pubDate>Fri, 01 Apr 2022 20:09:37 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
@@ -6329,6 +6311,24 @@ Go GMP 调度总结博文 做一个部门内部的 GMP 调度培训 成为一个
 <ul>
 <li><input disabled="" type="checkbox"> 摩托车给我带来了什么文章总结</li>
 <li><input disabled="" type="checkbox"> 摩托车骑行录像整理</li>
+</ul>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>BackLog</title>
+      <link>https://ynikl.github.io/okr/backlog/</link>
+      <pubDate>Fri, 01 Apr 2022 20:09:37 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/okr/backlog/</guid>
+      <description>技术 Go interface 深入学习 reflect 反射包使用 1.17 版本 1.18 版本 </description>
+      <content:encoded><![CDATA[<h1 id="技术">技术</h1>
+<h2 id="go">Go</h2>
+<ul>
+<li><input disabled="" type="checkbox"> interface 深入学习</li>
+<li><input disabled="" type="checkbox"> reflect 反射包使用</li>
+<li><input disabled="" type="checkbox"> 1.17 版本</li>
+<li><input disabled="" type="checkbox"> 1.18 版本</li>
 </ul>
 ]]></content:encoded>
     </item>
@@ -6488,17 +6488,17 @@ go get 管理当前module依赖
     </item>
     
     <item>
-      <title></title>
+      <title>我</title>
       <link>https://ynikl.github.io/me/</link>
       <pubDate>Wed, 09 Mar 2022 15:24:02 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/me/</guid>
-      <description> 我是谁: 潜水员
-五流程序员 文字业余爱好者 摩托车爱好者 为什么写 在互联网中留下尘埃 把想法外显成文字才会有意义 促进自我思考 目前在学 Go Redis 微服务设计模式 计算机技能 Go Vim Live in Shell Redis Mysql Operating System Algorithm (basic) 想从生活中得到 摄影 Bucket List 逃离办公室 去西藏 写一本书 目录分类说明 blog 一些技术上的杂文 posts 自己的一些感悟和发牢骚 notes 平时遇到的一些有感悟的文字 books 自己读的书籍的一些简单记录 </description>
+      <description> 我: 昵称: 潜水员
+五流程序员 文字业余爱好者 摩托车爱好者 为什么写 在互联网中留下尘埃 把想法外显成文字才会有意义 促进自我思考 目前在学 Go Redis 微服务设计模式 计算机技能 Go Vim Live in Shell Redis Mysql Operating System Algorithm (basic) 想从生活中得到 摄影 游泳 Bucket List 逃离办公室 去西藏 出版一本小说 潜水 跳伞 目录分类说明 blog 一些技术上的杂文 posts 自己的一些感悟和发牢骚 notes 平时遇到的一些有感悟的文字 books 自己读的书籍的一些简单记录 </description>
       <content:encoded><![CDATA[<p><img loading="lazy" src="Ian.jpeg" alt="avatar"  />
 </p>
-<h1 id="我是谁">我是谁:</h1>
-<p><strong>潜水员</strong></p>
+<h1 id="我">我:</h1>
+<p>昵称: <strong>潜水员</strong></p>
 <ul>
 <li>五流程序员</li>
 <li>文字业余爱好者</li>
@@ -6528,14 +6528,16 @@ go get 管理当前module依赖
 </ul>
 <h2 id="想从生活中得到">想从生活中得到</h2>
 <ul>
-<li><input disabled="" type="checkbox"> <del>摄影</del></li>
-<li><input disabled="" type="checkbox"> </li>
+<li><input disabled="" type="checkbox"> 摄影</li>
+<li><input disabled="" type="checkbox"> 游泳</li>
 </ul>
 <h2 id="bucket-list">Bucket List</h2>
 <ul>
 <li><input disabled="" type="checkbox"> 逃离办公室</li>
 <li><input disabled="" type="checkbox"> 去西藏</li>
-<li><input disabled="" type="checkbox"> 写一本书</li>
+<li><input disabled="" type="checkbox"> 出版一本小说</li>
+<li><input disabled="" type="checkbox"> 潜水</li>
+<li><input disabled="" type="checkbox"> 跳伞</li>
 </ul>
 <h2 id="目录分类说明">目录分类说明</h2>
 <ul>
