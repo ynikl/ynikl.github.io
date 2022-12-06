@@ -31,5 +31,18 @@
 ]]></content:encoded>
     </item>
     
+    <item>
+      <title>20221109</title>
+      <link>https://ynikl.github.io/notes/202212/</link>
+      <pubDate>Wed, 09 Nov 2022 14:04:07 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/notes/202212/</guid>
+      <description>5 代码整洁结构 内部不应该依赖外部, 业务逻辑的实现, 不应该依赖于框架</description>
+      <content:encoded><![CDATA[<h2 id="5">5</h2>
+<h3 id="代码整洁结构httpswwwartacodecompostgolangtemplate"><a href="https://www.artacode.com/post/golang/template/">代码整洁结构</a></h3>
+<p>内部不应该依赖外部, <strong>业务逻辑的实现, 不应该依赖于框架</strong></p>
+]]></content:encoded>
+    </item>
+    
   </channel>
 </rss>

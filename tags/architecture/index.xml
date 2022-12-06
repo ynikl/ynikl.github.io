@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>architecture on 潜水员的咖啡小屋</title>
+    <link>https://ynikl.github.io/tags/architecture/</link>
+    <description>Recent content in architecture on 潜水员的咖啡小屋</description>
+    <image>
+      <url>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
+    <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
+    <copyright>2022 Ian Lin All rights reserved</copyright>
+    <lastBuildDate>Mon, 05 Dec 2022 09:21:02 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/architecture/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>代码整洁架构</title>
+      <link>https://ynikl.github.io/blog/clean-architectrue/</link>
+      <pubDate>Mon, 05 Dec 2022 09:21:02 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/blog/clean-architectrue/</guid>
+      <description>代码整洁架构
+核心思想 最重要的是依赖顺序需要内收 &amp;ndash; 业务逻辑不能依赖框架
+分层 简单分层四层
+Entities Use Cases Interface Adapters Framework and Drivers Entity 实体抽象层 我的理解应该是在公司业务, 或者项目领域上对于业务模型的抽象. 不容易改变 (除非公司 业务, 或者项目方向改变). 应该是与 领域驱动设计 不谋而合
+Use Cases 使用场景层 业务使用场景, 应该是存放相关不同业务场景的具体实现流程
+Interface Adapters 接口转化器层 负责 Use Cases 数据 与外部使用数据转换器实现.
+比较特别的例子, 将 Use Cases 产生的数据与外部的 UI 表现层所需要的数据格式做转化.
+Framework and Divers 数据库和框架层, 外部工具包接口依赖之类的.
+依赖倒置 当遇到跨层依赖的时候, 内层需要引用到外层逻辑时: 比如, Use Case 要呈现 UI 数据结构 (Interface Adapters 层) 时, 不能直接引用 UI 层的数据模型.
+而是, 通过依赖倒置. 将 UI 层的处理逻辑, 注入 Use Case 层进行处理, 实现目标.</description>
+      <content:encoded><![CDATA[<p>代码整洁架构</p>
+<h2 id="核心思想">核心思想</h2>
+<p>最重要的是依赖顺序需要内收 &ndash; 业务逻辑不能依赖框架</p>
+<h2 id="分层">分层</h2>
+<p>简单分层四层</p>
+<ul>
+<li>Entities</li>
+<li>Use Cases</li>
+<li>Interface Adapters</li>
+<li>Framework and Drivers</li>
+</ul>
+<h3 id="entity-实体抽象层">Entity 实体抽象层</h3>
+<p>我的理解应该是在公司业务, 或者项目领域上对于业务模型的抽象. 不容易改变 (除非公司
+业务, 或者项目方向改变). 应该是与 <em>领域驱动设计</em> 不谋而合</p>
+<h3 id="use-cases-使用场景层">Use Cases 使用场景层</h3>
+<p>业务使用场景, 应该是存放相关不同业务场景的具体实现流程</p>
+<h3 id="interface-adapters-接口转化器层">Interface Adapters 接口转化器层</h3>
+<p>负责 Use Cases 数据 与外部使用数据转换器实现.</p>
+<p>比较特别的例子, 将 Use Cases 产生的数据与外部的 UI 表现层所需要的数据格式做转化.</p>
+<h3 id="framework-and-divers">Framework and Divers</h3>
+<p>数据库和框架层, 外部工具包接口依赖之类的.</p>
+<h2 id="依赖倒置">依赖倒置</h2>
+<p>当遇到跨层依赖的时候, 内层需要引用到外层逻辑时: 比如, Use Case 要呈现 UI 数据结构
+(Interface Adapters 层) 时, 不能直接引用 UI 层的数据模型.</p>
+<p>而是, 通过依赖倒置. 将 UI 层的处理逻辑, 注入 Use Case 层进行处理, 实现目标.</p>
+<h2 id="参考文章">参考文章</h2>
+<p><a href="https://www.artacode.com/post/golang/template/">结构架构介绍</a>
+<a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html">the clean architecture</a></p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

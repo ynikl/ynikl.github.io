@@ -173,7 +173,7 @@ Go GMP 调度总结博文 做一个部门内部的 GMP 调度培训 成为一个
       <pubDate>Fri, 01 Apr 2022 20:09:37 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/okr/backlog/</guid>
-      <description>技术 Go interface 深入学习 reflect 反射包使用 1.17 版本 1.18 版本 </description>
+      <description>技术 Go interface 深入学习 reflect 反射包使用 1.17 版本 1.18 版本 架构 架构整洁之道 </description>
       <content:encoded><![CDATA[<h1 id="技术">技术</h1>
 <h2 id="go">Go</h2>
 <ul>
@@ -181,6 +181,10 @@ Go GMP 调度总结博文 做一个部门内部的 GMP 调度培训 成为一个
 <li><input disabled="" type="checkbox"> reflect 反射包使用</li>
 <li><input disabled="" type="checkbox"> 1.17 版本</li>
 <li><input disabled="" type="checkbox"> 1.18 版本</li>
+</ul>
+<h2 id="架构">架构</h2>
+<ul>
+<li><input disabled="" type="checkbox"> 架构整洁之道</li>
 </ul>
 ]]></content:encoded>
     </item>
