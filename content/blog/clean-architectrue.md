@@ -50,7 +50,41 @@ tags:
 
 而是, 通过依赖倒置. 将 UI 层的处理逻辑, 注入 Use Case 层进行处理, 实现目标.
 
+## golang 整洁模板
+
+引用自 [golang clean template](https://github.com/evrone/go-clean-template)
+
+```
+├─cmd 应用入口
+│  └─app
+├─config
+├─docs // 存放文档
+├─internal
+│  ├─app
+│  ├─controller // 控制器
+│  │  ├─amqp_rpc
+│  │  └─http
+│  │      └─v1
+│  ├─entity // 实体层
+│  ├─middleware // 中间件
+│  └─usecase
+│      ├─repo // 数据库操作
+│      └─webapi // RESTful API
+├─migrations
+├─pkg //以被外部程序安全导入的包
+│  ├─crypto
+│  ├─httpresponse
+│  ├─httpserver
+│  ├─logger
+│  ├─mysql
+│  ├─postgres
+│  ├─rabbitmq
+│  └─redis
+```
+
+
 ## 参考文章
 
-[结构架构介绍](https://www.artacode.com/post/golang/template/)
-[the clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+- [结构架构介绍](https://www.artacode.com/post/golang/template/)
+- [the clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+- [goang clean template](https://github.com/evrone/go-clean-template)
