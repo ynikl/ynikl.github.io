@@ -55,9 +55,70 @@ Framework and Divers 数据库和框架层, 外部工具包接口依赖之类的
 <p>当遇到跨层依赖的时候, 内层需要引用到外层逻辑时: 比如, Use Case 要呈现 UI 数据结构
 (Interface Adapters 层) 时, 不能直接引用 UI 层的数据模型.</p>
 <p>而是, 通过依赖倒置. 将 UI 层的处理逻辑, 注入 Use Case 层进行处理, 实现目标.</p>
-<h2 id="参考文章">参考文章</h2>
-<p><a href="https://www.artacode.com/post/golang/template/">结构架构介绍</a>
-<a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html">the clean architecture</a></p>
+<h2 id="golang-整洁模板">golang 整洁模板</h2>
+<p>引用自 <a href="https://github.com/evrone/go-clean-template">golang clean template</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">├─cmd 应用入口
+</span></span><span class="line"><span class="cl">│  └─app
+</span></span><span class="line"><span class="cl">├─config
+</span></span><span class="line"><span class="cl">├─docs // 存放文档
+</span></span><span class="line"><span class="cl">├─internal
+</span></span><span class="line"><span class="cl">│  ├─app
+</span></span><span class="line"><span class="cl">│  ├─controller // 控制器
+</span></span><span class="line"><span class="cl">│  │  ├─amqp_rpc
+</span></span><span class="line"><span class="cl">│  │  └─http
+</span></span><span class="line"><span class="cl">│  │      └─v1
+</span></span><span class="line"><span class="cl">│  ├─entity // 实体层
+</span></span><span class="line"><span class="cl">│  ├─middleware // 中间件
+</span></span><span class="line"><span class="cl">│  └─usecase
+</span></span><span class="line"><span class="cl">│      ├─repo // 数据库操作
+</span></span><span class="line"><span class="cl">│      └─webapi // RESTful API
+</span></span><span class="line"><span class="cl">├─migrations
+</span></span><span class="line"><span class="cl">├─pkg //以被外部程序安全导入的包
+</span></span><span class="line"><span class="cl">│  ├─crypto
+</span></span><span class="line"><span class="cl">│  ├─httpresponse
+</span></span><span class="line"><span class="cl">│  ├─httpserver
+</span></span><span class="line"><span class="cl">│  ├─logger
+</span></span><span class="line"><span class="cl">│  ├─mysql
+</span></span><span class="line"><span class="cl">│  ├─postgres
+</span></span><span class="line"><span class="cl">│  ├─rabbitmq
+</span></span><span class="line"><span class="cl">│  └─redis
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="参考文章">参考文章</h2>
+<ul>
+<li><a href="https://www.artacode.com/post/golang/template/">结构架构介绍</a></li>
+<li><a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html">the clean architecture</a></li>
+<li><a href="https://github.com/evrone/go-clean-template">goang clean template</a></li>
+</ul>
 ]]></content:encoded>
     </item>
     

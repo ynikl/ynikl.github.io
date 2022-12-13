@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://ynikl.github.io/tags/git/</loc>
+    <lastmod>2022-12-12T15:29:36+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/posts/git-view-change-log-in-specifie-line/</loc>
+    <lastmod>2022-12-12T15:29:36+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/posts/</loc>
+    <lastmod>2022-12-12T15:29:36+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/tags/</loc>
+    <lastmod>2022-12-12T15:29:36+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/</loc>
+    <lastmod>2022-12-12T15:29:36+08:00</lastmod>
+  </url><url>
     <loc>https://ynikl.github.io/tags/architecture/</loc>
     <lastmod>2022-12-05T09:21:02+08:00</lastmod>
   </url><url>
@@ -11,13 +26,7 @@
     <loc>https://ynikl.github.io/tags/golang/</loc>
     <lastmod>2022-12-05T09:21:02+08:00</lastmod>
   </url><url>
-    <loc>https://ynikl.github.io/tags/</loc>
-    <lastmod>2022-12-05T09:21:02+08:00</lastmod>
-  </url><url>
     <loc>https://ynikl.github.io/blog/clean-architectrue/</loc>
-    <lastmod>2022-12-05T09:21:02+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/</loc>
     <lastmod>2022-12-05T09:21:02+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/books/</loc>
@@ -51,9 +60,6 @@
     <lastmod>2022-11-05T13:52:16+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/posts/linux-filesystem/</loc>
-    <lastmod>2022-11-05T13:52:16+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/posts/</loc>
     <lastmod>2022-11-05T13:52:16+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/blog/golang-minimal-version-selection/</loc>
