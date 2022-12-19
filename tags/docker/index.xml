@@ -32,8 +32,8 @@ exex 会再目标容器内部执行一个命令, 命令名为 bash, 就是起一
 -f 可以持续输出容器内部的最新日志
 管理容器 启动
 1 docker start CONTAINER 暂停
-1 docker stop CONTAINER 管理镜像 查看所有的镜像列表
-1 docker image ls 删除镜像</description>
+1 docker stop CONTAINER 提交
+1 docker commit --author=&amp;#34;ian&amp;#34; CONTAINER NEW-IMAGENAME:TAG 管理镜像 查看所有的镜像列表</description>
       <content:encoded><![CDATA[<h2 id="启动一个容器">启动一个容器</h2>
 <p>打个样</p>
 <div class="highlight"><div class="chroma">
@@ -80,6 +80,15 @@ exex 会再目标容器内部执行一个命令, 命令名为 bash, 就是起一
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker stop CONTAINER
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>提交</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker commit --author=&#34;ian&#34; CONTAINER NEW-IMAGENAME:TAG
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="管理镜像">管理镜像</h2>

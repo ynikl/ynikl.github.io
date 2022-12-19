@@ -13,7 +13,69 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Sat, 05 Nov 2022 13:52:16 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 Dec 2022 14:31:33 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>查看 Linux 的负载情况</title>
+      <link>https://ynikl.github.io/blog/linux-server-device-info/</link>
+      <pubDate>Fri, 16 Dec 2022 14:31:33 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/blog/linux-server-device-info/</guid>
+      <description>查看负载 系统平均负载
+1 uptime 那么什么是系统平均负载呢？ 系统平均负载是指在特定时间间隔内运行队列中的平均进程数。 如果每个CPU内核的当前活动进程数不大于3的话，那么系统的性能是良好的。如果每个CPU内核的任务数大于5，那么这台机器的性能有严重问题。
+查看内存信息 1 free -h 查看 cpu 型号
+1 cat /proc/cpuinfo | grep &amp;#39;physical id&amp;#39; | sort | uniq | wc -l 核数
+1 cat /proc/cpuinfo |grep &amp;#34;cores&amp;#34;|uniq|awk &amp;#39;{print $4}&amp;#39; 参考文章 https://www.eet-china.com/mp/a87720.html https://colobu.com/2019/02/22/how-to-find-cpu-cores-in-linux/ https://wangchujiang.com/linux-command/c/uptime.html </description>
+      <content:encoded><![CDATA[<h2 id="查看负载">查看负载</h2>
+<p>系统平均负载</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">uptime
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>那么什么是系统平均负载呢？ 系统平均负载是指在特定时间间隔内运行队列中的平均进程数。
+如果每个CPU内核的当前活动进程数不大于3的话，那么系统的性能是良好的。如果每个CPU内核的任务数大于5，那么这台机器的性能有严重问题。</p>
+</blockquote>
+<h2 id="查看内存信息">查看内存信息</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">free -h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="查看-cpu">查看 cpu</h2>
+<p>型号</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cat /proc/cpuinfo | grep &#39;physical id&#39; | sort | uniq | wc -l
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>核数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cat /proc/cpuinfo |grep &#34;cores&#34;|uniq|awk &#39;{print $4}&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="参考文章">参考文章</h2>
+<ul>
+<li><a href="https://www.eet-china.com/mp/a87720.html">https://www.eet-china.com/mp/a87720.html</a></li>
+<li><a href="https://colobu.com/2019/02/22/how-to-find-cpu-cores-in-linux/">https://colobu.com/2019/02/22/how-to-find-cpu-cores-in-linux/</a></li>
+<li><a href="https://wangchujiang.com/linux-command/c/uptime.html">https://wangchujiang.com/linux-command/c/uptime.html</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>Linux 文件系统简单操作流程</title>
       <link>https://ynikl.github.io/posts/linux-filesystem/</link>
