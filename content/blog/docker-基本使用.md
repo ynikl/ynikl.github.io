@@ -38,6 +38,7 @@ exec
 exex 会再目标容器内部执行一个命令, 命令名为 bash, 就是起一个 shell 咯. 
 	加上 `-it`, 进入交互的终端模式
 
+	
 
 ### 查看日志
 `docker logs CONTAINER`
@@ -57,6 +58,11 @@ docker start CONTAINER
 docker stop CONTAINER
 ```
 
+提交
+```
+docker commit --author="ian" CONTAINER NEW-IMAGENAME:TAG
+```
+
 ## 管理镜像
 
 查看所有的镜像列表
@@ -73,5 +79,6 @@ docker rmi IMAGE
 ```
 docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
 ```
+
 
 
