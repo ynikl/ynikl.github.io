@@ -20,7 +20,7 @@
       <pubDate>Mon, 19 Dec 2022 15:35:53 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/golang-client-reuse/</guid>
-      <description>背景 在改动旧代码的时候把, 一个使用全局 http.Client 的代码弄成了每一个请求会新 New 一个 http.Client 导致上流的 nginx 的连接数暴涨.
+      <description>背景 在改动旧代码的时候把, 一个使用全局 http.Client 的代码弄成了每一个请求会新 New 一个 http.Client 导致下游的 nginx 的连接数暴涨.
 问题 处理多个请求的时候, 是否需要为每个请求 New 一个 Client
 探索 在 StackOverflow 发现的相关答案
 How to release http.Client in Go?
@@ -30,7 +30,7 @@ http.Client 的结构体
 1 2 3 4 5 6 7 8 9 10 type Client struct { Transport RoundTripper CheckRedirect func(req *Request, via []*Request) error Jar CookieJar Timeout time.</description>
       <content:encoded><![CDATA[<h2 id="背景">背景</h2>
 <p>在改动旧代码的时候把, 一个使用全局 <code>http.Client</code> 的代码弄成了每一个请求会新 New
-一个 <code>http.Client</code> 导致上流的 nginx 的连接数暴涨.</p>
+一个 <code>http.Client</code> 导致下游的 nginx 的连接数暴涨.</p>
 <h2 id="问题">问题</h2>
 <p>处理多个请求的时候, 是否需要为每个请求 New 一个 Client</p>
 <h2 id="探索">探索</h2>
