@@ -10,7 +10,7 @@ tags:
 ## 背景
 
 在改动旧代码的时候把, 一个使用全局 `http.Client` 的代码弄成了每一个请求会新 New
-一个 `http.Client` 导致上流的 nginx 的连接数暴涨.
+一个 `http.Client` 导致下游的 nginx 的连接数暴涨.
 
 ## 问题
 
