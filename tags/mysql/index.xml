@@ -13,7 +13,28 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Sun, 31 Jul 2022 17:49:46 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Dec 2022 10:55:10 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mysql 快速备份数据</title>
+      <link>https://ynikl.github.io/blog/mysql-quick-backup-data/</link>
+      <pubDate>Tue, 20 Dec 2022 10:55:10 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/blog/mysql-quick-backup-data/</guid>
+      <description>1 2 CREATE TABLE dbto.table_name like dbfrom.table_name; insert into dbto.table_name select * from dbfrom.table_name; 原文</description>
+      <content:encoded><![CDATA[<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">CREATE TABLE dbto.table_name like dbfrom.table_name;
+</span></span><span class="line"><span class="cl">insert into  dbto.table_name select * from dbfrom.table_name;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="https://stackoverflow.com/a/63457341/9992963">原文</a></p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>Mysql- 数据类型 - 数字</title>
       <link>https://ynikl.github.io/blog/mysql-data-type-numbers/</link>
