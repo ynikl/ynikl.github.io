@@ -13,7 +13,422 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Thu, 22 Dec 2022 11:38:36 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Jan 2023 22:08:25 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang Gin</title>
+      <link>https://ynikl.github.io/blog/golang-gin/</link>
+      <pubDate>Sun, 01 Jan 2023 22:08:25 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/blog/golang-gin/</guid>
+      <description>Golang Gin 框架的使用和理解 中间的几个关键对象 Engine gin 的框架实例, 包含路由地址, 中间件, 框架配置. 通过New()或者Default()创建
+New 不带任何中间件 Default 会带 logger 和 recover 通过 Engine.Use() 添加中间件到Engine的RouterGroup
+Engine.Run 启动, 并绑定到参数的地址
+RouterGroup 1 2 3 4 5 6 type RouterGroup struct { Handlers HandlersChain basePath string engine *Engine root bool } 用于存储中间件的处理方法 &amp;ndash; 存储再 HandlersChain 里面, 即[]HandlerFunc
+真正的路由地址存储在engine.trees &amp;ndash; 路由树, 检索请求地址和对应处理方法.
+Engine 包含 RouterGroup, RouterGroup 也会存储 Engine 的地址. 目的是为了, 加点api地址时, 根据当前具体配置的中间件, 再添加engine的路由树. 也就是说, 过程中修改了中间件, 不会影响到已经配置的路由的中间件.
+1 2 3 4 5 6 func (group *RouterGroup) handle(httpMethod, relativePath string, handlers HandlersChain) IRoutes { absolutePath := group.</description>
+      <content:encoded><![CDATA[<h1 id="golang-gin-框架的使用和理解">Golang Gin 框架的使用和理解</h1>
+<h2 id="中间的几个关键对象">中间的几个关键对象</h2>
+<h3 id="engine">Engine</h3>
+<p>gin 的框架实例, 包含路由地址, 中间件, 框架配置. 通过<code>New()</code>或者<code>Default()</code>创建</p>
+<ul>
+<li><code>New</code> 不带任何中间件</li>
+<li><code>Default</code> 会带 <code>logger</code> 和 <code>recover</code></li>
+</ul>
+<p>通过 <code>Engine.Use()</code> 添加中间件到Engine的<code>RouterGroup</code></p>
+<p><code>Engine.Run</code> 启动, 并绑定到参数的地址</p>
+<h3 id="routergroup">RouterGroup</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">type RouterGroup struct {
+</span></span><span class="line"><span class="cl">	Handlers HandlersChain
+</span></span><span class="line"><span class="cl">	basePath string
+</span></span><span class="line"><span class="cl">	engine   *Engine
+</span></span><span class="line"><span class="cl">	root     bool
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>用于存储中间件的处理方法 &ndash; 存储再 <code>HandlersChain</code> 里面, 即<code>[]HandlerFunc</code></p>
+<p>真正的路由地址存储在<code>engine.trees</code> &ndash; 路由树, 检索请求地址和对应处理方法.</p>
+<p>Engine 包含 RouterGroup, RouterGroup 也会存储 Engine 的地址.
+目的是为了, 加点api地址时, 根据当前具体配置的中间件, 再添加engine的路由树.
+也就是说, 过程中修改了中间件, 不会影响到已经配置的路由的中间件.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">func (group *RouterGroup) handle(httpMethod, relativePath string, handlers HandlersChain) IRoutes {
+</span></span><span class="line"><span class="cl">	absolutePath := group.calculateAbsolutePath(relativePath)
+</span></span><span class="line"><span class="cl">	handlers = group.combineHandlers(handlers)
+</span></span><span class="line"><span class="cl">	group.engine.addRoute(httpMethod, absolutePath, handlers)
+</span></span><span class="line"><span class="cl">	return group.returnObj()
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注册路由之前, 先将当前的 http 处理方法, 与当前中间件配置合并, 再添加到engine.</p>
+<h4 id="路由分组">路由分组</h4>
+<p><code>RouterGroup.Group</code>	创建一个新的 <code>RouterGroup</code> , 意味着已经添加的过的 middleware
+都需要重新进行添加, 因为是在注册路由的地址的时候, 中间件才会生效.</p>
+<p>相似的路由捆绑在一块, 路由组写法, 可以做绑定相同中间件处理.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// Simple group: v1
+</span></span><span class="line"><span class="cl">v1 := router.Group(&#34;/v1&#34;)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">  v1.POST(&#34;/login&#34;, loginEndpoint)
+</span></span><span class="line"><span class="cl">  v1.POST(&#34;/submit&#34;, submitEndpoint)
+</span></span><span class="line"><span class="cl">  v1.POST(&#34;/read&#34;, readEndpoint)
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>中间的花括号只起美化代码作用, 非必需</p>
+<h3 id="handlerfunc">HandlerFunc</h3>
+<p>中间件和请求处理方法的函数签名</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">HandlerFunc</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Context</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>处理请求的时候, HandlerFunc 执行完毕 &ndash; 代表该请求处理结束</p>
+<h3 id="context">Context</h3>
+<p>gin 自己实现的 Context 结构</p>
+<ul>
+<li>在中间件中传递参数</li>
+<li>控制调用流程</li>
+<li>获取参数</li>
+<li>返回结果</li>
+</ul>
+<p>Context 结构的重要组成部分介绍</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Context</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 存储URL 参数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Params</span>   <span class="nx">Params</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="c1">// 写入请求的结果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Writer</span>    <span class="nx">ResponseWriter</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="c1">// 请求的所有处理方法集合
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">handlers</span> <span class="nx">HandlersChain</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="c1">// 当前执行到第几个方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">index</span>    <span class="kt">int8</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="c1">// 存储流转于中间件的参数式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Keys</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="nx">any</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="在中间件中传递参数">在中间件中传递参数</h4>
+<ul>
+<li><code>context.Get</code></li>
+<li><code>context.Set</code> 两个方法在中间件中传递参数</li>
+</ul>
+<h4 id="流程控制">流程控制</h4>
+<ul>
+<li><code>context.Next()</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Context</span><span class="p">)</span> <span class="nf">Next</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">c</span><span class="p">.</span><span class="nx">index</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">c</span><span class="p">.</span><span class="nx">index</span> <span class="p">&lt;</span> <span class="nb">int8</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">handlers</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">c</span><span class="p">.</span><span class="nx">handlers</span><span class="p">[</span><span class="nx">c</span><span class="p">.</span><span class="nx">index</span><span class="p">](</span><span class="nx">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">c</span><span class="p">.</span><span class="nx">index</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>将当前代码执行点移交到下一个 <code>HandlerFunc</code> 具体流程看, <a href="#Middleware">Middleware</a></p>
+<h4 id="获取参数">获取参数</h4>
+<ul>
+<li><code>context.Param()</code> 获取 Query Param 的字符串参数</li>
+<li><code>context.Query()</code></li>
+<li><code>context.QueryMap()</code> 或者 <code>context.PostFormMap</code> 获取 map 的参数</li>
+<li><code>context.Bind</code> 将参数包含query参数和body参数解析之后, 反序列化到传入的结构体.
+tag <code>binding:&quot;required&quot;</code> 如果没有对应参数会报错</li>
+</ul>
+<h4 id="调用结束">调用结束</h4>
+<ul>
+<li><code>conetxt.JSON</code> 以json的形式, 返回结果
+举个例子: 如果是json的的化就是 <code>jsonBinding</code> 进行反序列化</li>
+<li>报错 500 <code>context.AbortWithStatus()</code></li>
+</ul>
+<h4 id="cookie-操作">Cookie 操作</h4>
+<ul>
+<li><code>context.Cookie()</code></li>
+<li><code>context.SetCookie()</code></li>
+</ul>
+<h3 id="middleware">Middleware</h3>
+<p>符合 <a href="#HandlerFunc">HandlerFunc</a> 签名的函数. 就可以<code>Engine.Use</code>注册层路由. 路由设置
+的处理函数, 在本质上可以称为中间件.</p>
+<ol>
+<li>gin 会按照 routegroup <code>Use</code> 中间件的先后顺序存储到路由表中</li>
+<li>接收请求, 依次执行注册时设置的所有中间件函数.</li>
+</ol>
+<h4 id="next">Next</h4>
+<p>调用流程图:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">middleware 1
+</span></span><span class="line"><span class="cl">| - doing m1 work
+</span></span><span class="line"><span class="cl">| - call Context.Next()
+</span></span><span class="line"><span class="cl">|     - call middleware 2
+</span></span><span class="line"><span class="cl">|       - doing m2 work
+</span></span><span class="line"><span class="cl">|       - call Context.Next()
+</span></span><span class="line"><span class="cl">|         - call middleware 3
+</span></span><span class="line"><span class="cl">|         - - done m3
+</span></span><span class="line"><span class="cl">|       - continue m2 work
+</span></span><span class="line"><span class="cl">|     - - done m2 work
+</span></span><span class="line"><span class="cl">| - coninue m1 work
+</span></span><span class="line"><span class="cl">| - done 
+</span></span><span class="line"><span class="cl">finish
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当调研 <code>Context.Next()</code> 时会调用下一个中间函数, 当下一个函数执行完成之后, 执行
+代码会返回到原先调用 <code>Context.Next()</code>的地方 &ndash; 递归</p>
+<h4 id="abort">Abort</h4>
+<p>中间处理时可以调用 <code>Context.Abort()</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Context</span><span class="p">)</span> <span class="nf">Abort</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">c</span><span class="p">.</span><span class="nx">index</span> <span class="p">=</span> <span class="nx">abortIndex</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>会将函数调用链的index指向一个超大整数 &ndash; 放弃后面所有的处理函数, 但是 <strong>调用Abort后, 同一个函数接下的代码还会继续执行</strong></p>
+<h4 id="小demo">小demo</h4>
+<p><a href="https://gist.github.com/ynikl/20b603bfd743d2540d482939ac87d133">demo</a></p>
+<!-- raw HTML omitted -->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">eg</span> <span class="o">:=</span> <span class="nx">gin</span><span class="p">.</span><span class="nf">New</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">eg</span><span class="p">.</span><span class="nf">Use</span><span class="p">(</span><span class="nx">m1</span><span class="p">,</span> <span class="nx">m2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">eg</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/greet&#34;</span><span class="p">,</span> <span class="nx">m3</span><span class="p">,</span> <span class="nx">greet</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">eg</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/abort&#34;</span><span class="p">,</span> <span class="nx">abort</span><span class="p">,</span> <span class="nx">m3</span><span class="p">,</span> <span class="nx">greet</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">eg</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">m1</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;before m1 next&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">c</span><span class="p">.</span><span class="nf">Next</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;after m1 next&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">m2</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;\tbefore m2 next&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">c</span><span class="p">.</span><span class="nf">Next</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;\tafter m2 next&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">m3</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;\t\tbefore m3 next&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">c</span><span class="p">.</span><span class="nf">Next</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;\t\tafter m3 next&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">abort</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;\t\t\tbefore abort&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">c</span><span class="p">.</span><span class="nf">Abort</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;\t\t\tafter abort&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">greet</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;\t\t\t\thow are you doing?&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">c</span><span class="p">.</span><span class="nf">JSON</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s">&#34;great&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接口 <code>/greet</code> 的输出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">before m1 next
+</span></span><span class="line"><span class="cl">        before m2 next
+</span></span><span class="line"><span class="cl">                before m3 next
+</span></span><span class="line"><span class="cl">                                how are you doing?
+</span></span><span class="line"><span class="cl">                after m3 next
+</span></span><span class="line"><span class="cl">        after m2 next
+</span></span><span class="line"><span class="cl">after m1 next
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接口 <code>/abort</code> 的数据</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">before m1 next
+</span></span><span class="line"><span class="cl">        before m2 next
+</span></span><span class="line"><span class="cl">                        before abort
+</span></span><span class="line"><span class="cl">                        after abort
+</span></span><span class="line"><span class="cl">        after m2 next
+</span></span><span class="line"><span class="cl">after m1 next
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="其他">其他</h3>
+<p>gin.H</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">gin</span><span class="p">.</span><span class="nx">H</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}</span> 
+</span></span><span class="line"><span class="cl"><span class="c1">// 常用于 engine.JSON() 时返回 json 数据
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="几个问题">几个问题</h2>
+<h3 id="gin-的-context-有什么作用和怎么用">Gin 的 context 有什么作用和怎么用?</h3>
+<p>context 是 Gin 代码请求流转的核心, 存储处理请求的所有必须参数</p>
+<p>基本的使用方法:</p>
+<ol>
+<li>需要知道如何获取参数 &ndash; <code>Bind</code> 或者 <code>Param</code> 方法</li>
+<li>控制处理函数流程 &ndash; <code>Next</code> 或者 <code>Abort</code> 方法</li>
+<li>返回结果 &ndash; <code>JSON</code></li>
+</ol>
+<h3 id="gin-的整体框架流程是怎么样的-从接受到一个请求再到返回请求中间的流程">Gin 的整体框架流程是怎么样的? 从接受到一个请求再到返回请求中间的流程?</h3>
+<p>请求的注册入口, <code>Engine.ServeHTTP</code></p>
+<p>整体流程</p>
+<ol>
+<li>存储路由路径和注册的处理函数到&quot;路由树&quot; &ndash; <code>nodetree</code></li>
+<li>接收请求</li>
+<li>根据接收到的请求地址, 从路由树中取出注册的函数, 组成<code>HandlerChain</code> 函数处理链</li>
+<li>把函数处理链赋值到<code>gin.Context</code>中</li>
+<li>由<code>gin.Context</code>开始依次调用注册处理函数, 所以函数遍历完成, 处理结束</li>
+<li>通过<code>gin.Context.Writer</code>写入http请求结果</li>
+<li>请求结束</li>
+</ol>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>工程能力阶梯分析</title>
       <link>https://ynikl.github.io/posts/my-engineeringladders/</link>
@@ -1117,7 +1532,11 @@ Down to Gehenna or up to the Throne, He travels the fastest who travles alone
 真正的勇敢是在感到最恐惧的时候, 你依然在往前走.
 曹大博客
 政府/企业对事故的管理一般有一套“事前-事中-事后”的分析框架，可以作为我们处理事故的很好的参考。在开始分析之前，要先简单了解一下这个框架： 所谓事前，就是做事情之前应该有统筹的规划，考虑可能出现的问题和困难，最好提前做实验验证下，以保证在真实现场不出问题，或者即使出现问题也有应对方案，不至于手忙脚乱、大动干戈。 所谓事中，就是做事情的过程中对事前规划的事情进行执行，以及记录过程中出现的问题；整个事中起着承前启后的作用，上对事前的规划进行验证，下对事后的总结反思进行铺垫。 所谓事后，就是做事情结束后对整个事情进行总结反思、问题分类和根因分析等。追踪并确认所有的问题有效进行了解决和应对，以确保下次不会再犯之前同样的错误。
-22 工程师能力阶梯</description>
+22 工程师能力阶梯
+Eleanor Roosevelt
+Great minds discuss ideas（伟人谈论想法）
+Average minds discuss events （ 普通人谈论事件）
+Small minds discuss people（ 庸人谈论他人）</description>
       <content:encoded><![CDATA[<h2 id="5">5</h2>
 <h3 id="代码整洁结构httpswwwartacodecompostgolangtemplate"><a href="https://www.artacode.com/post/golang/template/">代码整洁结构</a></h3>
 <p>内部不应该依赖外部, <strong>业务逻辑的实现, 不应该依赖于框架</strong></p>
@@ -1139,6 +1558,12 @@ Down to Gehenna or up to the Throne, He travels the fastest who travles alone
 </blockquote>
 <h2 id="22">22</h2>
 <p><a href="https://github.com/jorgef/engineeringladders">工程师能力阶梯</a></p>
+<p>Eleanor Roosevelt</p>
+<blockquote>
+<p>Great minds discuss ideas（伟人谈论想法）<br>
+Average minds discuss events （ 普通人谈论事件）<br>
+Small minds discuss people（ 庸人谈论他人）</p>
+</blockquote>
 ]]></content:encoded>
     </item>
     
