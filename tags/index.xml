@@ -13,7 +13,17 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Sun, 01 Jan 2023 22:08:25 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 Jan 2023 14:04:07 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>words</title>
+      <link>https://ynikl.github.io/tags/words/</link>
+      <pubDate>Thu, 05 Jan 2023 14:04:07 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/tags/words/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
     <item>
       <title>golang</title>
       <link>https://ynikl.github.io/tags/golang/</link>
@@ -80,16 +90,6 @@
       <pubDate>Sun, 27 Nov 2022 13:56:17 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/tags/books/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>words</title>
-      <link>https://ynikl.github.io/tags/words/</link>
-      <pubDate>Wed, 09 Nov 2022 14:04:07 +0800</pubDate>
-      <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/tags/words/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>

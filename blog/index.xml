@@ -20,15 +20,22 @@
       <pubDate>Sun, 01 Jan 2023 22:08:25 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/golang-gin/</guid>
-      <description>Golang Gin 框架的使用和理解 中间的几个关键对象 Engine gin 的框架实例, 包含路由地址, 中间件, 框架配置. 通过New()或者Default()创建
+      <description>Golang Gin 框架的使用和理解 框架代码地址
+中间的几个关键对象 Engine RouterGroup HandlerFunc Context Engine gin 的框架实例, 包含路由地址, 中间件, 框架配置. 通过New()或者Default()创建
 New 不带任何中间件 Default 会带 logger 和 recover 通过 Engine.Use() 添加中间件到Engine的RouterGroup
 Engine.Run 启动, 并绑定到参数的地址
 RouterGroup 1 2 3 4 5 6 type RouterGroup struct { Handlers HandlersChain basePath string engine *Engine root bool } 用于存储中间件的处理方法 &amp;ndash; 存储再 HandlersChain 里面, 即[]HandlerFunc
 真正的路由地址存储在engine.trees &amp;ndash; 路由树, 检索请求地址和对应处理方法.
-Engine 包含 RouterGroup, RouterGroup 也会存储 Engine 的地址. 目的是为了, 加点api地址时, 根据当前具体配置的中间件, 再添加engine的路由树. 也就是说, 过程中修改了中间件, 不会影响到已经配置的路由的中间件.
-1 2 3 4 5 6 func (group *RouterGroup) handle(httpMethod, relativePath string, handlers HandlersChain) IRoutes { absolutePath := group.</description>
+Engine 包含 RouterGroup, RouterGroup 也会存储 Engine 的地址. 目的是为了, 加点api地址时, 根据当前具体配置的中间件, 再添加engine的路由树. 也就是说, 过程中修改了中间件, 不会影响到已经配置的路由的中间件.</description>
       <content:encoded><![CDATA[<h1 id="golang-gin-框架的使用和理解">Golang Gin 框架的使用和理解</h1>
+<p><a href="https://github.com/gin-gonic/gin">框架代码地址</a></p>
 <h2 id="中间的几个关键对象">中间的几个关键对象</h2>
+<ul>
+<li>Engine</li>
+<li>RouterGroup</li>
+<li>HandlerFunc</li>
+<li>Context</li>
+</ul>
 <h3 id="engine">Engine</h3>
 <p>gin 的框架实例, 包含路由地址, 中间件, 框架配置. 通过<code>New()</code>或者<code>Default()</code>创建</p>
 <ul>
@@ -80,7 +87,7 @@ Engine 包含 RouterGroup, RouterGroup 也会存储 Engine 的地址. 目的是�
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>注册路由之前, 先将当前的 http 处理方法, 与当前中间件配置合并, 再添加到engine.</p>
-<h4 id="路由分组">路由分组</h4>
+<h4 id="routergroup-1">RouterGroup</h4>
 <p><code>RouterGroup.Group</code>	创建一个新的 <code>RouterGroup</code> , 意味着已经添加的过的 middleware
 都需要重新进行添加, 因为是在注册路由的地址的时候, 中间件才会生效.</p>
 <p>相似的路由捆绑在一块, 路由组写法, 可以做绑定相同中间件处理.</p>

@@ -13,22 +13,52 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Sun, 01 Jan 2023 22:08:25 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 Jan 2023 14:04:07 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>202301</title>
+      <link>https://ynikl.github.io/notes/202301/</link>
+      <pubDate>Thu, 05 Jan 2023 14:04:07 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/notes/202301/</guid>
+      <description>&amp;ldquo;与其担心宏观经济，不如关注自己。你对自己生活的影响，往往比宏观经济对你的影响大得多。&amp;rdquo;
+不要 过度 自己是否会被裁员, 而是要聚焦自己目标的, 提升自己的能力, 抵抗宏观经济问题.
+阮一峰网络日志
+世界最大对冲基金&amp;quot;桥水基金&amp;quot;创始人达里奥，说过一句话，可以用在这里：&amp;ldquo;如果你忧心忡忡，那是不必要的；如果你毫不担心，那么你需要担心。&amp;rdquo;
+要保持担忧, 但更要聚焦于自己</description>
+      <content:encoded><![CDATA[<blockquote>
+<p>&ldquo;与其担心宏观经济，不如关注自己。你对自己生活的影响，往往比宏观经济对你的影响大得多。&rdquo;</p>
+</blockquote>
+<p>不要 <strong>过度</strong> 自己是否会被裁员, 而是要聚焦自己目标的, 提升自己的能力, 抵抗宏观经济问题.</p>
+<p><a href="https://www.ruanyifeng.com/blog/2022/09/weekly-issue-223.html">阮一峰网络日志</a></p>
+<blockquote>
+<p>世界最大对冲基金&quot;桥水基金&quot;创始人达里奥，说过一句话，可以用在这里：&ldquo;如果你忧心忡忡，那是不必要的；如果你毫不担心，那么你需要担心。&rdquo;</p>
+</blockquote>
+<p>要保持担忧, 但更要聚焦于自己</p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>Golang Gin</title>
       <link>https://ynikl.github.io/blog/golang-gin/</link>
       <pubDate>Sun, 01 Jan 2023 22:08:25 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/golang-gin/</guid>
-      <description>Golang Gin 框架的使用和理解 中间的几个关键对象 Engine gin 的框架实例, 包含路由地址, 中间件, 框架配置. 通过New()或者Default()创建
+      <description>Golang Gin 框架的使用和理解 框架代码地址
+中间的几个关键对象 Engine RouterGroup HandlerFunc Context Engine gin 的框架实例, 包含路由地址, 中间件, 框架配置. 通过New()或者Default()创建
 New 不带任何中间件 Default 会带 logger 和 recover 通过 Engine.Use() 添加中间件到Engine的RouterGroup
 Engine.Run 启动, 并绑定到参数的地址
 RouterGroup 1 2 3 4 5 6 type RouterGroup struct { Handlers HandlersChain basePath string engine *Engine root bool } 用于存储中间件的处理方法 &amp;ndash; 存储再 HandlersChain 里面, 即[]HandlerFunc
 真正的路由地址存储在engine.trees &amp;ndash; 路由树, 检索请求地址和对应处理方法.
-Engine 包含 RouterGroup, RouterGroup 也会存储 Engine 的地址. 目的是为了, 加点api地址时, 根据当前具体配置的中间件, 再添加engine的路由树. 也就是说, 过程中修改了中间件, 不会影响到已经配置的路由的中间件.
-1 2 3 4 5 6 func (group *RouterGroup) handle(httpMethod, relativePath string, handlers HandlersChain) IRoutes { absolutePath := group.</description>
+Engine 包含 RouterGroup, RouterGroup 也会存储 Engine 的地址. 目的是为了, 加点api地址时, 根据当前具体配置的中间件, 再添加engine的路由树. 也就是说, 过程中修改了中间件, 不会影响到已经配置的路由的中间件.</description>
       <content:encoded><![CDATA[<h1 id="golang-gin-框架的使用和理解">Golang Gin 框架的使用和理解</h1>
+<p><a href="https://github.com/gin-gonic/gin">框架代码地址</a></p>
 <h2 id="中间的几个关键对象">中间的几个关键对象</h2>
+<ul>
+<li>Engine</li>
+<li>RouterGroup</li>
+<li>HandlerFunc</li>
+<li>Context</li>
+</ul>
 <h3 id="engine">Engine</h3>
 <p>gin 的框架实例, 包含路由地址, 中间件, 框架配置. 通过<code>New()</code>或者<code>Default()</code>创建</p>
 <ul>
@@ -80,7 +110,7 @@ Engine 包含 RouterGroup, RouterGroup 也会存储 Engine 的地址. 目的是�
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>注册路由之前, 先将当前的 http 处理方法, 与当前中间件配置合并, 再添加到engine.</p>
-<h4 id="路由分组">路由分组</h4>
+<h4 id="routergroup-1">RouterGroup</h4>
 <p><code>RouterGroup.Group</code>	创建一个新的 <code>RouterGroup</code> , 意味着已经添加的过的 middleware
 都需要重新进行添加, 因为是在注册路由的地址的时候, 中间件才会生效.</p>
 <p>相似的路由捆绑在一块, 路由组写法, 可以做绑定相同中间件处理.</p>
@@ -730,6 +760,54 @@ A few commands in Git are centered around the concept of thinking of commits in 
 <p><code>-L</code> 语法
 <code>-L&lt;start&gt;,&lt;end&gt;:&lt;file&gt;, -L:&lt;funcname&gt;:&lt;file&gt;</code></p>
 <p>限制指定查看范围.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>202212</title>
+      <link>https://ynikl.github.io/notes/202212/</link>
+      <pubDate>Fri, 09 Dec 2022 14:04:07 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/notes/202212/</guid>
+      <description>5 代码整洁结构 内部不应该依赖外部, 业务逻辑的实现, 不应该依赖于框架
+20 1917
+Down to Gehenna or up to the Throne, He travels the fastest who travles alone
+小狗钱钱
+真正的勇敢是在感到最恐惧的时候, 你依然在往前走.
+曹大博客
+政府/企业对事故的管理一般有一套“事前-事中-事后”的分析框架，可以作为我们处理事故的很好的参考。在开始分析之前，要先简单了解一下这个框架： 所谓事前，就是做事情之前应该有统筹的规划，考虑可能出现的问题和困难，最好提前做实验验证下，以保证在真实现场不出问题，或者即使出现问题也有应对方案，不至于手忙脚乱、大动干戈。 所谓事中，就是做事情的过程中对事前规划的事情进行执行，以及记录过程中出现的问题；整个事中起着承前启后的作用，上对事前的规划进行验证，下对事后的总结反思进行铺垫。 所谓事后，就是做事情结束后对整个事情进行总结反思、问题分类和根因分析等。追踪并确认所有的问题有效进行了解决和应对，以确保下次不会再犯之前同样的错误。
+22 工程师能力阶梯
+Eleanor Roosevelt
+Great minds discuss ideas（伟人谈论想法）
+Average minds discuss events （ 普通人谈论事件）
+Small minds discuss people（ 庸人谈论他人）</description>
+      <content:encoded><![CDATA[<h2 id="5">5</h2>
+<h3 id="代码整洁结构httpswwwartacodecompostgolangtemplate"><a href="https://www.artacode.com/post/golang/template/">代码整洁结构</a></h3>
+<p>内部不应该依赖外部, <strong>业务逻辑的实现, 不应该依赖于框架</strong></p>
+<h2 id="20">20</h2>
+<p>1917</p>
+<blockquote>
+<p>Down to Gehenna or up to the Throne, He travels the fastest who travles alone</p>
+</blockquote>
+<p>小狗钱钱</p>
+<blockquote>
+<p>真正的勇敢是在感到最恐惧的时候, 你依然在往前走.</p>
+</blockquote>
+<p>曹大博客</p>
+<blockquote>
+<p>政府/企业对事故的管理一般有一套“事前-事中-事后”的分析框架，可以作为我们处理事故的很好的参考。在开始分析之前，要先简单了解一下这个框架：
+所谓事前，就是做事情之前应该有统筹的规划，考虑可能出现的问题和困难，最好提前做实验验证下，以保证在真实现场不出问题，或者即使出现问题也有应对方案，不至于手忙脚乱、大动干戈。
+所谓事中，就是做事情的过程中对事前规划的事情进行执行，以及记录过程中出现的问题；整个事中起着承前启后的作用，上对事前的规划进行验证，下对事后的总结反思进行铺垫。
+所谓事后，就是做事情结束后对整个事情进行总结反思、问题分类和根因分析等。追踪并确认所有的问题有效进行了解决和应对，以确保下次不会再犯之前同样的错误。</p>
+</blockquote>
+<h2 id="22">22</h2>
+<p><a href="https://github.com/jorgef/engineeringladders">工程师能力阶梯</a></p>
+<p>Eleanor Roosevelt</p>
+<blockquote>
+<p>Great minds discuss ideas（伟人谈论想法）<br>
+Average minds discuss events （ 普通人谈论事件）<br>
+Small minds discuss people（ 庸人谈论他人）</p>
+</blockquote>
 ]]></content:encoded>
     </item>
     
@@ -1503,11 +1581,11 @@ Framework and Divers 数据库和框架层, 外部工具包接口依赖之类的
     </item>
     
     <item>
-      <title>20221109</title>
-      <link>https://ynikl.github.io/notes/20221109/</link>
+      <title>202211</title>
+      <link>https://ynikl.github.io/notes/202211/</link>
       <pubDate>Wed, 09 Nov 2022 14:04:07 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/notes/20221109/</guid>
+      <guid>https://ynikl.github.io/notes/202211/</guid>
       <description>吾本乘兴而行，兴尽而返，何必见戴
 &amp;ndash; 世说新语·任诞
 我本来是乘着一时高兴而来，现在兴尽就返回家，为什么非得见到戴逵呢？</description>
@@ -1516,54 +1594,6 @@ Framework and Divers 数据库和框架层, 外部工具包接口依赖之类的
 &ndash; 世说新语·任诞</p>
 </blockquote>
 <p>我本来是乘着一时高兴而来，现在兴尽就返回家，为什么非得见到戴逵呢？</p>
-]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>20221109</title>
-      <link>https://ynikl.github.io/notes/202212/</link>
-      <pubDate>Wed, 09 Nov 2022 14:04:07 +0800</pubDate>
-      <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/notes/202212/</guid>
-      <description>5 代码整洁结构 内部不应该依赖外部, 业务逻辑的实现, 不应该依赖于框架
-20 1917
-Down to Gehenna or up to the Throne, He travels the fastest who travles alone
-小狗钱钱
-真正的勇敢是在感到最恐惧的时候, 你依然在往前走.
-曹大博客
-政府/企业对事故的管理一般有一套“事前-事中-事后”的分析框架，可以作为我们处理事故的很好的参考。在开始分析之前，要先简单了解一下这个框架： 所谓事前，就是做事情之前应该有统筹的规划，考虑可能出现的问题和困难，最好提前做实验验证下，以保证在真实现场不出问题，或者即使出现问题也有应对方案，不至于手忙脚乱、大动干戈。 所谓事中，就是做事情的过程中对事前规划的事情进行执行，以及记录过程中出现的问题；整个事中起着承前启后的作用，上对事前的规划进行验证，下对事后的总结反思进行铺垫。 所谓事后，就是做事情结束后对整个事情进行总结反思、问题分类和根因分析等。追踪并确认所有的问题有效进行了解决和应对，以确保下次不会再犯之前同样的错误。
-22 工程师能力阶梯
-Eleanor Roosevelt
-Great minds discuss ideas（伟人谈论想法）
-Average minds discuss events （ 普通人谈论事件）
-Small minds discuss people（ 庸人谈论他人）</description>
-      <content:encoded><![CDATA[<h2 id="5">5</h2>
-<h3 id="代码整洁结构httpswwwartacodecompostgolangtemplate"><a href="https://www.artacode.com/post/golang/template/">代码整洁结构</a></h3>
-<p>内部不应该依赖外部, <strong>业务逻辑的实现, 不应该依赖于框架</strong></p>
-<h2 id="20">20</h2>
-<p>1917</p>
-<blockquote>
-<p>Down to Gehenna or up to the Throne, He travels the fastest who travles alone</p>
-</blockquote>
-<p>小狗钱钱</p>
-<blockquote>
-<p>真正的勇敢是在感到最恐惧的时候, 你依然在往前走.</p>
-</blockquote>
-<p>曹大博客</p>
-<blockquote>
-<p>政府/企业对事故的管理一般有一套“事前-事中-事后”的分析框架，可以作为我们处理事故的很好的参考。在开始分析之前，要先简单了解一下这个框架：
-所谓事前，就是做事情之前应该有统筹的规划，考虑可能出现的问题和困难，最好提前做实验验证下，以保证在真实现场不出问题，或者即使出现问题也有应对方案，不至于手忙脚乱、大动干戈。
-所谓事中，就是做事情的过程中对事前规划的事情进行执行，以及记录过程中出现的问题；整个事中起着承前启后的作用，上对事前的规划进行验证，下对事后的总结反思进行铺垫。
-所谓事后，就是做事情结束后对整个事情进行总结反思、问题分类和根因分析等。追踪并确认所有的问题有效进行了解决和应对，以确保下次不会再犯之前同样的错误。</p>
-</blockquote>
-<h2 id="22">22</h2>
-<p><a href="https://github.com/jorgef/engineeringladders">工程师能力阶梯</a></p>
-<p>Eleanor Roosevelt</p>
-<blockquote>
-<p>Great minds discuss ideas（伟人谈论想法）<br>
-Average minds discuss events （ 普通人谈论事件）<br>
-Small minds discuss people（ 庸人谈论他人）</p>
-</blockquote>
 ]]></content:encoded>
     </item>
     
@@ -7135,10 +7165,10 @@ channel 保证:
     
     <item>
       <title>2022</title>
-      <link>https://ynikl.github.io/okr/okr-2022/</link>
+      <link>https://ynikl.github.io/neo/okr-2022/</link>
       <pubDate>Fri, 01 Apr 2022 20:09:37 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/okr/okr-2022/</guid>
+      <guid>https://ynikl.github.io/neo/okr-2022/</guid>
       <description>2022 年度目标 提升自己的基础技术竞争力, 确保不会找不到工作
 精通 go 编程语言 精通 redis 精通 mysql 5 月份 OKR O:
 加深对 Go 语言的基础知识理解 熟悉 redis 的所有数据类型 KR:
@@ -7282,28 +7312,6 @@ Go GMP 调度总结博文 做一个部门内部的 GMP 调度培训 成为一个
 <ul>
 <li><input disabled="" type="checkbox"> 摩托车给我带来了什么文章总结</li>
 <li><input disabled="" type="checkbox"> 摩托车骑行录像整理</li>
-</ul>
-]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>BackLog</title>
-      <link>https://ynikl.github.io/okr/backlog/</link>
-      <pubDate>Fri, 01 Apr 2022 20:09:37 +0800</pubDate>
-      <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/okr/backlog/</guid>
-      <description>技术 Go interface 深入学习 reflect 反射包使用 1.17 版本 1.18 版本 架构 架构整洁之道 </description>
-      <content:encoded><![CDATA[<h1 id="技术">技术</h1>
-<h2 id="go">Go</h2>
-<ul>
-<li><input disabled="" type="checkbox"> interface 深入学习</li>
-<li><input disabled="" type="checkbox"> reflect 反射包使用</li>
-<li><input disabled="" type="checkbox"> 1.17 版本</li>
-<li><input disabled="" type="checkbox"> 1.18 版本</li>
-</ul>
-<h2 id="架构">架构</h2>
-<ul>
-<li><input disabled="" type="checkbox"> 架构整洁之道</li>
 </ul>
 ]]></content:encoded>
     </item>

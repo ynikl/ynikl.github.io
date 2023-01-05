@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://ynikl.github.io/notes/202301/</loc>
+    <lastmod>2023-01-05T14:04:07+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/notes/</loc>
+    <lastmod>2023-01-05T14:04:07+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/tags/</loc>
+    <lastmod>2023-01-05T14:04:07+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/tags/words/</loc>
+    <lastmod>2023-01-05T14:04:07+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/</loc>
+    <lastmod>2023-01-05T14:04:07+08:00</lastmod>
+  </url><url>
     <loc>https://ynikl.github.io/blog/</loc>
     <lastmod>2023-01-01T22:08:25+08:00</lastmod>
   </url><url>
@@ -9,12 +24,6 @@
     <lastmod>2023-01-01T22:08:25+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/blog/golang-gin/</loc>
-    <lastmod>2023-01-01T22:08:25+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/tags/</loc>
-    <lastmod>2023-01-01T22:08:25+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/</loc>
     <lastmod>2023-01-01T22:08:25+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/engineering/</loc>
@@ -47,6 +56,9 @@
     <loc>https://ynikl.github.io/posts/git-view-change-log-in-specifie-line/</loc>
     <lastmod>2022-12-12T15:29:36+08:00</lastmod>
   </url><url>
+    <loc>https://ynikl.github.io/notes/202212/</loc>
+    <lastmod>2022-12-09T14:04:07+08:00</lastmod>
+  </url><url>
     <loc>https://ynikl.github.io/tags/architecture/</loc>
     <lastmod>2022-12-05T09:21:02+08:00</lastmod>
   </url><url>
@@ -68,16 +80,7 @@
     <loc>https://ynikl.github.io/books/asking-the-right-questions/</loc>
     <lastmod>2022-11-17T22:53:21+08:00</lastmod>
   </url><url>
-    <loc>https://ynikl.github.io/notes/20221109/</loc>
-    <lastmod>2022-11-09T14:04:07+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/notes/202212/</loc>
-    <lastmod>2022-11-09T14:04:07+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/notes/</loc>
-    <lastmod>2022-11-09T14:04:07+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/tags/words/</loc>
+    <loc>https://ynikl.github.io/notes/202211/</loc>
     <lastmod>2022-11-09T14:04:07+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/posts/linux-filesystem/</loc>
@@ -314,13 +317,10 @@
     <loc>https://ynikl.github.io/posts/%E6%8F%90%E5%8D%87%E6%96%87%E5%AD%97%E7%95%99%E5%AD%98%E7%8E%87/</loc>
     <lastmod>2022-04-02T09:58:23+08:00</lastmod>
   </url><url>
-    <loc>https://ynikl.github.io/okr/okr-2022/</loc>
+    <loc>https://ynikl.github.io/neo/okr-2022/</loc>
     <lastmod>2022-04-01T20:09:37+08:00</lastmod>
   </url><url>
-    <loc>https://ynikl.github.io/okr/backlog/</loc>
-    <lastmod>2022-04-01T20:09:37+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/okr/</loc>
+    <loc>https://ynikl.github.io/neo/</loc>
     <lastmod>2022-04-01T20:09:37+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/blog/golang-cmd/</loc>
