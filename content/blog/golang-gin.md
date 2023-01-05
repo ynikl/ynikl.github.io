@@ -9,7 +9,14 @@ tags:
 
 # Golang Gin 框架的使用和理解
 
+[框架代码地址](https://github.com/gin-gonic/gin)
+
 ## 中间的几个关键对象
+
+- Engine
+- RouterGroup
+- HandlerFunc
+- Context
 
 ### Engine 
 
@@ -51,7 +58,7 @@ func (group *RouterGroup) handle(httpMethod, relativePath string, handlers Handl
 
 注册路由之前, 先将当前的 http 处理方法, 与当前中间件配置合并, 再添加到engine. 
 
-#### 路由分组
+#### RouterGroup
 
 `RouterGroup.Group`	创建一个新的 `RouterGroup` , 意味着已经添加的过的 middleware
 都需要重新进行添加, 因为是在注册路由的地址的时候, 中间件才会生效.
