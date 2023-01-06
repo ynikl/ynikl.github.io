@@ -60,8 +60,17 @@ func (group *RouterGroup) handle(httpMethod, relativePath string, handlers Handl
 
 #### RouterGroup
 
-`RouterGroup.Group`	创建一个新的 `RouterGroup` , 意味着已经添加的过的 middleware
-都需要重新进行添加, 因为是在注册路由的地址的时候, 中间件才会生效.
+`RouterGroup.Group`	创建一个新的 `RouterGroup` 
+``` go
+func (group *RouterGroup) Group(relativePath string, handlers ...HandlerFunc) *RouterGroup {
+	return &RouterGroup{
+		Handlers: group.combineHandlers(handlers),
+		basePath: group.calculateAbsolutePath(relativePath),
+		engine:   group.engine,
+	}
+}
+```
+创建新的 Group  时候,也会继承旧的 Group, 原先已经设置的 middleware. gin 框架不支持移除中间件的操作，所以在上层设置的中间件的时候一定要确保是公共 common 的
 
 相似的路由捆绑在一块, 路由组写法, 可以做绑定相同中间件处理. 
 ```
