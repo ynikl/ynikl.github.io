@@ -88,8 +88,28 @@ Engine 包含 RouterGroup, RouterGroup 也会存储 Engine 的地址. 目的是�
 </div>
 </div><p>注册路由之前, 先将当前的 http 处理方法, 与当前中间件配置合并, 再添加到engine.</p>
 <h4 id="routergroup-1">RouterGroup</h4>
-<p><code>RouterGroup.Group</code>	创建一个新的 <code>RouterGroup</code> , 意味着已经添加的过的 middleware
-都需要重新进行添加, 因为是在注册路由的地址的时候, 中间件才会生效.</p>
+<p><code>RouterGroup.Group</code>	创建一个新的 <code>RouterGroup</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">group</span> <span class="o">*</span><span class="nx">RouterGroup</span><span class="p">)</span> <span class="nf">Group</span><span class="p">(</span><span class="nx">relativePath</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">handlers</span> <span class="o">...</span><span class="nx">HandlerFunc</span><span class="p">)</span> <span class="o">*</span><span class="nx">RouterGroup</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="o">&amp;</span><span class="nx">RouterGroup</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Handlers</span><span class="p">:</span> <span class="nx">group</span><span class="p">.</span><span class="nf">combineHandlers</span><span class="p">(</span><span class="nx">handlers</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">basePath</span><span class="p">:</span> <span class="nx">group</span><span class="p">.</span><span class="nf">calculateAbsolutePath</span><span class="p">(</span><span class="nx">relativePath</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">engine</span><span class="p">:</span>   <span class="nx">group</span><span class="p">.</span><span class="nx">engine</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>创建新的 Group  时候,也会继承旧的 Group, 原先已经设置的 middleware. gin 框架不支持移除中间件的操作，所以在上层设置的中间件的时候一定要确保是公共 common 的</p>
 <p>相似的路由捆绑在一块, 路由组写法, 可以做绑定相同中间件处理.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">

@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://ynikl.github.io/neo/</loc>
+    <lastmod>2023-01-05T20:12:10+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/neo/okr-2023/</loc>
+    <lastmod>2023-01-05T20:12:10+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/</loc>
+    <lastmod>2023-01-05T20:12:10+08:00</lastmod>
+  </url><url>
     <loc>https://ynikl.github.io/notes/202301/</loc>
     <lastmod>2023-01-05T14:04:07+08:00</lastmod>
   </url><url>
@@ -12,9 +21,6 @@
     <lastmod>2023-01-05T14:04:07+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/words/</loc>
-    <lastmod>2023-01-05T14:04:07+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/</loc>
     <lastmod>2023-01-05T14:04:07+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/blog/</loc>
@@ -79,6 +85,9 @@
   </url><url>
     <loc>https://ynikl.github.io/books/asking-the-right-questions/</loc>
     <lastmod>2022-11-17T22:53:21+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/neo/life/</loc>
+    <lastmod>2022-11-13T07:09:37+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/notes/202211/</loc>
     <lastmod>2022-11-09T14:04:07+08:00</lastmod>
@@ -318,9 +327,6 @@
     <lastmod>2022-04-02T09:58:23+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/neo/okr-2022/</loc>
-    <lastmod>2022-04-01T20:09:37+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/neo/</loc>
     <lastmod>2022-04-01T20:09:37+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/blog/golang-cmd/</loc>
