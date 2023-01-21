@@ -20,10 +20,34 @@
       <pubDate>Thu, 05 Jan 2023 20:12:10 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/neo/okr-2023/</guid>
-      <description>February O: 加深 Golang 技术
+      <description>2023 OKR 在生活上, 塑造更加坚毅的内心, 培养文艺气质, 输出更多文字和照片. 在工作上, 开始打造自己的技术壁垒.
+深化打造技术护城河
+音视频处理入门 精通 Golang 编程语言 争取到一次涨薪 扩展自己知识认知, 培养自己一个探索的勇气.
+每个月完成 4 本书籍阅读. 安排两场旅游, 3 篇文章输出. 35 cm 的臂维, 肚子没有赘肉 走出自己的圈子, 认识更多的朋友
+完成十次开心的聚会 认识20位异性朋友 February O: 加深 Golang 技术
 golang 100 Mistake go gorm 学习 go context go 泛型 O: 算法与数据结构入门
 算法数据结构资料汇总, 以及学习计划安排 算法4 完成5章精读 </description>
-      <content:encoded><![CDATA[<h1 id="february">February</h1>
+      <content:encoded><![CDATA[<h1 id="2023-okr">2023 OKR</h1>
+<p>在生活上, 塑造更加坚毅的内心, 培养文艺气质, 输出更多文字和照片.
+在工作上, 开始打造自己的技术壁垒.</p>
+<p>深化打造技术护城河</p>
+<ul>
+<li><input disabled="" type="checkbox"> 音视频处理入门</li>
+<li><input disabled="" type="checkbox"> 精通 Golang 编程语言</li>
+<li><input disabled="" type="checkbox"> 争取到一次涨薪</li>
+</ul>
+<p>扩展自己知识认知, 培养自己一个探索的勇气.</p>
+<ul>
+<li><input disabled="" type="checkbox"> 每个月完成 4 本书籍阅读.</li>
+<li><input disabled="" type="checkbox"> 安排两场旅游, 3 篇文章输出.</li>
+<li><input disabled="" type="checkbox"> 35 cm 的臂维, 肚子没有赘肉</li>
+</ul>
+<p>走出自己的圈子, 认识更多的朋友</p>
+<ul>
+<li><input disabled="" type="checkbox"> 完成十次开心的聚会</li>
+<li><input disabled="" type="checkbox"> 认识20位异性朋友</li>
+</ul>
+<h1 id="february">February</h1>
 <p>O: 加深 Golang 技术</p>
 <ul>
 <li><input disabled="" type="checkbox"> golang 100 Mistake</li>
@@ -7741,6 +7765,16 @@ go get 管理当前module依赖
 在文件夹下方添加<code>index.md</code>会被识别成文章.</p>
 <p><strong>千万不要在默认的content目录下方添加<code>index.md</code></strong></p>
 ]]></content:encoded>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://ynikl.github.io/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/readme/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
   </channel>
