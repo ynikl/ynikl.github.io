@@ -24,9 +24,12 @@
 深化打造技术护城河
 音视频处理入门 精通 Golang 语言 扩展自己知识认知, 提升自我象形.
 每个月 4-5 本书籍的阅读量. 35 cm 的臂维, 肚子没有赘肉. 迈出自己的圈子
-完成20次开心的朋友聚会. 达成两场旅游. February O: 加深 Golang 技术
-golang 100 Mistake go gorm 学习 go context go 泛型 O: 算法与数据结构入门
-算法数据结构资料汇总, 以及学习计划安排 算法4 完成5章精读 </description>
+完成20次开心的朋友聚会. 达成两场旅游. January O: 加深 Golang 技术
+golang 100 Mistake go gorm 学习 go gin 学习 go context go 泛型 O: 算法与数据结构入门
+算法数据结构资料汇总, 以及学习计划安排 算法4 完成5章精读 中间调整目标转向学习视频的编码技术
+February O: 加深 Golang 技术
+golang 100 Mistake go 单元测试技能 O: 视频技能入门
+业务上完成视频产品接入 一本相关技术书籍完成 O: 算法与数据结构入门</description>
       <content:encoded><![CDATA[<h1 id="2023-okr">2023 OKR</h1>
 <p>在生活上, 让时间过得更加有计划性, 持续增加自己的知识储备.
 在精神上, 塑造更加坚毅的内心,  输出更多的自我表达.
@@ -47,18 +50,35 @@ golang 100 Mistake go gorm 学习 go context go 泛型 O: 算法与数据结构�
 <li><input disabled="" type="checkbox"> 完成20次开心的朋友聚会.</li>
 <li><input disabled="" type="checkbox"> 达成两场旅游.</li>
 </ul>
-<h1 id="february">February</h1>
+<h2 id="january">January</h2>
 <p>O: 加深 Golang 技术</p>
 <ul>
 <li><input disabled="" type="checkbox"> golang 100 Mistake</li>
-<li><input disabled="" type="checkbox"> go gorm 学习</li>
+<li><input checked="" disabled="" type="checkbox"> go gorm 学习</li>
+<li><input checked="" disabled="" type="checkbox"> go gin 学习</li>
 <li><input disabled="" type="checkbox"> go context</li>
-<li><input disabled="" type="checkbox"> go 泛型</li>
+<li><input checked="" disabled="" type="checkbox"> go 泛型</li>
 </ul>
 <p>O: 算法与数据结构入门</p>
 <ul>
 <li><input disabled="" type="checkbox"> 算法数据结构资料汇总, 以及学习计划安排</li>
 <li><input disabled="" type="checkbox"> 算法4 完成5章精读</li>
+</ul>
+<p>中间调整目标转向学习视频的编码技术</p>
+<h2 id="february">February</h2>
+<p>O: 加深 Golang 技术</p>
+<ul>
+<li><input disabled="" type="checkbox"> golang 100 Mistake</li>
+<li><input disabled="" type="checkbox"> go 单元测试技能</li>
+</ul>
+<p>O: 视频技能入门</p>
+<ul>
+<li><input disabled="" type="checkbox"> 业务上完成视频产品接入</li>
+<li><input disabled="" type="checkbox"> 一本相关技术书籍完成</li>
+</ul>
+<p>O: 算法与数据结构入门</p>
+<ul>
+<li><input disabled="" type="checkbox"> 算法数据结构资料汇总, 以及学习计划安排</li>
 </ul>
 ]]></content:encoded>
     </item>
