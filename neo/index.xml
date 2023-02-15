@@ -75,12 +75,17 @@ golang 100 Mistake go 单元测试技能 O: 视频技能入门</description>
 <li><input disabled="" type="checkbox"> go 单元测试技能</li>
 </ul>
 <p>O: 视频技能入门</p>
-<p><del>- [ ] 业务上完成视频产品接入</del>
-<del>- [ ] 一本相关技术书籍完成</del></p>
-<p>业务发展调整, 功能承接失败, 但是以视频开发方向暂时不变</p>
+<p><del>业务上完成视频产品接入</del></p>
+<p><del>一本相关技术书籍完成</del></p>
+<p>Adjust1: 业务发展调整, 功能承接失败, 但是以视频开发方向暂时不变</p>
 <ul>
 <li><input disabled="" type="checkbox"> C++ Prime Plus 1/2</li>
 <li><input disabled="" type="checkbox"> 大数据相关基础知识入门</li>
+</ul>
+<p>Adjust2: AI 排班问题暴露, 需要加强关注</p>
+<ul>
+<li><input disabled="" type="checkbox"> AI 排班代码完成通读</li>
+<li><input disabled="" type="checkbox"> 人工智能入门</li>
 </ul>
 <p>O: 算法与数据结构入门</p>
 <ul>
