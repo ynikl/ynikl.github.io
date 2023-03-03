@@ -208,7 +208,7 @@ mutexWaiterShift = 3 统计的等待在Mutex.state字段等待数量。（前3�
 </span></span><span class=line><span class=cl>		}
 </span></span><span class=line><span class=cl>	}
 </span></span><span class=line><span class=cl>}
-</span></span></code></pre></td></tr></table></div></div><p>是否可以进入自旋状态代码解释<a href="https://cs.opensource.google/go/go/+/master:src/runtime/proc.go;l=6175?q=sync_runtime_canSpin&ss=go%2Fgo">源码地址</a></p><h3 id=unlock>Unlock<a hidden class=anchor aria-hidden=true href=#unlock>#</a></h3><p>第一步直接减去 mutexLocked 标志位常量，如果 new 等于0结束——简单（锁一次开一次，easy）。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span></code></pre></td></tr></table></div></div><p>是否可以进入自旋状态代码解释<a href="https://cs.opensource.google/go/go/+/master:src/runtime/proc.go;l=6175?q=sync_runtime_canSpin&amp;ss=go%2Fgo">源码地址</a></p><h3 id=unlock>Unlock<a hidden class=anchor aria-hidden=true href=#unlock>#</a></h3><p>第一步直接减去 mutexLocked 标志位常量，如果 new 等于0结束——简单（锁一次开一次，easy）。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>new := atomic.AddInt32(&amp;m.state, -mutexLocked)
 </span></span></code></pre></td></tr></table></div></div><p>如果 state 还不等于0（有协程等待，竞争锁）, 进入 unlockSlow</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2

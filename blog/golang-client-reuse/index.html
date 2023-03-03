@@ -49,7 +49,7 @@ http.Client 的结构体
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>type RoundTripper interface {
 </span></span><span class=line><span class=cl>	RoundTrip(*Request) (*Response, error)
 </span></span><span class=line><span class=cl>}
-</span></span></code></pre></td></tr></table></div></div><p>中定义了 <code>RoundTrip</code> 方法, 提供客户端请求的时候调用.</p><p><a href="https://cs.opensource.google/go/go/+/master:src/net/http/transport.go;drc=0b2ad1d815ea8967c49b32d848b2992d0c588d88;bpv=1;bpt=1;l=512?q=%2Fnet%2Fhttp%2Ftransport.go&ss=go%2Fgo">调用地址</a></p><p><a href="https://cs.opensource.google/go/go/+/master:src/net/http/transport.go;drc=0b2ad1d815ea8967c49b32d848b2992d0c588d88;l=95?q=%2Fnet%2Fhttp%2Ftransport.go&ss=go%2Fgo">查看一下 Golang Transport 的基本实现</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></span></code></pre></td></tr></table></div></div><p>中定义了 <code>RoundTrip</code> 方法, 提供客户端请求的时候调用.</p><p><a href="https://cs.opensource.google/go/go/+/master:src/net/http/transport.go;drc=0b2ad1d815ea8967c49b32d848b2992d0c588d88;bpv=1;bpt=1;l=512?q=%2Fnet%2Fhttp%2Ftransport.go&amp;ss=go%2Fgo">调用地址</a></p><p><a href="https://cs.opensource.google/go/go/+/master:src/net/http/transport.go;drc=0b2ad1d815ea8967c49b32d848b2992d0c588d88;l=95?q=%2Fnet%2Fhttp%2Ftransport.go&amp;ss=go%2Fgo">查看一下 Golang Transport 的基本实现</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4

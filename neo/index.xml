@@ -29,6 +29,7 @@ golang 100 Mistake go gorm 学习 go gin 学习 go context go 泛型 O: 算法�
 算法数据结构资料汇总, 以及学习计划安排 算法4 完成5章精读 总结:
 中间调整目标转向学习视频的编码技术, 下次配合更新OKR目标
 聚会次数完成 +=2
+阅读 5
 February O: 加深 Golang 技术
 golang 100 Mistake go 单元测试技能 O: 视频技能入门</description>
       <content:encoded><![CDATA[<h1 id="2023-okr">2023 OKR</h1>
@@ -68,6 +69,7 @@ golang 100 Mistake go 单元测试技能 O: 视频技能入门</description>
 <p>总结:</p>
 <p>中间调整目标转向学习视频的编码技术, 下次配合更新OKR目标</p>
 <p>聚会次数完成 +=2</p>
+<p>阅读 5</p>
 <h2 id="february">February</h2>
 <p>O: 加深 Golang 技术</p>
 <ul>
@@ -83,13 +85,30 @@ golang 100 Mistake go 单元测试技能 O: 视频技能入门</description>
 <li><input disabled="" type="checkbox"> 大数据相关基础知识入门</li>
 </ul>
 <p>Adjust2: AI 排班问题暴露, 需要加强关注</p>
+<p>~~ AI 排班代码完成通读 ~~</p>
 <ul>
-<li><input disabled="" type="checkbox"> AI 排班代码完成通读</li>
 <li><input disabled="" type="checkbox"> 人工智能入门</li>
 </ul>
 <p>O: 算法与数据结构入门</p>
 <ul>
 <li><input disabled="" type="checkbox"> 算法数据结构资料汇总, 以及学习计划安排</li>
+</ul>
+<h2 id="march">March</h2>
+<p>反思原先各有OKR制定目标比较分散, 任务较多不贴合实际. 缩减一下任务量, 本月以收缩 golang 相关技能为主</p>
+<p>O: 加深 Golang 技术</p>
+<ul>
+<li><input disabled="" type="checkbox"> Golang 100 Mistake</li>
+<li><input disabled="" type="checkbox"> Go 单元测试技能</li>
+<li><input disabled="" type="checkbox"> gorm 学习</li>
+<li><input disabled="" type="checkbox"> golang 100 Mistake interface 设计思路</li>
+</ul>
+<p>O: 拓展技能</p>
+<ul>
+<li><input disabled="" type="checkbox"> 大数据相关基础知识入门</li>
+</ul>
+<p>O: 算法与数据结构入门</p>
+<ul>
+<li><input disabled="" type="checkbox"> 算法数据结构资料汇总, 制定学习计划</li>
 </ul>
 ]]></content:encoded>
     </item>
