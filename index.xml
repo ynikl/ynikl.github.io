@@ -13,7 +13,112 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Thu, 09 Feb 2023 09:02:40 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 Mar 2023 08:58:05 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2023 03 12, 周记</title>
+      <link>https://ynikl.github.io/weekly/2023-03-12/</link>
+      <pubDate>Wed, 15 Mar 2023 08:58:05 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/weekly/2023-03-12/</guid>
+      <description>0307 mysql 创建 utf8md4 数据库
+1 CREATE DATABASE `test` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ; mysql utf8mb4 是 utf8的超集，兼容4字节的 unicode (Emoji)
+https://www.jianshu.com/p/2b8629af8000
+mysql 5.7.32-log 在 varchar(255) 创建索引失败，max key length is 767 bytes. 767字节/4字节每字符 = 191 字符。 须修改为 varchar(191) https://help.aliyun.com/document_detail/41707.html
+查看已经合并的分支
+1 2 3 4 git branch --merged #删除 git branch --merged | egrep -v &amp;#34;(^\*|master|dev|stage)&amp;#34; | xargs git branch -d vifm : za 显示隐藏文件
+1 2 3 za: Toggle showing hidden files zo: Show hidden files zm: Hide hidden files https://codeyarns.</description>
+      <content:encoded><![CDATA[<h2 id="0307">0307</h2>
+<p>mysql 创建 utf8md4 数据库</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="o">`</span><span class="n">test</span><span class="o">`</span><span class="w">  </span><span class="k">DEFAULT</span><span class="w"> </span><span class="nb">CHARACTER</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">utf8mb4</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">utf8mb4_unicode_ci</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>mysql utf8mb4 是 utf8的超集，兼容4字节的 unicode (Emoji)</p>
+<p><a href="https://www.jianshu.com/p/2b8629af8000">https://www.jianshu.com/p/2b8629af8000</a></p>
+<p>mysql 5.7.32-log 在 <code>varchar(255)</code> 创建索引失败，<code>max key length is 767 bytes.</code> 767字节/4字节每字符 = 191 字符。 须修改为 <code>varchar(191)</code>
+<a href="https://help.aliyun.com/document_detail/41707.html">https://help.aliyun.com/document_detail/41707.html</a></p>
+<p>查看已经合并的分支</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git branch --merged
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#删除
+</span></span><span class="line"><span class="cl">git branch --merged | egrep -v &#34;(^\*|master|dev|stage)&#34; | xargs git branch -d
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>vifm : za 显示隐藏文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">za: Toggle showing hidden files
+</span></span><span class="line"><span class="cl">zo: Show hidden files
+</span></span><span class="line"><span class="cl">zm: Hide hidden files
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="https://codeyarns.com/tech/2014-09-10-how-to-show-hidden-files-in-vifm.html#gsc.tab=0">https://codeyarns.com/tech/2014-09-10-how-to-show-hidden-files-in-vifm.html#gsc.tab=0</a></p>
+<p>Unicodde 是字符集 &ndash; 支持的所有字符的合集
+Utf-8 是编码规则，代表 8 位一组表示 Unicode 字符的格式，使用 1 - 4 个字节来表示字符。</p>
+<blockquote>
+<p>We should understand the distinction between a charset and an encoding:</p>
+<ul>
+<li>A charset, as the name suggests, is a set of characters. For example, the Unicode charset contains 2^21 characters.</li>
+<li>An encoding is the translation of a character’s list in binary. For example, UTF- 8 is an encoding standard capable of encoding all the Unicode characters in a variable number of bytes (from 1 to 4 bytes).</li>
+</ul>
+</blockquote>
+<p>ChatGPT 是OpenAI 研发的一种生成式聊天机器人，可以理解人类的问题并提供答案， 对搜索引擎业务有着巨大的挑战
+<a href="https://youtu.be/zNRvAMJOfAI">小Lin说 ChatGPT</a></p>
+<p>感受太阳发热，其实是电磁波碰撞到物体产生的热量。 太阳如果是核聚变的化，太阳表面温度不好解释。 等离子体宇宙论，解释太阳拥有的日冕就是类似与闪电之类的东西，据说NASA太阳表面可能是27度。
+<a href="https://youtu.be/Ep803Xiso5E">老高说 太阳</a></p>
+<h2 id="0309">0309</h2>
+<p>查看数据库表的大小</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">use</span><span class="w"> </span><span class="n">information_schema</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">concat</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">data_length</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span><span class="p">),</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;MB&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tables</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="o">=</span><span class="s1">&#39;database_name&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">table_name</span><span class="o">=</span><span class="s1">&#39;table_name&#39;</span><span class="p">;</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="https://www.51cto.com/article/641931.html">https://www.51cto.com/article/641931.html</a></p>
+<p>varchar(50)
+其中 50 在Mysql 5.1 版本之后代表的是字符长度， 以前代表的是字节长度</p>
+<p>使用 varchat(50) 和直接使用 varchar(255) 存储的区别
+空间占用基本一致</p>
+<ol>
+<li>一般情况下255和50占用的空间大小是一致的。但如果是一utf8 可能会255超过255bytes 会需要2个bytes 标记变成
+性能影响越小越优</li>
+<li>255 会消耗更大的查询中间表的空间大小。</li>
+<li>索引长度的大小的限制， InnoDB 限制为 3072bytes， 255长度无法建立索引</li>
+<li>过大的字符长度可能会脱离数据页存储。
+<a href="https://dba.stackexchange.com/a/76470">https://dba.stackexchange.com/a/76470</a></li>
+</ol>
+<h2 id="反思总结">反思总结</h2>
+<p>逃避</p>
+<p>当项目组的整个团队配合出问题的时候 &ndash; 工作开始不顺心, 没有想着怎么去解决, 团队的
+矛盾, 而是在想着换工作</p>
+<p>傲慢</p>
+<p>喝酒敬酒的时候就很随意</p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>你为什么而工作</title>
       <link>https://ynikl.github.io/books/why-we-work/</link>
