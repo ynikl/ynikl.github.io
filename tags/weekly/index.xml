@@ -13,7 +13,51 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Wed, 15 Mar 2023 08:58:05 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/weekly/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Mar 2023 08:35:32 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/weekly/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2023 03 19</title>
+      <link>https://ynikl.github.io/weekly/2023-03-19/</link>
+      <pubDate>Mon, 20 Mar 2023 08:35:32 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/weekly/2023-03-19/</guid>
+      <description>0314 wrap error
+Adding additional context to an error Marking an error as a specific error fmt.Errorf(&amp;quot;%w&amp;quot;, err)
+1 bar error -&amp;gt; Wrap error -&amp;gt; fmt.wrapError { bar error } 原先被包裹的 err, 仍保持可用状态 fmt.Error(&amp;quot;%v&amp;quot;,err)变成 string, 原 Err 已经无法追溯
+spew 将变量数据格式化输出
+可以批量传入参数spew.Sdump(var1, var2, var3) 可以通过 spew.NewDefaultConfig 独立一份特定参数的输出实例 也可以通过 spew.Config 修改包变量, 将配置覆盖整个包 As, Is
+As 提供具体错误类型匹配, 对应自定义的某种错误类型结构体. 仅会对比错误错误链的第一个自定义错误类型是否匹配 Is 提供具体的某一个实例错误类型匹配. 会递归遍历是否匹配 </description>
+      <content:encoded><![CDATA[<h2 id="0314">0314</h2>
+<p>wrap error</p>
+<ul>
+<li>Adding additional context to an error</li>
+<li>Marking an error as a specific error</li>
+</ul>
+<p><code>fmt.Errorf(&quot;%w&quot;, err)</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">bar error -&gt; Wrap error -&gt; fmt.wrapError { bar error }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>原先被包裹的 err, 仍保持可用状态
+<code>fmt.Error(&quot;%v&quot;,err)</code>变成 string, 原 Err 已经无法追溯</p>
+<p><a href="https://github.com/davecgh/go-spew">spew</a>
+将变量数据格式化输出</p>
+<ul>
+<li>可以批量传入参数<code>spew.Sdump(var1, var2, var3)</code></li>
+<li>可以通过 <code>spew.NewDefaultConfig</code> 独立一份特定参数的输出实例</li>
+<li>也可以通过 <code>spew.Config</code> 修改包变量, 将配置覆盖整个包</li>
+</ul>
+<p>As, Is</p>
+<ul>
+<li>As 提供具体错误类型匹配, 对应自定义的某种错误类型结构体. 仅会对比错误错误链的第一个自定义错误类型是否匹配</li>
+<li>Is 提供具体的某一个实例错误类型匹配. 会递归遍历是否匹配</li>
+</ul>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>2023 03 12, 周记</title>
       <link>https://ynikl.github.io/weekly/2023-03-12/</link>
