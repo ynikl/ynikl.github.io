@@ -13,7 +13,147 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Mon, 20 Mar 2023 08:35:32 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/weekly/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 06 Apr 2023 08:45:08 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/weekly/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2023 04 02</title>
+      <link>https://ynikl.github.io/weekly/2023-04-02/</link>
+      <pubDate>Thu, 06 Apr 2023 08:45:08 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/weekly/2023-04-02/</guid>
+      <description>SQL 对某字段去重， 且取最新的一条数据 在SQL中，可以使用子查询和MAX函数来对某字段去重，并取最新的一条数据。以下是示例代码：
+1 2 3 4 5 6 7 SELECT t1.* FROM table_name t1 INNER JOIN ( SELECT MAX(column1) AS max_column1 FROM table_name GROUP BY column2 ) t2 ON t1.column1 = t2.max_column1; 在上面的代码中，首先使用子查询和MAX函数，取出每个column2字段的最大值，然后将结果与原表进行INNER JOIN操作，得到最新的一条数据。 需要注意的是，如果需要根据多个字段进行去重和排序，可以在子查询中指定多个字段，并在INNER JOIN操作中使用多个字段进行连接。如果需要查询的字段比较多，可以使用通配符*来代替所有字段。 总之，在SQL中可以使用子查询和MAX函数来对某字段去重，并取最新的一条数据。需要指定需要查询的表名、字段名和排序方式，以及使用INNER JOIN操作进行连接。
+查看是否用重复数据 1 SELECT name, COUNT(*) c FROM table GROUP BY name HAVING c &amp;gt; 1; mysql inner, left, right, full join https://stackoverflow.com/a/28719292
+t+1 场景是什么意思 t+1场景通常指的是预测未来某个时间点的情况，即在当前时刻t，预测下一个时间点t+1的情况。这个概念在很多领域都有应用，例如金融、经济、物流、天气预报等等。 在金融领域，t+1场景通常指的是预测未来某个时间点的股票价格、汇率、利率等等。例如，如果当前时刻是2021年1月1日，那么预测2021年1月2日某个股票的价格就是一个t+1场景。 在物流领域，t+1场景通常指的是预测未来某个时间点的货物运输情况，例如预测某个包裹在下一个时间点是否能够按时到达目的地。 在人工智能和机器学习领域，t+1场景通常指的是使用历史数据来预测未来某个时间点的情况，例如预测明天的气温、下一个小时的交通流量等等。这个过程通常需要使用时间序列分析、回归分析等技术来处理。 总之，t+1场景是一个非常常见的概念，可以用于预测未来某个时间点的情况，帮助人们做出更好的决策。
+湖仓能力 “湖仓能力”通常指的是企业在数据仓库（Data Warehouse）方面的能力，即构建和管理大规模数据仓库的能力。数据仓库是一个用于存储和管理企业数据的系统，它可以集成来自不同数据源的数据，并对这些数据进行处理、分析和挖掘，以帮助企业做出更好的决策。 “湖仓”是数据仓库的一种类型，它是近年来兴起的一种新型数据仓库，与传统的关系型数据仓库（RDBMS）不同，湖仓采用了分布式、非关系型的架构，可以处理更加海量和复杂的数据，例如半结构化数据、文本数据、图像数据等等。湖仓通常采用了Hadoop、Spark、Hive、Presto等开源技术来构建和管理。 因此，“湖仓能力”通常指企业在构建和管理大规模、分布式、非关系型的数据仓库方面的能力，包括数据的采集、清洗、存储、处理、分析、挖掘等等。对于现代企业来说，湖仓能力已经成为了一项非常重要的核心竞争力，可以帮助企业更好地理解和应对市场变化，提高决策的准确性和效率。</description>
+      <content:encoded><![CDATA[<h3 id="sql-对某字段去重-且取最新的一条数据">SQL 对某字段去重， 且取最新的一条数据</h3>
+<p>在SQL中，可以使用子查询和MAX函数来对某字段去重，并取最新的一条数据。以下是示例代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SELECT t1.*
+</span></span><span class="line"><span class="cl">FROM table_name t1
+</span></span><span class="line"><span class="cl">INNER JOIN (
+</span></span><span class="line"><span class="cl">    SELECT MAX(column1) AS max_column1
+</span></span><span class="line"><span class="cl">    FROM table_name
+</span></span><span class="line"><span class="cl">    GROUP BY column2
+</span></span><span class="line"><span class="cl">) t2 ON t1.column1 = t2.max_column1;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在上面的代码中，首先使用子查询和MAX函数，取出每个column2字段的最大值，然后将结果与原表进行INNER JOIN操作，得到最新的一条数据。
+需要注意的是，如果需要根据多个字段进行去重和排序，可以在子查询中指定多个字段，并在INNER JOIN操作中使用多个字段进行连接。如果需要查询的字段比较多，可以使用通配符*来代替所有字段。
+总之，在SQL中可以使用子查询和MAX函数来对某字段去重，并取最新的一条数据。需要指定需要查询的表名、字段名和排序方式，以及使用INNER JOIN操作进行连接。</p>
+<h3 id="查看是否用重复数据">查看是否用重复数据</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SELECT name, COUNT(*) c FROM table GROUP BY name HAVING c &gt; 1;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="mysql-inner-left-right-full-join">mysql inner, left, right, full join</h3>
+<p><a href="https://stackoverflow.com/a/28719292">https://stackoverflow.com/a/28719292</a></p>
+<h3 id="t1-场景是什么意思">t+1 场景是什么意思</h3>
+<p><code>t+1</code>场景通常指的是预测未来某个时间点的情况，即在当前时刻<code>t</code>，预测下一个时间点<code>t+1</code>的情况。这个概念在很多领域都有应用，例如金融、经济、物流、天气预报等等。
+在金融领域，<code>t+1</code>场景通常指的是预测未来某个时间点的股票价格、汇率、利率等等。例如，如果当前时刻是2021年1月1日，那么预测2021年1月2日某个股票的价格就是一个<code>t+1</code>场景。
+在物流领域，<code>t+1</code>场景通常指的是预测未来某个时间点的货物运输情况，例如预测某个包裹在下一个时间点是否能够按时到达目的地。
+在人工智能和机器学习领域，<code>t+1</code>场景通常指的是使用历史数据来预测未来某个时间点的情况，例如预测明天的气温、下一个小时的交通流量等等。这个过程通常需要使用时间序列分析、回归分析等技术来处理。
+总之，<code>t+1</code>场景是一个非常常见的概念，可以用于预测未来某个时间点的情况，帮助人们做出更好的决策。</p>
+<h3 id="湖仓能力">湖仓能力</h3>
+<p>“湖仓能力”通常指的是企业在数据仓库（Data Warehouse）方面的能力，即构建和管理大规模数据仓库的能力。数据仓库是一个用于存储和管理企业数据的系统，它可以集成来自不同数据源的数据，并对这些数据进行处理、分析和挖掘，以帮助企业做出更好的决策。
+“湖仓”是数据仓库的一种类型，它是近年来兴起的一种新型数据仓库，与传统的关系型数据仓库（RDBMS）不同，湖仓采用了分布式、非关系型的架构，可以处理更加海量和复杂的数据，例如半结构化数据、文本数据、图像数据等等。湖仓通常采用了Hadoop、Spark、Hive、Presto等开源技术来构建和管理。
+因此，“湖仓能力”通常指企业在构建和管理大规模、分布式、非关系型的数据仓库方面的能力，包括数据的采集、清洗、存储、处理、分析、挖掘等等。对于现代企业来说，湖仓能力已经成为了一项非常重要的核心竞争力，可以帮助企业更好地理解和应对市场变化，提高决策的准确性和效率。</p>
+<h3 id="jwt">JWT</h3>
+<p><code>header . payload . secret </code></p>
+<p>header 和 payload 都是可以使用 base64 进行解密, 获取其中的 json 信息, 是公开的.
+secret 是使用header中的 加密算法 对<code>header+payload+secret</code>进行计算, 验证jwt信息没有被修改过.</p>
+<p><a href="https://jwt.io/introduction">https://jwt.io/introduction</a></p>
+<h3 id="jwt-1">jwt</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">HMACSHA256(
+</span></span><span class="line"><span class="cl">  base64UrlEncode(header) + &#34;.&#34; +
+</span></span><span class="line"><span class="cl">  base64UrlEncode(payload),
+</span></span><span class="line"><span class="cl">  your-256-bit-secret
+</span></span><span class="line"><span class="cl">)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="replace-into">replace into</h3>
+<p>replace into 跟 insert 功能类似，不同点在于：replace into 首先尝试插入数据到表中， 1. 如果发现表中已经有此行数据（根据主键或者唯一索引判断）则先删除此行数据，然后插入新的数据。 2. 否则，直接插入新数据。
+要注意的是：插入数据的表必须有主键或者是唯一索引！否则的话，replace into 会直接插入数据，这将导致表中出现重复的数据。</p>
+<h3 id="golang-避免多次打印同一个错误">golang 避免多次打印同一个错误</h3>
+<blockquote>
+<p>打印错误也是一种错误的处理方式. 所有, 要么选择打印错误, 要么选择向上抛出错误.
+不要两者同时.</p>
+</blockquote>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>2023 03 26</title>
+      <link>https://ynikl.github.io/weekly/2023-03-26/</link>
+      <pubDate>Thu, 06 Apr 2023 08:41:54 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/weekly/2023-03-26/</guid>
+      <description>golang 泛型: type parameters interface 定义一系列类型 type constraint ~string [s [] E, E any] type inferene 官方泛型介绍
+判断时间是否重叠 startA &amp;lt; endB and endA &amp;gt; startB stackoverflow
+python -m python -m 是 Python 命令行工具中的一个选项，用于执行 Python 模块
+pypi 名称 Python Package Index , python 的包的目录
+拥有多个小项目对公司成本的影响 扎克伯格 的裁员信
+&amp;ldquo;人们很容易认为，只要一个项目产生的价值超过其直接成本，它就是正收益的。 但是，任何项目都需要一个主管，我们要么提拔一个工程师，要么从另一个项目挑选一个人，让其负责该项目。这两种情况都分散了人才，并且创造出了更多的管理层。 如果项目继续发展，整个团队也许分散到多个楼层或多个办公室，这让沟通变得更加困难。 我们还需要为项目配备更多的笔记本电脑和其他资源，这些更多的工程师还会导致雇佣更多的 IT 人员、HR 人员和招聘人员。 随着团队越来越大，效率不断降低，反应变迟钝了。它也许会与另一个团队的工作重叠，或者本应使用现有基础架构时却构建了一个定制系统。 总之，那些低优先级项目对公司重要性不大，却带来复杂的间接成本，很容易低估它们。&amp;rdquo;
+AES Advanced Encryption Standard 当前最流行的对称加密
+wikipeida
+golang http 请求转化成 curl 可以方便地将 http.Request 转化成可直接输出成字符串的 curl 对象</description>
+      <content:encoded><![CDATA[<h3 id="golang-泛型">golang 泛型:</h3>
+<ol>
+<li>type parameters</li>
+<li>interface 定义一系列类型</li>
+<li><code>type constraint</code></li>
+<li>~string</li>
+<li><code>[s [] E, E any]</code></li>
+<li>type inferene</li>
+</ol>
+<p><a href="https://go.dev/blog/intro-generics">官方泛型介绍</a></p>
+<h3 id="判断时间是否重叠">判断时间是否重叠</h3>
+<p>startA &lt; endB and endA &gt; startB
+<a href="https://stackoverflow.com/a/325964">stackoverflow</a></p>
+<h3 id="python--m">python -m</h3>
+<p><code>python -m</code> 是 Python 命令行工具中的一个选项，用于执行 Python 模块</p>
+<p>pypi 名称 Python Package Index , python 的包的目录</p>
+<h3 id="拥有多个小项目对公司成本的影响">拥有多个小项目对公司成本的影响</h3>
+<p>扎克伯格 的裁员信</p>
+<blockquote>
+<p>&ldquo;人们很容易认为，只要一个项目产生的价值超过其直接成本，它就是正收益的。
+但是，任何项目都需要一个主管，我们要么提拔一个工程师，要么从另一个项目挑选一个人，让其负责该项目。这两种情况都分散了人才，并且创造出了更多的管理层。
+如果项目继续发展，整个团队也许分散到多个楼层或多个办公室，这让沟通变得更加困难。
+我们还需要为项目配备更多的笔记本电脑和其他资源，这些更多的工程师还会导致雇佣更多的 IT 人员、HR 人员和招聘人员。
+随着团队越来越大，效率不断降低，反应变迟钝了。它也许会与另一个团队的工作重叠，或者本应使用现有基础架构时却构建了一个定制系统。
+总之，那些低优先级项目对公司重要性不大，却带来复杂的间接成本，很容易低估它们。&rdquo;</p>
+</blockquote>
+<h3 id="aes">AES</h3>
+<p>Advanced Encryption Standard 当前最流行的对称加密</p>
+<p><a href="https://zh.wikipedia.org/wiki/%E9%AB%98%E7%BA%A7%E5%8A%A0%E5%AF%86%E6%A0%87%E5%87%86">wikipeida</a></p>
+<h3 id="golang-http-请求转化成-curl">golang http 请求转化成 curl</h3>
+<p>可以方便地将 http.Request 转化成可直接输出成字符串的 curl 对象</p>
+<p><a href="https://github.com/moul/http2curl">http2curl</a></p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>2023 03 19</title>
       <link>https://ynikl.github.io/weekly/2023-03-19/</link>
