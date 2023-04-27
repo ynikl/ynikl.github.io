@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://ynikl.github.io/tags/life/</loc>
+    <lastmod>2023-04-27T22:41:16+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/posts/</loc>
+    <lastmod>2023-04-27T22:41:16+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/tags/</loc>
+    <lastmod>2023-04-27T22:41:16+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/</loc>
+    <lastmod>2023-04-27T22:41:16+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/posts/my-renting-diary-20230425-moving-to-haicang/</loc>
+    <lastmod>2023-04-27T22:41:16+08:00</lastmod>
+  </url><url>
     <loc>https://ynikl.github.io/tags/books/</loc>
     <lastmod>2023-04-06T10:00:36+08:00</lastmod>
   </url><url>
@@ -11,13 +26,7 @@
     <loc>https://ynikl.github.io/tags/investment/</loc>
     <lastmod>2023-04-06T10:00:36+08:00</lastmod>
   </url><url>
-    <loc>https://ynikl.github.io/tags/</loc>
-    <lastmod>2023-04-06T10:00:36+08:00</lastmod>
-  </url><url>
     <loc>https://ynikl.github.io/books/the-simple-things-in-investment/</loc>
-    <lastmod>2023-04-06T10:00:36+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/</loc>
     <lastmod>2023-04-06T10:00:36+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/weekly/2023-04-02/</loc>
@@ -78,9 +87,6 @@
     <lastmod>2023-01-01T22:08:25+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/engineering/</loc>
-    <lastmod>2022-12-22T11:38:36+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/posts/</loc>
     <lastmod>2022-12-22T11:38:36+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/posts/my-engineeringladders/</loc>
