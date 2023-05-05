@@ -146,12 +146,14 @@ Mysql 把 null 视为小于任何一个非 null 值.
 
 ### 查看 Partition 是否开启
 
+```
 mysql> SELECT
     ->     PLUGIN_NAME as Name,
     ->     PLUGIN_VERSION as Version,
     ->     PLUGIN_STATUS as Status
     -> FROM INFORMATION_SCHEMA.PLUGINS
     -> WHERE PLUGIN_TYPE='STORAGE ENGINE';
+
 +--------------------+---------+--------+
 | [Name](Name)               | Version | Status |
 +--------------------+---------+--------+
@@ -167,7 +169,7 @@ mysql> SELECT
 | partition          | 1.0     | ACTIVE |
 +--------------------+---------+--------+
 10 rows in set (0.00 sec)
-
+```
 
 ``` sql
 select * from information_schema.PARTITIONS;
