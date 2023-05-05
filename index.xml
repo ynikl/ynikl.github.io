@@ -259,28 +259,57 @@
 <p>如果检索的字段或者索引, 没有在分区字段上, 每个分区都会有独立的索引, 就会导致每个分区都需要进行索引检索.
 导致IO的次数增长, 导致查询变慢. (1000万条数据, 10个分区话, 就会需要 10 * (2或3次)IO)</p>
 <h3 id="查看-partition-是否开启">查看 Partition 是否开启</h3>
-<p>mysql&gt; SELECT
--&gt;     PLUGIN_NAME as Name,
--&gt;     PLUGIN_VERSION as Version,
--&gt;     PLUGIN_STATUS as Status
--&gt; FROM INFORMATION_SCHEMA.PLUGINS
--&gt; WHERE PLUGIN_TYPE=&lsquo;STORAGE ENGINE&rsquo;;
-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;+&mdash;&mdash;&ndash;+
-| <a href="Name">Name</a>               | Version | Status |
-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;+&mdash;&mdash;&ndash;+
-| binlog             | 1.0     | ACTIVE |
-| CSV                | 1.0     | ACTIVE |
-| MEMORY             | 1.0     | ACTIVE |
-| MRG_MYISAM         | 1.0     | ACTIVE |
-| MyISAM             | 1.0     | ACTIVE |
-| PERFORMANCE_SCHEMA | 0.1     | ACTIVE |
-| BLACKHOLE          | 1.0     | ACTIVE |
-| ARCHIVE            | 3.0     | ACTIVE |
-| InnoDB             | 5.7     | ACTIVE |
-| partition          | 1.0     | ACTIVE |
-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;+&mdash;&mdash;&ndash;+
-10 rows in set (0.00 sec)</p>
 <div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mysql&gt; SELECT
+</span></span><span class="line"><span class="cl">    -&gt;     PLUGIN_NAME as Name,
+</span></span><span class="line"><span class="cl">    -&gt;     PLUGIN_VERSION as Version,
+</span></span><span class="line"><span class="cl">    -&gt;     PLUGIN_STATUS as Status
+</span></span><span class="line"><span class="cl">    -&gt; FROM INFORMATION_SCHEMA.PLUGINS
+</span></span><span class="line"><span class="cl">    -&gt; WHERE PLUGIN_TYPE=&#39;STORAGE ENGINE&#39;;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">+--------------------+---------+--------+
+</span></span><span class="line"><span class="cl">| [Name](Name)               | Version | Status |
+</span></span><span class="line"><span class="cl">+--------------------+---------+--------+
+</span></span><span class="line"><span class="cl">| binlog             | 1.0     | ACTIVE |
+</span></span><span class="line"><span class="cl">| CSV                | 1.0     | ACTIVE |
+</span></span><span class="line"><span class="cl">| MEMORY             | 1.0     | ACTIVE |
+</span></span><span class="line"><span class="cl">| MRG_MYISAM         | 1.0     | ACTIVE |
+</span></span><span class="line"><span class="cl">| MyISAM             | 1.0     | ACTIVE |
+</span></span><span class="line"><span class="cl">| PERFORMANCE_SCHEMA | 0.1     | ACTIVE |
+</span></span><span class="line"><span class="cl">| BLACKHOLE          | 1.0     | ACTIVE |
+</span></span><span class="line"><span class="cl">| ARCHIVE            | 3.0     | ACTIVE |
+</span></span><span class="line"><span class="cl">| InnoDB             | 5.7     | ACTIVE |
+</span></span><span class="line"><span class="cl">| partition          | 1.0     | ACTIVE |
+</span></span><span class="line"><span class="cl">+--------------------+---------+--------+
+</span></span><span class="line"><span class="cl">10 rows in set (0.00 sec)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
