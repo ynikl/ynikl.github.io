@@ -110,6 +110,23 @@ golang 100 Mistake go 单元测试技能 O: 视频技能入门</description>
 <ul>
 <li><input disabled="" type="checkbox"> 算法数据结构资料汇总, 制定学习计划</li>
 </ul>
+<h2 id="may">May</h2>
+<p>追求内心与工作的平衡</p>
+<p>O: 加深 Golang 技术</p>
+<ul>
+<li><input disabled="" type="checkbox"> Golang 100 Mistake</li>
+<li><input disabled="" type="checkbox"> Go 单元测试技能</li>
+<li><input disabled="" type="checkbox"> gorm 学习</li>
+<li><input disabled="" type="checkbox"> golang 100 Mistake interface 设计思路</li>
+</ul>
+<p>O: 走出去</p>
+<ul>
+<li><input disabled="" type="checkbox"> 骑行1000km</li>
+</ul>
+<p>O: 思考副业计划</p>
+<ul>
+<li><input disabled="" type="checkbox"> 列出3个初步发副业方案计划</li>
+</ul>
 ]]></content:encoded>
     </item>
     

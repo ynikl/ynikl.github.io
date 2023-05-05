@@ -13,7 +13,211 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Sun, 01 Jan 2023 22:08:25 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 27 Apr 2023 16:16:48 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mysql 分区</title>
+      <link>https://ynikl.github.io/blog/mysql-partition/</link>
+      <pubDate>Thu, 27 Apr 2023 16:16:48 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/blog/mysql-partition/</guid>
+      <description>可以解决什么问题 表太大, 无法全部放入内存中 表有热点数据, 其他均是历史数据 分区更容易维护, 批量删除,修复 可以跨多个硬件设备 减少单个索引互斥访问 独立备份和恢复分区 主要目的就是对表, 进行一个粗粒度的过滤;
+原理 将一个表在物理上分层多个更小的部分, 但是在逻辑上, 仍是只有一个表.
+执行 SQL 时, 可以通过合适的过滤今天, 过滤掉那边不需要查询的分区, 以此提高性能.
+支持类型为: 水平分区, 不支持垂直分区;
+分区的数据操作流程 先打开并锁住所有的分区底层表, 过滤掉多余的分区. 再进行操作.
+分区类型 range list hash key 创建分区时, 分区的列, 必须是主键或者唯一索引的一部分
+1 2 3 4 5 6 7 8 9 create table t1 ( col1 int null, col2 int null, col3 int null, unique key(col1, col2, col3) ) partitionby hash(col3) partitions 4; Range 创建分区</description>
+      <content:encoded><![CDATA[<h2 id="可以解决什么问题">可以解决什么问题</h2>
+<ul>
+<li>表太大, 无法全部放入内存中</li>
+<li>表有热点数据, 其他均是历史数据</li>
+<li>分区更容易维护, 批量删除,修复</li>
+<li>可以跨多个硬件设备</li>
+<li>减少单个索引互斥访问</li>
+<li>独立备份和恢复分区</li>
+</ul>
+<p>主要目的就是对表, 进行一个粗粒度的过滤;</p>
+<h2 id="原理">原理</h2>
+<p>将一个表在物理上分层多个更小的部分, 但是在逻辑上, 仍是只有一个表.</p>
+<p>执行 SQL 时, 可以通过合适的过滤今天, 过滤掉那边不需要查询的分区, 以此提高性能.</p>
+<p>支持类型为: 水平分区, 不支持垂直分区;</p>
+<h3 id="分区的数据操作流程">分区的数据操作流程</h3>
+<p>先打开并锁住所有的分区底层表, 过滤掉多余的分区. 再进行操作.</p>
+<h2 id="分区类型">分区类型</h2>
+<ul>
+<li>range</li>
+<li>list</li>
+<li>hash</li>
+<li>key</li>
+</ul>
+<p>创建分区时, 分区的列, 必须是主键或者唯一索引的一部分</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">create table t1 (
+</span></span><span class="line"><span class="cl">col1 int null,
+</span></span><span class="line"><span class="cl">col2 int null, 
+</span></span><span class="line"><span class="cl">col3 int null,
+</span></span><span class="line"><span class="cl">unique key(col1, col2, col3)
+</span></span><span class="line"><span class="cl">)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">partitionby hash(col3)
+</span></span><span class="line"><span class="cl">partitions 4;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="range">Range</h3>
+<p>创建分区</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">create table t (
+</span></span><span class="line"><span class="cl">id int) 
+</span></span><span class="line"><span class="cl">partition by range (id)(
+</span></span><span class="line"><span class="cl">partition p0 values less than (10),
+</span></span><span class="line"><span class="cl">partition p1 values less than (20));
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>增加 maxvalue 分区</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">alter table t add partition ( partition p2 value less than maxvalue);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>创建分区后, 表就会变成多个 ibd 文件组成, 查看详情:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">select * from information_schema.PARTITIONS where table_schema=databese() and 
+</span></span><span class="line"><span class="cl">table_name = &#39;t&#39;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="list">LIST</h3>
+<p>与 range 类似, 离散版</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">create table t (
+</span></span><span class="line"><span class="cl">a int, 
+</span></span><span class="line"><span class="cl">b int) engine=innodb
+</span></span><span class="line"><span class="cl">partition by list(b)(
+</span></span><span class="line"><span class="cl">partion p0 values in (1,3,5,7,9),
+</span></span><span class="line"><span class="cl">partion p1 values in (0,2,4,5,8)
+</span></span><span class="line"><span class="cl">);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="hash">HASH</h3>
+<p>HASH 分区的目的是将数据均分地分布到各个分区中, 保证分区的数据量都是一样的.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">create table t_hash(
+</span></span><span class="line"><span class="cl">a int,
+</span></span><span class="line"><span class="cl">b datetime) engine=innodb
+</span></span><span class="line"><span class="cl">partition by hash (YEAR(b))
+</span></span><span class="line"><span class="cl">partitions 4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>还支持 LINEAR HASH</p>
+<h3 id="key">KEY</h3>
+<p>与HASH类似, HASH 使用用户定义的函数分区, KEY 使用 MySQL 的函数进行区分</p>
+<h3 id="columns">COLUMNS</h3>
+<p>以上四种分区方法都是需要对整型进行操作.</p>
+<p>RANGE 和 LIST 的进化, columns 可以直接对非整型数据进行分区.</p>
+<h3 id="子分区">子分区</h3>
+<p>处理超大的表时, 可以在分区下方, 在继续划分子分区.</p>
+<h3 id="null-值">Null 值</h3>
+<p>Mysql 把 null 视为小于任何一个非 null 值.</p>
+<ul>
+<li>range 下所有的 null 都会被划分在最左分区.</li>
+<li>list 需要显示指明那个分区存放 null 值</li>
+<li>hash 和 key 都是等于0值. 最左分区.</li>
+</ul>
+<h3 id="性能">性能</h3>
+<p>数据场景分两种, OLTP, OLAP</p>
+<h4 id="olap">OLAP</h4>
+<p>在 OLAP 下, 需要频繁扫面大表, 可以通过对应搜索字段进行分区, 直接过滤掉无需扫描的分区.</p>
+<h4 id="oltp">OLTP</h4>
+<p>获取的数据量较小, 一般是通过索引获取几条记录. B+树的索引, 一般需要2-3次IO</p>
+<h3 id="分区列与索引列不匹配">分区列与索引列不匹配</h3>
+<p>如果检索的字段或者索引, 没有在分区字段上, 每个分区都会有独立的索引, 就会导致每个分区都需要进行索引检索.
+导致IO的次数增长, 导致查询变慢. (1000万条数据, 10个分区话, 就会需要 10 * (2或3次)IO)</p>
+<h3 id="查看-partition-是否开启">查看 Partition 是否开启</h3>
+<p>mysql&gt; SELECT
+-&gt;     PLUGIN_NAME as Name,
+-&gt;     PLUGIN_VERSION as Version,
+-&gt;     PLUGIN_STATUS as Status
+-&gt; FROM INFORMATION_SCHEMA.PLUGINS
+-&gt; WHERE PLUGIN_TYPE=&lsquo;STORAGE ENGINE&rsquo;;
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;+&mdash;&mdash;&ndash;+
+| <a href="Name">Name</a>               | Version | Status |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;+&mdash;&mdash;&ndash;+
+| binlog             | 1.0     | ACTIVE |
+| CSV                | 1.0     | ACTIVE |
+| MEMORY             | 1.0     | ACTIVE |
+| MRG_MYISAM         | 1.0     | ACTIVE |
+| MyISAM             | 1.0     | ACTIVE |
+| PERFORMANCE_SCHEMA | 0.1     | ACTIVE |
+| BLACKHOLE          | 1.0     | ACTIVE |
+| ARCHIVE            | 3.0     | ACTIVE |
+| InnoDB             | 5.7     | ACTIVE |
+| partition          | 1.0     | ACTIVE |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;+&mdash;&mdash;&ndash;+
+10 rows in set (0.00 sec)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">PARTITIONS</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="使用优化">使用优化</h2>
+<p>访问分区表的时候, 需要在 where 条件后面增加一个分区列, 让优化器过滤分区.</p>
+<p>Mysql 无法根据表达式进行过滤, 与索引一致, 只能通过值进行过滤.</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li>高性能的MySQL (第三版)</li>
+<li>MySQL 技术内幕: InnoDB存储引擎</li>
+</ul>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>Golang Gin</title>
       <link>https://ynikl.github.io/blog/golang-gin/</link>
