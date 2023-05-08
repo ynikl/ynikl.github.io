@@ -16,10 +16,10 @@
     <lastBuildDate>Wed, 08 Jun 2022 19:50:42 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/design-pattern/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>设计模式 -- 策略模式</title>
-      <link>https://ynikl.github.io/posts/strategy-pattern/</link>
+      <link>https://ynikl.github.io/blog/strategy-pattern/</link>
       <pubDate>Wed, 08 Jun 2022 19:50:42 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/strategy-pattern/</guid>
+      <guid>https://ynikl.github.io/blog/strategy-pattern/</guid>
       <description>场景 在有多种算法, 计算策略, 甚至业务流程以一种可相互替换的场景出现时. 就可以考虑该设计模式.
 比如: 地图导航的出行路线计算, 商品购买的捆绑促销方式等.
 分析 优点:

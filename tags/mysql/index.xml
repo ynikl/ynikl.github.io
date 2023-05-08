@@ -536,10 +536,10 @@ FROM_UNIXTIME 把 Unix 时间戳转化成日期 UNIX_TIMESTAMP 把日期转化�
     
     <item>
       <title>Mysql 不支持事务嵌套</title>
-      <link>https://ynikl.github.io/posts/mysql-nested-transactions/</link>
+      <link>https://ynikl.github.io/blog/mysql-nested-transactions/</link>
       <pubDate>Thu, 02 Jun 2022 16:16:58 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/mysql-nested-transactions/</guid>
+      <guid>https://ynikl.github.io/blog/mysql-nested-transactions/</guid>
       <description>mysql 在事务中再开启事务，前一个事务会被自动提交
 stackoverflow</description>
       <content:encoded><![CDATA[<p>mysql 在事务中再开启事务，前一个事务会被自动提交</p>

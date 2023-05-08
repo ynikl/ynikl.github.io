@@ -16,10 +16,10 @@
     <lastBuildDate>Sun, 10 Jul 2022 17:47:42 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/tool/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Make 的基本使用</title>
-      <link>https://ynikl.github.io/posts/makefile-basic-use/</link>
+      <link>https://ynikl.github.io/blog/makefile-basic-use/</link>
       <pubDate>Sun, 10 Jul 2022 17:47:42 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/makefile-basic-use/</guid>
+      <guid>https://ynikl.github.io/blog/makefile-basic-use/</guid>
       <description>想自己整理一篇基本的 make 指令用法, 突然发现 阮一峰大佬已经整理了一篇很完整的博客, 遂放弃.
 阮一峰文章地址
 如果不写 c, 主要理解就几个概念就可以使用了

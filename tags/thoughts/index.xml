@@ -182,10 +182,10 @@ In computer science, a linked list is a linear collection of data elemetns whose
     
     <item>
       <title>并发与并行的区别</title>
-      <link>https://ynikl.github.io/posts/concurrency-and-parallelism/</link>
+      <link>https://ynikl.github.io/blog/concurrency-and-parallelism/</link>
       <pubDate>Tue, 31 May 2022 22:36:34 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/concurrency-and-parallelism/</guid>
+      <guid>https://ynikl.github.io/blog/concurrency-and-parallelism/</guid>
       <description>举个例子，电脑的鼠标，键盘或者其他设备的驱动程序，他们是并发的，但不是并行的。他们也不需要并行去运行。
 并发是很多程序（形容运行任务，不是广义上的程序）的独立运行，并发是一种程序设计结构
 并行是一次性运行很多程序，并行是一种程序的运行现象，当成程序设计成并发的，他很容易就变成了并行， 但并行不一定是并发的目的。

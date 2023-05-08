@@ -78,10 +78,10 @@
     
     <item>
       <title>Linux 文件系统简单操作流程</title>
-      <link>https://ynikl.github.io/posts/linux-filesystem/</link>
+      <link>https://ynikl.github.io/blog/linux-filesystem/</link>
       <pubDate>Sat, 05 Nov 2022 13:52:16 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/linux-filesystem/</guid>
+      <guid>https://ynikl.github.io/blog/linux-filesystem/</guid>
       <description>文件系统原理 BIOS：启动主动运行的韧体，会认识第一个可启动的装置 MBR：第一个可启动装置的第一个磁区内的主要启动记录区块，内含启动管理程序； 启动管理程序(boot loader)：一支可读取核心文件来运行的软件； 相关命令 查看磁盘信息 1 fdisk -l macOS
 1 diskutil list 查看磁盘用量
 1 df -h 查看文件大小

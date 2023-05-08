@@ -16,10 +16,10 @@
     <lastBuildDate>Sun, 15 May 2022 16:33:13 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/hogo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo 如何使用已经发布文章做为相对URL</title>
-      <link>https://ynikl.github.io/posts/hugo_%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%BF%9E%E6%8E%A5/</link>
+      <link>https://ynikl.github.io/blog/hugo_%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%BF%9E%E6%8E%A5/</link>
       <pubDate>Sun, 15 May 2022 16:33:13 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/hugo_%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%BF%9E%E6%8E%A5/</guid>
+      <guid>https://ynikl.github.io/blog/hugo_%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%BF%9E%E6%8E%A5/</guid>
       <description>hugo 的默认内容都是在 content/ 路径下方
 在 markdown 文章中使用 { {&amp;lt; ref &amp;quot;/blog/my-first-post.md&amp;quot; &amp;gt;}}(两个左花括号中间是没有空格的), 会在编译时发生地址替换, 带/ 是表示从 content/ 目录下的下一个绝对路径
 1 [我的文章]({ {&amp;lt; ref &amp;#34;/blog/my-first-post.md&amp;#34; }}) 记得是已经发布的文章, 如果使用不存在, 或者是不参加发布的草稿文章就会发生报错

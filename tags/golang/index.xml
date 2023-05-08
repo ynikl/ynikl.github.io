@@ -1641,10 +1641,10 @@ go tool compile -N -l -S makemap.go go tool compile -N -l -S makemap.go go tool 
     
     <item>
       <title>Content Disposition</title>
-      <link>https://ynikl.github.io/posts/http-content-disposition/</link>
+      <link>https://ynikl.github.io/blog/http-content-disposition/</link>
       <pubDate>Sun, 04 Sep 2022 21:32:24 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/http-content-disposition/</guid>
+      <guid>https://ynikl.github.io/blog/http-content-disposition/</guid>
       <description>Content-Disposition 常见是用在 http 请求的 Response 的 Header 头部.
 告诉请求客户端(浏览器) 如何处理内容;
 Content-Disposition是在 MIME 标准定义的. http 中的用法只是其中的一小部分.
@@ -1823,10 +1823,10 @@ https://ynikl.github.io/blog/golang-memory-analyze-with-runtime/
     
     <item>
       <title>xorm 的 session 和 salve 的区别</title>
-      <link>https://ynikl.github.io/posts/xorm-slave-newsseion/</link>
+      <link>https://ynikl.github.io/blog/xorm-slave-newsseion/</link>
       <pubDate>Fri, 22 Jul 2022 19:08:05 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/xorm-slave-newsseion/</guid>
+      <guid>https://ynikl.github.io/blog/xorm-slave-newsseion/</guid>
       <description>简单分析下xorm 里面 session 和 slave 里面 close 的代码
 1 xorm.EngineGroup.Slave() Slave () 会直接返回 xorm.Engine对象（指代我们项目到数据库的逻辑连接（里面有tcp复用）） 如果这时候再调用 close 的会，会直接把 xorm.Engine 关闭（即数据库连接关闭）。 如果用这个 engine， 执行查询动作如 find， get时. 内部会有自动执行 NewSsession 和 Close, 所以不在需要手动调用close 1 xorm.EngineGroup.NewSsession() 会返回一个xorm.Session对象, 对应我们数据库操作中的&amp;quot;会话事务&amp;quot;, 是否自动提交之类选项.(未手动开始事务时,都是自动提交) 调用 close, 对清除 session 中未提交的事务和一些缓存的 sql 前置处理语句 对于普通 select 语句调不调用是没什么太大影响 (但是还是建议new之后调用close) </description>
       <content:encoded><![CDATA[<p>简单分析下xorm 里面 session 和 slave 里面 close 的代码</p>
@@ -2232,10 +2232,10 @@ go.sum 文件 与go.mod经常在一起的会是一个go.sum文件，文件中存
     
     <item>
       <title>并发与并行的区别</title>
-      <link>https://ynikl.github.io/posts/concurrency-and-parallelism/</link>
+      <link>https://ynikl.github.io/blog/concurrency-and-parallelism/</link>
       <pubDate>Tue, 31 May 2022 22:36:34 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/concurrency-and-parallelism/</guid>
+      <guid>https://ynikl.github.io/blog/concurrency-and-parallelism/</guid>
       <description>举个例子，电脑的鼠标，键盘或者其他设备的驱动程序，他们是并发的，但不是并行的。他们也不需要并行去运行。
 并发是很多程序（形容运行任务，不是广义上的程序）的独立运行，并发是一种程序设计结构
 并行是一次性运行很多程序，并行是一种程序的运行现象，当成程序设计成并发的，他很容易就变成了并行， 但并行不一定是并发的目的。

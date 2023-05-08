@@ -2805,10 +2805,10 @@ http.Client 的结构体
     
     <item>
       <title>Git 查看文件指定范围的修改记录</title>
-      <link>https://ynikl.github.io/posts/git-view-change-log-in-specifie-line/</link>
+      <link>https://ynikl.github.io/blog/git-view-change-log-in-specifie-line/</link>
       <pubDate>Mon, 12 Dec 2022 15:29:36 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/git-view-change-log-in-specifie-line/</guid>
+      <guid>https://ynikl.github.io/blog/git-view-change-log-in-specifie-line/</guid>
       <description>查看一个文件指定范围内的所有修改记录
 1 git log -p -2 -L1081,+5:&amp;#39;hello/world.go&amp;#39; -p -2 或者 --patch -2
 往前展示两个 commit 的 diff . 在 git 中 commit 和 patch 是同一个意思参考下文.
@@ -3750,10 +3750,10 @@ Framework and Divers 数据库和框架层, 外部工具包接口依赖之类的
     
     <item>
       <title>Linux 文件系统简单操作流程</title>
-      <link>https://ynikl.github.io/posts/linux-filesystem/</link>
+      <link>https://ynikl.github.io/blog/linux-filesystem/</link>
       <pubDate>Sat, 05 Nov 2022 13:52:16 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/linux-filesystem/</guid>
+      <guid>https://ynikl.github.io/blog/linux-filesystem/</guid>
       <description>文件系统原理 BIOS：启动主动运行的韧体，会认识第一个可启动的装置 MBR：第一个可启动装置的第一个磁区内的主要启动记录区块，内含启动管理程序； 启动管理程序(boot loader)：一支可读取核心文件来运行的软件； 相关命令 查看磁盘信息 1 fdisk -l macOS
 1 diskutil list 查看磁盘用量
 1 df -h 查看文件大小
@@ -5249,10 +5249,10 @@ go tool compile -N -l -S makemap.go go tool compile -N -l -S makemap.go go tool 
     
     <item>
       <title>Content Disposition</title>
-      <link>https://ynikl.github.io/posts/http-content-disposition/</link>
+      <link>https://ynikl.github.io/blog/http-content-disposition/</link>
       <pubDate>Sun, 04 Sep 2022 21:32:24 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/http-content-disposition/</guid>
+      <guid>https://ynikl.github.io/blog/http-content-disposition/</guid>
       <description>Content-Disposition 常见是用在 http 请求的 Response 的 Header 头部.
 告诉请求客户端(浏览器) 如何处理内容;
 Content-Disposition是在 MIME 标准定义的. http 中的用法只是其中的一小部分.
@@ -5881,10 +5881,10 @@ Muxer ( _ ): 将多个信号数据合并</p>
     
     <item>
       <title>CI/CD</title>
-      <link>https://ynikl.github.io/posts/ci-cd/</link>
+      <link>https://ynikl.github.io/blog/ci-cd/</link>
       <pubDate>Sun, 14 Aug 2022 15:27:33 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/ci-cd/</guid>
+      <guid>https://ynikl.github.io/blog/ci-cd/</guid>
       <description>CI 自动化发布流程 可重复 可快速回滚 发布流程快速 在合并的时候可以对代码进行快速验证 CD 部署流程平台化 一键部署 总结 所谓的 CI/CD 就是通过自动化操作, 比如自动化测试, 自动化部署. 使用项目拥有快速上线的能力 &amp;ndash; 可以快速验证, 快速回滚, 快速发布.</description>
       <content:encoded><![CDATA[<h2 id="ci">CI</h2>
 <ul>
@@ -6557,10 +6557,10 @@ FROM_UNIXTIME 把 Unix 时间戳转化成日期 UNIX_TIMESTAMP 把日期转化�
     
     <item>
       <title>xorm 的 session 和 salve 的区别</title>
-      <link>https://ynikl.github.io/posts/xorm-slave-newsseion/</link>
+      <link>https://ynikl.github.io/blog/xorm-slave-newsseion/</link>
       <pubDate>Fri, 22 Jul 2022 19:08:05 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/xorm-slave-newsseion/</guid>
+      <guid>https://ynikl.github.io/blog/xorm-slave-newsseion/</guid>
       <description>简单分析下xorm 里面 session 和 slave 里面 close 的代码
 1 xorm.EngineGroup.Slave() Slave () 会直接返回 xorm.Engine对象（指代我们项目到数据库的逻辑连接（里面有tcp复用）） 如果这时候再调用 close 的会，会直接把 xorm.Engine 关闭（即数据库连接关闭）。 如果用这个 engine， 执行查询动作如 find， get时. 内部会有自动执行 NewSsession 和 Close, 所以不在需要手动调用close 1 xorm.EngineGroup.NewSsession() 会返回一个xorm.Session对象, 对应我们数据库操作中的&amp;quot;会话事务&amp;quot;, 是否自动提交之类选项.(未手动开始事务时,都是自动提交) 调用 close, 对清除 session 中未提交的事务和一些缓存的 sql 前置处理语句 对于普通 select 语句调不调用是没什么太大影响 (但是还是建议new之后调用close) </description>
       <content:encoded><![CDATA[<p>简单分析下xorm 里面 session 和 slave 里面 close 的代码</p>
@@ -6595,10 +6595,10 @@ FROM_UNIXTIME 把 Unix 时间戳转化成日期 UNIX_TIMESTAMP 把日期转化�
     
     <item>
       <title>Make 的基本使用</title>
-      <link>https://ynikl.github.io/posts/makefile-basic-use/</link>
+      <link>https://ynikl.github.io/blog/makefile-basic-use/</link>
       <pubDate>Sun, 10 Jul 2022 17:47:42 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/makefile-basic-use/</guid>
+      <guid>https://ynikl.github.io/blog/makefile-basic-use/</guid>
       <description>想自己整理一篇基本的 make 指令用法, 突然发现 阮一峰大佬已经整理了一篇很完整的博客, 遂放弃.
 阮一峰文章地址
 如果不写 c, 主要理解就几个概念就可以使用了
@@ -6967,10 +6967,10 @@ life if not short</description>
     
     <item>
       <title>什么是 &#34;胶水代码&#34;</title>
-      <link>https://ynikl.github.io/posts/what-is-glue-code/</link>
+      <link>https://ynikl.github.io/blog/what-is-glue-code/</link>
       <pubDate>Sat, 18 Jun 2022 20:04:38 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/what-is-glue-code/</guid>
+      <guid>https://ynikl.github.io/blog/what-is-glue-code/</guid>
       <description>胶水代码(glue code), 可以了解为是大号的适配器, 没有业务意义, 主要的目的是用于 连接 两个 不兼容 的组件, 或是两个不兼容的服务.
 胶水代码可以是一段代码, 也可以是一个脚本文件, 甚至可以是新的组件.
 参考 Quora 回答 wiki</description>
@@ -7184,10 +7184,10 @@ array 是切片所指向的底层数组数据 len 就是切片的长度 cap 即�
     
     <item>
       <title>设计模式 -- 策略模式</title>
-      <link>https://ynikl.github.io/posts/strategy-pattern/</link>
+      <link>https://ynikl.github.io/blog/strategy-pattern/</link>
       <pubDate>Wed, 08 Jun 2022 19:50:42 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/strategy-pattern/</guid>
+      <guid>https://ynikl.github.io/blog/strategy-pattern/</guid>
       <description>场景 在有多种算法, 计算策略, 甚至业务流程以一种可相互替换的场景出现时. 就可以考虑该设计模式.
 比如: 地图导航的出行路线计算, 商品购买的捆绑促销方式等.
 分析 优点:
@@ -7313,10 +7313,10 @@ Linked List（链表） List （线性表） 2D Arrays Strings（串） Stack �
     
     <item>
       <title>计算机中的：大端和小端</title>
-      <link>https://ynikl.github.io/posts/endianness/</link>
+      <link>https://ynikl.github.io/blog/endianness/</link>
       <pubDate>Sat, 04 Jun 2022 00:19:23 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/endianness/</guid>
+      <guid>https://ynikl.github.io/blog/endianness/</guid>
       <description>大端和小端的命名出处是来自于《格列佛游记》中吃鸡蛋分成从大端开始吃的“大端派”和从小端开始吃的“小端派”
 大端的优势是高位计算，和可读性 小端的优势的低位运算 各自的优劣分析本质上还是因为内存的连续性，需要修改和读取的位数越少越有优势。
 以上是阅读阮一峰的博文-字节序探析：大端与小端的比较的简单总结。本来自己也是想要整理一篇关于大小端分析的文章。刚好阮老师发文了，收获甚多，就不在自己整理了。
@@ -7542,10 +7542,10 @@ go.sum 文件 与go.mod经常在一起的会是一个go.sum文件，文件中存
     
     <item>
       <title>Mysql 不支持事务嵌套</title>
-      <link>https://ynikl.github.io/posts/mysql-nested-transactions/</link>
+      <link>https://ynikl.github.io/blog/mysql-nested-transactions/</link>
       <pubDate>Thu, 02 Jun 2022 16:16:58 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/mysql-nested-transactions/</guid>
+      <guid>https://ynikl.github.io/blog/mysql-nested-transactions/</guid>
       <description>mysql 在事务中再开启事务，前一个事务会被自动提交
 stackoverflow</description>
       <content:encoded><![CDATA[<p>mysql 在事务中再开启事务，前一个事务会被自动提交</p>
@@ -7555,10 +7555,10 @@ stackoverflow</description>
     
     <item>
       <title>并发与并行的区别</title>
-      <link>https://ynikl.github.io/posts/concurrency-and-parallelism/</link>
+      <link>https://ynikl.github.io/blog/concurrency-and-parallelism/</link>
       <pubDate>Tue, 31 May 2022 22:36:34 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/concurrency-and-parallelism/</guid>
+      <guid>https://ynikl.github.io/blog/concurrency-and-parallelism/</guid>
       <description>举个例子，电脑的鼠标，键盘或者其他设备的驱动程序，他们是并发的，但不是并行的。他们也不需要并行去运行。
 并发是很多程序（形容运行任务，不是广义上的程序）的独立运行，并发是一种程序设计结构
 并行是一次性运行很多程序，并行是一种程序的运行现象，当成程序设计成并发的，他很容易就变成了并行， 但并行不一定是并发的目的。
@@ -8113,10 +8113,10 @@ godoc 在概念上与 Python 的“Docstring”和 Java 的“Javadoc&amp;quot;�
     
     <item>
       <title>IP表示中 / 代表的意思</title>
-      <link>https://ynikl.github.io/posts/cs-the-slash-meaning-of-ip/</link>
+      <link>https://ynikl.github.io/blog/cs-the-slash-meaning-of-ip/</link>
       <pubDate>Mon, 23 May 2022 22:01:03 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/cs-the-slash-meaning-of-ip/</guid>
+      <guid>https://ynikl.github.io/blog/cs-the-slash-meaning-of-ip/</guid>
       <description>IP 中斜杠表示的是子网掩码的位数
 例如 202.118.130.0/24 表示 子网页码的位数有24位，即 1111.1111.1111.0000</description>
       <content:encoded><![CDATA[<p>IP 中斜杠表示的是子网掩码的位数</p>
@@ -8152,10 +8152,10 @@ godoc 在概念上与 Python 的“Docstring”和 Java 的“Javadoc&amp;quot;�
     
     <item>
       <title>Hugo 如何使用已经发布文章做为相对URL</title>
-      <link>https://ynikl.github.io/posts/hugo_%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%BF%9E%E6%8E%A5/</link>
+      <link>https://ynikl.github.io/blog/hugo_%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%BF%9E%E6%8E%A5/</link>
       <pubDate>Sun, 15 May 2022 16:33:13 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/hugo_%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%BF%9E%E6%8E%A5/</guid>
+      <guid>https://ynikl.github.io/blog/hugo_%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%BF%9E%E6%8E%A5/</guid>
       <description>hugo 的默认内容都是在 content/ 路径下方
 在 markdown 文章中使用 { {&amp;lt; ref &amp;quot;/blog/my-first-post.md&amp;quot; &amp;gt;}}(两个左花括号中间是没有空格的), 会在编译时发生地址替换, 带/ 是表示从 content/ 目录下的下一个绝对路径
 1 [我的文章]({ {&amp;lt; ref &amp;#34;/blog/my-first-post.md&amp;#34; }}) 记得是已经发布的文章, 如果使用不存在, 或者是不参加发布的草稿文章就会发生报错

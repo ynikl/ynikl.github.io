@@ -16,10 +16,10 @@
     <lastBuildDate>Sun, 04 Sep 2022 21:32:24 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/http/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Content Disposition</title>
-      <link>https://ynikl.github.io/posts/http-content-disposition/</link>
+      <link>https://ynikl.github.io/blog/http-content-disposition/</link>
       <pubDate>Sun, 04 Sep 2022 21:32:24 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
-      <guid>https://ynikl.github.io/posts/http-content-disposition/</guid>
+      <guid>https://ynikl.github.io/blog/http-content-disposition/</guid>
       <description>Content-Disposition 常见是用在 http 请求的 Response 的 Header 头部.
 告诉请求客户端(浏览器) 如何处理内容;
 Content-Disposition是在 MIME 标准定义的. http 中的用法只是其中的一小部分.
