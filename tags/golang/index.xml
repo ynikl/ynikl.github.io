@@ -13,7 +13,892 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Sun, 01 Jan 2023 22:08:25 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 May 2023 12:10:53 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang 100 mistake 的简单读书笔记</title>
+      <link>https://ynikl.github.io/blog/golang-100mistake/</link>
+      <pubDate>Thu, 25 May 2023 12:10:53 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/blog/golang-100mistake/</guid>
+      <description>variable shadowing init 弊端
+初始化 error 的处理, 不应该是包自己用 panic 捕获错误终止程序，而是调用来决定是否应该终止程序 影响测试， 会在测试之前执行 获取执行数据，需要通过全局变量（ 全局变量弊端：1. 会被修改，2. 影响测试） 什么时候使用
+避免错误产生没有err 不会产生全局变量 getters and setters 如果只是简单获取值的话，就不应该用
+方法命名
+获取值 Balance 而不是 （ GetBalance) 设置值 SetBalance interface pollution interface 的价值
+通用的方法（ 如排序） 解耦 限制实体行为（仅提供特定方法） 只要在当我们真正用到的时候才去创建
+we should create an interface when we need it, not when we foresee that we could need it
+interface 抽象 是通过发现的，而不是通过创造的
+生产端接口声明，与实现放在同一个包中 消费端接口声明，与使用interface的放在同一个包中 Interface 是通过发现的，符合使用者的需求（与其他语言最大区别就是 Interface 为隐式实现）所以大部分接口应该是是消费端接口声明。
+准备库定义生产端声明，可以提供自定义接口的能力。 生产端接口要尽量简洁。
+return interfaceBe conservative in what you do, be liberal in fr Be conservative in what you do, be liberal in what you accept from others.</description>
+      <content:encoded><![CDATA[<h3 id="variable-shadowing">variable shadowing</h3>
+<h3 id="init">init</h3>
+<p>弊端</p>
+<ol>
+<li>初始化 error 的处理, 不应该是包自己用 panic 捕获错误终止程序，而是调用来决定是否应该终止程序</li>
+<li>影响测试， 会在测试之前执行</li>
+<li>获取执行数据，需要通过全局变量（ 全局变量弊端：1. 会被修改，2. 影响测试）</li>
+</ol>
+<p>什么时候使用</p>
+<ol>
+<li>避免错误产生没有err</li>
+<li>不会产生全局变量</li>
+</ol>
+<h3 id="getters-and-setters">getters and setters</h3>
+<p>如果只是简单获取值的话，就不应该用</p>
+<p>方法命名</p>
+<ul>
+<li>获取值 Balance 而不是 （ GetBalance)</li>
+<li>设置值 SetBalance</li>
+</ul>
+<h3 id="interface-pollution">interface pollution</h3>
+<p>interface 的价值</p>
+<ul>
+<li>通用的方法（ 如排序）</li>
+<li>解耦</li>
+<li>限制实体行为（仅提供特定方法）</li>
+</ul>
+<p>只要在当我们真正用到的时候才去创建</p>
+<p>we should create an interface when we need it, not when we foresee that we could need it</p>
+<p>interface 抽象 是通过发现的，而不是通过创造的</p>
+<ul>
+<li>生产端接口声明，与实现放在同一个包中</li>
+<li>消费端接口声明，与使用interface的放在同一个包中</li>
+</ul>
+<p>Interface 是通过发现的，符合使用者的需求（与其他语言最大区别就是 Interface 为隐式实现）所以大部分接口应该是是消费端接口声明。</p>
+<p>准备库定义生产端声明，可以提供自定义接口的能力。 生产端接口要尽量简洁。</p>
+<h3 id="return-interfacebe-conservative-in-what-you-do-be-liberal-in-fr">return interfaceBe conservative in what you do, be liberal in fr</h3>
+<p>Be conservative in what you do, be liberal in what you accept from others.</p>
+<p>对自己依赖别人的功能保守，对自己赋予别人的能力保持开放</p>
+<ul>
+<li>尽量接收 interface</li>
+<li>尽量返回 结构体</li>
+</ul>
+<p>正常 consumer 定义接口， 就会造成循环引用</p>
+<p><img loading="lazy" src="https://cdn.nlark.com/yuque/0/2023/png/12365435/1674099857741-bb77c007-cc4e-4f15-abd7-16bf11de95c5.png" alt=""  />
+</p>
+<p>如果 是现房new 的时候返回 interface 就会变成，由实现方来限制了限制了客户端使用接口消费的抽象组合方式</p>
+<h3 id="confuse-generics">Confuse Generics</h3>
+<p>限制 constraint， 可以是一下两种</p>
+<ul>
+<li>接口</li>
+<li>任意类型</li>
+</ul>
+<p>~int， 限制 底层类型</p>
+<h3 id="embbding">embbding</h3>
+<p>错误使用将底层的方法公开出来</p>
+<p>type client struct {
+sync.Mutex // 错误地将 Lock() 和 Unlock() 方法暴露给客户端了
+protectData map[string]string
+}</p>
+<p>Functional Options Parttern</p>
+<p>定义闭包声明函数，更新和修改配置， 有几个好处</p>
+<ul>
+<li>使用默认配置时， 避免声明空的 cfg 参数结构体</li>
+<li>通过闭包延迟 err 的处理， 聚合在客户端内部</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">type options struct {
+</span></span><span class="line"><span class="cl">    port *int
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">type Option func(opt options) error 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">func WithPort(port int) Option {
+</span></span><span class="line"><span class="cl">    return func(opt options) error {
+</span></span><span class="line"><span class="cl">        opt.port = port
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">func NewServer(c client, opts ...Option) {
+</span></span><span class="line"><span class="cl">	var cfg options
+</span></span><span class="line"><span class="cl">    for _, op := range opts {
+</span></span><span class="line"><span class="cl">       	err := op(cfg)
+</span></span><span class="line"><span class="cl">        if err != nil {
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">func main() {
+</span></span><span class="line"><span class="cl">    NewServer(http.DefaultClient, WihtPort(8080))
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="12-project-organization">12 Project Organization</h3>
+<p><a href="https://github.com/golang-standards/project-layout">project-layout</a></p>
+<p>We should minimize what should be exported as much as possible to reduce the coupling between pack-<br>
+ages and keep unnecessary exported elements hidden.</p>
+<p>包的成员，非必要不公开。</p>
+<h3 id="13-utility-package">13 Utility Package</h3>
+<p>创建类似与 common ， utility, base， shared 等没有意义的包名，共享一些工具类代码。</p>
+<h3 id="14-ignoring-package-name-collisions">14 Ignoring Package name collisions</h3>
+<p>避免包名和变量名冲突</p>
+<ul>
+<li>使用不同的变量名<code>redisClient</code></li>
+<li>对引用的包取别名 <code>redisPkg</code></li>
+</ul>
+<h3 id="15-missing-code-documentation">15 Missing code documentation</h3>
+<ol>
+<li>exported 的公开变量 都需要进行文档备注</li>
+<li><code>Deprecated: //</code></li>
+<li>Package 的说明应该在 <code>doc.go</code> 文件 <code>// Package 包名</code>开头</li>
+<li>与 Go 代码声明有空行间隔 会被忽略</li>
+</ol>
+<h3 id="16-not-using-linters">16 Not using linters</h3>
+<h3 id="17-creating-confusion-with-octal-literal">17 Creating confusion with octal literal</h3>
+<p>错误使用 010， 表示八进制</p>
+<ul>
+<li>0b 二进制</li>
+<li>0x 十六进制</li>
+<li>0i 虚数</li>
+</ul>
+<h3 id="18-integer-overflow">18 Integer Overflow</h3>
+<p>整形溢出， 多注意</p>
+<h3 id="19-floating-points">19 floating points</h3>
+<h3 id="20-slice-length-and-capactity">20 slice length and capactity</h3>
+<p>the slice length is the number of available elements in the slice,<br>
+whereas the slice capacity is the number of elements in the backing arra</p>
+<p>长度是 slice 可用的长度， 容量是slice底层数据的长度</p>
+<h3 id="22-slice-empty-and-nil">22 slice empty and nil</h3>
+<p>slice nil</p>
+<ul>
+<li>不需要分配内存， nil slice 是 empty slice</li>
+</ul>
+<p>empty slice</p>
+<ul>
+<li>长度等于 0</li>
+</ul>
+<h3 id="23-check-slice-by-nil">23 check slice by nil</h3>
+<p>通过 <code>list == nil</code> 判断 slice 是否为空，是错误的</p>
+<p>要通过长度判断 <code>len(list)</code>判断 slice 是否为空。</p>
+<h3 id="24-copy-slice">24 copy slice</h3>
+<p>赋值数量为最小两个slice 之间最小长度</p>
+<p>复制之前应该，注意复制的目标数组的长度</p>
+<p>src := []int{0, 1, 2}
+dst := make([]int, len(src))
+copy(dst, src)
+fmt.Println(dst)</p>
+<p>不同的复制方式</p>
+<p>src := []int{0, 1, 2}
+dst := append([]int(nil), src&hellip;)</p>
+<h3 id="25-切片更新添加数据副作用">25 切片更新添加数据副作用</h3>
+<p>s1 := []int{1,2,3}
+s2 := s1[1:2]
+s3 := append(s2, 10}</p>
+<p>// Output:
+// s1 [1, 2, 10]</p>
+<h3 id="26-slice-导致内存泄露">26 slice 导致内存泄露</h3>
+<p>使用切变承接输入的大数据数组， 获取小部分数据。</p>
+<p>小数据的slice， 仍然会指向大数组的空间，内存占用仍会较高。</p>
+<p>需要重新声明 slice， 使用copy 复制需要的数据。</p>
+<p>GC 不会回收 slice 已经分配但没有使用的空间。</p>
+<h3 id="27--map-初始化">27  Map 初始化</h3>
+<p><code>load factor</code>
+<code>overflowed</code></p>
+<p>make(map, hint_size)
+初始化 map, 带预计大小, 可以避免map 在插入的时候, 需要复制.</p>
+<ul>
+<li>获取足够的内存</li>
+<li>重新平衡分配元素到各个bucket</li>
+</ul>
+<h3 id="28-map-memory-leaks">28 map memory leaks</h3>
+<p><code>A map can only grow and have more buckets; it never shrinks.</code></p>
+<p>GC 可以回收 map 的元素, 但是无法回收 map 本身占用的空间大小.</p>
+<p>解决方法</p>
+<ul>
+<li>创建副本, 创建一个新的map, 复制现有的值, 释放原有的map</li>
+<li>map的value 存放 指针, 缩小每一个空的bucket 占用的空间大小 (指针空间 8bytes or 4bytes)</li>
+</ul>
+<h3 id="29-值比较">29 值比较</h3>
+<p> Booleans—Compare whether two Booleans are equal.<br>
+ Numerics (int, float, and complex types)—Compare whether two numerics are equal.</p>
+<ul>
+<li>
+<p> Strings—Compare whether two strings are equal.</p>
+</li>
+<li>
+<p>  Channels—Compare whether two channels were created by the same call to</p>
+<p>make or if both are nil.</p>
+</li>
+<li>
+<p>  Interfaces—Compare whether two interfaces have identical dynamic types and</p>
+<p>equal dynamic values or if both are nil.</p>
+</li>
+<li>
+<p>  Pointers—Compare whether two pointers point to the same value in memory or</p>
+<p>if both are nil.</p>
+</li>
+<li>
+<p>  Structs and arrays—Compare whether they are composed of similar types.</p>
+</li>
+</ul>
+<p>对比方法</p>
+<ul>
+<li>简单通过 <code>==</code>  对比, 无法处理复杂类型</li>
+<li><code>reflect.DeepEuqal</code> 有性能瓶颈</li>
+<li>自己实现对比方法, 参考已经有标准库, 如<code>bytes.Compare</code></li>
+</ul>
+<h3 id="30-copy-value-in-range">30 copy value in range</h3>
+<p>在 <code>range</code> 遍历的过程中, 是值复制</p>
+<h3 id="31-range-expresion-evaluated">31 range expresion evaluated</h3>
+<p><code>for i, v := range exp</code>
+exp 针对不同类型表达式, 会在 开始执行 loop 之前, 对exp 进行复制</p>
+<h4 id="slice">slice</h4>
+<p>range 会在开始range的时候, 计算slice 的长度和容量, 并创建一个临时的 slice</p>
+<p>![[Pasted image 20230221093451.png]]</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">s := []int{0, 1, 2}
+</span></span><span class="line"><span class="cl">for i := 0; i &lt; len(s); i++ {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    s = append(s, 10)
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>会无限执行下去, 因为 <code>len</code> 是每次执行的时候都会计算一次</p>
+<h4 id="channel">channel</h4>
+<p>与slice 一样, 同样会在开始的时候为 channel 创建一个临时变量.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ch := ch1
+</span></span><span class="line"><span class="cl">for v := range ch {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    fmt.Println(v)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ch = ch2 }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个在range 这替换的动作是无效的, range 的仍然是ch1</p>
+<h4 id="array">array</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">a := [3]int{0, 1, 2}
+</span></span><span class="line"><span class="cl">for i, v := range a {
+</span></span><span class="line"><span class="cl">    a[2] = 10
+</span></span><span class="line"><span class="cl">    if i == 2 {
+</span></span><span class="line"><span class="cl">        fmt.Println(v)
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>会对 a 整个数据进行复制, 输出是2, 原数组不变</p>
+<p>修改原数组方案</p>
+<ul>
+<li>使用 index , 访问和修改数据</li>
+<li>对数据取指针方法 <code>for i, v := range &amp;a</code></li>
+</ul>
+<h3 id="32-range-过程中使用-遍历元素的指针">32 range 过程中使用 遍历元素的指针</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">for _, customer := range customers {
+</span></span><span class="line"><span class="cl">        s.m[customer.ID] = &amp;customer
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>&amp;customer</code> 指向的是 range 复制出来的内存</p>
+<h3 id="33-对-map-数据的错误消费">33 对 map 数据的错误消费</h3>
+<ol>
+<li>依赖 map 的顺序， map 的数据是无序的</li>
+<li>在遍历过程中继续插入新的数据， 结果是不可预测的。有可能会被遍历到，也有可能会被跳过</li>
+</ol>
+<h3 id="34-break-层的错误理解">34 break 层的错误理解</h3>
+<p>break 对 for, select, switch 三个语句的最内层生效</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">for i := 0; i &lt; 5; i++ {
+</span></span><span class="line"><span class="cl">	switch i {
+</span></span><span class="line"><span class="cl">	case 2:
+</span></span><span class="line"><span class="cl">	break
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>没有中断， 结果正常遍历。</p>
+<p>可以使用 Label 达到中断 for 的方式， 标准库也经常采用该种写法。</p>
+<h3 id="35-在-for-中使用-defer">35 在 for 中使用 defer</h3>
+<h3 id="36-没有理解-rune">36 没有理解 rune</h3>
+<p>string 是一个结构体, 有两个字段</p>
+<ul>
+<li>A pointer to an immutable byte sequence</li>
+<li>长度</li>
+</ul>
+<p>Unicode 是字符集
+Utf-8 是编码方式</p>
+<p>Rune 是 Unicode 的字符集表示，相当于一个字符, golang 使用utf-8编码方式， 所以一个rune 是1-4个字节 bytes.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">type rune = int32
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>len()</code>函数返回的是 bytes 的长度</p>
+<h3 id="37-对-string-的错误遍历">37 对 string 的错误遍历</h3>
+<p>获取字符串的字符个数 <code>utf8.RuneCountInString</code></p>
+<p>获取字符串的第i个字符</p>
+<ol>
+<li>如果是纯ascii码字符串，直接通过str[i]获取。 获取出来的是 bytes 编码需要转成字符</li>
+<li>如果存在非ascii 字符
+<ol>
+<li>通过 <code>for i, c := range str</code>遍历获取到第 i 个 rune 字符， 和 c 字符编码</li>
+<li>通过索引获取， 需要先强制转化成 <code>[]rune(str)[i]</code> 可以直接获取字符串的第 i 个 rune 字符</li>
+</ol>
+</li>
+</ol>
+<h3 id="38-对-trimright--trimsuffix-混淆">38 对 TrimRight / TrimSuffix 混淆</h3>
+<p>strings.TrimRight 是从右到开始移除所有符合的字符集，直到遇到第一个不符合的字符
+TrimSuffix 是移除整个字符串</p>
+<h3 id="39-使用--字符串拼接">39 使用 += 字符串拼接</h3>
+<p>使用 += 拼接一系列字符串，会造成内存分配频繁，因为每一个字串都是不变的。
+推荐使用 <code>strings.Builder</code></p>
+<h3 id="40-冗余转化成字符串">40 冗余转化成字符串</h3>
+<p>所有的字符串操作 strings 包， 在 bytes 包都会有相对应的替换方法，没有必要将 bytes 转化成 string 在进行操作。</p>
+<h3 id="41-substring-导致内存泄露">41 subString 导致内存泄露</h3>
+<p>substring 生成的 新字符串与旧字符串指向同一块内存，原理同slice</p>
+<h3 id="42-方法值接受者和指针接收者">42 方法值接受者和指针接收者</h3>
+<p>pointer receiver</p>
+<ul>
+<li>需要修改对象数据</li>
+<li>接收者包含不能copy的对象，如 sync</li>
+<li>接收者为大对象</li>
+</ul>
+<p>value receiver</p>
+<ul>
+<li>不修改接收者</li>
+<li>接收者为 map, channel</li>
+<li>接收者为小对象， 基础类型</li>
+</ul>
+<h3 id="43-命名的返回参数">43 命名的返回参数</h3>
+<p>用处</p>
+<ol>
+<li>增加代码可读性， 如果无法增加可读性，就不需要命名</li>
+<li>提前初始化变量</li>
+<li>使用 naked return 的提前是函数短小，太长的函数会降低可读性，需要一直记住变量</li>
+<li>不应改混着使用 naked return 和 带参数return</li>
+</ol>
+<h3 id="44-返回了未赋值的命名-err">44 返回了未赋值的命名 err</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">func name(ctx context.Context) (a,b int, err error) {
+</span></span><span class="line"><span class="cl">	if ctx.Err() != nil {
+</span></span><span class="line"><span class="cl">	// err is nil
+</span></span><span class="line"><span class="cl">	return 0, 0, err
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="45-interface-返回-non-nil">45 interface 返回 non-nil</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">func Validate() error {
+</span></span><span class="line"><span class="cl">	var m *MutilErrorStruct
+</span></span><span class="line"><span class="cl">	return m
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">// 返回值 err != nil 永远为true
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>nil 的结构体， 在返回 interface 的函数之后就永远不等于 nil
+![[Pasted image 20230309221827.png]]</p>
+<p>解决方案，永远明确地返回 nil</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">if m != nil {
+</span></span><span class="line"><span class="cl">	return m
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">return nil
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="46-不用使用文件名作为参数">46 不用使用文件名作为参数</h3>
+<p>使用 io.Reader 做为参数, 替代文件有两种好处</p>
+<ol>
+<li>方法的具体实现可以与数据源的类型无关, 文件, 或者http, 或者sock</li>
+<li>方便测试, 无法因为测试而创建一堆文件</li>
+</ol>
+<h3 id="47-defer-参数的计算">47 defer 参数的计算</h3>
+<p>defer 在代码执行到的时候会, 立刻使用当前函数的参数的变量值, 包括方法的接收者作为参数.</p>
+<h3 id="48-panic">48 panic</h3>
+<p>什么时候应该panic</p>
+<ul>
+<li>a pure programmer error ( 程序员编码错误 )</li>
+<li>依赖初始化失败</li>
+</ul>
+<h3 id="49-error-wrap">49 Error Wrap</h3>
+<p>什么时候使用 Error Wrap</p>
+<ul>
+<li>添加额外的信息</li>
+<li>标记为某一特定的错误类型</li>
+</ul>
+<p>处理的信息的多种选择</p>
+<ul>
+<li>直接返回错误</li>
+<li>自定义错误类型</li>
+<li>fmt.Errorf + %w wrap 错误</li>
+<li>fmt.Errorf + %v 包含错误文字</li>
+</ul>
+<p><img loading="lazy" src="https://s2.loli.net/2023/03/21/CPdiq867VhUcAwW.png" alt="错误处理的多种选择"  />
+</p>
+<h3 id="50-用-as-检查err类型">50 用 as 检查Err类型</h3>
+<p>通过 wrap 的 error 需要使用 <code>error.As(err, &amp;targetErrorStruct{})</code> 判断是否为目标结构体</p>
+<h3 id="51-errosis">51 erros.Is</h3>
+<p>制定 error 错误信息的原则:</p>
+<ol>
+<li>可以预测的错误使用制定错误变量 <code>ErrFoo = errors.New(&quot;foo&quot;)</code></li>
+<li>无法预测的错误,使用指定错误类型 <code>type BarError struct</code></li>
+</ol>
+<p>使用 <code>error.Is(err, sql.ErrNoRows)</code> 判断错误是否为指定的错误类型.</p>
+<h3 id="52-多次处理同一个错误">52 多次处理同一个错误</h3>
+<p>一个错误多次重复打日志, 会让调试更加艰难.</p>
+<blockquote>
+<p>打印错误也是一种错误的处理方式. 所有, 要么选择打印错误, 要么选择向上抛出错误.
+不要两者同时.</p>
+</blockquote>
+<p>向上层函数抛出错误的时候, 需要通过 WrapErr 附加上当前的额外错误信息</p>
+<h3 id="53-明确忽略的-error">53 明确忽略的 error</h3>
+<p>使用 <code>_</code> 接收返回的error, 明确表示不处理, 错误</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> _ = funcReturnErr()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>建议再加上注释说明为什么不处理函数错误</p>
+<h3 id="54-处理-defer-函数返回的错误">54 处理 defer 函数返回的错误</h3>
+<p>记得要处理 defer 的函数返回的错误, 至少需要显示忽略</p>
+<h3 id="55-并发和并行">55 并发和并行</h3>
+<p>并发的重点是可以处理多项事务的设计结构, 并行是多项事务可以同时进行处理.</p>
+<blockquote>
+<p>Concurrency is about dealing with lots of things at once. Parallelism is about doing lots of things at once.
+—Rob Pike</p>
+</blockquote>
+<p>并发并不代表多件事务真正意义上的&quot;同时进行&quot;, 同时进行是并行, 并发主要处理阻塞的流程
+优化</p>
+<h3 id="56-并发-不一定更快">56 并发 不一定更快</h3>
+<p>过小的切分任务, 会让时间消耗在创建和消费协程上, 并没有真正的提高&quot;并行&quot;能力.</p>
+<h3 id="57-通道和互斥锁">57 通道和互斥锁</h3>
+<p>通道的底层也是互斥锁.</p>
+<p>当协程之间需要传递信息, 或者数据, 使用通道 &ndash; 互斥锁的更高抽象</p>
+<h3 id="58-数据竞争data-race-和条件竞争race-condition">58 数据竞争(data race) 和条件竞争(race condition)</h3>
+<p>数据竞争:</p>
+<p>同时有多个协程同时访问统一块内存, 且至少有一个协程正在写入数据</p>
+<p>条件竞争:</p>
+<p>事件发生的先后顺序不可控制, 无法控制协程的执行先后顺序, 导致结果不可控.</p>
+<h3 id="59-区分任务类型-计算密集或者-io密集型">59 区分任务类型 (计算密集或者 I/O密集型)</h3>
+<p>如果是计算密集型, goroutine 的并发上线应该采用 <code>runtime.GOMAXPROCS(0)</code></p>
+<p>过多的协程, 可能导致创建过得的 M, 就会出现多个 M 在一个 cpu 核心 中疯狂切换.</p>
+<h3 id="60-conetxt">60 Conetxt</h3>
+<ul>
+<li>Deadline 设置超时时间 <code>context.WithTimeout</code></li>
+<li>传递取消消息 <code>context.WithCancel</code></li>
+<li>传递值 <code>context.WithValue</code></li>
+<li><code>context.Err</code> 会返回解释, 为何<code>context.Done</code>关闭</li>
+</ul>
+<p>传递值时, key 不直接使用 string 是为了避免, 冲突覆盖.</p>
+<blockquote>
+<p>The provided key must be comparable and should not be of type string or any other built-in type to avoid collisions between packages using context. Users of WithValue should define their own types for keys. To avoid allocating when assigning to an interface{}, context keys often have concrete type struct{}. Alternatively, exported context key variables&rsquo; static type should be a pointer or interface.</p>
+</blockquote>
+<p>疑惑的时候就使用 <code>context.TODO</code></p>
+<blockquote>
+<p>When in doubt about which context to use, we should use context.TODO() instead of passing an empty context with context.Background.</p>
+</blockquote>
+<h3 id="61-传递-context">61 传递 context</h3>
+<h3 id="62-关心-goroutine-什么时候停止">62 关心 goroutine 什么时候停止</h3>
+<p>关心 goroutine 持有的文件描述符是否被正确的关闭
+注意协程持有的资源</p>
+<h3 id="63-注意-goroutine-获取循环变量">63 注意 goroutine 获取循环变量</h3>
+<h3 id="64-select-是随机-case-先后顺序不保证优先级">64 select 是随机, case 先后顺序不保证优先级.</h3>
+<h3 id="65-消息型-channel">65 消息型 channel</h3>
+<p>消息型 channel 的数据结构应该使用 <code>make(chan struct{})</code> 空结构体, 编程惯例, 提醒
+接收者, 传递的消息是没有任何意义的.</p>
+<h3 id="66-使用-nil-channel">66 使用 nil channel</h3>
+<p>在使用 select 的时候, 当 channel 已经 close 掉后, 就可以将channel 设置成 <code>nil</code> ,
+让该 case 条件进入堵塞状态</p>
+<h3 id="67-分清-buffed-and-unbeffed-channel-的使用场景">67 分清 buffed and unbeffed channel 的使用场景</h3>
+<h3 id="68-string-format-的副作用">68 string format 的副作用</h3>
+<p>如果有协程正在更新 ctx, context的值的话, 就会出现数据竞争, fmt 读取ctx的内部值</p>
+<p><code>ctxKey := fmt.Sprintf(&quot;%v&quot;, ctx)</code></p>
+<p>fmt 会读取 <code>string()</code> 的方法, 应注意该方法中的读写锁是否会造成死锁.</p>
+<h3 id="69-append-的数据竞争">69 append 的数据竞争</h3>
+<p>slice 更新和读取不通的index时不会出问题.</p>
+<p>map 操作时存在更新, 无论key是否相同有可能产生冲突. 因为, map 的底层是数组, 不同的
+key 也有可能指向相同的数组</p>
+<h3 id="70">70</h3>
+<h3 id="71-wgadd-在协程开启前">71 wg.Add 在协程开启前</h3>
+<h3 id="72-sycncond">72 sycn.cond</h3>
+<h3 id="73-errgroup">73 errgroup</h3>
+<h3 id="74-sync-包不能被复制-要小心值复制">74 sync 包不能被复制, 要小心值复制</h3>
+<h3 id="75-timeduration-的时间单位是-纳秒">75 time.Duration 的时间单位是 纳秒</h3>
+<p>标准使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1 * time.Second
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="76-timeafte-导致内存泄露">76 time.Afte 导致内存泄露</h3>
+<p>方法内部实现的协程, 需要等到时间到了, 才会释放资源, 所以不要在循环中调用.</p>
+<h3 id="77-结构体-序列化和反序列化">77 结构体 序列化和反序列化</h3>
+<h4 id="结构体嵌套">结构体嵌套</h4>
+<p>直接嵌入未命名的结构体, 可能会使用sub embedding struct 的序列化接口方法, 导致bug</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">type a struct {
+</span></span><span class="line"><span class="cl">ID int 
+</span></span><span class="line"><span class="cl">time.Time
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>a 结构体再序列化的时候会使用 <code>time.Time</code> 的<code>MarshalJSON()</code>的方法</p>
+<ul>
+<li>使用命名结构体接入</li>
+<li>重新实现接口方法</li>
+</ul>
+<h4 id="time-的对比">time 的对比</h4>
+<p>time 内部包含 wall clock 和 montonic clock 字段, 返回序列化后的 time 对象, 不包含
+montonic clock 直接对比, 会不相同</p>
+<blockquote>
+<p>The general rule is that the wall clock is for telling time and the monotonic clock is for measuring time.</p>
+</blockquote>
+<ul>
+<li>可以使用 <code>time.Equal</code> 方法</li>
+<li>或者使用 <code>Truncate</code> 移除 monotonic clock 数值</li>
+</ul>
+<h4 id="map">map</h4>
+<p><code>map[string]any</code> 数值反序列化后类型都为 float64</p>
+<h3 id="78-sql-错误">78 SQL 错误</h3>
+<h4 id="sqlopen">sql.Open</h4>
+<p><code>sql.Open()</code> 不一定是与数据库服务建立了连接, 具体还是需要看 驱动 实现, 可以通过
+ping 方法, 强制建立连接</p>
+<h4 id="sql-连接池的配置">sql 连接池的配置</h4>
+<p>sql 连接状态分两种</p>
+<ul>
+<li>使用者</li>
+<li>idle 等待使用, 已创建但没有再使用</li>
+</ul>
+<p>sql 连接池配置</p>
+<ul>
+<li>SetMaxOpenConns 最大连接数量, 考虑到下游服务的性能</li>
+<li>SetMaxIdleConn 在并发高时适当增加, 避免创建耗时</li>
+<li>SetConnMaxIdleTime 并发增加之后, 维持多久销毁连接</li>
+<li>SetConnMaxLifetime 不希望一个连接持续过久</li>
+</ul>
+<h4 id="sqlprepared-语句">sql.prepared 语句</h4>
+<ul>
+<li>高效: 更加高效, 避免 SQL 重复编译</li>
+<li>安全: 避免SQL注入</li>
+</ul>
+<h4 id="string-处理-null-值">string 处理 null 值</h4>
+<ul>
+<li>使用指针声明 <code>*string</code></li>
+<li>使用 <code>sql.NullString</code> 类型</li>
+</ul>
+<h4 id="rowserr-错误捕获">rows.Err 错误捕获</h4>
+<h3 id="79-资源关闭">79 资源关闭</h3>
+<p>实现 <code>io.Closer</code> 的临时资源需要 及时 close</p>
+<ul>
+<li>http 请求的客户端, respBody 需要close</li>
+<li>sql.Rows</li>
+<li>os.File</li>
+</ul>
+<h3 id="80-http-handle-忘记-return">80 http handle 忘记 return</h3>
+<h3 id="81-使用-默认http-client-和-server">81 使用 默认http client 和 server</h3>
+<h4 id="client">client</h4>
+<p>http 的请求步骤</p>
+<ol>
+<li>dial</li>
+<li>tls 握手</li>
+<li>send</li>
+<li>read header</li>
+<li>read body</li>
+</ol>
+<p><img loading="lazy" src="./__assets/100mistake-http-step1to5.png" alt="100mistake-http-step1to5"  />
+</p>
+<p>4个超时配置</p>
+<ol>
+<li><code>net.Dialer.Timeout</code> 建立连接超时</li>
+<li><code>http.Transport.TLSHandshakeTimeout</code> TLS 握手超时</li>
+<li><code>http.Transport.ResponseHeaderTimeout</code> 等待服务返回头此时</li>
+<li><code>http.Client.Timeout</code> 这个请求的时间限制, from 上述步骤1到5</li>
+</ol>
+<p><code>net/http: request canceled (Client.Timeout exceeded while awaiting headers)</code> 报错
+服务端返回超时, 在step4, 读取头时等待超时.</p>
+<p>http 连接池</p>
+<ul>
+<li><code>http.Transport.IdleConnTimeout</code></li>
+<li><code>http.Transport.MaxIdleConns</code></li>
+<li><code>http.Transport.MaxIdleConnsPerHost</code> 默认为2, 严重影响并发</li>
+</ul>
+<h4 id="server">server</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">server := &amp;http.Server{}
+</span></span><span class="line"><span class="cl">server.Serve(listener)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>服务端步骤</p>
+<ol>
+<li>等待请求</li>
+<li>TLS</li>
+<li>read request headers</li>
+<li>read request body</li>
+<li>write response</li>
+</ol>
+<p>3个 timeout</p>
+<ul>
+<li><code>http.Sever.ReadHeadersTimeout</code></li>
+<li><code>http.Server.ReadTimeout</code></li>
+<li><code>http.TimeoutHandler</code></li>
+<li><code>http.Server.IdleTimeout</code> keep-alive 请求可以保持多久</li>
+</ul>
+<p><code>TimeoutHanlder 包裹 handle 当处理超时时,返回503</code></p>
+<p><img loading="lazy" src="./__assets/100mistake-server-timeout1-5.png" alt="100mistake-server-timeout1-5"  />
+</p>
+<p>如果都没有配置超时的话, 服务器就没有超时机制, 会一直等待客户端主动关闭连接.
+当服务暴露给不信任客户端时, 至少需要配置 ReadTimeout 和 TimeoutHandler 避免资源被耗尽.</p>
+<h3 id="82-对单元测试进行分类">82 对单元测试进行分类</h3>
+<p>避免执行不需要单元测试, 提升测试效率.</p>
+<ol>
+<li>使用 tag <code>go test --tags=integration -v .</code></li>
+<li>根据环境变量, 使用<code>testing.Skip()</code> 显示调用为什么跳过测试</li>
+<li>使用 <code>testing.Short()</code> 判断当前执行模式, 跳过需要长时间耗时的测试 <code>go test -short -v .</code></li>
+</ol>
+<h3 id="83-测试启用---race">83 测试启用 &ndash;race</h3>
+<p>编译时带 <code>--race</code> 会增加程序消耗</p>
+<ul>
+<li>内存提高5-10倍</li>
+<li>运行时间2-20倍</li>
+</ul>
+<p>避免在生产环境使用, 在CI的时候使用</p>
+<h3 id="84-test-的执行模式">84 test 的执行模式</h3>
+<p>parallel</p>
+<p><code>testing.T.Parallel()</code> 会先暂停, 等待顺序测试任务完成后, 继续执行.</p>
+<p><code>go test - parallel 16 .</code> 并发执行测试</p>
+<p>shuffle</p>
+<p><code>go test -shuffle=on -v .</code> 打乱 go test 函数的执行顺序</p>
+<h3 id="85-table-driven-表驱动测试">85 Table-driven 表驱动测试</h3>
+<p><code>t.Run(name, func(t *testing.T) {})</code></p>
+<p>执行子测试
+<code>go test -run=TestFoo/subtest_1 -v</code></p>
+<h3 id="86-避免测试中的-sleep">86 避免测试中的 sleep</h3>
+<p>在并发场景下, 我们使用 <code>time.Sleep</code> 模拟, 任务处理耗时, 但是我们不知道时间是否足够</p>
+<ol>
+<li>使用多次尝试校验, retry</li>
+<li>mock 对象使用消息通知校验</li>
+</ol>
+<h3 id="87-处理依赖时间测试">87 处理依赖时间测试</h3>
+<ul>
+<li>改变依赖, 造假数据</li>
+<li>修改方法, 让接口传入时间</li>
+</ul>
+<h3 id="88-单测工具包">88 单测工具包</h3>
+<p>http 相关</p>
+<ul>
+<li>httptest.NewServer</li>
+<li>httptest.NewRequest</li>
+</ul>
+<p>iotest</p>
+<h3 id="89-正确使用-benchmark-测试">89 正确使用 benchmark 测试</h3>
+<ul>
+<li>忽略耗时函数</li>
+<li>忽略对硬件底层</li>
+</ul>
+<h3 id="90-单元测试的拓展功能">90 单元测试的拓展功能</h3>
+<ul>
+<li>TestMain</li>
+<li>从不同的包测试 ( 重视包对外的开放功能)</li>
+<li>cover 单测覆盖率</li>
+</ul>
+<h3 id="91-cpu-cache">91 CPU cache</h3>
+<p>cpu 三级缓存</p>
+<p><img loading="lazy" src="./__assets/100mistakecpucache.png" alt="100mistakecpucache"  />
+</p>
+<ul>
+<li>cpu cache Line 加载的  locality of reference, 局部性和相关性</li>
+<li>cache line 一般 64 bytes,</li>
+</ul>
+<p>CPU 内存加载预测</p>
+<ul>
+<li>Unit stride</li>
+<li>Constant stride</li>
+<li>Non-Unit stride</li>
+</ul>
+<h3 id="92-通过-padding-避免并发操作相同内存复制到不同cpu-core-中">92 通过 padding 避免并发操作相同内存复制到不同cpu core 中</h3>
+<p>cpu 会有cache line 加载数据, 如果两个协程, 并发操作的不同的数据字段(在同一块cache line 大小内存中)
+内存中. 这块内存会被同时加载到不同的cpu 核心的缓存中. 因为cpu MESI保证内存一致, 一边更新另一边会失效.</p>
+<blockquote>
+<p>When a cache line is shared across multiple cores and at least one goroutine is a writer, the entire cache line is invalidated.</p>
+</blockquote>
+<p>使用 pading , 将同时操作的内存分到不同cache line 中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">type result struct {
+</span></span><span class="line"><span class="cl">	sumA int64
+</span></span><span class="line"><span class="cl">	_ [56]byte // padding
+</span></span><span class="line"><span class="cl">	sumB int64
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="93-考虑指令集优化">93 考虑指令集优化</h3>
+<ul>
+<li></li>
+</ul>
+<h3 id="94-内存对齐">94 内存对齐</h3>
+<p>内存对齐可以减少结构体占用的内存大小.</p>
+<p>结构体的内存对齐系数, 为各字段中最大的系数</p>
+<p><a href="https://go.dev/ref/spec#Size%20and%20alignment%20guarantees">官方文档</a></p>
+<h3 id="95-stack--heap">95 stack &amp;&amp; heap</h3>
+<p>栈内存是不需要GC, 只是会根据栈的大小范围表示为不可用, 再次使用的时候, 新值直接覆盖旧值.</p>
+<p>当变量内存分配到栈上, 且函数退出, 变量引用表示不可用 &ndash; 无法再次访问, 所以需要 堆.</p>
+<p>堆的使用成本更大, 需要GC, 内存分配成本也更大.</p>
+<h3 id="96-优化内存分配">96 优化内存分配</h3>
+<ul>
+<li>string.Builder 代替 +</li>
+<li>避免 []byte 转 string</li>
+<li>slice map 的初始化</li>
+<li>结构体内存对齐</li>
+<li>改变 interface 声明, 避免内存逃逸</li>
+<li>sync.Pool</li>
+<li>编译器优化, 避免 bytes-to-string 转化</li>
+</ul>
+<h3 id="97-编译器函数内联">97 编译器函数内联</h3>
+<p>inline. 当调用的子函数较为简单时, 编译器会是将调用函数的内部实现嵌入当前调用点.</p>
+<ul>
+<li>避免函数的调用成本</li>
+<li>可以使编译器进一步优化 (比如, 内存逃逸 直接分配到栈中)</li>
+</ul>
+<p>当子函数过为复杂时, 可以抽出子函数的复杂部分为另一个调用函数实现 mid inline. 让中间函数嵌入调用点.</p>
+<h3 id="98-使用分析工具">98 使用分析工具</h3>
+<ul>
+<li>pprof</li>
+<li>trace</li>
+</ul>
+<h3 id="99-gc">99 GC</h3>
+<p>marks and sweep</p>
+<ul>
+<li>遍历所有对象, 标记是否在使用</li>
+<li>遍历所以对象, 清除没有在使用的对象</li>
+</ul>
+<p>GOGC 配置 GC 的敏感度, 当 GOGC=100 时, 当堆内存容量涨100%时触发GC.</p>
+<ul>
+<li><a href="https://xargin.com/dynamic-gogc/">通过 GOGC 进行优化</a></li>
+<li><a href="https://www.uber.com/en-TW/blog/how-we-saved-70k-cores-across-30-mission-critical-services/">uber 调优原文</a></li>
+<li><a href="https://blog.ideawand.com/2020/08/01/go-gc-tuning-practice-1/">GOGC 调优</a></li>
+</ul>
+<h3 id="100-docker-和-k8s-资源分配对并发性能的影响">100 Docker 和 K8s 资源分配对并发性能的影响</h3>
+<p>引用 <code>http://github.com/uber-go/automaxprocs</code> 自动设置 GOPROMAX</p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>Golang Gin</title>
       <link>https://ynikl.github.io/blog/golang-gin/</link>
