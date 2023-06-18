@@ -2,23 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://ynikl.github.io/tags/books/</loc>
+    <lastmod>2023-06-18T14:34:11+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/posts/</loc>
+    <lastmod>2023-06-18T14:34:11+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/tags/</loc>
+    <lastmod>2023-06-18T14:34:11+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/</loc>
+    <lastmod>2023-06-18T14:34:11+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/posts/shuyou/</loc>
+    <lastmod>2023-06-18T14:34:11+08:00</lastmod>
+  </url><url>
     <loc>https://ynikl.github.io/blog/</loc>
-    <lastmod>2023-05-25T12:10:53+08:00</lastmod>
+    <lastmod>2023-05-26T18:42:36+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/tags/thought/</loc>
+    <lastmod>2023-05-26T18:42:36+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/blog/reading-from-coolshell/</loc>
+    <lastmod>2023-05-26T18:42:36+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/golang/</loc>
     <lastmod>2023-05-25T12:10:53+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/blog/golang-100mistake/</loc>
     <lastmod>2023-05-25T12:10:53+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/tags/</loc>
-    <lastmod>2023-05-25T12:10:53+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/</loc>
-    <lastmod>2023-05-25T12:10:53+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/posts/</loc>
-    <lastmod>2023-05-08T19:52:59+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/posts/the-seven-levels-of-busy/</loc>
     <lastmod>2023-05-08T19:52:59+08:00</lastmod>
@@ -37,9 +49,6 @@
   </url><url>
     <loc>https://ynikl.github.io/blog/mysql-partition/</loc>
     <lastmod>2023-04-27T16:16:48+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/tags/books/</loc>
-    <lastmod>2023-04-06T10:00:36+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/books/</loc>
     <lastmod>2023-04-06T10:00:36+08:00</lastmod>
