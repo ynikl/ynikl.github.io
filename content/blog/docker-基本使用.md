@@ -80,5 +80,21 @@ docker rmi IMAGE
 docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
 ```
 
+## FQA
+
+### CMD和ENTRYPOINT的区别
+
+RUN、CMD 和 ENTRYPOINT 这三个 Dockerfile 指令看上去很类似，很容易混淆。本节将通过实践详细讨论它们的区别。
+
+简单的说：
+
+RUN 执行命令并创建新的镜像层，RUN 经常用于安装软件包。
+
+CMD 设置容器启动后默认执行的命令及其参数，但 CMD 能够被 docker run 后面跟的命令行参数替换。
+
+ENTRYPOINT 配置容器启动时运行的命令。
+
+[CMD和ENTRYPOINT的区别](https://www.cnblogs.com/LucasSong/p/12701357.html)
+
 
 
