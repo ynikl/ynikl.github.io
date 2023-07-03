@@ -10,7 +10,17 @@ we should create an interface when we need it, not when we foresee that we could
 interface 抽象 是通过发现的，而不是通过创造的
 生产端接口声明，与实现放在同一个包中 消费端接口声明，与使用interface的放在同一个包中 Interface 是通过发现的，符合使用者的需求（与其他语言最大区别就是 Interface 为隐式实现）所以大部分接口应该是是消费端接口声明。
 准备库定义生产端声明，可以提供自定义接口的能力。 生产端接口要尽量简洁。
-return interfaceBe conservative in what you do, be liberal in fr Be conservative in what you do, be liberal in what you accept from others....</p></div><footer class=entry-footer><span title='2023-05-25 12:10:53 +0800 +0800'>May 25, 2023</span>&nbsp;·&nbsp;10 min&nbsp;·&nbsp;潜水员</footer><a class=entry-link aria-label="post link to Golang 100 mistake 的简单读书笔记" href=https://ynikl.github.io/blog/golang-100mistake/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2>Golang Gin</h2></header><div class=entry-content><p>Golang Gin 框架的使用和理解 框架代码地址
+return interfaceBe conservative in what you do, be liberal in fr Be conservative in what you do, be liberal in what you accept from others....</p></div><footer class=entry-footer><span title='2023-05-25 12:10:53 +0800 +0800'>May 25, 2023</span>&nbsp;·&nbsp;10 min&nbsp;·&nbsp;潜水员</footer><a class=entry-link aria-label="post link to Golang 100 mistake 的简单读书笔记" href=https://ynikl.github.io/blog/golang-100mistake/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2>Golang 100 mistake 的简单读书笔记</h2></header><div class=entry-content><p>variable shadowing init 弊端
+初始化 error 的处理, 不应该是包自己用 panic 捕获错误终止程序，而是调用来决定是否应该终止程序 影响测试， 会在测试之前执行 获取执行数据，需要通过全局变量（ 全局变量弊端：1. 会被修改，2. 影响测试） 什么时候使用
+避免错误产生没有err 不会产生全局变量 getters and setters 如果只是简单获取值的话，就不应该用
+方法命名
+获取值 Balance 而不是 （ GetBalance) 设置值 SetBalance interface pollution interface 的价值
+通用的方法（ 如排序） 解耦 限制实体行为（仅提供特定方法） 只要在当我们真正用到的时候才去创建
+we should create an interface when we need it, not when we foresee that we could need it
+interface 抽象 是通过发现的，而不是通过创造的
+生产端接口声明，与实现放在同一个包中 消费端接口声明，与使用interface的放在同一个包中 Interface 是通过发现的，符合使用者的需求（与其他语言最大区别就是 Interface 为隐式实现）所以大部分接口应该是是消费端接口声明。
+准备库定义生产端声明，可以提供自定义接口的能力。 生产端接口要尽量简洁。
+return interfaceBe conservative in what you do, be liberal in fr Be conservative in what you do, be liberal in what you accept from others....</p></div><footer class=entry-footer><span title='2023-05-25 12:10:53 +0800 +0800'>May 25, 2023</span>&nbsp;·&nbsp;10 min&nbsp;·&nbsp;潜水员</footer><a class=entry-link aria-label="post link to Golang 100 mistake 的简单读书笔记" href=https://ynikl.github.io/books/golang-100mistake/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2>Golang Gin</h2></header><div class=entry-content><p>Golang Gin 框架的使用和理解 框架代码地址
 中间的几个关键对象 Engine RouterGroup HandlerFunc Context Engine gin 的框架实例, 包含路由地址, 中间件, 框架配置. 通过New()或者Default()创建
 New 不带任何中间件 Default 会带 logger 和 recover 通过 Engine.Use() 添加中间件到Engine的RouterGroup
 Engine.Run 启动, 并绑定到参数的地址
