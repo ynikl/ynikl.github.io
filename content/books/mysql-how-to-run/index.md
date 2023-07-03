@@ -1,0 +1,98 @@
+---
+title: "Mysql How to Run"
+date: 2023-06-18T18:46:44+08:00
+publishDate: 2023-06-18T18:46:44+08:00
+draft: true
+tags:
+- golang
+- thoughts
+---
+
+### 字符集和比较规则
+
+我们上边说 utf8 字符集表示一个字符需要使用1~4个字节，但是我们常用的一些字符使用1~3个字节就可以表 示了。而在 MySQL 中字符集表示一个字符所用最大字节长度在某些方面会影响系统的存储和性能，所以设计 
+MySQL 的大叔偷偷的定义了两个概念: utf8mb3 :阉割过的 utf8 字符集，只使用1~3个字节表示字符。 
+utf8mb4 :正宗的 utf8 字符集，使用1~4个字节表示字符。 
+有一点需要大家十分的注意，在 MySQL 中 utf8 是 utf8mb3 的别名，所以之后在 MySQL 中提到 utf8 就意味着使 用1~3个字节来表示一个字符，如果大家有使用4字节编码一个字符的情况，比如存储一些emoji表情啥的，那请 使用 utf8mb4 。 
+
+
+SHOW COLLATION LIKE 'utf8\_%';
+字符比较规则
+
+
+MySQL 有4个级别的字符集和比较规则，分别是: 
+  服务器级别
+  数据库级别
+  表级别
+  列级别
+
+  
+```
+CREATE TABLE 表名 (列的信息)
+[[DEFAULT] CHARACTER SET 字符集名称] [COLLATE 比较规则名称]
+```
+
+
+```
+CREATE TABLE 表名(
+列名 字符串类型 [CHARACTER SET 字符集名称] [COLLATE 比较规则名称], 其他列...
+);
+```
+
+
+### InnoDB
+
+而我们知道读写磁盘的速度非常慢，和内存读写差了几个数量级，所以当我 们想从表中获取某些记录时， InnoDB 存储引擎需要一条一条的把记录从磁盘上读出来么?不，那样会慢死，
+InnoDB 采取的方式是:将数据划分为若干个页，以页作为磁盘和内存之间交互的基本单位，InnoDB中页的大小 一般为 16 KB。也就是在一般情况下，一次最少从磁盘中读取16KB的内容到内存中，一次最少把内存中的16KB 内容刷新到磁盘中。
+
+ InnoDB 存储引擎的大叔们到现在为止设计了4种不同类型的 行格式 ，分别是 Compact 、 Redundant 、
+Dynamic 和 Compressed 行格式
+
+
+![mysql-innodb-compact](./mysql-innodb-compact.png)
+
+
+变长字段列表
+
+1. 假设某个字符集中表示一个字符最多需要使用的字节数为 W ，也就是使用 SHOW CHARSET 语句的结果中的 Maxlen 列，比方说 utf8 字符集中的 W 就是 3 ， gbk 字符集中的 W 就是 2 ， ascii 字符集中的 W 就是 1。
+2. 对于变长类型 VARCHAR(M) 来说，这种类型表示能存储最多 M 个字符(注意是字符不是字节)，所以这个类 型能表示的字符串最多占用的字节数就是 M×W 。
+3. 假设它实际存储的字符串占用的字节数是 L 。
+
+如果该可变字段允许存储的最大字节数( M×W )超过255字节并且真实存储的字节数( L ) 超过127字节，则使用2个字节，否则使用1个字节。
+
+
+NULL 值列表
+
+如果表中没有允许存储 NULL 的列，则 NULL 也不存在了，否则将每个允许存储 NULL 的列对应一个
+二进制位，二进制位按照列的顺序逆序排列，二进制位表示的意义如下: 二进制位的值为 1 时，代表该列的值为 NULL 。
+二进制位的值为 0 时，代表该列的值不为 NULL 。
+
+![mysql-real-data-auto-hide-col](./mysql-real-data-auto-hide-col.png)
+
+
+ InnoDB 数据页的7个组成部分，知道了各个数据页可以组成一个 双向链表 ，而每个数据页 中的记录会按照主键值从小到大的顺序组成一个 单向链表 ，每个数据页都会为存储在它里边儿的记录生成一个
+页目录 ，在通过主键查找某条记录的时候可以在 页目录 中使用二分法快速定位到对应的槽，然后再遍历该槽对 应分组中的记录即可快速找到指定的记录
+
+![mysql-how-to-run-innodb-page-find](./mysql-how-to-run-innodb-page-find.png)
+
+
+我们必须通过一些诸如记录移动的操作来始终保 证这个状态一直成立:下一个数据页中用户记录的主键值必须大于上一个页中用户记录的主键值。这个过程 我们也可以称为 页分裂 。
+
+
+![mysql-how-to-run-page-divide](./mysql-how-to-run-page-divide.png)
+
+
+聚簇索引, 数据索引
+
+![mysql-how-run-primary-key-index](./mysql-how-run-primary-key-index.png)
+
+
+二级索引
+
+![mysql-how-run-primary-second-index](./mysql-how-run-primary-second-index.png)
+
+联合索引
+
+![union-index](./union-index.png)
+
+
