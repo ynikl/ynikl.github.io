@@ -13,7 +13,41 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Thu, 25 May 2023 12:10:53 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Aug 2023 20:34:58 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GO 代码结构中为什么老有 cmd 和 internal 文件夹</title>
+      <link>https://ynikl.github.io/blog/golang-project-layout-cmd/</link>
+      <pubDate>Thu, 03 Aug 2023 20:34:58 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/blog/golang-project-layout-cmd/</guid>
+      <description>总结:
+cmd 一个代码库多个启动程序, 清晰明了 internal 将外部依赖放置在 internal 外面, 避免内部逻辑代码直接引用. 比如, 数据持久层 MySQL 参考一下 ChatGPT 给我的答案:
+在 Go 语言中，使用 cmd 目录和 internal 目录的组合是一种常见的方式来组织项目结构。 cmd 目录通常包含可执行程序的入口点。这些可执行程序可以是应用程序的命令行接口、工具或测试二进制文件。每个子目录都包含一个可执行程序的主要文件，以及与其关联的其他文件。这种风格使得每个程序都可以独立编译和分发，并且可以让其它人轻松了解和使用它们。
+对于 internal 目录，其命名约束了该目录下的代码仅供内部使用。这意味着代码不应该由任何可以被外部依赖使用的包引用。这种风格允许对代码的控制更精细，因为程序员可以更好地控制哪些代码可以被其他人使用。
+使用这样的结构来组织 Go 项目有很多好处，包括：
+代码更易于维护和理解：使用独立的可执行程序和内部目录，可以让代码更清晰且更容易维护，使开发人员能够更好地理解代码的用途和位置。
+扩展性强：该结构使得每个可执行程序都可以相对独立地进行开发、测试和部署。这也使得代码更有扩展和修改的完整性。
+松耦合：使用 cmd 和 internal 目录方式可以大大增强代码间的松耦合度。这使得程序员可以更好地对代码变化做出反应，同时减少代码冲突及协调问题。
+综上所述，使用 cmd 和 internal 目录方式更易于开发和维护，是现代化 Go 应用程序中广受欢迎的项目结构设计方式。</description>
+      <content:encoded><![CDATA[<p>总结:</p>
+<ul>
+<li>cmd 一个代码库多个启动程序, 清晰明了</li>
+<li>internal 将外部依赖放置在 internal 外面, 避免内部逻辑代码直接引用. 比如, 数据持久层 MySQL</li>
+</ul>
+<p>参考一下 ChatGPT 给我的答案:</p>
+<blockquote>
+<p>在 Go 语言中，使用 cmd 目录和 internal 目录的组合是一种常见的方式来组织项目结构。
+cmd 目录通常包含可执行程序的入口点。这些可执行程序可以是应用程序的命令行接口、工具或测试二进制文件。每个子目录都包含一个可执行程序的主要文件，以及与其关联的其他文件。这种风格使得每个程序都可以独立编译和分发，并且可以让其它人轻松了解和使用它们。</p>
+<p>对于 internal 目录，其命名约束了该目录下的代码仅供内部使用。这意味着代码不应该由任何可以被外部依赖使用的包引用。这种风格允许对代码的控制更精细，因为程序员可以更好地控制哪些代码可以被其他人使用。</p>
+<p>使用这样的结构来组织 Go 项目有很多好处，包括：</p>
+<p>代码更易于维护和理解：使用独立的可执行程序和内部目录，可以让代码更清晰且更容易维护，使开发人员能够更好地理解代码的用途和位置。</p>
+<p>扩展性强：该结构使得每个可执行程序都可以相对独立地进行开发、测试和部署。这也使得代码更有扩展和修改的完整性。</p>
+<p>松耦合：使用 cmd 和 internal 目录方式可以大大增强代码间的松耦合度。这使得程序员可以更好地对代码变化做出反应，同时减少代码冲突及协调问题。</p>
+<p>综上所述，使用 cmd 和 internal 目录方式更易于开发和维护，是现代化 Go 应用程序中广受欢迎的项目结构设计方式。</p>
+</blockquote>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>Golang 100 mistake 的简单读书笔记</title>
       <link>https://ynikl.github.io/blog/golang-100mistake/</link>
@@ -3780,7 +3814,7 @@ array 是切片所指向的底层数组数据 len 就是切片的长度 cap 即�
 </span></span><span class="line"><span class="cl"><span class="nx">b</span> <span class="o">:=</span> <span class="nx">a</span><span class="p">[:</span><span class="mi">4</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">c</span> <span class="o">:=</span> <span class="nx">b</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="err">输出</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="nx">输出</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">panic</span><span class="p">:</span> <span class="nx">runtime</span> <span class="kt">error</span><span class="p">:</span> <span class="nx">slice</span> <span class="nx">bounds</span> <span class="nx">out</span> <span class="nx">of</span> <span class="k">range</span> <span class="p">[::</span><span class="mi">5</span><span class="p">]</span> <span class="nx">with</span> <span class="nx">capacity</span> <span class="mi">4</span>
 </span></span></code></pre></td></tr></table>
@@ -3834,7 +3868,7 @@ go.sum 文件 与go.mod经常在一起的会是一个go.sum文件，文件中存
 </span></span><span class="line"><span class="cl"><span class="nv">require</span> <span class="nv">example</span><span class="p">.</span><span class="nv">com</span><span class="o">/</span><span class="nv">new</span><span class="o">/</span><span class="nv">thing</span><span class="o">/</span><span class="nv">v2</span> <span class="nv">v2</span><span class="mf">.3.4</span>
 </span></span><span class="line"><span class="cl"><span class="nv">exclude</span> <span class="nv">example</span><span class="p">.</span><span class="nv">com</span><span class="o">/</span><span class="nv">old</span><span class="o">/</span><span class="nv">thing</span> <span class="nv">v1</span><span class="mf">.2.3</span>
 </span></span><span class="line"><span class="cl"><span class="nv">replace</span> <span class="nv">example</span><span class="p">.</span><span class="nv">com</span><span class="o">/</span><span class="nv">bad</span><span class="o">/</span><span class="nv">thing</span> <span class="nv">v1</span><span class="mf">.4.5</span> <span class="o">=</span><span class="p">&gt;</span> <span class="nv">example</span><span class="p">.</span><span class="nv">com</span><span class="o">/</span><span class="nv">good</span><span class="o">/</span><span class="nv">thing</span> <span class="nv">v1</span><span class="mf">.4.5</span>
-</span></span><span class="line"><span class="cl"><span class="nv">retract</span> <span class="p">[</span><span class="na">v1</span><span class="err">.9.0,</span> <span class="na">v1</span><span class="err">.9.5</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">retract</span> <span class="p">[</span><span class="na">v1</span><span class="err">.</span><span class="na">9</span><span class="err">.</span><span class="na">0</span><span class="err">,</span> <span class="na">v1</span><span class="err">.</span><span class="na">9</span><span class="err">.</span><span class="na">5</span><span class="p">]</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>文件中各行意思</p>

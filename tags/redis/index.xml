@@ -13,7 +13,22 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Thu, 18 Aug 2022 12:18:53 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Aug 2023 18:49:09 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redis 在缓存场景中的应用模式</title>
+      <link>https://ynikl.github.io/blog/redis-design-pattern/</link>
+      <pubDate>Thu, 03 Aug 2023 18:49:09 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/blog/redis-design-pattern/</guid>
+      <description>总结:
+先更新数据库, 再删除Key
+陈皓大佬的 缓存更新的套路 唉， 叹息</description>
+      <content:encoded><![CDATA[<p>总结:</p>
+<p><strong>先更新数据库, 再删除Key</strong></p>
+<p><a href="https://coolshell.cn/articles/17416.html">陈皓大佬的 缓存更新的套路 </a>  唉， 叹息</p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>Redis 用于做分布式锁</title>
       <link>https://ynikl.github.io/blog/redis-do-distributed-lock/</link>
