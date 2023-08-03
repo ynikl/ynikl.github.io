@@ -189,4 +189,19 @@ select * from t1, t2
 3. 基于块的嵌套循环连接 (批量驱动表数据)
 
 
+查看表的统计信息
 
+```
+SELECT * FROM mysql.innodb_table_stats;
+```
+
+```
+select * from mysql.innodb_index_stats 
+```
+
+子查询结果集分类
+
+1. 标量  单一值 `SELECT (SELECT m1 FROM t1 LIMIT 1);` 
+2. 行子查询 单一多个值 `SELECT * FROM t1 WHERE m1 = (SELECT MIN(m2) FROM t2);`
+3. 列子查询 一列 `SELECT * FROM t1 WHERE m1 IN (SELECT m2 FROM t2);`
+4. 表子查询  `SELECT * FROM t1 WHERE (m1, n1) IN (SELECT m2, n2 FROM t2);`
