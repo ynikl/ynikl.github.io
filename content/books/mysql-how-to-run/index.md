@@ -205,3 +205,58 @@ select * from mysql.innodb_index_stats
 2. 行子查询 单一多个值 `SELECT * FROM t1 WHERE m1 = (SELECT MIN(m2) FROM t2);`
 3. 列子查询 一列 `SELECT * FROM t1 WHERE m1 IN (SELECT m2 FROM t2);`
 4. 表子查询  `SELECT * FROM t1 WHERE (m1, n1) IN (SELECT m2, n2 FROM t2);`
+
+
+### 事务
+
+1. 原子性
+2. 隔离性
+3. 一致性 (提供 check 校验) 通过其他三点保证
+4. 持久性 
+
+
+### redo 
+
+1. 体积小, 页码, 偏移量, 修改值
+2. 顺序写入
+
+
+### MVCC
+
+事物并发问题
+
+1. 脏读, 读到其他事务未提交的数据 (其他事务进行到一半)
+2. 脏写, 写到其他事务未提交的数据
+3. 不可重复读, 本事务第一次读到A值, 其他事务修改并提交B值, 本事务再读到B值 (不能重复读取到事务开始时的A值)
+4. 幻读, 事务开始后, 第二次范围查询的值与第一次范围查询不一致 ( 第一次查询AC, 其他事务插入B, 第二次查询 ABC)o
+
+MySQL 的隔离等级
+
+1. Read Uncommitted
+2. Read committed 以提交读
+3. Repeadted Read
+4. Serializable
+
+
+- trx_id
+- roll_pointer
+
+### 锁
+
+- 一致性读 ( 普通读 )
+- 锁定读 
+  - S 共享锁 `select ... lock in share mode;`
+  - X 排他锁 `select ... for update;`
+  
+
+意向锁: 当要对行加锁时, 在表上面加的锁, 方便快速知道该表是否可能直接加表锁. 
+
+IS、IX锁是表级锁，它们的提出仅仅为了在之后加表级别的S锁和X锁时可以快速判断表中的记录是否 被上锁，以避免用遍历的方式来查看表中有没有上锁的记录，也就是说其实IS锁和IX锁是兼容的，IX锁和IX锁是 兼容的
+
+
+行级锁
+
+- `LOCK_REC_NOT_GAP`
+- `GAP Locks`  锁住当前记录的前方数据间隙, 用于解决幻读问题(与MVCC同时起作用). 引入两个伪记录 `Infimun, Supermum`
+- `Next-Key Locks` 记录锁 + 间隙锁
+
