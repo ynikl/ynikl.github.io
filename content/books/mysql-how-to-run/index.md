@@ -1,5 +1,5 @@
 ---
-title: "Mysql How to Run"
+title: "MySQL 是怎样运行的"
 date: 2023-06-18T18:46:44+08:00
 publishDate: 2023-06-18T18:46:44+08:00
 draft: false
