@@ -2,10 +2,9 @@
 title: "Mysql How to Run"
 date: 2023-06-18T18:46:44+08:00
 publishDate: 2023-06-18T18:46:44+08:00
-draft: true
+draft: false
 tags:
-- golang
-- thoughts
+- mysql
 ---
 
 ### 字符集和比较规则
