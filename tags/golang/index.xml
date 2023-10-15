@@ -3860,15 +3860,15 @@ go.sum 文件 与go.mod经常在一起的会是一个go.sum文件，文件中存
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-v" data-lang="v"><span class="line"><span class="cl"><span class="kn">module</span> <span class="nv">example</span><span class="p">.</span><span class="nv">com</span><span class="o">/</span><span class="nv">my</span><span class="o">/</span><span class="nv">thing</span>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">module example.com/my/thing
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">go</span> <span class="mf">1.12</span>
+</span></span><span class="line"><span class="cl">go 1.12
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">require</span> <span class="nv">example</span><span class="p">.</span><span class="nv">com</span><span class="o">/</span><span class="nv">other</span><span class="o">/</span><span class="nv">thing</span> <span class="nv">v1</span><span class="mf">.0.2</span>
-</span></span><span class="line"><span class="cl"><span class="nv">require</span> <span class="nv">example</span><span class="p">.</span><span class="nv">com</span><span class="o">/</span><span class="nv">new</span><span class="o">/</span><span class="nv">thing</span><span class="o">/</span><span class="nv">v2</span> <span class="nv">v2</span><span class="mf">.3.4</span>
-</span></span><span class="line"><span class="cl"><span class="nv">exclude</span> <span class="nv">example</span><span class="p">.</span><span class="nv">com</span><span class="o">/</span><span class="nv">old</span><span class="o">/</span><span class="nv">thing</span> <span class="nv">v1</span><span class="mf">.2.3</span>
-</span></span><span class="line"><span class="cl"><span class="nv">replace</span> <span class="nv">example</span><span class="p">.</span><span class="nv">com</span><span class="o">/</span><span class="nv">bad</span><span class="o">/</span><span class="nv">thing</span> <span class="nv">v1</span><span class="mf">.4.5</span> <span class="o">=</span><span class="p">&gt;</span> <span class="nv">example</span><span class="p">.</span><span class="nv">com</span><span class="o">/</span><span class="nv">good</span><span class="o">/</span><span class="nv">thing</span> <span class="nv">v1</span><span class="mf">.4.5</span>
-</span></span><span class="line"><span class="cl"><span class="nv">retract</span> <span class="p">[</span><span class="na">v1</span><span class="err">.</span><span class="na">9</span><span class="err">.</span><span class="na">0</span><span class="err">,</span> <span class="na">v1</span><span class="err">.</span><span class="na">9</span><span class="err">.</span><span class="na">5</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">require example.com/other/thing v1.0.2
+</span></span><span class="line"><span class="cl">require example.com/new/thing/v2 v2.3.4
+</span></span><span class="line"><span class="cl">exclude example.com/old/thing v1.2.3
+</span></span><span class="line"><span class="cl">replace example.com/bad/thing v1.4.5 =&gt; example.com/good/thing v1.4.5
+</span></span><span class="line"><span class="cl">retract [v1.9.0, v1.9.5]
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>文件中各行意思</p>

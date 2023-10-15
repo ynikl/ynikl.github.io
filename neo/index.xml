@@ -24,14 +24,12 @@
 深化打造技术护城河
 音视频处理入门 精通 Golang 语言 扩展自己知识认知, 提升自我象形.
 每个月 4-5 本书籍的阅读量. 35 cm 的臂维, 肚子没有赘肉. 迈出自己的圈子
-完成20次开心的朋友聚会. 达成两场旅游. January O: 加深 Golang 技术
+完成20次开心的朋友聚会. 达成两场旅游. 9.04 修改
+铺广技术栈, 为成为独立开发者做努力, 以广度为主
+Python 数据分析, AI 工具, 快速开发的能力 前端开发能力, 能够掌握当前主流开发 了解大数据的工作原理 January O: 加深 Golang 技术
 golang 100 Mistake go gorm 学习 go gin 学习 go context go 泛型 O: 算法与数据结构入门
 算法数据结构资料汇总, 以及学习计划安排 算法4 完成5章精读 总结:
-中间调整目标转向学习视频的编码技术, 下次配合更新OKR目标
-聚会次数完成 +=2
-阅读 5
-February O: 加深 Golang 技术
-golang 100 Mistake go 单元测试技能 O: 视频技能入门</description>
+中间调整目标转向学习视频的编码技术, 下次配合更新OKR目标</description>
       <content:encoded><![CDATA[<h1 id="2023-okr">2023 OKR</h1>
 <p>在生活上, 让时间过得更加有计划性, 持续增加自己的知识储备.
 在精神上, 塑造更加坚毅的内心,  输出更多的自我表达.
@@ -51,6 +49,21 @@ golang 100 Mistake go 单元测试技能 O: 视频技能入门</description>
 <ul>
 <li><input disabled="" type="checkbox"> 完成20次开心的朋友聚会.</li>
 <li><input disabled="" type="checkbox"> 达成两场旅游.</li>
+</ul>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>9.04 修改</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>铺广技术栈, 为成为独立开发者做努力, 以广度为主</p>
+<ul>
+<li><input disabled="" type="checkbox"> Python 数据分析, AI 工具,  快速开发的能力</li>
+<li><input disabled="" type="checkbox"> 前端开发能力, 能够掌握当前主流开发</li>
+<li><input disabled="" type="checkbox"> 了解大数据的工作原理</li>
 </ul>
 <h2 id="january">January</h2>
 <p>O: 加深 Golang 技术</p>
@@ -114,7 +127,7 @@ golang 100 Mistake go 单元测试技能 O: 视频技能入门</description>
 <p>追求内心与工作的平衡</p>
 <p>O: 加深 Golang 技术</p>
 <ul>
-<li><input disabled="" type="checkbox"> Golang 100 Mistake</li>
+<li><input checked="" disabled="" type="checkbox"> Golang 100 Mistake</li>
 <li><input disabled="" type="checkbox"> Go 单元测试技能</li>
 <li><input disabled="" type="checkbox"> gorm 学习</li>
 <li><input disabled="" type="checkbox"> golang 100 Mistake interface 设计思路</li>
@@ -126,6 +139,12 @@ golang 100 Mistake go 单元测试技能 O: 视频技能入门</description>
 <p>O: 思考副业计划</p>
 <ul>
 <li><input disabled="" type="checkbox"> 列出3个初步发副业方案计划</li>
+</ul>
+<h3 id="september">September</h3>
+<p>铺广技术道路</p>
+<ul>
+<li><input disabled="" type="checkbox"> MongoDB 工作原理</li>
+<li><input disabled="" type="checkbox"> Python 自动化工具</li>
 </ul>
 ]]></content:encoded>
     </item>
