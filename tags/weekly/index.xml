@@ -86,11 +86,11 @@ secret 是使用header中的 加密算法 对<code>header+payload+secret</code>�
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">HMACSHA256(
-</span></span><span class="line"><span class="cl">  base64UrlEncode(header) + &#34;.&#34; +
-</span></span><span class="line"><span class="cl">  base64UrlEncode(payload),
-</span></span><span class="line"><span class="cl">  your-256-bit-secret
-</span></span><span class="line"><span class="cl">)
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">HMACSHA256</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">base64UrlEncode</span><span class="p">(</span><span class="n">header</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34;.&#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="n">base64UrlEncode</span><span class="p">(</span><span class="n">payload</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">your</span><span class="o">-</span><span class="mi">256</span><span class="o">-</span><span class="n">bit</span><span class="o">-</span><span class="n">secret</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="replace-into">replace into</h3>
