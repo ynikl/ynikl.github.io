@@ -13,7 +13,53 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Sat, 21 Oct 2023 22:43:30 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Nov 2023 13:50:52 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go Build Time Variable</title>
+      <link>https://ynikl.github.io/posts/go-build-time-variable/</link>
+      <pubDate>Mon, 20 Nov 2023 13:50:52 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/posts/go-build-time-variable/</guid>
+      <description>使用背景
+一套程序代码，配置文件，需要同时在不同的云厂商运行。
+通过修改 jenkins, 的部署 pipeline , 让开发人员准确的获取到当前程序的运行环境 还能保持代码统一.
+ldflags 修改的变量, 无大小写限制, 小写变量也可修改编译过程进行修改
+变量引用需要 fullpath. 例如 main 文件中的变量 go build -ldflags=&amp;quot;-X &#39;main/varName=xxx&#39;
+子包，需要当前 mod 包名称开头。 可以查看第二篇文章
+go build variable
+https://programmingpercy.tech/blog/modify-variables-during-build/
+发现更加简单的解决方案
+go build -tags targetCloud
+https://pkg.go.dev/go/build#hdr-Build_Constraints </description>
+      <content:encoded><![CDATA[<p>使用背景</p>
+<p>一套程序代码，配置文件，需要同时在不同的云厂商运行。</p>
+<p>通过修改 jenkins, 的部署 pipeline , 让开发人员准确的获取到当前程序的运行环境
+还能保持代码统一.</p>
+<ul>
+<li>
+<p>ldflags 修改的变量, 无大小写限制, 小写变量也可修改编译过程进行修改</p>
+</li>
+<li>
+<p>变量引用需要 fullpath. 例如 main 文件中的变量 <code>go build -ldflags=&quot;-X 'main/varName=xxx'</code></p>
+</li>
+<li>
+<p>子包，需要当前 mod 包名称开头。 可以查看第二篇文章</p>
+</li>
+<li>
+<p><a href="https://belief-driven-design.com/build-time-variables-in-go-51439b26ef9/">go build variable</a></p>
+</li>
+<li>
+<p><a href="https://programmingpercy.tech/blog/modify-variables-during-build/">https://programmingpercy.tech/blog/modify-variables-during-build/</a></p>
+</li>
+</ul>
+<p>发现更加简单的解决方案</p>
+<p><code>go build -tags targetCloud</code></p>
+<ul>
+<li><a href="https://pkg.go.dev/go/build#hdr-Build_Constraints">https://pkg.go.dev/go/build#hdr-Build_Constraints</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>知止</title>
       <link>https://ynikl.github.io/posts/what-i-want/</link>
