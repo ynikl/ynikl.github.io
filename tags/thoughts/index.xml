@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>thoughts on 潜水员的咖啡小屋</title>
+    <title>Thoughts on 潜水员的咖啡小屋</title>
     <link>https://ynikl.github.io/tags/thoughts/</link>
-    <description>Recent content in thoughts on 潜水员的咖啡小屋</description>
+    <description>Recent content in Thoughts on 潜水员的咖啡小屋</description>
     <image>
       <url>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://ynikl.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
@@ -13,7 +13,25 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Sat, 21 Oct 2023 22:43:30 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/thoughts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Mar 2024 20:27:39 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/tags/thoughts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>md5 128位但长度为32位</title>
+      <link>https://ynikl.github.io/posts/md5-length/</link>
+      <pubDate>Tue, 05 Mar 2024 20:27:39 +0800</pubDate>
+      <author>gilfoyle.k@outlook.com (潜水员)</author>
+      <guid>https://ynikl.github.io/posts/md5-length/</guid>
+      <description>背景：
+后端（Golang) 接口卡控前端给的md5 值的长度， 百度md5 结构为128位长度，心理默认8位为一个字符。卡控判断md5 长度为16位，但是前端时间传入 md5 长度位32字符
+原因：
+golang 的 len 判断的是 字符数（bytes) md5 的结果是128位， 也即是16bytes 没错，但是通常md5会原先转成16进制，即4位一个字符，即转化成一个128/4=32 字符的字符串。传递到后端即为32位字符。</description>
+      <content:encoded><![CDATA[<p>背景：</p>
+<p>后端（Golang) 接口卡控前端给的md5 值的长度， 百度md5 结构为128位长度，心理默认8位为一个字符。卡控判断md5 长度为16位，但是前端时间传入 md5 长度位32字符</p>
+<p>原因：</p>
+<p>golang 的 len 判断的是 字符数（bytes)
+md5 的结果是128位， 也即是16bytes 没错，但是通常md5会原先转成16进制，即4位一个字符，即转化成一个128/4=32 字符的字符串。传递到后端即为32位字符。</p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>知止</title>
       <link>https://ynikl.github.io/posts/what-i-want/</link>

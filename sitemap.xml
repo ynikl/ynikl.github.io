@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://ynikl.github.io/posts/go-build-time-variable/</loc>
-    <lastmod>2023-11-20T13:50:52+08:00</lastmod>
-  </url><url>
     <loc>https://ynikl.github.io/tags/golang/</loc>
-    <lastmod>2023-11-20T13:50:52+08:00</lastmod>
+    <lastmod>2024-03-05T20:27:39+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/posts/md5-length/</loc>
+    <lastmod>2024-03-05T20:27:39+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/posts/</loc>
-    <lastmod>2023-11-20T13:50:52+08:00</lastmod>
+    <lastmod>2024-03-05T20:27:39+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/</loc>
-    <lastmod>2023-11-20T13:50:52+08:00</lastmod>
+    <lastmod>2024-03-05T20:27:39+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/tags/thoughts/</loc>
+    <lastmod>2024-03-05T20:27:39+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/</loc>
+    <lastmod>2024-03-05T20:27:39+08:00</lastmod>
+  </url><url>
+    <loc>https://ynikl.github.io/posts/go-build-time-variable/</loc>
     <lastmod>2023-11-20T13:50:52+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/tags/books/</loc>
@@ -32,8 +38,8 @@
     <loc>https://ynikl.github.io/books/worker-fire/</loc>
     <lastmod>2023-10-29T21:50:44+08:00</lastmod>
   </url><url>
-    <loc>https://ynikl.github.io/tags/thoughts/</loc>
-    <lastmod>2023-10-21T22:43:30+08:00</lastmod>
+    <loc>https://ynikl.github.io/blog/</loc>
+    <lastmod>2023-10-27T10:17:24+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/posts/what-i-want/</loc>
     <lastmod>2023-10-21T22:43:30+08:00</lastmod>
@@ -46,9 +52,6 @@
   </url><url>
     <loc>https://ynikl.github.io/books/hard-boiled_wonderland_and_the_end_of_the_world/</loc>
     <lastmod>2023-08-07T20:47:31+08:00</lastmod>
-  </url><url>
-    <loc>https://ynikl.github.io/blog/</loc>
-    <lastmod>2023-08-03T20:34:58+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/blog/golang-project-layout-cmd/</loc>
     <lastmod>2023-08-03T20:34:58+08:00</lastmod>
@@ -444,6 +447,10 @@
     <lastmod>2022-03-09T11:29:17+08:00</lastmod>
   </url><url>
     <loc>https://ynikl.github.io/blog/diary/2023-03-20/</loc>
+  </url><url>
+    <loc>https://ynikl.github.io/blog/process_thread_routine/</loc>
+  </url><url>
+    <loc>https://ynikl.github.io/blog/tcp/</loc>
   </url><url>
     <loc>https://ynikl.github.io/readme/</loc>
   </url><url>

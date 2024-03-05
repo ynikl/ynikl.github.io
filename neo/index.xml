@@ -38,11 +38,11 @@ golang 100 Mistake go gorm 学习 go gin 学习 go context go 泛型 O: 算法�
 <p>深化打造技术护城河</p>
 <ul>
 <li><input disabled="" type="checkbox"> 音视频处理入门</li>
-<li><input disabled="" type="checkbox"> 精通 Golang 语言</li>
+<li><input checked="" disabled="" type="checkbox"> 精通 Golang 语言</li>
 </ul>
 <p>扩展自己知识认知, 提升自我象形.</p>
 <ul>
-<li><input disabled="" type="checkbox"> 每个月 4-5 本书籍的阅读量.</li>
+<li><input checked="" disabled="" type="checkbox"> 每个月 4-5 本书籍的阅读量.</li>
 <li><input disabled="" type="checkbox"> 35 cm 的臂维, 肚子没有赘肉.</li>
 </ul>
 <p>迈出自己的圈子</p>
