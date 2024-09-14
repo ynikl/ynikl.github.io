@@ -20,18 +20,50 @@
       <pubDate>Fri, 26 May 2023 18:42:36 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/reading-from-coolshell/</guid>
-      <description>返向读一遍陈皓老师在 coolshell 上发布的文档. 并简单做一下读后记录.
-ETCD的内存问题
-一个清晰的排查 Etcd 内存占用过大问题 一把梭：REST API 全用 POST
-RESTFul 为通用惯用标准, 切有各大厂的指导文档背书. 身为程序员要对自己的代码负责, 有程序员的操守, 反对&amp;quot;优雅不能当饭吃&amp;quot; 反对讨论问题使用: 讨论都是在主观的“我觉得”，“我认为”，“感觉还好”…… TCP 的那些事儿 (上) tcp_syncookies 可以用于防止 sync 攻击 seq_num 是根传输字节相关 ISN 的与一个假时钟相关, 每4微妙加一 TCP 的那些事儿（下）
-我做系统架构的一些原则
-完备性比性能更重要 控制逻辑进行收口 服从标准, 规范, 最佳实践 双向显示文本
-如何做一个有质量的技术分享
-描述好问题 怎么做, 为什么 最佳实践和方法总结 GO编程模式：PIPELINE
-在今天，流式处理，函数式编程，以及应用网关对微服务进行简单的API编排， 其实都是受pipeline这种技术方式的影响，Pipeline这种技术在可以很容易的把代码按单一 职责的原则拆分成多个高内聚低耦合的小模块，然后可以很方便地拼装起来去完成比较复杂 的功能。
-golang 的 Pipeline 代码大家都会写, 但是我一直没有思考过为什么要这样子写.
-GO编程模式：委托和反转控制
-把控制逻辑与业务逻辑分层 未完待续&amp;hellip;</description>
+      <description>&lt;p&gt;返向读一遍陈皓老师在 coolshell 上发布的文档. 并简单做一下读后记录.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://coolshell.cn/articles/22242.html&#34;&gt;ETCD的内存问题&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个清晰的排查 Etcd 内存占用过大问题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://coolshell.cn/articles/22173.html&#34;&gt;一把梭：REST API 全用 POST&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;RESTFul 为通用惯用标准, 切有各大厂的指导文档背书.&lt;/li&gt;
+&lt;li&gt;身为程序员要对自己的代码负责, 有程序员的操守, 反对&amp;quot;优雅不能当饭吃&amp;quot;&lt;/li&gt;
+&lt;li&gt;反对讨论问题使用: 讨论都是在主观的“我觉得”，“我认为”，“感觉还好”……&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://coolshell.cn/articles/11564.html&#34;&gt;TCP 的那些事儿 (上) &lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;tcp_syncookies 可以用于防止 sync 攻击&lt;/li&gt;
+&lt;li&gt;seq_num 是根传输字节相关&lt;/li&gt;
+&lt;li&gt;ISN 的与一个假时钟相关, 每4微妙加一&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://coolshell.cn/articles/11609.html&#34;&gt;TCP 的那些事儿（下）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://coolshell.cn/articles/21672.html&#34;&gt;我做系统架构的一些原则&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;完备性比性能更重要&lt;/li&gt;
+&lt;li&gt;控制逻辑进行收口&lt;/li&gt;
+&lt;li&gt;服从标准, 规范, 最佳实践&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://coolshell.cn/articles/21649.html&#34;&gt;双向显示文本&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://coolshell.cn/articles/21589.html&#34;&gt;如何做一个有质量的技术分享&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;描述好问题&lt;/li&gt;
+&lt;li&gt;怎么做, 为什么&lt;/li&gt;
+&lt;li&gt;最佳实践和方法总结&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://coolshell.cn/articles/21228.html&#34;&gt;GO编程模式：PIPELINE&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在今天，流式处理，函数式编程，以及应用网关对微服务进行简单的API编排，
+其实都是受pipeline这种技术方式的影响，Pipeline这种技术在可以很容易的把代码按单一
+职责的原则拆分成多个高内聚低耦合的小模块，然后可以很方便地拼装起来去完成比较复杂
+的功能。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;golang 的 Pipeline 代码大家都会写, 但是我一直没有思考过为什么要这样子写.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://coolshell.cn/articles/21214.html&#34;&gt;GO编程模式：委托和反转控制&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;把控制逻辑与业务逻辑分层&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;未完待续&amp;hellip;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>返向读一遍陈皓老师在 coolshell 上发布的文档. 并简单做一下读后记录.</p>
 <p><a href="https://coolshell.cn/articles/22242.html">ETCD的内存问题</a></p>
 <ul>

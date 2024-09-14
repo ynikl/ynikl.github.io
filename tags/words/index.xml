@@ -20,11 +20,15 @@
       <pubDate>Thu, 05 Jan 2023 14:04:07 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/notes/202301/</guid>
-      <description>&amp;ldquo;与其担心宏观经济，不如关注自己。你对自己生活的影响，往往比宏观经济对你的影响大得多。&amp;rdquo;
-不要 过度 自己是否会被裁员, 而是要聚焦自己目标的, 提升自己的能力, 抵抗宏观经济问题.
-阮一峰网络日志
-世界最大对冲基金&amp;quot;桥水基金&amp;quot;创始人达里奥，说过一句话，可以用在这里：&amp;ldquo;如果你忧心忡忡，那是不必要的；如果你毫不担心，那么你需要担心。&amp;rdquo;
-要保持担忧, 但更要聚焦于自己</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;与其担心宏观经济，不如关注自己。你对自己生活的影响，往往比宏观经济对你的影响大得多。&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;不要 &lt;strong&gt;过度&lt;/strong&gt; 自己是否会被裁员, 而是要聚焦自己目标的, 提升自己的能力, 抵抗宏观经济问题.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.ruanyifeng.com/blog/2022/09/weekly-issue-223.html&#34;&gt;阮一峰网络日志&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;世界最大对冲基金&amp;quot;桥水基金&amp;quot;创始人达里奥，说过一句话，可以用在这里：&amp;ldquo;如果你忧心忡忡，那是不必要的；如果你毫不担心，那么你需要担心。&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;要保持担忧, 但更要聚焦于自己&lt;/p&gt;</description>
       <content:encoded><![CDATA[<blockquote>
 <p>&ldquo;与其担心宏观经济，不如关注自己。你对自己生活的影响，往往比宏观经济对你的影响大得多。&rdquo;</p>
 </blockquote>
@@ -43,18 +47,33 @@
       <pubDate>Fri, 09 Dec 2022 14:04:07 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/notes/202212/</guid>
-      <description>5 代码整洁结构 内部不应该依赖外部, 业务逻辑的实现, 不应该依赖于框架
-20 1917
-Down to Gehenna or up to the Throne, He travels the fastest who travles alone
-小狗钱钱
-真正的勇敢是在感到最恐惧的时候, 你依然在往前走.
-曹大博客
-政府/企业对事故的管理一般有一套“事前-事中-事后”的分析框架，可以作为我们处理事故的很好的参考。在开始分析之前，要先简单了解一下这个框架： 所谓事前，就是做事情之前应该有统筹的规划，考虑可能出现的问题和困难，最好提前做实验验证下，以保证在真实现场不出问题，或者即使出现问题也有应对方案，不至于手忙脚乱、大动干戈。 所谓事中，就是做事情的过程中对事前规划的事情进行执行，以及记录过程中出现的问题；整个事中起着承前启后的作用，上对事前的规划进行验证，下对事后的总结反思进行铺垫。 所谓事后，就是做事情结束后对整个事情进行总结反思、问题分类和根因分析等。追踪并确认所有的问题有效进行了解决和应对，以确保下次不会再犯之前同样的错误。
-22 工程师能力阶梯
-Eleanor Roosevelt
-Great minds discuss ideas（伟人谈论想法）
-Average minds discuss events （ 普通人谈论事件）
-Small minds discuss people（ 庸人谈论他人）</description>
+      <description>&lt;h2 id=&#34;5&#34;&gt;5&lt;/h2&gt;
+&lt;h3 id=&#34;代码整洁结构httpswwwartacodecompostgolangtemplate&#34;&gt;&lt;a href=&#34;https://www.artacode.com/post/golang/template/&#34;&gt;代码整洁结构&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;内部不应该依赖外部, &lt;strong&gt;业务逻辑的实现, 不应该依赖于框架&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;20&#34;&gt;20&lt;/h2&gt;
+&lt;p&gt;1917&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Down to Gehenna or up to the Throne, He travels the fastest who travles alone&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;小狗钱钱&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;真正的勇敢是在感到最恐惧的时候, 你依然在往前走.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;曹大博客&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;政府/企业对事故的管理一般有一套“事前-事中-事后”的分析框架，可以作为我们处理事故的很好的参考。在开始分析之前，要先简单了解一下这个框架：
+所谓事前，就是做事情之前应该有统筹的规划，考虑可能出现的问题和困难，最好提前做实验验证下，以保证在真实现场不出问题，或者即使出现问题也有应对方案，不至于手忙脚乱、大动干戈。
+所谓事中，就是做事情的过程中对事前规划的事情进行执行，以及记录过程中出现的问题；整个事中起着承前启后的作用，上对事前的规划进行验证，下对事后的总结反思进行铺垫。
+所谓事后，就是做事情结束后对整个事情进行总结反思、问题分类和根因分析等。追踪并确认所有的问题有效进行了解决和应对，以确保下次不会再犯之前同样的错误。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;22&#34;&gt;22&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/jorgef/engineeringladders&#34;&gt;工程师能力阶梯&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Eleanor Roosevelt&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Great minds discuss ideas（伟人谈论想法）&lt;br&gt;
+Average minds discuss events （ 普通人谈论事件）&lt;br&gt;
+Small minds discuss people（ 庸人谈论他人）&lt;/p&gt;
+&lt;/blockquote&gt;</description>
       <content:encoded><![CDATA[<h2 id="5">5</h2>
 <h3 id="代码整洁结构httpswwwartacodecompostgolangtemplate"><a href="https://www.artacode.com/post/golang/template/">代码整洁结构</a></h3>
 <p>内部不应该依赖外部, <strong>业务逻辑的实现, 不应该依赖于框架</strong></p>
@@ -91,9 +110,11 @@ Small minds discuss people（ 庸人谈论他人）</p>
       <pubDate>Wed, 09 Nov 2022 14:04:07 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/notes/202211/</guid>
-      <description>吾本乘兴而行，兴尽而返，何必见戴
-&amp;ndash; 世说新语·任诞
-我本来是乘着一时高兴而来，现在兴尽就返回家，为什么非得见到戴逵呢？</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;吾本乘兴而行，兴尽而返，何必见戴&lt;br&gt;
+&amp;ndash; 世说新语·任诞&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我本来是乘着一时高兴而来，现在兴尽就返回家，为什么非得见到戴逵呢？&lt;/p&gt;</description>
       <content:encoded><![CDATA[<blockquote>
 <p>吾本乘兴而行，兴尽而返，何必见戴<br>
 &ndash; 世说新语·任诞</p>

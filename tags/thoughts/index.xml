@@ -20,10 +20,11 @@
       <pubDate>Tue, 05 Mar 2024 20:27:39 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/md5-length/</guid>
-      <description>背景：
-后端（Golang) 接口卡控前端给的md5 值的长度， 百度md5 结构为128位长度，心理默认8位为一个字符。卡控判断md5 长度为16位，但是前端时间传入 md5 长度位32字符
-原因：
-golang 的 len 判断的是 字符数（bytes) md5 的结果是128位， 也即是16bytes 没错，但是通常md5会原先转成16进制，即4位一个字符，即转化成一个128/4=32 字符的字符串。传递到后端即为32位字符。</description>
+      <description>&lt;p&gt;背景：&lt;/p&gt;
+&lt;p&gt;后端（Golang) 接口卡控前端给的md5 值的长度， 百度md5 结构为128位长度，心理默认8位为一个字符。卡控判断md5 长度为16位，但是前端时间传入 md5 长度位32字符&lt;/p&gt;
+&lt;p&gt;原因：&lt;/p&gt;
+&lt;p&gt;golang 的 len 判断的是 字符数（bytes)
+md5 的结果是128位， 也即是16bytes 没错，但是通常md5会原先转成16进制，即4位一个字符，即转化成一个128/4=32 字符的字符串。传递到后端即为32位字符。&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>背景：</p>
 <p>后端（Golang) 接口卡控前端给的md5 值的长度， 百度md5 结构为128位长度，心理默认8位为一个字符。卡控判断md5 长度为16位，但是前端时间传入 md5 长度位32字符</p>
 <p>原因：</p>
@@ -38,18 +39,30 @@ md5 的结果是128位， 也即是16bytes 没错，但是通常md5会原先转�
       <pubDate>Sat, 21 Oct 2023 22:43:30 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/what-i-want/</guid>
-      <description>思考什么 知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得
-思考自己的人生的究极目标是什么:
-取舍 假设，如果赚大钱不是我的人生目标，我现在为了工资，而牺牲掉，提前 20 年度过我想要的人生的机会，那就舍近求远了。
-决定 知道自己应该要做什么，走什么路线可以帮助自己达到自己的“止” &amp;ndash; 人生理想
-幻想 超级幻想 我梦想中的生活并不会幻想着天天开着跑车，出入高贵的奢华场所。大富大贵非吾生所愿。 我想要的是更多的选择，可以走出办公室，房车旅行，随时随地可以办公，驱车到一个风景好的地方，冲上一杯咖啡，写上一两个小时代码，可以游走于山川大河 &amp;mdash;- 一直在路上的车，载着生活和梦想
-所以， 我的梦想就是： 不想被困在办公室
-小幻想 如果不能房车旅行世界， 退而求其次，
-我想要的是一种 cozy 的生活， 舒缓。 按点上下班，工作生活平衡，下班之后没有电话骚扰。 上班路上可以不堵车，居住环境要有家的感觉。
-早上 6 点起床，面朝大海，做一顿早餐， 7 点到达健身房，驱车 15 分钟上班。可以沉浸在自己代码世界中，下午 5 点可以伴着夕阳，回到家中，与家人一起做一顿晚餐，休闲时光，入睡。
-太有规律的生活，好像都很难有漂亮的故事展开。没有矛盾，没有剧情
-现实 略
-每个人都有自己生活, 自己烦恼, 自己的路线</description>
+      <description>&lt;h2 id=&#34;思考什么&#34;&gt;思考什么&lt;/h2&gt;
+&lt;p&gt;知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得&lt;/p&gt;
+&lt;p&gt;思考自己的人生的&lt;strong&gt;究极目标&lt;/strong&gt;是什么:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;取舍&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;假设，如果赚大钱不是我的人生目标，我现在为了工资，而牺牲掉，提前 20 年度过我想要的人生的机会，那就舍近求远了。&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;决定&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;知道自己应该要做什么，走什么路线可以帮助自己达到自己的“止” &amp;ndash; 人生理想&lt;/p&gt;
+&lt;h2 id=&#34;幻想&#34;&gt;幻想&lt;/h2&gt;
+&lt;h3 id=&#34;超级幻想&#34;&gt;超级幻想&lt;/h3&gt;
+&lt;p&gt;我梦想中的生活并不会幻想着天天开着跑车，出入高贵的奢华场所。大富大贵非吾生所愿。
+我想要的是更多的选择，可以走出办公室，房车旅行，随时随地可以办公，驱车到一个风景好的地方，冲上一杯咖啡，写上一两个小时代码，可以游走于山川大河 &amp;mdash;- 一直在路上的车，载着生活和梦想&lt;/p&gt;
+&lt;p&gt;所以， 我的梦想就是： 不想被困在办公室&lt;/p&gt;
+&lt;h3 id=&#34;小幻想&#34;&gt;小幻想&lt;/h3&gt;
+&lt;p&gt;如果不能房车旅行世界， 退而求其次，&lt;/p&gt;
+&lt;p&gt;我想要的是一种 cozy 的生活， 舒缓。 按点上下班，工作生活平衡，下班之后没有电话骚扰。 上班路上可以不堵车，居住环境要有家的感觉。&lt;/p&gt;
+&lt;p&gt;早上 6 点起床，面朝大海，做一顿早餐， 7 点到达健身房，驱车 15 分钟上班。可以沉浸在自己代码世界中，下午 5 点可以伴着夕阳，回到家中，与家人一起做一顿晚餐，休闲时光，入睡。&lt;/p&gt;
+&lt;p&gt;太有规律的生活，好像都很难有漂亮的故事展开。没有矛盾，没有剧情&lt;/p&gt;
+&lt;h2 id=&#34;现实&#34;&gt;现实&lt;/h2&gt;
+&lt;p&gt;略&lt;/p&gt;
+&lt;p&gt;每个人都有自己生活, 自己烦恼, 自己的路线&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="思考什么">思考什么</h2>
 <p>知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得</p>
 <p>思考自己的人生的<strong>究极目标</strong>是什么:</p>
@@ -83,28 +96,28 @@ md5 的结果是128位， 也即是16bytes 没错，但是通常md5会原先转�
       <pubDate>Mon, 08 May 2023 19:52:59 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/the-seven-levels-of-busy/</guid>
-      <description>生活的忙碌可以分成七个层次。
-大家可以对照一下，自己属于哪个层次？
-第 1 级：一点不忙。
-时间很自由，怎么安排都可以，没有一定要去完成的事项，周末想睡多久就多久。
-第 2 级：有一些小事。
-你记得有一些事要做。这些事情是合理的事项，没有截止期，但是你知道这些事迟早要做。
-第 3 级：有一些重要的事。
-你有必须要做的事情，需要及时跟踪，不能拖延，你会时刻提醒自己这些事情。
-第 4 级：日程排满了。
-你的日程排满了，不得不经常问自己&amp;quot;什么事情更重要？&amp;quot;，以便决定先做哪些事，后做哪些事。
-你没有计划外的时间，不过你还能控制日程。
-第 5 级：生活出现混乱。
-你的事情在工作时间做不完，你开始加班了。
-你经常因为事情来不及，而对别人说&amp;quot;对不起&amp;quot;。那些事情并没有被你放弃，只是你不得不赶时间，有些事情执行变得草率。
-第 6 级：任务做不完。
-你需要做的事情，超过了你安排日程的能力。即使放弃某些事情，你依然做不完剩下的事情。
-你的工作时间大大延长，影响到正常生活。你感到非常疲劳。
-第 7 级：日子过不下去。
-各种任务塞满了你醒着的每一分钟。吃饭和其他生活必需的事情，都是抽时间来做。你忙起来的时候，甚至饭也没时间吃。
-你不写日程安排了，因为根本没有时间做计划，每个小时情况都在发生变化。
-你走路也心不在焉，常常觉得要崩溃，日子过不下去了。
-来源: 阮一峰周报</description>
+      <description>&lt;p&gt;生活的忙碌可以分成七个层次。&lt;/p&gt;
+&lt;p&gt;大家可以对照一下，自己属于哪个层次？&lt;/p&gt;
+&lt;p&gt;第 1 级：一点不忙。&lt;/p&gt;
+&lt;p&gt;时间很自由，怎么安排都可以，没有一定要去完成的事项，周末想睡多久就多久。&lt;/p&gt;
+&lt;p&gt;第 2 级：有一些小事。&lt;/p&gt;
+&lt;p&gt;你记得有一些事要做。这些事情是合理的事项，没有截止期，但是你知道这些事迟早要做。&lt;/p&gt;
+&lt;p&gt;第 3 级：有一些重要的事。&lt;/p&gt;
+&lt;p&gt;你有必须要做的事情，需要及时跟踪，不能拖延，你会时刻提醒自己这些事情。&lt;/p&gt;
+&lt;p&gt;第 4 级：日程排满了。&lt;/p&gt;
+&lt;p&gt;你的日程排满了，不得不经常问自己&amp;quot;什么事情更重要？&amp;quot;，以便决定先做哪些事，后做哪些事。&lt;/p&gt;
+&lt;p&gt;你没有计划外的时间，不过你还能控制日程。&lt;/p&gt;
+&lt;p&gt;第 5 级：生活出现混乱。&lt;/p&gt;
+&lt;p&gt;你的事情在工作时间做不完，你开始加班了。&lt;/p&gt;
+&lt;p&gt;你经常因为事情来不及，而对别人说&amp;quot;对不起&amp;quot;。那些事情并没有被你放弃，只是你不得不赶时间，有些事情执行变得草率。&lt;/p&gt;
+&lt;p&gt;第 6 级：任务做不完。&lt;/p&gt;
+&lt;p&gt;你需要做的事情，超过了你安排日程的能力。即使放弃某些事情，你依然做不完剩下的事情。&lt;/p&gt;
+&lt;p&gt;你的工作时间大大延长，影响到正常生活。你感到非常疲劳。&lt;/p&gt;
+&lt;p&gt;第 7 级：日子过不下去。&lt;/p&gt;
+&lt;p&gt;各种任务塞满了你醒着的每一分钟。吃饭和其他生活必需的事情，都是抽时间来做。你忙起来的时候，甚至饭也没时间吃。&lt;/p&gt;
+&lt;p&gt;你不写日程安排了，因为根本没有时间做计划，每个小时情况都在发生变化。&lt;/p&gt;
+&lt;p&gt;你走路也心不在焉，常常觉得要崩溃，日子过不下去了。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.ruanyifeng.com/blog/2023/05/weekly-issue-253.html&#34;&gt;来源: 阮一峰周报&lt;/a&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>生活的忙碌可以分成七个层次。</p>
 <p>大家可以对照一下，自己属于哪个层次？</p>
 <p>第 1 级：一点不忙。</p>
@@ -136,8 +149,10 @@ md5 的结果是128位， 也即是16bytes 没错，但是通常md5会原先转�
       <pubDate>Tue, 09 Aug 2022 23:40:37 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/the-meaning-of-living/</guid>
-      <description>我觉得人生活着没有意义，但是我又为什么还活着呢？今天， 刚好看到了史铁生的《我与地坛》里面给了我答案
-可我为什么还想活呢? 因为你还想得到点儿什么, 你觉得你还是可以得到点儿什么的, 比如说爱情, 比如说价值感之类的, 人真正的名字叫欲望</description>
+      <description>&lt;p&gt;我觉得人生活着没有意义，但是我又为什么还活着呢？今天， 刚好看到了史铁生的《我与地坛》里面给了我答案&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;可我为什么还想活呢? 因为你还想得到点儿什么, 你觉得你还是可以得到点儿什么的, 比如说爱情, 比如说价值感之类的, 人真正的名字叫欲望&lt;/p&gt;
+&lt;/blockquote&gt;</description>
       <content:encoded><![CDATA[<p>我觉得人生活着没有意义，但是我又为什么还活着呢？今天， 刚好看到了史铁生的《我与地坛》里面给了我答案</p>
 <blockquote>
 <p>可我为什么还想活呢? 因为你还想得到点儿什么, 你觉得你还是可以得到点儿什么的, 比如说爱情, 比如说价值感之类的, 人真正的名字叫欲望</p>
@@ -151,8 +166,10 @@ md5 的结果是128位， 也即是16bytes 没错，但是通常md5会原先转�
       <pubDate>Fri, 01 Jul 2022 08:55:44 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/life-is-not-short/</guid>
-      <description>The most surprising thing is that you wouldn’t let anyone steal your property, but you consistently let people steal your time, which is infinitely more valuable.
-life if not short</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;The most surprising thing is that you wouldn’t let anyone steal your property, but you consistently let people steal your time, which is infinitely more valuable.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://dkb.show/post/life-is-not-short&#34;&gt;life if not short&lt;/a&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<blockquote>
 <p>The most surprising thing is that you wouldn’t let anyone steal your property, but you consistently let people steal your time, which is infinitely more valuable.</p>
 </blockquote>
@@ -166,9 +183,28 @@ life if not short</description>
       <pubDate>Wed, 08 Jun 2022 20:15:26 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/thinking-choosing-tech/</guid>
-      <description>一个完善的方案的需要考虑的三个方面
-当前需求 理清楚初心，当前方案要解决的问题。聚焦到主要解决的问题。
-结果上下文 好处：当前方案的好处，解决了什么 弊端: 什么是它不能解决的 问题：引入什么新的问题 与其他方案的关系 前导：当前方案是怎么演变出来。 后续：当前方案会引入什么新问题，有什么后续的解决方案 替换：可以解决同样需求的情况下，还没什么备选方案。为什么选择了当前方案 参考《微服务设计模式》的1.6.2&amp;quot;模式和模式语言&amp;quot;, 相对减少了模式关系中的泛化和特化。</description>
+      <description>&lt;p&gt;一个完善的方案的需要考虑的三个方面&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;当前需求&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;理清楚初心，当前方案要解决的问题。聚焦到主要解决的问题。&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;结果上下文&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;好处：当前方案的好处，解决了什么&lt;/li&gt;
+&lt;li&gt;弊端: 什么是它不能解决的&lt;/li&gt;
+&lt;li&gt;问题：引入什么新的问题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;与其他方案的关系&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;前导：当前方案是怎么演变出来。&lt;/li&gt;
+&lt;li&gt;后续：当前方案会引入什么新问题，有什么后续的解决方案&lt;/li&gt;
+&lt;li&gt;替换：可以解决同样需求的情况下，还没什么备选方案。为什么选择了当前方案&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;参考《微服务设计模式》的1.6.2&amp;quot;模式和模式语言&amp;quot;, 相对减少了模式关系中的泛化和特化。&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>一个完善的方案的需要考虑的三个方面</p>
 <ol>
 <li>当前需求</li>
@@ -200,14 +236,38 @@ life if not short</description>
       <pubDate>Mon, 06 Jun 2022 19:18:31 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/dsa/linked-list/</guid>
-      <description>链表的定义： wiki 百科给出定义:
-In computer science, a linked list is a linear collection of data elemetns whose order is not given by their physical placement in memory. Instead, each element points to the next.
-翻译一下：
-一个线性表 每个元素会指向下一个元素的位置 链表的优缺点 优点:
-不需要提前分配内存 在查找到元素位置的提前下，插入和删除动作是一个常量，即 O(1) 没有容量上限，可以自由扩容 缺点:
-查询某个元素，需要从头开始遍历，即 O(n) 实现代码
-单向链表 最普通的链表
-双向链表 循环链表 </description>
+      <description>&lt;h2 id=&#34;链表的定义&#34;&gt;链表的定义：&lt;/h2&gt;
+&lt;p&gt;wiki 百科给出定义:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In computer science, a linked list is a linear collection of data elemetns whose order is not given by their physical placement in memory. Instead, each element points to the next.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;翻译一下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个线性表&lt;/li&gt;
+&lt;li&gt;每个元素会指向下一个元素的位置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;链表的优缺点&#34;&gt;链表的优缺点&lt;/h2&gt;
+&lt;p&gt;优点:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不需要提前分配内存&lt;/li&gt;
+&lt;li&gt;在查找到元素位置的提前下，插入和删除动作是一个常量，即 O(1)&lt;/li&gt;
+&lt;li&gt;没有容量上限，可以自由扩容&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;缺点:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;查询某个元素，需要从头开始遍历，即 O(n)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/ynikl/dsa/blob/main/linked-list.go&#34;&gt;实现代码&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;单向链表&#34;&gt;单向链表&lt;/h2&gt;
+&lt;p&gt;最普通的链表&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;双向链表&#34;&gt;双向链表&lt;/h2&gt;
+&lt;h2 id=&#34;循环链表&#34;&gt;循环链表&lt;/h2&gt;</description>
       <content:encoded><![CDATA[<h2 id="链表的定义">链表的定义：</h2>
 <p>wiki 百科给出定义:</p>
 <blockquote>
@@ -249,10 +309,10 @@ In computer science, a linked list is a linear collection of data elemetns whose
       <pubDate>Tue, 31 May 2022 22:36:34 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/concurrency-and-parallelism/</guid>
-      <description>举个例子，电脑的鼠标，键盘或者其他设备的驱动程序，他们是并发的，但不是并行的。他们也不需要并行去运行。
-并发是很多程序（形容运行任务，不是广义上的程序）的独立运行，并发是一种程序设计结构
-并行是一次性运行很多程序，并行是一种程序的运行现象，当成程序设计成并发的，他很容易就变成了并行， 但并行不一定是并发的目的。
-Concurrency is not Parallelism by Rob Pike</description>
+      <description>&lt;p&gt;举个例子，电脑的鼠标，键盘或者其他设备的驱动程序，他们是并发的，但不是并行的。他们也不需要并行去运行。&lt;/p&gt;
+&lt;p&gt;并发是很多程序（形容运行任务，不是广义上的程序）的独立运行，并发是一种程序设计结构&lt;/p&gt;
+&lt;p&gt;并行是一次性运行很多程序，并行是一种程序的运行现象，当成程序设计成并发的，他很容易就变成了并行， 但并行不一定是并发的目的。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=oV9rvDllKEg&amp;amp;list=WL&amp;amp;index=5&amp;amp;t=9s&#34;&gt;Concurrency is not Parallelism by Rob Pike&lt;/a&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>举个例子，电脑的鼠标，键盘或者其他设备的驱动程序，他们是并发的，但不是并行的。他们也不需要并行去运行。</p>
 <p>并发是很多程序（形容运行任务，不是广义上的程序）的独立运行，并发是一种程序设计结构</p>
 <p>并行是一次性运行很多程序，并行是一种程序的运行现象，当成程序设计成并发的，他很容易就变成了并行， 但并行不一定是并发的目的。</p>
@@ -266,12 +326,17 @@ Concurrency is not Parallelism by Rob Pike</description>
       <pubDate>Mon, 30 May 2022 19:17:51 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/how-make-decisions/</guid>
-      <description>读Randy&amp;rsquo;s的博客遗憾最小化框架有感
-在面对人生岔路口的时候，很多时候就需要对不同决定做取舍，是否勇于打破自己的人生的桎梏。怎么样要做出让自己十年之后的自己不会后悔的决定
-做决定之前，问问自己的内心，如果我不这么做，几年之后，年老之后会不会后悔，会不会遗憾
-Jeff Bezos 曾经谈到了自己是如何做决定的，他称之为 Regret Minimization Framwork (遗憾最小化框架) —— 他会想象自己到了 80 岁的时候，是否会认为不做这件事情会让自己遗憾。尽量让人生的遗憾数量最小化。即使当时的选择后来看来是错误的，但也不会后悔尝试过。
-Bezos的视频地址 Cycle.js 作者 staltz 回答是否会对自己做的库没有像 React / Vue 那样火起来而感到气馁
-Ask yourself: in 10 years from now, will you be proud of having done this? &amp;hellip; Do things that your future self will be proud, is my motto for the time being.</description>
+      <description>&lt;p&gt;读Randy&amp;rsquo;s的博客&lt;a href=&#34;https://lutaonan.com/blog/regret-minimization-framework/&#34;&gt;遗憾最小化框架&lt;/a&gt;有感&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;在面对人生岔路口的时候，很多时候就需要对不同决定做取舍，是否勇于打破自己的人生的桎梏。怎么样要做出让自己十年之后的自己不会后悔的决定&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;做决定之前，问问自己的内心，如果我不这么做，几年之后，年老之后会不会后悔，会不会遗憾&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Jeff Bezos 曾经谈到了自己是如何做决定的，他称之为 Regret Minimization Framwork (遗憾最小化框架) —— 他会想象自己到了 80 岁的时候，是否会认为不做这件事情会让自己遗憾。尽量让人生的遗憾数量最小化。即使当时的选择后来看来是错误的，但也不会后悔尝试过。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=jwG_qR6XmDQ&amp;amp;ab_channel=MickyThompson&#34;&gt;Bezos的视频地址&lt;/a&gt;
+Cycle.js 作者 staltz 回答是否会对自己做的库没有像 React / Vue 那样火起来而感到气馁&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Ask yourself: in 10 years from now, will you be proud of having done this? &amp;hellip; Do things that your future self will be proud, is my motto for the time being.&lt;/p&gt;
+&lt;/blockquote&gt;</description>
       <content:encoded><![CDATA[<p>读Randy&rsquo;s的博客<a href="https://lutaonan.com/blog/regret-minimization-framework/">遗憾最小化框架</a>有感</p>
 <p><em>在面对人生岔路口的时候，很多时候就需要对不同决定做取舍，是否勇于打破自己的人生的桎梏。怎么样要做出让自己十年之后的自己不会后悔的决定</em></p>
 <p><strong>做决定之前，问问自己的内心，如果我不这么做，几年之后，年老之后会不会后悔，会不会遗憾</strong></p>

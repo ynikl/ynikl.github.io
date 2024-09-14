@@ -20,11 +20,48 @@
       <pubDate>Thu, 06 Apr 2023 08:45:08 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/weekly/2023-04-02/</guid>
-      <description>SQL 对某字段去重， 且取最新的一条数据 在SQL中，可以使用子查询和MAX函数来对某字段去重，并取最新的一条数据。以下是示例代码：
-1 2 3 4 5 6 7 SELECT t1.* FROM table_name t1 INNER JOIN ( SELECT MAX(column1) AS max_column1 FROM table_name GROUP BY column2 ) t2 ON t1.column1 = t2.max_column1; 在上面的代码中，首先使用子查询和MAX函数，取出每个column2字段的最大值，然后将结果与原表进行INNER JOIN操作，得到最新的一条数据。 需要注意的是，如果需要根据多个字段进行去重和排序，可以在子查询中指定多个字段，并在INNER JOIN操作中使用多个字段进行连接。如果需要查询的字段比较多，可以使用通配符*来代替所有字段。 总之，在SQL中可以使用子查询和MAX函数来对某字段去重，并取最新的一条数据。需要指定需要查询的表名、字段名和排序方式，以及使用INNER JOIN操作进行连接。
-查看是否用重复数据 1 SELECT name, COUNT(*) c FROM table GROUP BY name HAVING c &amp;gt; 1; mysql inner, left, right, full join https://stackoverflow.com/a/28719292
-t+1 场景是什么意思 t+1场景通常指的是预测未来某个时间点的情况，即在当前时刻t，预测下一个时间点t+1的情况。这个概念在很多领域都有应用，例如金融、经济、物流、天气预报等等。 在金融领域，t+1场景通常指的是预测未来某个时间点的股票价格、汇率、利率等等。例如，如果当前时刻是2021年1月1日，那么预测2021年1月2日某个股票的价格就是一个t+1场景。 在物流领域，t+1场景通常指的是预测未来某个时间点的货物运输情况，例如预测某个包裹在下一个时间点是否能够按时到达目的地。 在人工智能和机器学习领域，t+1场景通常指的是使用历史数据来预测未来某个时间点的情况，例如预测明天的气温、下一个小时的交通流量等等。这个过程通常需要使用时间序列分析、回归分析等技术来处理。 总之，t+1场景是一个非常常见的概念，可以用于预测未来某个时间点的情况，帮助人们做出更好的决策。
-湖仓能力 “湖仓能力”通常指的是企业在数据仓库（Data Warehouse）方面的能力，即构建和管理大规模数据仓库的能力。数据仓库是一个用于存储和管理企业数据的系统，它可以集成来自不同数据源的数据，并对这些数据进行处理、分析和挖掘，以帮助企业做出更好的决策。 “湖仓”是数据仓库的一种类型，它是近年来兴起的一种新型数据仓库，与传统的关系型数据仓库（RDBMS）不同，湖仓采用了分布式、非关系型的架构，可以处理更加海量和复杂的数据，例如半结构化数据、文本数据、图像数据等等。湖仓通常采用了Hadoop、Spark、Hive、Presto等开源技术来构建和管理。 因此，“湖仓能力”通常指企业在构建和管理大规模、分布式、非关系型的数据仓库方面的能力，包括数据的采集、清洗、存储、处理、分析、挖掘等等。对于现代企业来说，湖仓能力已经成为了一项非常重要的核心竞争力，可以帮助企业更好地理解和应对市场变化，提高决策的准确性和效率。</description>
+      <description>&lt;h3 id=&#34;sql-对某字段去重-且取最新的一条数据&#34;&gt;SQL 对某字段去重， 且取最新的一条数据&lt;/h3&gt;
+&lt;p&gt;在SQL中，可以使用子查询和MAX函数来对某字段去重，并取最新的一条数据。以下是示例代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SELECT t1.*
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;FROM table_name t1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;INNER JOIN (
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    SELECT MAX(column1) AS max_column1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    FROM table_name
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    GROUP BY column2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;) t2 ON t1.column1 = t2.max_column1;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在上面的代码中，首先使用子查询和MAX函数，取出每个column2字段的最大值，然后将结果与原表进行INNER JOIN操作，得到最新的一条数据。
+需要注意的是，如果需要根据多个字段进行去重和排序，可以在子查询中指定多个字段，并在INNER JOIN操作中使用多个字段进行连接。如果需要查询的字段比较多，可以使用通配符*来代替所有字段。
+总之，在SQL中可以使用子查询和MAX函数来对某字段去重，并取最新的一条数据。需要指定需要查询的表名、字段名和排序方式，以及使用INNER JOIN操作进行连接。&lt;/p&gt;
+&lt;h3 id=&#34;查看是否用重复数据&#34;&gt;查看是否用重复数据&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SELECT name, COUNT(*) c FROM table GROUP BY name HAVING c &amp;gt; 1;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;mysql-inner-left-right-full-join&#34;&gt;mysql inner, left, right, full join&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/a/28719292&#34;&gt;https://stackoverflow.com/a/28719292&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;t1-场景是什么意思&#34;&gt;t+1 场景是什么意思&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;t+1&lt;/code&gt;场景通常指的是预测未来某个时间点的情况，即在当前时刻&lt;code&gt;t&lt;/code&gt;，预测下一个时间点&lt;code&gt;t+1&lt;/code&gt;的情况。这个概念在很多领域都有应用，例如金融、经济、物流、天气预报等等。
+在金融领域，&lt;code&gt;t+1&lt;/code&gt;场景通常指的是预测未来某个时间点的股票价格、汇率、利率等等。例如，如果当前时刻是2021年1月1日，那么预测2021年1月2日某个股票的价格就是一个&lt;code&gt;t+1&lt;/code&gt;场景。
+在物流领域，&lt;code&gt;t+1&lt;/code&gt;场景通常指的是预测未来某个时间点的货物运输情况，例如预测某个包裹在下一个时间点是否能够按时到达目的地。
+在人工智能和机器学习领域，&lt;code&gt;t+1&lt;/code&gt;场景通常指的是使用历史数据来预测未来某个时间点的情况，例如预测明天的气温、下一个小时的交通流量等等。这个过程通常需要使用时间序列分析、回归分析等技术来处理。
+总之，&lt;code&gt;t+1&lt;/code&gt;场景是一个非常常见的概念，可以用于预测未来某个时间点的情况，帮助人们做出更好的决策。&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h3 id="sql-对某字段去重-且取最新的一条数据">SQL 对某字段去重， 且取最新的一条数据</h3>
 <p>在SQL中，可以使用子查询和MAX函数来对某字段去重，并取最新的一条数据。以下是示例代码：</p>
 <div class="highlight"><div class="chroma">
@@ -110,15 +147,38 @@ secret 是使用header中的 加密算法 对<code>header+payload+secret</code>�
       <pubDate>Thu, 06 Apr 2023 08:41:54 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/weekly/2023-03-26/</guid>
-      <description>golang 泛型: type parameters interface 定义一系列类型 type constraint ~string [s [] E, E any] type inferene 官方泛型介绍
-判断时间是否重叠 startA &amp;lt; endB and endA &amp;gt; startB stackoverflow
-python -m python -m 是 Python 命令行工具中的一个选项，用于执行 Python 模块
-pypi 名称 Python Package Index , python 的包的目录
-拥有多个小项目对公司成本的影响 扎克伯格 的裁员信
-&amp;ldquo;人们很容易认为，只要一个项目产生的价值超过其直接成本，它就是正收益的。 但是，任何项目都需要一个主管，我们要么提拔一个工程师，要么从另一个项目挑选一个人，让其负责该项目。这两种情况都分散了人才，并且创造出了更多的管理层。 如果项目继续发展，整个团队也许分散到多个楼层或多个办公室，这让沟通变得更加困难。 我们还需要为项目配备更多的笔记本电脑和其他资源，这些更多的工程师还会导致雇佣更多的 IT 人员、HR 人员和招聘人员。 随着团队越来越大，效率不断降低，反应变迟钝了。它也许会与另一个团队的工作重叠，或者本应使用现有基础架构时却构建了一个定制系统。 总之，那些低优先级项目对公司重要性不大，却带来复杂的间接成本，很容易低估它们。&amp;rdquo;
-AES Advanced Encryption Standard 当前最流行的对称加密
-wikipeida
-golang http 请求转化成 curl 可以方便地将 http.Request 转化成可直接输出成字符串的 curl 对象</description>
+      <description>&lt;h3 id=&#34;golang-泛型&#34;&gt;golang 泛型:&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;type parameters&lt;/li&gt;
+&lt;li&gt;interface 定义一系列类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;type constraint&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;~string&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[s [] E, E any]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;type inferene&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a href=&#34;https://go.dev/blog/intro-generics&#34;&gt;官方泛型介绍&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;判断时间是否重叠&#34;&gt;判断时间是否重叠&lt;/h3&gt;
+&lt;p&gt;startA &amp;lt; endB and endA &amp;gt; startB
+&lt;a href=&#34;https://stackoverflow.com/a/325964&#34;&gt;stackoverflow&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;python--m&#34;&gt;python -m&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;python -m&lt;/code&gt; 是 Python 命令行工具中的一个选项，用于执行 Python 模块&lt;/p&gt;
+&lt;p&gt;pypi 名称 Python Package Index , python 的包的目录&lt;/p&gt;
+&lt;h3 id=&#34;拥有多个小项目对公司成本的影响&#34;&gt;拥有多个小项目对公司成本的影响&lt;/h3&gt;
+&lt;p&gt;扎克伯格 的裁员信&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;人们很容易认为，只要一个项目产生的价值超过其直接成本，它就是正收益的。
+但是，任何项目都需要一个主管，我们要么提拔一个工程师，要么从另一个项目挑选一个人，让其负责该项目。这两种情况都分散了人才，并且创造出了更多的管理层。
+如果项目继续发展，整个团队也许分散到多个楼层或多个办公室，这让沟通变得更加困难。
+我们还需要为项目配备更多的笔记本电脑和其他资源，这些更多的工程师还会导致雇佣更多的 IT 人员、HR 人员和招聘人员。
+随着团队越来越大，效率不断降低，反应变迟钝了。它也许会与另一个团队的工作重叠，或者本应使用现有基础架构时却构建了一个定制系统。
+总之，那些低优先级项目对公司重要性不大，却带来复杂的间接成本，很容易低估它们。&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;aes&#34;&gt;AES&lt;/h3&gt;
+&lt;p&gt;Advanced Encryption Standard 当前最流行的对称加密&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E9%AB%98%E7%BA%A7%E5%8A%A0%E5%AF%86%E6%A0%87%E5%87%86&#34;&gt;wikipeida&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;golang-http-请求转化成-curl&#34;&gt;golang http 请求转化成 curl&lt;/h3&gt;
+&lt;p&gt;可以方便地将 http.Request 转化成可直接输出成字符串的 curl 对象&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/moul/http2curl&#34;&gt;http2curl&lt;/a&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h3 id="golang-泛型">golang 泛型:</h3>
 <ol>
 <li>type parameters</li>
@@ -160,12 +220,35 @@ golang http 请求转化成 curl 可以方便地将 http.Request 转化成可直
       <pubDate>Mon, 20 Mar 2023 08:35:32 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/weekly/2023-03-19/</guid>
-      <description>0314 wrap error
-Adding additional context to an error Marking an error as a specific error fmt.Errorf(&amp;quot;%w&amp;quot;, err)
-1 bar error -&amp;gt; Wrap error -&amp;gt; fmt.wrapError { bar error } 原先被包裹的 err, 仍保持可用状态 fmt.Error(&amp;quot;%v&amp;quot;,err)变成 string, 原 Err 已经无法追溯
-spew 将变量数据格式化输出
-可以批量传入参数spew.Sdump(var1, var2, var3) 可以通过 spew.NewDefaultConfig 独立一份特定参数的输出实例 也可以通过 spew.Config 修改包变量, 将配置覆盖整个包 As, Is
-As 提供具体错误类型匹配, 对应自定义的某种错误类型结构体. 仅会对比错误错误链的第一个自定义错误类型是否匹配 Is 提供具体的某一个实例错误类型匹配. 会递归遍历是否匹配 </description>
+      <description>&lt;h2 id=&#34;0314&#34;&gt;0314&lt;/h2&gt;
+&lt;p&gt;wrap error&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Adding additional context to an error&lt;/li&gt;
+&lt;li&gt;Marking an error as a specific error&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;fmt.Errorf(&amp;quot;%w&amp;quot;, err)&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bar error -&amp;gt; Wrap error -&amp;gt; fmt.wrapError { bar error }
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;原先被包裹的 err, 仍保持可用状态
+&lt;code&gt;fmt.Error(&amp;quot;%v&amp;quot;,err)&lt;/code&gt;变成 string, 原 Err 已经无法追溯&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/davecgh/go-spew&#34;&gt;spew&lt;/a&gt;
+将变量数据格式化输出&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可以批量传入参数&lt;code&gt;spew.Sdump(var1, var2, var3)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;可以通过 &lt;code&gt;spew.NewDefaultConfig&lt;/code&gt; 独立一份特定参数的输出实例&lt;/li&gt;
+&lt;li&gt;也可以通过 &lt;code&gt;spew.Config&lt;/code&gt; 修改包变量, 将配置覆盖整个包&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As, Is&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;As 提供具体错误类型匹配, 对应自定义的某种错误类型结构体. 仅会对比错误错误链的第一个自定义错误类型是否匹配&lt;/li&gt;
+&lt;li&gt;Is 提供具体的某一个实例错误类型匹配. 会递归遍历是否匹配&lt;/li&gt;
+&lt;/ul&gt;</description>
       <content:encoded><![CDATA[<h2 id="0314">0314</h2>
 <p>wrap error</p>
 <ul>
@@ -204,13 +287,49 @@ As 提供具体错误类型匹配, 对应自定义的某种错误类型结构体
       <pubDate>Wed, 15 Mar 2023 08:58:05 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/weekly/2023-03-12/</guid>
-      <description>0307 mysql 创建 utf8md4 数据库
-1 CREATE DATABASE `test` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ; mysql utf8mb4 是 utf8的超集，兼容4字节的 unicode (Emoji)
-https://www.jianshu.com/p/2b8629af8000
-mysql 5.7.32-log 在 varchar(255) 创建索引失败，max key length is 767 bytes. 767字节/4字节每字符 = 191 字符。 须修改为 varchar(191) https://help.aliyun.com/document_detail/41707.html
-查看已经合并的分支
-1 2 3 4 git branch --merged #删除 git branch --merged | egrep -v &amp;#34;(^\*|master|dev|stage)&amp;#34; | xargs git branch -d vifm : za 显示隐藏文件
-1 2 3 za: Toggle showing hidden files zo: Show hidden files zm: Hide hidden files https://codeyarns.</description>
+      <description>&lt;h2 id=&#34;0307&#34;&gt;0307&lt;/h2&gt;
+&lt;p&gt;mysql 创建 utf8md4 数据库&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DATABASE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DEFAULT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHARACTER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SET&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;utf8mb4&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;COLLATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;utf8mb4_unicode_ci&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;mysql utf8mb4 是 utf8的超集，兼容4字节的 unicode (Emoji)&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.jianshu.com/p/2b8629af8000&#34;&gt;https://www.jianshu.com/p/2b8629af8000&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;mysql 5.7.32-log 在 &lt;code&gt;varchar(255)&lt;/code&gt; 创建索引失败，&lt;code&gt;max key length is 767 bytes.&lt;/code&gt; 767字节/4字节每字符 = 191 字符。 须修改为 &lt;code&gt;varchar(191)&lt;/code&gt;
+&lt;a href=&#34;https://help.aliyun.com/document_detail/41707.html&#34;&gt;https://help.aliyun.com/document_detail/41707.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;查看已经合并的分支&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git branch --merged
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;#删除
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git branch --merged | egrep -v &amp;#34;(^\*|master|dev|stage)&amp;#34; | xargs git branch -d
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;vifm : za 显示隐藏文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;za: Toggle showing hidden files
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;zo: Show hidden files
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;zm: Hide hidden files
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;https://codeyarns.com/tech/2014-09-10-how-to-show-hidden-files-in-vifm.html#gsc.tab=0&#34;&gt;https://codeyarns.com/tech/2014-09-10-how-to-show-hidden-files-in-vifm.html#gsc.tab=0&lt;/a&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="0307">0307</h2>
 <p>mysql 创建 utf8md4 数据库</p>
 <div class="highlight"><div class="chroma">

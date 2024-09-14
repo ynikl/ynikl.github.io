@@ -20,10 +20,15 @@
       <pubDate>Sun, 02 Oct 2022 14:05:43 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/cs-optimitic-concurrency-control/</guid>
-      <description>乐观锁和悲观锁 首先, 乐观锁和悲观锁和本身并不是一种具体锁.
-而是一种编程的并发控制思想. 原名应该叫做乐观并发控制(Optimistic concurrency control) 简称 OCC 和 悲观并发控制(Pessimistic Concurrency Control) 简称 PCC
-什么是锁 维基百科对锁的定义
-In computer science, a lock or mutex (from mutual exclusion) is a synchronization primitive: a mechanism that enforces limits on access to a resource when there are many threads of execution. A lock is designed to enforce a mutual exclusion concurrency control policy, and with a variety of possible methods there exists multiple unique implementations for different applications.</description>
+      <description>&lt;h1 id=&#34;乐观锁和悲观锁&#34;&gt;乐观锁和悲观锁&lt;/h1&gt;
+&lt;p&gt;首先, 乐观锁和悲观锁和本身并不是一种具体锁.&lt;/p&gt;
+&lt;p&gt;而是一种编程的并发控制思想.
+原名应该叫做乐观并发控制(Optimistic concurrency control) 简称 OCC 和
+悲观并发控制(Pessimistic Concurrency Control) 简称 PCC&lt;/p&gt;
+&lt;h2 id=&#34;什么是锁&#34;&gt;什么是锁&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Lock_(computer_science)&#34;&gt;维基百科对锁的定义&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In computer science, a lock or mutex (from mutual exclusion) is a synchronization primitive: a mechanism that enforces limits on access to a resource when there are many threads of execution. A lock is designed to enforce a mutual exclusion concurrency control policy, and with a variety of possible methods there exists multiple unique implementations for different applications.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h1 id="乐观锁和悲观锁">乐观锁和悲观锁</h1>
 <p>首先, 乐观锁和悲观锁和本身并不是一种具体锁.</p>
 <p>而是一种编程的并发控制思想.

@@ -20,16 +20,63 @@
       <pubDate>Sun, 04 Sep 2022 21:32:24 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/http-content-disposition/</guid>
-      <description>Content-Disposition 常见是用在 http 请求的 Response 的 Header 头部.
-告诉请求客户端(浏览器) 如何处理内容;
-Content-Disposition是在 MIME 标准定义的. http 中的用法只是其中的一小部分.
-语法参数 inline 会在浏览器内部显示
-1 Content-Disposition: inline attachment 会被保存成文件
-1 Content-Disposition: attachment 后面可以跟 filename, 值为预设文件名称, 中间使用;分号隔开.
-1 Content-Disposition: attachment; filename=&amp;#34;filename.jpg&amp;#34; 拓展参数, 有两个文件名称参数可选
-filename* filename filename* 采用了 RFC 5987 中规定的编码方式, 假如两个参数都使用 filename* 的优先级更高
-RFC 5987 该提议最终还是引用 RFC 2231 中的编码方式. 下面简单介绍一下语法
-*星号用于标记该同名参数是支持该编码语法的, 就如( filename* 之于 filename) &#39;单个逗号用于分割 字符集名称 , 语言, 文件名称 %百分号用于标记编码方式, 参考RFC 2047, 所以文件名中不能有% 1 filename*=us-ascii&amp;#39;en-us&amp;#39;This%20is%20%2A%2A%2Afun%2A%2A%2A 使用us-ascii编码, en-us英语</description>
+      <description>&lt;p&gt;&lt;code&gt;Content-Disposition&lt;/code&gt; 常见是用在 http 请求的 Response 的 Header 头部.&lt;/p&gt;
+&lt;p&gt;告诉请求客户端(浏览器) 如何处理内容;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Content-Disposition&lt;/code&gt;是在 MIME 标准定义的. http 中的用法只是其中的一小部分.&lt;/p&gt;
+&lt;h2 id=&#34;语法参数&#34;&gt;语法参数&lt;/h2&gt;
+&lt;h3 id=&#34;inline&#34;&gt;inline&lt;/h3&gt;
+&lt;p&gt;会在浏览器内部显示&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Content-Disposition: inline
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;attachment&#34;&gt;attachment&lt;/h3&gt;
+&lt;p&gt;会被保存成文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Content-Disposition: attachment
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;后面可以跟 filename, 值为预设文件名称, 中间使用&lt;code&gt;;&lt;/code&gt;分号隔开.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Content-Disposition: attachment; filename=&amp;#34;filename.jpg&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;拓展参数, 有两个文件名称参数可选&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;filename*&lt;/li&gt;
+&lt;li&gt;filename&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;filename*&lt;/code&gt; 采用了 RFC 5987 中规定的编码方式,
+假如两个参数都使用 &lt;code&gt;filename*&lt;/code&gt; 的优先级更高&lt;/p&gt;
+&lt;h4 id=&#34;rfc-5987&#34;&gt;RFC 5987&lt;/h4&gt;
+&lt;p&gt;该提议最终还是引用 &lt;a href=&#34;https://www.rfc-editor.org/rfc/rfc2231#section-4&#34;&gt;RFC 2231&lt;/a&gt;
+中的编码方式. 下面简单介绍一下语法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;*&lt;/code&gt;星号用于标记该同名参数是支持该编码语法的, 就如( &lt;code&gt;filename*&lt;/code&gt; 之于 &lt;code&gt;filename&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&#39;&lt;/code&gt;单个逗号用于分割 &lt;strong&gt;字符集名称&lt;/strong&gt; , &lt;strong&gt;语言&lt;/strong&gt;, &lt;strong&gt;文件名称&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;%&lt;/code&gt;百分号用于标记编码方式, 参考&lt;a href=&#34;https://www.rfc-editor.org/rfc/rfc2047&#34;&gt;RFC 2047&lt;/a&gt;, 所以文件名中不能有&lt;code&gt;%&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;filename*=us-ascii&amp;#39;en-us&amp;#39;This%20is%20%2A%2A%2Afun%2A%2A%2A
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用&lt;code&gt;us-ascii&lt;/code&gt;编码, &lt;code&gt;en-us&lt;/code&gt;英语&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p><code>Content-Disposition</code> 常见是用在 http 请求的 Response 的 Header 头部.</p>
 <p>告诉请求客户端(浏览器) 如何处理内容;</p>
 <p><code>Content-Disposition</code>是在 MIME 标准定义的. http 中的用法只是其中的一小部分.</p>

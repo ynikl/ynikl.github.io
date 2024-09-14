@@ -20,13 +20,36 @@
       <pubDate>Fri, 19 Aug 2022 00:14:54 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/ffmpeg-basics/</guid>
-      <description>最近接手公司一个视频相关项目, 也是使用ffmpeg工具. 需要快速了解下.
-概念 码率, 帧率, 文件大小 帧率(frame rate) : 视频一秒中有多少帧画面(frames per second, fps), 决定视频流畅度.
-interlaced: 古代黑白相机的交错扫描呈现, 描述单位i : 50i progressive: 现代整页整页呈现, 描述单位p: 60p 码率(bit rate) :视频一秒中有多少位, 决定视频的质量
-ABR: 平均码率 CBR: 常量码率 VBR: 动态码率 文件大小 = 视频文件 + 音频文件
-视频文件 = 码率 * 时间(s) / 8 音频文件 = 码率 * 时间(s) / 8
-文件格式 不同的视频文件类型, 用户存储特定的数据流( 在 ffmpeg 中称为 containers) 可以存储声音或者视频数据.
-相关缩写 encoding (E) decoding (D) video (V) audio (A) subtitles (S) 文件元数据 metadata 描述媒体文件自身的信息, 比如:</description>
+      <description>&lt;p&gt;最近接手公司一个视频相关项目, 也是使用&lt;code&gt;ffmpeg&lt;/code&gt;工具.  需要快速了解下.&lt;/p&gt;
+&lt;h2 id=&#34;概念&#34;&gt;概念&lt;/h2&gt;
+&lt;h2 id=&#34;码率-帧率-文件大小&#34;&gt;码率, 帧率, 文件大小&lt;/h2&gt;
+&lt;p&gt;帧率(frame rate) : 视频一秒中有多少帧画面(frames per second, fps), 决定视频流畅度.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;interlaced: 古代黑白相机的交错扫描呈现, 描述单位i : 50i&lt;/li&gt;
+&lt;li&gt;progressive: 现代整页整页呈现, 描述单位p: 60p&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;码率(bit rate) :视频一秒中有多少位, 决定视频的质量&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ABR: 平均码率&lt;/li&gt;
+&lt;li&gt;CBR: 常量码率&lt;/li&gt;
+&lt;li&gt;VBR: 动态码率&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;文件大小 = 视频文件 + 音频文件&lt;/p&gt;
+&lt;p&gt;视频文件 =  码率 * 时间(s) / 8
+音频文件 =  码率 * 时间(s) / 8&lt;/p&gt;
+&lt;h3 id=&#34;文件格式&#34;&gt;文件格式&lt;/h3&gt;
+&lt;p&gt;不同的视频文件类型, 用户存储特定的数据流( 在 ffmpeg 中称为 containers)
+可以存储声音或者视频数据.&lt;/p&gt;
+&lt;h3 id=&#34;相关缩写&#34;&gt;相关缩写&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;encoding (E)&lt;/li&gt;
+&lt;li&gt;decoding (D)&lt;/li&gt;
+&lt;li&gt;video (V)&lt;/li&gt;
+&lt;li&gt;audio (A)&lt;/li&gt;
+&lt;li&gt;subtitles (S)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;文件元数据-metadata&#34;&gt;文件元数据 metadata&lt;/h3&gt;
+&lt;p&gt;描述媒体文件自身的信息, 比如:&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>最近接手公司一个视频相关项目, 也是使用<code>ffmpeg</code>工具.  需要快速了解下.</p>
 <h2 id="概念">概念</h2>
 <h2 id="码率-帧率-文件大小">码率, 帧率, 文件大小</h2>

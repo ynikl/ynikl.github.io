@@ -20,7 +20,21 @@
       <pubDate>Sun, 14 Aug 2022 15:27:33 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/ci-cd/</guid>
-      <description>CI 自动化发布流程 可重复 可快速回滚 发布流程快速 在合并的时候可以对代码进行快速验证 CD 部署流程平台化 一键部署 总结 所谓的 CI/CD 就是通过自动化操作, 比如自动化测试, 自动化部署. 使用项目拥有快速上线的能力 &amp;ndash; 可以快速验证, 快速回滚, 快速发布.</description>
+      <description>&lt;h2 id=&#34;ci&#34;&gt;CI&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;自动化发布流程&lt;/li&gt;
+&lt;li&gt;可重复&lt;/li&gt;
+&lt;li&gt;可快速回滚&lt;/li&gt;
+&lt;li&gt;发布流程快速&lt;/li&gt;
+&lt;li&gt;在合并的时候可以对代码进行快速验证&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;cd&#34;&gt;CD&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;部署流程平台化&lt;/li&gt;
+&lt;li&gt;一键部署&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;p&gt;所谓的 CI/CD 就是通过自动化操作, 比如自动化测试, 自动化部署. 使用项目拥有快速上线的能力 &amp;ndash; 可以快速验证, 快速回滚, 快速发布.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="ci">CI</h2>
 <ul>
 <li>自动化发布流程</li>

@@ -20,9 +20,9 @@
       <pubDate>Thu, 03 Aug 2023 18:49:09 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/redis-design-pattern/</guid>
-      <description>总结:
-先更新数据库, 再删除Key
-陈皓大佬的 缓存更新的套路 唉， 叹息</description>
+      <description>&lt;p&gt;总结:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;先更新数据库, 再删除Key&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://coolshell.cn/articles/17416.html&#34;&gt;陈皓大佬的 缓存更新的套路 &lt;/a&gt;  唉， 叹息&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>总结:</p>
 <p><strong>先更新数据库, 再删除Key</strong></p>
 <p><a href="https://coolshell.cn/articles/17416.html">陈皓大佬的 缓存更新的套路 </a>  唉， 叹息</p>
@@ -35,13 +35,48 @@
       <pubDate>Thu, 18 Aug 2022 12:18:53 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/redis-do-distributed-lock/</guid>
-      <description>操作 演进 加锁后进程挂掉了 加锁成功之后, 进程挂掉了没有进行解锁操作. 导致进入死锁状态.
-引入 expire 设置超时时长, 自动释放 key
-1 2 3 4 5 6 7 8 &amp;gt; setnx lock:key true &amp;gt; OK &amp;gt; expire lock:key 5 &amp;#34; ... do something critical ... &amp;gt; del lock:codehole 加锁动作 到 expire 之间挂掉了 redis 2.8 之后支持 set 拓展指令
-1 &amp;gt; set lock:key true ex 5 nx 加锁互斥锁, 并同时设置超时时长
-执行超时, 被其他进程获取到了锁 加锁之后, 本身进程执行时间超过了预先设置的 expire 的时间. 就会导致锁被提前释放.
-解决方案:
-尽量不要用与锁住时间教长的任务, 尝试缩小锁定的&amp;quot;关键区域&amp;quot; 续锁 (会使客户端负责化) : 起一个支线进程, 定期(在超时时间内) 检查锁和value(保证是自己的锁), 重新设置超时时间 执行超时, 被其他进程获取到了锁之后, 超时进程误删其他进程的锁 Redis 的分布式锁不能解决超时问题，如果在加锁和释放锁之间的逻辑执行的太长，以至 于超出了锁的超时限制，就会出现问题。因为这时候锁过期了，第二个线程重新持有了这把锁， 但是紧接着第一个线程执行完了业务逻辑，就把锁给释放了，第三个线程就会在第二个线程逻 辑执行完之间拿到了锁。 &amp;ndash; Redis深度历险</description>
+      <description>&lt;h2 id=&#34;操作&#34;&gt;操作&lt;/h2&gt;
+&lt;h2 id=&#34;演进&#34;&gt;演进&lt;/h2&gt;
+&lt;h3 id=&#34;加锁后进程挂掉了&#34;&gt;加锁后进程挂掉了&lt;/h3&gt;
+&lt;p&gt;加锁成功之后, 进程挂掉了没有进行解锁操作.
+导致进入死锁状态.&lt;/p&gt;
+&lt;p&gt;引入 &lt;code&gt;expire&lt;/code&gt; 设置超时时长, 自动释放 key&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt; setnx lock:key true 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt; OK
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt; expire lock:key 5 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;#34; ... do something critical ... 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt; del lock:codehole
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;加锁动作-到-expire-之间挂掉了&#34;&gt;加锁动作 到 expire 之间挂掉了&lt;/h3&gt;
+&lt;p&gt;redis 2.8 之后支持 &lt;code&gt;set&lt;/code&gt; 拓展指令&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt; set lock:key true ex 5 nx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;加锁互斥锁, 并同时设置超时时长&lt;/p&gt;
+&lt;h3 id=&#34;执行超时-被其他进程获取到了锁&#34;&gt;执行超时, 被其他进程获取到了锁&lt;/h3&gt;
+&lt;p&gt;加锁之后, 本身进程执行时间超过了预先设置的 &lt;code&gt;expire&lt;/code&gt; 的时间. 就会导致锁被提前释放.&lt;/p&gt;
+&lt;p&gt;解决方案:&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="操作">操作</h2>
 <h2 id="演进">演进</h2>
 <h3 id="加锁后进程挂掉了">加锁后进程挂掉了</h3>

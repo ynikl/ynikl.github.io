@@ -20,16 +20,76 @@
       <pubDate>Sun, 10 Jul 2022 17:47:42 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/makefile-basic-use/</guid>
-      <description>想自己整理一篇基本的 make 指令用法, 突然发现 阮一峰大佬已经整理了一篇很完整的博客, 遂放弃.
-阮一峰文章地址
-如果不写 c, 主要理解就几个概念就可以使用了
-target 可以用来当作想要执行的命令集的名称 .PHONY: 可以用来声明命令集名称 recipes 实际执行的命令集合 介绍一下我自己的应用场景 我目前主力编程语言是 go, 我用的编辑器是 vim, 所以我基本就在 shell 里面完成编码任务.
-case 1: 简化本地编译和测试, 自动做 setup 和 teardown
-当我想要尝试一下整个项目是否编译
-1 2 3 4 .PHONY: build build: go build . rm -rf [PROJECT NAME] 使用上面的 makefile, 我就只需要 make build, 就不用再删除编译出来文件. QAQ, 可以再加一些单元测试命令, 检测测试是否通过. 因为公司的项目, 在单测这方面做的不是很好, 我自己就是简单 build 一下
-case 2: git 提交代码自动化操作
-当我想要把我代码推送到, 测试分支, 进行集成测试
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 .</description>
+      <description>&lt;p&gt;想自己整理一篇基本的 &lt;code&gt;make&lt;/code&gt; 指令用法, 突然发现 阮一峰大佬已经整理了一篇很完整的博客, 遂放弃.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.ruanyifeng.com/blog/2015/02/make.html&#34;&gt;阮一峰文章地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如果不写 c, 主要理解就几个概念就可以使用了&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;target 可以用来当作想要执行的命令集的名称&lt;/li&gt;
+&lt;li&gt;.PHONY:  可以用来声明命令集名称&lt;/li&gt;
+&lt;li&gt;recipes 实际执行的命令集合&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;介绍一下我自己的应用场景&#34;&gt;介绍一下我自己的应用场景&lt;/h2&gt;
+&lt;p&gt;我目前主力编程语言是 go, 我用的编辑器是 vim, 所以我基本就在 shell 里面完成编码任务.&lt;/p&gt;
+&lt;p&gt;case 1: 简化本地编译和测试, 自动做 &lt;code&gt;setup&lt;/code&gt; 和 &lt;code&gt;teardown&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;当我想要尝试一下整个项目是否编译&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;PHONY&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;build&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;build&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;build&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nx&#34;&gt;rm&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;rf&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;PROJECT&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;NAME&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用上面的 &lt;code&gt;makefile&lt;/code&gt;, 我就只需要 &lt;code&gt;make build&lt;/code&gt;, 就不用再删除编译出来文件. QAQ, 可以再加一些单元测试命令, 检测测试是否通过. 因为公司的项目, 在单测这方面做的不是很好, 我自己就是简单 &lt;code&gt;build&lt;/code&gt; 一下&lt;/p&gt;
+&lt;p&gt;case 2: git 提交代码自动化操作&lt;/p&gt;
+&lt;p&gt;当我想要把我代码推送到, 测试分支, 进行集成测试&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.PHONY: dev
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ProjectName=&amp;#34;Your Project Name&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;TargetBranch=&amp;#34;Your want to merge branch&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CurBranch=$(shell git branch --show-current)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dev:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	go build .
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	rm -f $(ProjectName)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	git add .
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	git commit -m $(msg)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	git push
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	git checkout ${DevBranch}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	git pull --rebase
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	git merge ${CurBranch} -m &amp;#34;Merge branch &amp;#39;${CurBranch}&amp;#39; into ${DevBranch}&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	go build
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	rm -f $(ProjectName) 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	git push
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	git checkout ${CurBranch}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;简化 git 的操作流程, 现在只需要&lt;code&gt;make dev&lt;/code&gt;就可以完成, 还可以在合并之前和之后增加测试, 我自己目前知识简单的 &lt;code&gt;build&lt;/code&gt; 下而已 QAQ.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>想自己整理一篇基本的 <code>make</code> 指令用法, 突然发现 阮一峰大佬已经整理了一篇很完整的博客, 遂放弃.</p>
 <p><a href="https://www.ruanyifeng.com/blog/2015/02/make.html">阮一峰文章地址</a></p>
 <p>如果不写 c, 主要理解就几个概念就可以使用了</p>

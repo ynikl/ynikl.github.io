@@ -20,16 +20,31 @@
       <pubDate>Mon, 05 Dec 2022 09:21:02 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/clean-architectrue/</guid>
-      <description>代码整洁架构
-核心思想 最重要的是依赖顺序需要内收 &amp;ndash; 业务逻辑不能依赖框架
-分层 简单分层四层
-Entities Use Cases Interface Adapters Framework and Drivers Entity 实体抽象层 我的理解应该是在公司业务, 或者项目领域上对于业务模型的抽象. 不容易改变 (除非公司 业务, 或者项目方向改变). 应该是与 领域驱动设计 不谋而合
-Use Cases 使用场景层 业务使用场景, 应该是存放相关不同业务场景的具体实现流程
-Interface Adapters 接口转化器层 负责 Use Cases 数据 与外部使用数据转换器实现.
-比较特别的例子, 将 Use Cases 产生的数据与外部的 UI 表现层所需要的数据格式做转化.
-Framework and Divers 数据库和框架层, 外部工具包接口依赖之类的.
-依赖倒置 当遇到跨层依赖的时候, 内层需要引用到外层逻辑时: 比如, Use Case 要呈现 UI 数据结构 (Interface Adapters 层) 时, 不能直接引用 UI 层的数据模型.
-而是, 通过依赖倒置. 将 UI 层的处理逻辑, 注入 Use Case 层进行处理, 实现目标.</description>
+      <description>&lt;p&gt;代码整洁架构&lt;/p&gt;
+&lt;h2 id=&#34;核心思想&#34;&gt;核心思想&lt;/h2&gt;
+&lt;p&gt;最重要的是依赖顺序需要内收 &amp;ndash; 业务逻辑不能依赖框架&lt;/p&gt;
+&lt;h2 id=&#34;分层&#34;&gt;分层&lt;/h2&gt;
+&lt;p&gt;简单分层四层&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Entities&lt;/li&gt;
+&lt;li&gt;Use Cases&lt;/li&gt;
+&lt;li&gt;Interface Adapters&lt;/li&gt;
+&lt;li&gt;Framework and Drivers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;entity-实体抽象层&#34;&gt;Entity 实体抽象层&lt;/h3&gt;
+&lt;p&gt;我的理解应该是在公司业务, 或者项目领域上对于业务模型的抽象. 不容易改变 (除非公司
+业务, 或者项目方向改变). 应该是与 &lt;em&gt;领域驱动设计&lt;/em&gt; 不谋而合&lt;/p&gt;
+&lt;h3 id=&#34;use-cases-使用场景层&#34;&gt;Use Cases 使用场景层&lt;/h3&gt;
+&lt;p&gt;业务使用场景, 应该是存放相关不同业务场景的具体实现流程&lt;/p&gt;
+&lt;h3 id=&#34;interface-adapters-接口转化器层&#34;&gt;Interface Adapters 接口转化器层&lt;/h3&gt;
+&lt;p&gt;负责 Use Cases 数据 与外部使用数据转换器实现.&lt;/p&gt;
+&lt;p&gt;比较特别的例子, 将 Use Cases 产生的数据与外部的 UI 表现层所需要的数据格式做转化.&lt;/p&gt;
+&lt;h3 id=&#34;framework-and-divers&#34;&gt;Framework and Divers&lt;/h3&gt;
+&lt;p&gt;数据库和框架层, 外部工具包接口依赖之类的.&lt;/p&gt;
+&lt;h2 id=&#34;依赖倒置&#34;&gt;依赖倒置&lt;/h2&gt;
+&lt;p&gt;当遇到跨层依赖的时候, 内层需要引用到外层逻辑时: 比如, Use Case 要呈现 UI 数据结构
+(Interface Adapters 层) 时, 不能直接引用 UI 层的数据模型.&lt;/p&gt;
+&lt;p&gt;而是, 通过依赖倒置. 将 UI 层的处理逻辑, 注入 Use Case 层进行处理, 实现目标.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>代码整洁架构</p>
 <h2 id="核心思想">核心思想</h2>
 <p>最重要的是依赖顺序需要内收 &ndash; 业务逻辑不能依赖框架</p>

@@ -20,10 +20,11 @@
       <pubDate>Tue, 05 Mar 2024 20:27:39 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/md5-length/</guid>
-      <description>背景：
-后端（Golang) 接口卡控前端给的md5 值的长度， 百度md5 结构为128位长度，心理默认8位为一个字符。卡控判断md5 长度为16位，但是前端时间传入 md5 长度位32字符
-原因：
-golang 的 len 判断的是 字符数（bytes) md5 的结果是128位， 也即是16bytes 没错，但是通常md5会原先转成16进制，即4位一个字符，即转化成一个128/4=32 字符的字符串。传递到后端即为32位字符。</description>
+      <description>&lt;p&gt;背景：&lt;/p&gt;
+&lt;p&gt;后端（Golang) 接口卡控前端给的md5 值的长度， 百度md5 结构为128位长度，心理默认8位为一个字符。卡控判断md5 长度为16位，但是前端时间传入 md5 长度位32字符&lt;/p&gt;
+&lt;p&gt;原因：&lt;/p&gt;
+&lt;p&gt;golang 的 len 判断的是 字符数（bytes)
+md5 的结果是128位， 也即是16bytes 没错，但是通常md5会原先转成16进制，即4位一个字符，即转化成一个128/4=32 字符的字符串。传递到后端即为32位字符。&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>背景：</p>
 <p>后端（Golang) 接口卡控前端给的md5 值的长度， 百度md5 结构为128位长度，心理默认8位为一个字符。卡控判断md5 长度为16位，但是前端时间传入 md5 长度位32字符</p>
 <p>原因：</p>
@@ -38,17 +39,32 @@ md5 的结果是128位， 也即是16bytes 没错，但是通常md5会原先转�
       <pubDate>Mon, 20 Nov 2023 13:50:52 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/go-build-time-variable/</guid>
-      <description>使用背景
-一套程序代码，配置文件，需要同时在不同的云厂商运行。
-通过修改 jenkins, 的部署 pipeline , 让开发人员准确的获取到当前程序的运行环境 还能保持代码统一.
-ldflags 修改的变量, 无大小写限制, 小写变量也可修改编译过程进行修改
-变量引用需要 fullpath. 例如 main 文件中的变量 go build -ldflags=&amp;quot;-X &#39;main/varName=xxx&#39;
-子包，需要当前 mod 包名称开头。 可以查看第二篇文章
-go build variable
-https://programmingpercy.tech/blog/modify-variables-during-build/
-发现更加简单的解决方案
-go build -tags targetCloud
-https://pkg.go.dev/go/build#hdr-Build_Constraints </description>
+      <description>&lt;p&gt;使用背景&lt;/p&gt;
+&lt;p&gt;一套程序代码，配置文件，需要同时在不同的云厂商运行。&lt;/p&gt;
+&lt;p&gt;通过修改 jenkins, 的部署 pipeline , 让开发人员准确的获取到当前程序的运行环境
+还能保持代码统一.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;ldflags 修改的变量, 无大小写限制, 小写变量也可修改编译过程进行修改&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;变量引用需要 fullpath. 例如 main 文件中的变量 &lt;code&gt;go build -ldflags=&amp;quot;-X &#39;main/varName=xxx&#39;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;子包，需要当前 mod 包名称开头。 可以查看第二篇文章&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://belief-driven-design.com/build-time-variables-in-go-51439b26ef9/&#34;&gt;go build variable&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://programmingpercy.tech/blog/modify-variables-during-build/&#34;&gt;https://programmingpercy.tech/blog/modify-variables-during-build/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;发现更加简单的解决方案&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;go build -tags targetCloud&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://pkg.go.dev/go/build#hdr-Build_Constraints&#34;&gt;https://pkg.go.dev/go/build#hdr-Build_Constraints&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
       <content:encoded><![CDATA[<p>使用背景</p>
 <p>一套程序代码，配置文件，需要同时在不同的云厂商运行。</p>
 <p>通过修改 jenkins, 的部署 pipeline , 让开发人员准确的获取到当前程序的运行环境
@@ -84,15 +100,22 @@ https://pkg.go.dev/go/build#hdr-Build_Constraints </description>
       <pubDate>Thu, 03 Aug 2023 20:34:58 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/golang-project-layout-cmd/</guid>
-      <description>总结:
-cmd 一个代码库多个启动程序, 清晰明了 internal 将外部依赖放置在 internal 外面, 避免内部逻辑代码直接引用. 比如, 数据持久层 MySQL 参考一下 ChatGPT 给我的答案:
-在 Go 语言中，使用 cmd 目录和 internal 目录的组合是一种常见的方式来组织项目结构。 cmd 目录通常包含可执行程序的入口点。这些可执行程序可以是应用程序的命令行接口、工具或测试二进制文件。每个子目录都包含一个可执行程序的主要文件，以及与其关联的其他文件。这种风格使得每个程序都可以独立编译和分发，并且可以让其它人轻松了解和使用它们。
-对于 internal 目录，其命名约束了该目录下的代码仅供内部使用。这意味着代码不应该由任何可以被外部依赖使用的包引用。这种风格允许对代码的控制更精细，因为程序员可以更好地控制哪些代码可以被其他人使用。
-使用这样的结构来组织 Go 项目有很多好处，包括：
-代码更易于维护和理解：使用独立的可执行程序和内部目录，可以让代码更清晰且更容易维护，使开发人员能够更好地理解代码的用途和位置。
-扩展性强：该结构使得每个可执行程序都可以相对独立地进行开发、测试和部署。这也使得代码更有扩展和修改的完整性。
-松耦合：使用 cmd 和 internal 目录方式可以大大增强代码间的松耦合度。这使得程序员可以更好地对代码变化做出反应，同时减少代码冲突及协调问题。
-综上所述，使用 cmd 和 internal 目录方式更易于开发和维护，是现代化 Go 应用程序中广受欢迎的项目结构设计方式。</description>
+      <description>&lt;p&gt;总结:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;cmd 一个代码库多个启动程序, 清晰明了&lt;/li&gt;
+&lt;li&gt;internal 将外部依赖放置在 internal 外面, 避免内部逻辑代码直接引用. 比如, 数据持久层 MySQL&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;参考一下 ChatGPT 给我的答案:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在 Go 语言中，使用 cmd 目录和 internal 目录的组合是一种常见的方式来组织项目结构。
+cmd 目录通常包含可执行程序的入口点。这些可执行程序可以是应用程序的命令行接口、工具或测试二进制文件。每个子目录都包含一个可执行程序的主要文件，以及与其关联的其他文件。这种风格使得每个程序都可以独立编译和分发，并且可以让其它人轻松了解和使用它们。&lt;/p&gt;
+&lt;p&gt;对于 internal 目录，其命名约束了该目录下的代码仅供内部使用。这意味着代码不应该由任何可以被外部依赖使用的包引用。这种风格允许对代码的控制更精细，因为程序员可以更好地控制哪些代码可以被其他人使用。&lt;/p&gt;
+&lt;p&gt;使用这样的结构来组织 Go 项目有很多好处，包括：&lt;/p&gt;
+&lt;p&gt;代码更易于维护和理解：使用独立的可执行程序和内部目录，可以让代码更清晰且更容易维护，使开发人员能够更好地理解代码的用途和位置。&lt;/p&gt;
+&lt;p&gt;扩展性强：该结构使得每个可执行程序都可以相对独立地进行开发、测试和部署。这也使得代码更有扩展和修改的完整性。&lt;/p&gt;
+&lt;p&gt;松耦合：使用 cmd 和 internal 目录方式可以大大增强代码间的松耦合度。这使得程序员可以更好地对代码变化做出反应，同时减少代码冲突及协调问题。&lt;/p&gt;
+&lt;p&gt;综上所述，使用 cmd 和 internal 目录方式更易于开发和维护，是现代化 Go 应用程序中广受欢迎的项目结构设计方式。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
       <content:encoded><![CDATA[<p>总结:</p>
 <ul>
 <li>cmd 一个代码库多个启动程序, 清晰明了</li>
@@ -118,17 +141,44 @@ cmd 目录通常包含可执行程序的入口点。这些可执行程序可以�
       <pubDate>Thu, 25 May 2023 12:10:53 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/golang-100mistake/</guid>
-      <description>variable shadowing init 弊端
-初始化 error 的处理, 不应该是包自己用 panic 捕获错误终止程序，而是调用来决定是否应该终止程序 影响测试， 会在测试之前执行 获取执行数据，需要通过全局变量（ 全局变量弊端：1. 会被修改，2. 影响测试） 什么时候使用
-避免错误产生没有err 不会产生全局变量 getters and setters 如果只是简单获取值的话，就不应该用
-方法命名
-获取值 Balance 而不是 （ GetBalance) 设置值 SetBalance interface pollution interface 的价值
-通用的方法（ 如排序） 解耦 限制实体行为（仅提供特定方法） 只要在当我们真正用到的时候才去创建
-we should create an interface when we need it, not when we foresee that we could need it
-interface 抽象 是通过发现的，而不是通过创造的
-生产端接口声明，与实现放在同一个包中 消费端接口声明，与使用interface的放在同一个包中 Interface 是通过发现的，符合使用者的需求（与其他语言最大区别就是 Interface 为隐式实现）所以大部分接口应该是是消费端接口声明。
-准备库定义生产端声明，可以提供自定义接口的能力。 生产端接口要尽量简洁。
-return interfaceBe conservative in what you do, be liberal in fr Be conservative in what you do, be liberal in what you accept from others.</description>
+      <description>&lt;h3 id=&#34;variable-shadowing&#34;&gt;variable shadowing&lt;/h3&gt;
+&lt;h3 id=&#34;init&#34;&gt;init&lt;/h3&gt;
+&lt;p&gt;弊端&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;初始化 error 的处理, 不应该是包自己用 panic 捕获错误终止程序，而是调用来决定是否应该终止程序&lt;/li&gt;
+&lt;li&gt;影响测试， 会在测试之前执行&lt;/li&gt;
+&lt;li&gt;获取执行数据，需要通过全局变量（ 全局变量弊端：1. 会被修改，2. 影响测试）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;什么时候使用&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;避免错误产生没有err&lt;/li&gt;
+&lt;li&gt;不会产生全局变量&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;getters-and-setters&#34;&gt;getters and setters&lt;/h3&gt;
+&lt;p&gt;如果只是简单获取值的话，就不应该用&lt;/p&gt;
+&lt;p&gt;方法命名&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;获取值 Balance 而不是 （ GetBalance)&lt;/li&gt;
+&lt;li&gt;设置值 SetBalance&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;interface-pollution&#34;&gt;interface pollution&lt;/h3&gt;
+&lt;p&gt;interface 的价值&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通用的方法（ 如排序）&lt;/li&gt;
+&lt;li&gt;解耦&lt;/li&gt;
+&lt;li&gt;限制实体行为（仅提供特定方法）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;只要在当我们真正用到的时候才去创建&lt;/p&gt;
+&lt;p&gt;we should create an interface when we need it, not when we foresee that we could need it&lt;/p&gt;
+&lt;p&gt;interface 抽象 是通过发现的，而不是通过创造的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;生产端接口声明，与实现放在同一个包中&lt;/li&gt;
+&lt;li&gt;消费端接口声明，与使用interface的放在同一个包中&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Interface 是通过发现的，符合使用者的需求（与其他语言最大区别就是 Interface 为隐式实现）所以大部分接口应该是是消费端接口声明。&lt;/p&gt;
+&lt;p&gt;准备库定义生产端声明，可以提供自定义接口的能力。 生产端接口要尽量简洁。&lt;/p&gt;
+&lt;h3 id=&#34;return-interfacebe-conservative-in-what-you-do-be-liberal-in-fr&#34;&gt;return interfaceBe conservative in what you do, be liberal in fr&lt;/h3&gt;
+&lt;p&gt;Be conservative in what you do, be liberal in what you accept from others.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h3 id="variable-shadowing">variable shadowing</h3>
 <h3 id="init">init</h3>
 <p>弊端</p>
@@ -1003,17 +1053,44 @@ ping 方法, 强制建立连接</p>
       <pubDate>Thu, 25 May 2023 12:10:53 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/books/golang-100mistake/</guid>
-      <description>variable shadowing init 弊端
-初始化 error 的处理, 不应该是包自己用 panic 捕获错误终止程序，而是调用来决定是否应该终止程序 影响测试， 会在测试之前执行 获取执行数据，需要通过全局变量（ 全局变量弊端：1. 会被修改，2. 影响测试） 什么时候使用
-避免错误产生没有err 不会产生全局变量 getters and setters 如果只是简单获取值的话，就不应该用
-方法命名
-获取值 Balance 而不是 （ GetBalance) 设置值 SetBalance interface pollution interface 的价值
-通用的方法（ 如排序） 解耦 限制实体行为（仅提供特定方法） 只要在当我们真正用到的时候才去创建
-we should create an interface when we need it, not when we foresee that we could need it
-interface 抽象 是通过发现的，而不是通过创造的
-生产端接口声明，与实现放在同一个包中 消费端接口声明，与使用interface的放在同一个包中 Interface 是通过发现的，符合使用者的需求（与其他语言最大区别就是 Interface 为隐式实现）所以大部分接口应该是是消费端接口声明。
-准备库定义生产端声明，可以提供自定义接口的能力。 生产端接口要尽量简洁。
-return interfaceBe conservative in what you do, be liberal in fr Be conservative in what you do, be liberal in what you accept from others.</description>
+      <description>&lt;h3 id=&#34;variable-shadowing&#34;&gt;variable shadowing&lt;/h3&gt;
+&lt;h3 id=&#34;init&#34;&gt;init&lt;/h3&gt;
+&lt;p&gt;弊端&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;初始化 error 的处理, 不应该是包自己用 panic 捕获错误终止程序，而是调用来决定是否应该终止程序&lt;/li&gt;
+&lt;li&gt;影响测试， 会在测试之前执行&lt;/li&gt;
+&lt;li&gt;获取执行数据，需要通过全局变量（ 全局变量弊端：1. 会被修改，2. 影响测试）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;什么时候使用&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;避免错误产生没有err&lt;/li&gt;
+&lt;li&gt;不会产生全局变量&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;getters-and-setters&#34;&gt;getters and setters&lt;/h3&gt;
+&lt;p&gt;如果只是简单获取值的话，就不应该用&lt;/p&gt;
+&lt;p&gt;方法命名&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;获取值 Balance 而不是 （ GetBalance)&lt;/li&gt;
+&lt;li&gt;设置值 SetBalance&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;interface-pollution&#34;&gt;interface pollution&lt;/h3&gt;
+&lt;p&gt;interface 的价值&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通用的方法（ 如排序）&lt;/li&gt;
+&lt;li&gt;解耦&lt;/li&gt;
+&lt;li&gt;限制实体行为（仅提供特定方法）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;只要在当我们真正用到的时候才去创建&lt;/p&gt;
+&lt;p&gt;we should create an interface when we need it, not when we foresee that we could need it&lt;/p&gt;
+&lt;p&gt;interface 抽象 是通过发现的，而不是通过创造的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;生产端接口声明，与实现放在同一个包中&lt;/li&gt;
+&lt;li&gt;消费端接口声明，与使用interface的放在同一个包中&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Interface 是通过发现的，符合使用者的需求（与其他语言最大区别就是 Interface 为隐式实现）所以大部分接口应该是是消费端接口声明。&lt;/p&gt;
+&lt;p&gt;准备库定义生产端声明，可以提供自定义接口的能力。 生产端接口要尽量简洁。&lt;/p&gt;
+&lt;h3 id=&#34;return-interfacebe-conservative-in-what-you-do-be-liberal-in-fr&#34;&gt;return interfaceBe conservative in what you do, be liberal in fr&lt;/h3&gt;
+&lt;p&gt;Be conservative in what you do, be liberal in what you accept from others.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h3 id="variable-shadowing">variable shadowing</h3>
 <h3 id="init">init</h3>
 <p>弊端</p>
@@ -1888,13 +1965,47 @@ ping 方法, 强制建立连接</p>
       <pubDate>Sun, 01 Jan 2023 22:08:25 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/golang-gin/</guid>
-      <description>Golang Gin 框架的使用和理解 框架代码地址
-中间的几个关键对象 Engine RouterGroup HandlerFunc Context Engine gin 的框架实例, 包含路由地址, 中间件, 框架配置. 通过New()或者Default()创建
-New 不带任何中间件 Default 会带 logger 和 recover 通过 Engine.Use() 添加中间件到Engine的RouterGroup
-Engine.Run 启动, 并绑定到参数的地址
-RouterGroup 1 2 3 4 5 6 type RouterGroup struct { Handlers HandlersChain basePath string engine *Engine root bool } 用于存储中间件的处理方法 &amp;ndash; 存储再 HandlersChain 里面, 即[]HandlerFunc
-真正的路由地址存储在engine.trees &amp;ndash; 路由树, 检索请求地址和对应处理方法.
-Engine 包含 RouterGroup, RouterGroup 也会存储 Engine 的地址. 目的是为了, 加点api地址时, 根据当前具体配置的中间件, 再添加engine的路由树. 也就是说, 过程中修改了中间件, 不会影响到已经配置的路由的中间件.</description>
+      <description>&lt;h1 id=&#34;golang-gin-框架的使用和理解&#34;&gt;Golang Gin 框架的使用和理解&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/gin-gonic/gin&#34;&gt;框架代码地址&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;中间的几个关键对象&#34;&gt;中间的几个关键对象&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Engine&lt;/li&gt;
+&lt;li&gt;RouterGroup&lt;/li&gt;
+&lt;li&gt;HandlerFunc&lt;/li&gt;
+&lt;li&gt;Context&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;engine&#34;&gt;Engine&lt;/h3&gt;
+&lt;p&gt;gin 的框架实例, 包含路由地址, 中间件, 框架配置. 通过&lt;code&gt;New()&lt;/code&gt;或者&lt;code&gt;Default()&lt;/code&gt;创建&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;New&lt;/code&gt; 不带任何中间件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Default&lt;/code&gt; 会带 &lt;code&gt;logger&lt;/code&gt; 和 &lt;code&gt;recover&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通过 &lt;code&gt;Engine.Use()&lt;/code&gt; 添加中间件到Engine的&lt;code&gt;RouterGroup&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Engine.Run&lt;/code&gt; 启动, 并绑定到参数的地址&lt;/p&gt;
+&lt;h3 id=&#34;routergroup&#34;&gt;RouterGroup&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;type RouterGroup struct {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	Handlers HandlersChain
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	basePath string
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	engine   *Engine
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	root     bool
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;用于存储中间件的处理方法 &amp;ndash; 存储再 &lt;code&gt;HandlersChain&lt;/code&gt; 里面, 即&lt;code&gt;[]HandlerFunc&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;真正的路由地址存储在&lt;code&gt;engine.trees&lt;/code&gt; &amp;ndash; 路由树, 检索请求地址和对应处理方法.&lt;/p&gt;
+&lt;p&gt;Engine 包含 RouterGroup, RouterGroup 也会存储 Engine 的地址.
+目的是为了, 加点api地址时, 根据当前具体配置的中间件, 再添加engine的路由树.
+也就是说, 过程中修改了中间件, 不会影响到已经配置的路由的中间件.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h1 id="golang-gin-框架的使用和理解">Golang Gin 框架的使用和理解</h1>
 <p><a href="https://github.com/gin-gonic/gin">框架代码地址</a></p>
 <h2 id="中间的几个关键对象">中间的几个关键对象</h2>
@@ -2330,14 +2441,46 @@ tag <code>binding:&quot;required&quot;</code> 如果没有对应参数会报错<
       <pubDate>Mon, 19 Dec 2022 15:35:53 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/golang-client-reuse/</guid>
-      <description>背景 在改动旧代码的时候把, 一个使用全局 http.Client 的代码弄成了每一个请求会新 New 一个 http.Client 导致下游的 nginx 的连接数暴涨.
-问题 处理多个请求的时候, 是否需要为每个请求 New 一个 Client
-探索 在 StackOverflow 发现的相关答案
-How to release http.Client in Go?
-给的答案是建议复用 Client
-The Client&amp;rsquo;s Transport typically has internal state (cached TCP connections), so Clients should be reused instead of created as needed. Clients are safe for concurrent use by multiple goroutines.
-http.Client 的结构体
-1 2 3 4 5 6 7 8 9 10 type Client struct { Transport RoundTripper CheckRedirect func(req *Request, via []*Request) error Jar CookieJar Timeout time.</description>
+      <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+&lt;p&gt;在改动旧代码的时候把, 一个使用全局 &lt;code&gt;http.Client&lt;/code&gt; 的代码弄成了每一个请求会新 New
+一个 &lt;code&gt;http.Client&lt;/code&gt; 导致下游的 nginx 的连接数暴涨.&lt;/p&gt;
+&lt;h2 id=&#34;问题&#34;&gt;问题&lt;/h2&gt;
+&lt;p&gt;处理多个请求的时候, 是否需要为每个请求 New 一个 Client&lt;/p&gt;
+&lt;h2 id=&#34;探索&#34;&gt;探索&lt;/h2&gt;
+&lt;p&gt;在 StackOverflow 发现的相关答案&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/a/36688970/9992963&#34;&gt;How to release http.Client in Go?&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;给的答案是建议复用 &lt;code&gt;Client&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The Client&amp;rsquo;s Transport typically has internal state (cached TCP connections), so Clients should be reused instead of created as needed. Clients are safe for concurrent use by multiple goroutines.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;http.Client 的结构体&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;type Client struct {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	Transport RoundTripper
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	CheckRedirect func(req *Request, via []*Request) error
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	Jar CookieJar
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	Timeout time.Duration
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在 &lt;code&gt;RoundTripper&lt;/code&gt; 中实现了连接复用的逻辑&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="背景">背景</h2>
 <p>在改动旧代码的时候把, 一个使用全局 <code>http.Client</code> 的代码弄成了每一个请求会新 New
 一个 <code>http.Client</code> 导致下游的 nginx 的连接数暴涨.</p>
@@ -2500,16 +2643,31 @@ http.Client 的结构体
       <pubDate>Mon, 05 Dec 2022 09:21:02 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/clean-architectrue/</guid>
-      <description>代码整洁架构
-核心思想 最重要的是依赖顺序需要内收 &amp;ndash; 业务逻辑不能依赖框架
-分层 简单分层四层
-Entities Use Cases Interface Adapters Framework and Drivers Entity 实体抽象层 我的理解应该是在公司业务, 或者项目领域上对于业务模型的抽象. 不容易改变 (除非公司 业务, 或者项目方向改变). 应该是与 领域驱动设计 不谋而合
-Use Cases 使用场景层 业务使用场景, 应该是存放相关不同业务场景的具体实现流程
-Interface Adapters 接口转化器层 负责 Use Cases 数据 与外部使用数据转换器实现.
-比较特别的例子, 将 Use Cases 产生的数据与外部的 UI 表现层所需要的数据格式做转化.
-Framework and Divers 数据库和框架层, 外部工具包接口依赖之类的.
-依赖倒置 当遇到跨层依赖的时候, 内层需要引用到外层逻辑时: 比如, Use Case 要呈现 UI 数据结构 (Interface Adapters 层) 时, 不能直接引用 UI 层的数据模型.
-而是, 通过依赖倒置. 将 UI 层的处理逻辑, 注入 Use Case 层进行处理, 实现目标.</description>
+      <description>&lt;p&gt;代码整洁架构&lt;/p&gt;
+&lt;h2 id=&#34;核心思想&#34;&gt;核心思想&lt;/h2&gt;
+&lt;p&gt;最重要的是依赖顺序需要内收 &amp;ndash; 业务逻辑不能依赖框架&lt;/p&gt;
+&lt;h2 id=&#34;分层&#34;&gt;分层&lt;/h2&gt;
+&lt;p&gt;简单分层四层&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Entities&lt;/li&gt;
+&lt;li&gt;Use Cases&lt;/li&gt;
+&lt;li&gt;Interface Adapters&lt;/li&gt;
+&lt;li&gt;Framework and Drivers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;entity-实体抽象层&#34;&gt;Entity 实体抽象层&lt;/h3&gt;
+&lt;p&gt;我的理解应该是在公司业务, 或者项目领域上对于业务模型的抽象. 不容易改变 (除非公司
+业务, 或者项目方向改变). 应该是与 &lt;em&gt;领域驱动设计&lt;/em&gt; 不谋而合&lt;/p&gt;
+&lt;h3 id=&#34;use-cases-使用场景层&#34;&gt;Use Cases 使用场景层&lt;/h3&gt;
+&lt;p&gt;业务使用场景, 应该是存放相关不同业务场景的具体实现流程&lt;/p&gt;
+&lt;h3 id=&#34;interface-adapters-接口转化器层&#34;&gt;Interface Adapters 接口转化器层&lt;/h3&gt;
+&lt;p&gt;负责 Use Cases 数据 与外部使用数据转换器实现.&lt;/p&gt;
+&lt;p&gt;比较特别的例子, 将 Use Cases 产生的数据与外部的 UI 表现层所需要的数据格式做转化.&lt;/p&gt;
+&lt;h3 id=&#34;framework-and-divers&#34;&gt;Framework and Divers&lt;/h3&gt;
+&lt;p&gt;数据库和框架层, 外部工具包接口依赖之类的.&lt;/p&gt;
+&lt;h2 id=&#34;依赖倒置&#34;&gt;依赖倒置&lt;/h2&gt;
+&lt;p&gt;当遇到跨层依赖的时候, 内层需要引用到外层逻辑时: 比如, Use Case 要呈现 UI 数据结构
+(Interface Adapters 层) 时, 不能直接引用 UI 层的数据模型.&lt;/p&gt;
+&lt;p&gt;而是, 通过依赖倒置. 将 UI 层的处理逻辑, 注入 Use Case 层进行处理, 实现目标.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>代码整洁架构</p>
 <h2 id="核心思想">核心思想</h2>
 <p>最重要的是依赖顺序需要内收 &ndash; 业务逻辑不能依赖框架</p>
@@ -2608,10 +2766,50 @@ Framework and Divers 数据库和框架层, 外部工具包接口依赖之类的
       <pubDate>Fri, 18 Nov 2022 19:27:35 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/golang-memory-analyze-with-runtime/</guid>
-      <description>使用场景 写个demo, 想查看一下程序内部的内存占用情况.
-使用方法 主角 runtime 包
-对象 MemStats 方法 ReadMemStats demo 展示
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 // PrintMemUsage outputs the current, total and OS memory being used. As well as the number // of garage collection cycles completed. func PrintMemUsage() { bToMb := func(b uint64) uint64 { return b / 1024 / 1024 } var m runtime.MemStats runtime.ReadMemStats(&amp;amp;m) // For info on each, see: https://golang.</description>
+      <description>&lt;h3 id=&#34;使用场景&#34;&gt;使用场景&lt;/h3&gt;
+&lt;p&gt;写个demo, 想查看一下程序内部的内存占用情况.&lt;/p&gt;
+&lt;h3 id=&#34;使用方法&#34;&gt;使用方法&lt;/h3&gt;
+&lt;p&gt;主角 runtime 包&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对象 &lt;code&gt;MemStats&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;方法 &lt;code&gt;ReadMemStats&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;demo 展示&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// PrintMemUsage outputs the current, total and OS memory being used. As well as the number 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// of garage collection cycles completed.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;PrintMemUsage&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nx&#34;&gt;bToMb&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;b&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;uint64&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;uint64&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;b&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1024&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1024&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;m&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;runtime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;MemStats&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nx&#34;&gt;runtime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;ReadMemStats&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;c1&#34;&gt;// For info on each, see: https://golang.org/pkg/runtime/#MemStats
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Alloc = %v MiB&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;bToMb&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Alloc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;\tTotalAlloc = %v MiB&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;bToMb&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;TotalAlloc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;\tSys = %v MiB&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;bToMb&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Sys&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;\tNumGC = %v\n&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;NumGC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;https://gist.github.com/j33ty/79e8b736141be19687f565ea4c6f4226&#34;&gt;代码出处&lt;/a&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h3 id="使用场景">使用场景</h3>
 <p>写个demo, 想查看一下程序内部的内存占用情况.</p>
 <h3 id="使用方法">使用方法</h3>
@@ -3053,15 +3251,39 @@ Framework and Divers 数据库和框架层, 外部工具包接口依赖之类的
       <pubDate>Tue, 01 Nov 2022 00:15:50 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/golang-minimal-version-selection/</guid>
-      <description>原文: Minimal Version Selection
-意识流翻译, 只是简单的把自己的理解转化成中文. 仅供参考.
-翻译: Go 构建相关的命令需要决定模块版本. 把这些模块和版本号称之为编译列表(build list). 为了稳定的开发, 今天的编译列表必须和明天的编译列表是一致的. 但是开发者也必须支持 编译列表的改变: 升级所有的模块, 升级单个模块, 降级单个模块.
-版本选择的问题定位为: 给定一个算法支持对编译列表进行下面四种操作:
-构建当前的编译列表 升级所有模块到各自对应的最新版本 升级一个模块到对应的版本 降级一个模块到对应的版本 最后两种操作是在一个具体的模块进行升级和降级. 在满足依赖需求的前提下, 尽量少的进 行升级, 降级, 添加或者移除模块.
-这篇博文展示了最小版本选择算法, 一个新的, 简单的版本选择方案. 最小版本选择是容易 理解和能简单推测出他的运行行为的. 而且还能高稳定构建的, 表名一个用户所使用的依赖 是非常接近开发者所使用的依赖. 能够高效实现, 没有使用什么复杂的递归图算法. 仅仅只 用了几行 go 的代码就是实现了.
-最小选择算法假设所有的模块都声明了它自己对于其他模块的依赖清单. 且所有的模块都遵 守语义化版本: 向前兼容的版本使用小版本号, 不向前兼容的版本使用大版本号.
-对应的四种列表操作:
-构建当前模块的编译列表: 将当前模块引用的依赖列表加在一起, 重复的仅保持一份. 升级所有模块版本: 所有最新引用的依赖, 重新构建一份列表 升级某一具体模块版本: 构建没有升级的列表, 再将升级的模块新的引用列表加入, 加入 时如果如果已经存在, 就是仅保存最新的版本 降级一个模块到对应的版本: 反解开所有依赖降级的模块, 每一个依赖都需降级到目标 模块版本之下 这些操作简单, 高效, 且容易实现</description>
+      <description>&lt;p&gt;原文: &lt;a href=&#34;https://research.swtch.com/vgo-mvs#low-fidelity_builds&#34;&gt;Minimal Version Selection&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;意识流翻译, 只是简单的把自己的理解转化成中文. 仅供参考.&lt;/p&gt;
+&lt;h1 id=&#34;翻译&#34;&gt;翻译:&lt;/h1&gt;
+&lt;p&gt;Go 构建相关的命令需要决定模块版本. 把这些模块和版本号称之为编译列表(build list).
+为了稳定的开发, 今天的编译列表必须和明天的编译列表是一致的. 但是开发者也必须支持
+编译列表的改变: 升级所有的模块, 升级单个模块, 降级单个模块.&lt;/p&gt;
+&lt;p&gt;版本选择的问题定位为: 给定一个算法支持对编译列表进行下面四种操作:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;构建当前的编译列表&lt;/li&gt;
+&lt;li&gt;升级所有模块到各自对应的最新版本&lt;/li&gt;
+&lt;li&gt;升级一个模块到对应的版本&lt;/li&gt;
+&lt;li&gt;降级一个模块到对应的版本&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;最后两种操作是在一个具体的模块进行升级和降级. 在满足依赖需求的前提下, 尽量少的进
+行升级, 降级, 添加或者移除模块.&lt;/p&gt;
+&lt;p&gt;这篇博文展示了最小版本选择算法, 一个新的, 简单的版本选择方案. 最小版本选择是容易
+理解和能简单推测出他的运行行为的. 而且还能高稳定构建的, 表名一个用户所使用的依赖
+是非常接近开发者所使用的依赖. 能够高效实现, 没有使用什么复杂的递归图算法. 仅仅只
+用了几行 go 的代码就是实现了.&lt;/p&gt;
+&lt;p&gt;最小选择算法假设所有的模块都声明了它自己对于其他模块的依赖清单. 且所有的模块都遵
+守&lt;a href=&#34;https://research.swtch.com/vgo-import&#34;&gt;语义化版本&lt;/a&gt;: 向前兼容的版本使用小版本号,
+不向前兼容的版本使用大版本号.&lt;/p&gt;
+&lt;p&gt;对应的四种列表操作:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;构建当前模块的编译列表: 将当前模块引用的依赖列表加在一起, 重复的仅保持一份.&lt;/li&gt;
+&lt;li&gt;升级所有模块版本: 所有最新引用的依赖, 重新构建一份列表&lt;/li&gt;
+&lt;li&gt;升级某一具体模块版本: 构建没有升级的列表, 再将升级的模块新的引用列表加入, 加入
+时如果如果已经存在, 就是仅保存最新的版本&lt;/li&gt;
+&lt;li&gt;降级一个模块到对应的版本: 反解开所有依赖降级的模块, 每一个依赖都需降级到目标
+模块版本之下&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这些操作简单, 高效, 且容易实现&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;剩余内容 略&lt;/strong&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>原文: <a href="https://research.swtch.com/vgo-mvs#low-fidelity_builds">Minimal Version Selection</a></p>
 <p>意识流翻译, 只是简单的把自己的理解转化成中文. 仅供参考.</p>
 <h1 id="翻译">翻译:</h1>
@@ -3104,18 +3326,65 @@ Framework and Divers 数据库和框架层, 外部工具包接口依赖之类的
       <pubDate>Mon, 31 Oct 2022 08:26:33 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/golang-find-module-conflict/</guid>
-      <description>遇到了 grpc 不遵循语义版本, 导致不同版本包之间的冲突.
-更新了目标的版本模块之后, 编译一下就发现原先项目引用的 gozero 框架报错了. 搜索一下 相关的关键词,就可以定位到问题是 grpc 搞的鬼.
-再找到对应的兼容版本, 升级到对应的版本就可以了.
-go 依赖版本选择 [golang 的最小版本选择]https://ynikl.github.io/blog/golang-minimal-version-selection/
-大体意思:
-会选择当前编译需要依赖包的最高版本(使用语义化版本)
-寻找依赖的原因 go mod why
-寻找自己项目引用某个包的 最短引用路径, 导致会引用目标包的
-1 go mod why google.golang.org/grpc 输出目标包的引用依赖层级
-1 2 3 4 5 6 ❯ go mod why google.golang.org/grpc # google.golang.org/grpc hello/world/test git.test.cn/company-open/rpc-pkgs google.golang.org/grpc go mod graph
-可以打印出, 模块的依赖图
-1 2 3 4 5 6 example.com/main example.com/a@v1.1.0 example.com/main example.com/b@v1.2.0 example.com/a@v1.1.0 example.com/b@v1.1.1 example.com/a@v1.1.0 example.com/c@v1.3.0 example.com/b@v1.1.0 example.com/c@v1.1.0 example.</description>
+      <description>&lt;p&gt;遇到了 grpc 不遵循语义版本, 导致&lt;a href=&#34;https://github.com/weaveworks/common/issues/239&#34;&gt;不同版本包之间的冲突&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;更新了目标的版本模块之后, 编译一下就发现原先项目引用的 gozero 框架报错了. 搜索一下
+相关的关键词,就可以定位到问题是 grpc 搞的鬼.&lt;/p&gt;
+&lt;p&gt;再找到对应的兼容版本, 升级到对应的版本就可以了.&lt;/p&gt;
+&lt;h2 id=&#34;go-依赖版本选择&#34;&gt;go 依赖版本选择&lt;/h2&gt;
+&lt;p&gt;[golang 的最小版本选择]https://ynikl.github.io/blog/golang-minimal-version-selection/&lt;/p&gt;
+&lt;p&gt;大体意思:&lt;/p&gt;
+&lt;p&gt;会选择当前编译需要依赖包的最高版本(使用语义化版本)&lt;/p&gt;
+&lt;h2 id=&#34;寻找依赖的原因&#34;&gt;寻找依赖的原因&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://go.dev/ref/mod#go-mod-why&#34;&gt;go mod why&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;寻找自己项目引用某个包的 &lt;strong&gt;最短引用路径&lt;/strong&gt;, 导致会引用目标包的&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;go mod why google.golang.org/grpc
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;输出目标包的引用依赖层级&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;❯ go mod why google.golang.org/grpc
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# google.golang.org/grpc
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hello/world/test
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git.test.cn/company-open/rpc-pkgs
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;google.golang.org/grpc
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;https://go.dev/ref/mod#go-mod-graph&#34;&gt;go mod graph&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;可以打印出, 模块的依赖图&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;example.com/main example.com/a@v1.1.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;example.com/main example.com/b@v1.2.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;example.com/a@v1.1.0 example.com/b@v1.1.1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;example.com/a@v1.1.0 example.com/c@v1.3.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;example.com/b@v1.1.0 example.com/c@v1.1.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;example.com/b@v1.2.0 example.com/c@v1.2.0
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
       <content:encoded><![CDATA[<p>遇到了 grpc 不遵循语义版本, 导致<a href="https://github.com/weaveworks/common/issues/239">不同版本包之间的冲突</a>.</p>
 <p>更新了目标的版本模块之后, 编译一下就发现原先项目引用的 gozero 框架报错了. 搜索一下
 相关的关键词,就可以定位到问题是 grpc 搞的鬼.</p>
@@ -3183,8 +3452,64 @@ go 依赖版本选择 [golang 的最小版本选择]https://ynikl.github.io/blog
       <pubDate>Mon, 19 Sep 2022 09:19:31 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/golang-errgroup/</guid>
-      <description>实现并发控制 在 golang 代码中如果要对一段代码进行并发限制. 通常的做法都是在写一个 channel 进行传入和传出.
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 func main() { concurrencyNum := 10 limitCh := make(chan bool, concurrencyNum) wg := new(sync.WaitGroup) for i := 0; i &amp;lt; 100; i++ { limitCh &amp;lt;- true wg.Add(1) go func() { defer func() { &amp;lt;-limitCh wg.Done() }() time.Sleep(1 * time.Second) fmt.</description>
+      <description>&lt;h2 id=&#34;实现并发控制&#34;&gt;实现并发控制&lt;/h2&gt;
+&lt;p&gt;在 golang 代码中如果要对一段代码进行并发限制. 通常的做法都是在写一个 &lt;code&gt;channel&lt;/code&gt;
+进行传入和传出.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nx&#34;&gt;concurrencyNum&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nx&#34;&gt;limitCh&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;make&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;bool&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;concurrencyNum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nx&#34;&gt;wg&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sync&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;WaitGroup&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nx&#34;&gt;limitCh&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nx&#34;&gt;wg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Add&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;k&#34;&gt;defer&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				&lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;limitCh&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				&lt;span class=&#34;nx&#34;&gt;wg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Done&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;p&#34;&gt;}()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;nx&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Sleep&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Second&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;do some things...&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;p&#34;&gt;}()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nx&#34;&gt;wg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Wait&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;ok&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果如果中间运行代码有可能存在错误, 捕获错误. 有两种方法:&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="实现并发控制">实现并发控制</h2>
 <p>在 golang 代码中如果要对一段代码进行并发限制. 通常的做法都是在写一个 <code>channel</code>
 进行传入和传出.</p>
@@ -3403,12 +3728,53 @@ go 依赖版本选择 [golang 的最小版本选择]https://ynikl.github.io/blog
       <pubDate>Sun, 18 Sep 2022 21:37:55 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/golang-get-assembly-fn/</guid>
-      <description>在 golang 中查看源码是比较方便的. 可以直接到 官方包文档中直接查看文档和跳转到源码
-但是, 当我们想看一些更加底层的实现方法时, 就需要知道编译器将对应的方法编译成 什么底层方法了.
-比如, 我知道一些make(map[int]bool)是怎么实现的.
-这时候就需要一些方法了. 引用一下鸟窝大佬的文章 总结一下三种方法:
-go tool compile -N -l -S makemap.go go tool compile -N -l -S makemap.go go tool compile -N -l -S makemap.go go tool compile 产生的汇编代码
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 0x001c 00028 (main.go:5)	FUNCDATA	$1, gclocals·PdpXzE88ETLbqQ9okAZ04w==(SB) 0x001c 00028 (main.go:5)	FUNCDATA	$2, main.main.stkobj(SB) 0x001c 00028 (main.go:6)	STP	(ZR, ZR), main.</description>
+      <description>&lt;p&gt;在 golang 中查看源码是比较方便的. 可以直接到 &lt;a href=&#34;https://pkg.go.dev/&#34;&gt;官方包文档&lt;/a&gt;中直接查看文档和跳转到源码&lt;/p&gt;
+&lt;p&gt;但是, 当我们想看一些更加底层的实现方法时, 就需要知道编译器将对应的方法编译成
+什么底层方法了.&lt;/p&gt;
+&lt;p&gt;比如, 我知道一些&lt;code&gt;make(map[int]bool)&lt;/code&gt;是怎么实现的.&lt;/p&gt;
+&lt;p&gt;这时候就需要一些方法了. 引用一下&lt;a href=&#34;https://colobu.com/2018/12/29/get-assembly-output-for-go-programs/&#34;&gt;鸟窝大佬的文章&lt;/a&gt;
+总结一下三种方法:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;go tool compile -N -l -S makemap.go&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;go tool compile -N -l -S makemap.go&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;go tool compile -N -l -S makemap.go&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;go tool compile&lt;/code&gt; 产生的汇编代码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	0x001c 00028 (main.go:5)	FUNCDATA	$1, gclocals·PdpXzE88ETLbqQ9okAZ04w==(SB)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	0x001c 00028 (main.go:5)	FUNCDATA	$2, main.main.stkobj(SB)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	0x001c 00028 (main.go:6)	STP	(ZR, ZR), main..autotmp_4-48(SP)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	0x0020 00032 (main.go:6)	STP	(ZR, ZR), main..autotmp_4-32(SP)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	0x0024 00036 (main.go:6)	STP	(ZR, ZR), main..autotmp_4-16(SP)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	0x0028 00040 (main.go:6)	MOVD	$type.map[int]bool(SB), R0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	0x0030 00048 (main.go:6)	MOVD	$100, R1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	0x0034 00052 (main.go:6)	MOVD	$main..autotmp_4-48(SP), R2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	0x0038 00056 (main.go:6)	PCDATA	$1, ZR
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	0x0038 00056 (main.go:6)	CALL	runtime.makemap(SB)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	0x003c 00060 (main.go:6)	MOVD	R0, main.mp-112(SP)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	0x0040 00064 (main.go:7)	MOVD	R0, R1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	0x0044 00068 (main.go:7)	MOVD	ZR, R2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	0x0048 00072 (main.go:7)	MOVD	$type.map[int]bool(SB), R0
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;go tool objdump&lt;/code&gt;产生的汇编代码&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>在 golang 中查看源码是比较方便的. 可以直接到 <a href="https://pkg.go.dev/">官方包文档</a>中直接查看文档和跳转到源码</p>
 <p>但是, 当我们想看一些更加底层的实现方法时, 就需要知道编译器将对应的方法编译成
 什么底层方法了.</p>
@@ -3513,16 +3879,63 @@ go tool compile -N -l -S makemap.go go tool compile -N -l -S makemap.go go tool 
       <pubDate>Sun, 04 Sep 2022 21:32:24 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/http-content-disposition/</guid>
-      <description>Content-Disposition 常见是用在 http 请求的 Response 的 Header 头部.
-告诉请求客户端(浏览器) 如何处理内容;
-Content-Disposition是在 MIME 标准定义的. http 中的用法只是其中的一小部分.
-语法参数 inline 会在浏览器内部显示
-1 Content-Disposition: inline attachment 会被保存成文件
-1 Content-Disposition: attachment 后面可以跟 filename, 值为预设文件名称, 中间使用;分号隔开.
-1 Content-Disposition: attachment; filename=&amp;#34;filename.jpg&amp;#34; 拓展参数, 有两个文件名称参数可选
-filename* filename filename* 采用了 RFC 5987 中规定的编码方式, 假如两个参数都使用 filename* 的优先级更高
-RFC 5987 该提议最终还是引用 RFC 2231 中的编码方式. 下面简单介绍一下语法
-*星号用于标记该同名参数是支持该编码语法的, 就如( filename* 之于 filename) &#39;单个逗号用于分割 字符集名称 , 语言, 文件名称 %百分号用于标记编码方式, 参考RFC 2047, 所以文件名中不能有% 1 filename*=us-ascii&amp;#39;en-us&amp;#39;This%20is%20%2A%2A%2Afun%2A%2A%2A 使用us-ascii编码, en-us英语</description>
+      <description>&lt;p&gt;&lt;code&gt;Content-Disposition&lt;/code&gt; 常见是用在 http 请求的 Response 的 Header 头部.&lt;/p&gt;
+&lt;p&gt;告诉请求客户端(浏览器) 如何处理内容;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Content-Disposition&lt;/code&gt;是在 MIME 标准定义的. http 中的用法只是其中的一小部分.&lt;/p&gt;
+&lt;h2 id=&#34;语法参数&#34;&gt;语法参数&lt;/h2&gt;
+&lt;h3 id=&#34;inline&#34;&gt;inline&lt;/h3&gt;
+&lt;p&gt;会在浏览器内部显示&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Content-Disposition: inline
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;attachment&#34;&gt;attachment&lt;/h3&gt;
+&lt;p&gt;会被保存成文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Content-Disposition: attachment
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;后面可以跟 filename, 值为预设文件名称, 中间使用&lt;code&gt;;&lt;/code&gt;分号隔开.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Content-Disposition: attachment; filename=&amp;#34;filename.jpg&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;拓展参数, 有两个文件名称参数可选&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;filename*&lt;/li&gt;
+&lt;li&gt;filename&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;filename*&lt;/code&gt; 采用了 RFC 5987 中规定的编码方式,
+假如两个参数都使用 &lt;code&gt;filename*&lt;/code&gt; 的优先级更高&lt;/p&gt;
+&lt;h4 id=&#34;rfc-5987&#34;&gt;RFC 5987&lt;/h4&gt;
+&lt;p&gt;该提议最终还是引用 &lt;a href=&#34;https://www.rfc-editor.org/rfc/rfc2231#section-4&#34;&gt;RFC 2231&lt;/a&gt;
+中的编码方式. 下面简单介绍一下语法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;*&lt;/code&gt;星号用于标记该同名参数是支持该编码语法的, 就如( &lt;code&gt;filename*&lt;/code&gt; 之于 &lt;code&gt;filename&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&#39;&lt;/code&gt;单个逗号用于分割 &lt;strong&gt;字符集名称&lt;/strong&gt; , &lt;strong&gt;语言&lt;/strong&gt;, &lt;strong&gt;文件名称&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;%&lt;/code&gt;百分号用于标记编码方式, 参考&lt;a href=&#34;https://www.rfc-editor.org/rfc/rfc2047&#34;&gt;RFC 2047&lt;/a&gt;, 所以文件名中不能有&lt;code&gt;%&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;filename*=us-ascii&amp;#39;en-us&amp;#39;This%20is%20%2A%2A%2Afun%2A%2A%2A
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用&lt;code&gt;us-ascii&lt;/code&gt;编码, &lt;code&gt;en-us&lt;/code&gt;英语&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p><code>Content-Disposition</code> 常见是用在 http 请求的 Response 的 Header 头部.</p>
 <p>告诉请求客户端(浏览器) 如何处理内容;</p>
 <p><code>Content-Disposition</code>是在 MIME 标准定义的. http 中的用法只是其中的一小部分.</p>
@@ -3607,12 +4020,70 @@ RFC 5987 该提议最终还是引用 RFC 2231 中的编码方式. 下面简单�
       <pubDate>Sat, 13 Aug 2022 14:14:30 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/golang-map/</guid>
-      <description>本想写一篇关于 golang 中 map 底层的文章， 但是发现已经了相当不错的文章 &amp;ndash; 字节跳动技术团队 - Golang 中 map 探究 这里只补充一下，缺少的 map 的删除操作
-内部数据结构 初始化 map 是一个有&amp;quot;包含内容&amp;quot;的数据结构, 使用之前需要提前初始化, 即调用make
-真正是调用源码是 runtime.makemap
-获取数据 删除 源码地址
-删除的关键代码
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 // Only clear key if there are pointers in it. // # 当 Key 是指针类型的时候会去清空指针 if t.key.ptrdata != 0 { if goarch.</description>
+      <description>&lt;p&gt;本想写一篇关于 golang 中 map 底层的文章， 但是发现已经了相当不错的文章 &amp;ndash;
+&lt;a href=&#34;https://mp.weixin.qq.com/s/UT8tydajjOUJkfc-Brcblw&#34;&gt;字节跳动技术团队 - Golang 中 map 探究&lt;/a&gt;
+这里只补充一下，缺少的 map 的删除操作&lt;/p&gt;
+&lt;h2 id=&#34;内部数据结构&#34;&gt;内部数据结构&lt;/h2&gt;
+&lt;h2 id=&#34;初始化&#34;&gt;初始化&lt;/h2&gt;
+&lt;p&gt;map 是一个有&amp;quot;包含内容&amp;quot;的数据结构, 使用之前需要提前初始化, 即调用&lt;code&gt;make&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;真正是调用源码是 &lt;a href=&#34;https://cs.opensource.google/go/go/+/master:src/runtime/map.go;l=283;bpv=1;bpt=1?q=makemap&amp;amp;ss=go%2Fgo&#34;&gt;runtime.makemap&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;获取数据&#34;&gt;获取数据&lt;/h2&gt;
+&lt;h2 id=&#34;删除&#34;&gt;删除&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://cs.opensource.google/go/go/+/master:src/runtime/map_fast64.go;drc=3e5c2c155645ebaed62e4481430c455045b0fff5;bpv=1;bpt=1;l=273?q=mapdelete_fast64&amp;amp;ss=go%2Fgo&#34;&gt;源码地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;删除的关键代码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;c1&#34;&gt;// Only clear key if there are pointers in it.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;			&lt;span class=&#34;c1&#34;&gt;// # 当 Key 是指针类型的时候会去清空指针
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;			&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ptrdata&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;goarch&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;PtrSize&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;8&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;					&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;unsafe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Pointer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;k&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;					&lt;span class=&#34;c1&#34;&gt;// There are three ways to squeeze at one ore more 32 bit pointers into 64 bits.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;					&lt;span class=&#34;c1&#34;&gt;// Just call memclrHasPointers instead of trying to handle all cases here.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;					&lt;span class=&#34;nf&#34;&gt;memclrHasPointers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;k&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;nx&#34;&gt;e&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;unsafe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Pointer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;dataOffset&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;bucketCnt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;uintptr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;elemsize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;c1&#34;&gt;// # 当 Value 为指针类型的时候, 指针为空, 解除引用 -&amp;gt; GC
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;			&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;elem&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ptrdata&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				&lt;span class=&#34;nf&#34;&gt;memclrHasPointers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;elem&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				&lt;span class=&#34;nf&#34;&gt;memclrNoHeapPointers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;elem&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;c1&#34;&gt;// # 讲 hash 值标记为空
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;			&lt;span class=&#34;nx&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;tophash&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;emptyOne&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;上述删除代码操作现象&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>本想写一篇关于 golang 中 map 底层的文章， 但是发现已经了相当不错的文章 &ndash;
 <a href="https://mp.weixin.qq.com/s/UT8tydajjOUJkfc-Brcblw">字节跳动技术团队 - Golang 中 map 探究</a>
 这里只补充一下，缺少的 map 的删除操作</p>
@@ -3695,8 +4166,33 @@ https://ynikl.github.io/blog/golang-memory-analyze-with-runtime/
       <pubDate>Fri, 22 Jul 2022 19:08:05 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/xorm-slave-newsseion/</guid>
-      <description>简单分析下xorm 里面 session 和 slave 里面 close 的代码
-1 xorm.EngineGroup.Slave() Slave () 会直接返回 xorm.Engine对象（指代我们项目到数据库的逻辑连接（里面有tcp复用）） 如果这时候再调用 close 的会，会直接把 xorm.Engine 关闭（即数据库连接关闭）。 如果用这个 engine， 执行查询动作如 find， get时. 内部会有自动执行 NewSsession 和 Close, 所以不在需要手动调用close 1 xorm.EngineGroup.NewSsession() 会返回一个xorm.Session对象, 对应我们数据库操作中的&amp;quot;会话事务&amp;quot;, 是否自动提交之类选项.(未手动开始事务时,都是自动提交) 调用 close, 对清除 session 中未提交的事务和一些缓存的 sql 前置处理语句 对于普通 select 语句调不调用是没什么太大影响 (但是还是建议new之后调用close) </description>
+      <description>&lt;p&gt;简单分析下xorm 里面 session 和 slave 里面 close 的代码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;xorm.EngineGroup.Slave()
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Slave () 会直接返回 xorm.Engine对象（指代我们项目到数据库的逻辑连接（里面有tcp复用））&lt;/li&gt;
+&lt;li&gt;如果这时候再调用 &lt;code&gt;close&lt;/code&gt; 的会，会直接把 xorm.Engine 关闭（即数据库连接关闭）。&lt;/li&gt;
+&lt;li&gt;如果用这个 engine， 执行查询动作如 find， get时. 内部会有自动执行 &lt;code&gt;NewSsession&lt;/code&gt; 和 &lt;code&gt;Close&lt;/code&gt;, 所以不在需要手动调用&lt;code&gt;close&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;xorm.EngineGroup.NewSsession()
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;会返回一个&lt;code&gt;xorm.Session&lt;/code&gt;对象, 对应我们数据库操作中的&amp;quot;会话事务&amp;quot;, 是否自动提交之类选项.(未手动开始事务时,都是自动提交)&lt;/li&gt;
+&lt;li&gt;调用 &lt;code&gt;close&lt;/code&gt;, 对清除 session 中未提交的事务和一些缓存的 &lt;code&gt;sql&lt;/code&gt; 前置处理语句&lt;/li&gt;
+&lt;li&gt;对于普通 &lt;code&gt;select&lt;/code&gt; 语句调不调用是没什么太大影响 (但是还是建议&lt;code&gt;new&lt;/code&gt;之后调用&lt;code&gt;close&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;</description>
       <content:encoded><![CDATA[<p>简单分析下xorm 里面 session 和 slave 里面 close 的代码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -3733,11 +4229,62 @@ https://ynikl.github.io/blog/golang-memory-analyze-with-runtime/
       <pubDate>Thu, 09 Jun 2022 23:52:30 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/golang-reslicing-slice/</guid>
-      <description>今天, 突然被同事卷到了, 被问到 golang 中 slice 的三个参数是干嘛的? 我突然一时间忘记了, golang 的重切片居然是可以接受第三个参数的, 枉费我已经了写了快两年的 go 了. 赶紧 google 一下, 并总结备忘.
-简单介绍 slice 的数据结构 首先, 介绍一下 golang 中切片的结构体:
-1 2 3 4 5 type slice struct { array unsafe.Pointer len int cap int } 有三个字段:
-array 是切片所指向的底层数组数据 len 就是切片的长度 cap 即容量, 很明显 源码地址
-简单版重切片 a[low:high] 接受切片中的开始下标和结束下标, &amp;ldquo;左闭右开原则&amp;rdquo; 即重的切片数据会包含 low 下标的值, 但没有 high 下标的值 新切片的 容量(cap) 即为开始下标到原 slice 数据容量结束, 即&amp;quot;cap(a) - low&amp;quot; low 参数可以省略, 默认从 0 下标开始 high 参数也可以省略, 默认就是 slice 的长度, 即 len 的 value 1 2 3 4 5 6 7 8 a := [10]int{} oldSlice := a[:5] newSlice := a[2:4] fmt.</description>
+      <description>&lt;p&gt;今天, 突然被同事卷到了, 被问到 golang 中 slice 的三个参数是干嘛的? 我突然一时间忘记了, golang 的重切片居然是可以接受第三个参数的, 枉费我已经了写了快两年的 go 了. 赶紧 google 一下, 并总结备忘.&lt;/p&gt;
+&lt;h2 id=&#34;简单介绍-slice-的数据结构&#34;&gt;简单介绍 slice 的数据结构&lt;/h2&gt;
+&lt;p&gt;首先, 介绍一下 golang 中切片的结构体:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;type slice struct {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	array unsafe.Pointer
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	len   int
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	cap   int
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;有三个字段:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;array 是切片所指向的底层数组数据&lt;/li&gt;
+&lt;li&gt;len 就是切片的长度&lt;/li&gt;
+&lt;li&gt;cap 即容量, 很明显&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://cs.opensource.google/go/go/+/master:src/runtime/slice.go;l=15?q=slice&amp;amp;ss=go%2Fgo&#34;&gt;源码地址&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;简单版重切片-alowhigh&#34;&gt;简单版重切片 &lt;code&gt;a[low:high]&lt;/code&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;接受切片中的开始下标和结束下标, &amp;ldquo;左闭右开原则&amp;rdquo; 即重的切片数据会包含 low 下标的值, 但没有 high 下标的值&lt;/li&gt;
+&lt;li&gt;新切片的 容量(cap) 即为开始下标到原 slice 数据容量结束, 即&amp;quot;cap(a) - low&amp;quot;&lt;/li&gt;
+&lt;li&gt;low 参数可以省略, 默认从 0 下标开始&lt;/li&gt;
+&lt;li&gt;high 参数也可以省略, 默认就是 slice 的长度, 即 len 的 value&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;a := [10]int{}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;oldSlice := a[:5]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;newSlice := a[2:4]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;fmt.Printf(&amp;#34;b: len %d, cap %d, c: len %d, c:cap %d&amp;#34;, len(b), cap(b), len(c), cap(c))
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;输出:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;b: len 5, cap 10, c: len 2, c:cap 8
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;底层分配情况如下:&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>今天, 突然被同事卷到了, 被问到 golang 中 slice 的三个参数是干嘛的? 我突然一时间忘记了, golang 的重切片居然是可以接受第三个参数的, 枉费我已经了写了快两年的 go 了. 赶紧 google 一下, 并总结备忘.</p>
 <h2 id="简单介绍-slice-的数据结构">简单介绍 slice 的数据结构</h2>
 <p>首先, 介绍一下 golang 中切片的结构体:</p>
@@ -3899,13 +4446,47 @@ array 是切片所指向的底层数组数据 len 就是切片的长度 cap 即�
       <pubDate>Fri, 03 Jun 2022 18:16:55 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/go-modules/</guid>
-      <description>是什么 Modules （下文称为模块）是 Go 语言设计用来管理依赖包。
-在中文中我们经常把go中的 Module 和 Package 统称为“包”，其实 Module 是一个版本控制的“包”的集合。
-模块的引入主要用于解决，项目依赖的不同版本的问题。（在旧的 GOPATH 中不同项目依赖不同版本）。引入的模块会声明在go.mod文件中。
-go.mod 文件 1 2 3 4 5 6 7 8 9 module example.com/my/thing go 1.12 require example.com/other/thing v1.0.2 require example.com/new/thing/v2 v2.3.4 exclude example.com/old/thing v1.2.3 replace example.com/bad/thing v1.4.5 =&amp;gt; example.com/good/thing v1.4.5 retract [v1.9.0, v1.9.5] 文件中各行意思
-module 当前自己模块的名的完整路径 go 版本号 require 需要依赖的目标模块以及最小的版本号 exclude 排除目标模块的特定版本 replace 将某个模块版本指向另一个模块版本，也可以指向本地，未发布的模块 retract 当前发布的模块，需要撤回不能用版本，用于处理意外发布版本的情况 go.mod 可以通过相关命令修改，也可以直接修改文件数据
-go.sum 文件 与go.mod经常在一起的会是一个go.sum文件，文件中存放着第一次添加依赖模块时，的模块源码的 hash 值。主要是用于校验，防止依赖模块代码被意外地修改到。
-1 2 3 &amp;gt; cat go.</description>
+      <description>&lt;h2 id=&#34;是什么&#34;&gt;是什么&lt;/h2&gt;
+&lt;p&gt;Modules （下文称为模块）是 Go 语言设计用来管理依赖包。&lt;/p&gt;
+&lt;p&gt;在中文中我们经常把go中的 Module 和 Package 统称为“包”，其实 Module 是一个版本控制的“包”的集合。&lt;/p&gt;
+&lt;p&gt;模块的引入主要用于解决，项目依赖的不同版本的问题。（在旧的 GOPATH 中不同项目依赖不同版本）。引入的模块会声明在&lt;code&gt;go.mod&lt;/code&gt;文件中。&lt;/p&gt;
+&lt;h3 id=&#34;gomod-文件&#34;&gt;go.mod 文件&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;module example.com/my/thing
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;go 1.12
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;require example.com/other/thing v1.0.2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;require example.com/new/thing/v2 v2.3.4
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;exclude example.com/old/thing v1.2.3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;replace example.com/bad/thing v1.4.5 =&amp;gt; example.com/good/thing v1.4.5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;retract [v1.9.0, v1.9.5]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;文件中各行意思&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;module 当前自己模块的名的完整路径&lt;/li&gt;
+&lt;li&gt;go 版本号&lt;/li&gt;
+&lt;li&gt;require 需要依赖的目标模块以及最小的版本号&lt;/li&gt;
+&lt;li&gt;exclude 排除目标模块的特定版本&lt;/li&gt;
+&lt;li&gt;replace 将某个模块版本指向另一个模块版本，也可以指向本地，未发布的模块&lt;/li&gt;
+&lt;li&gt;retract 当前发布的模块，需要撤回不能用版本，用于处理意外发布版本的情况&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;go.mod&lt;/code&gt; 可以通过相关命令修改，也可以直接修改文件数据&lt;/p&gt;
+&lt;h3 id=&#34;gosum-文件&#34;&gt;go.sum 文件&lt;/h3&gt;
+&lt;p&gt;与&lt;code&gt;go.mod&lt;/code&gt;经常在一起的会是一个&lt;code&gt;go.sum&lt;/code&gt;文件，文件中存放着第一次添加依赖模块时，的模块源码的 hash 值。主要是用于校验，防止依赖模块代码被意外地修改到。&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="是什么">是什么</h2>
 <p>Modules （下文称为模块）是 Go 语言设计用来管理依赖包。</p>
 <p>在中文中我们经常把go中的 Module 和 Package 统称为“包”，其实 Module 是一个版本控制的“包”的集合。</p>
@@ -4104,10 +4685,10 @@ go.sum 文件 与go.mod经常在一起的会是一个go.sum文件，文件中存
       <pubDate>Tue, 31 May 2022 22:36:34 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/concurrency-and-parallelism/</guid>
-      <description>举个例子，电脑的鼠标，键盘或者其他设备的驱动程序，他们是并发的，但不是并行的。他们也不需要并行去运行。
-并发是很多程序（形容运行任务，不是广义上的程序）的独立运行，并发是一种程序设计结构
-并行是一次性运行很多程序，并行是一种程序的运行现象，当成程序设计成并发的，他很容易就变成了并行， 但并行不一定是并发的目的。
-Concurrency is not Parallelism by Rob Pike</description>
+      <description>&lt;p&gt;举个例子，电脑的鼠标，键盘或者其他设备的驱动程序，他们是并发的，但不是并行的。他们也不需要并行去运行。&lt;/p&gt;
+&lt;p&gt;并发是很多程序（形容运行任务，不是广义上的程序）的独立运行，并发是一种程序设计结构&lt;/p&gt;
+&lt;p&gt;并行是一次性运行很多程序，并行是一种程序的运行现象，当成程序设计成并发的，他很容易就变成了并行， 但并行不一定是并发的目的。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=oV9rvDllKEg&amp;amp;list=WL&amp;amp;index=5&amp;amp;t=9s&#34;&gt;Concurrency is not Parallelism by Rob Pike&lt;/a&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>举个例子，电脑的鼠标，键盘或者其他设备的驱动程序，他们是并发的，但不是并行的。他们也不需要并行去运行。</p>
 <p>并发是很多程序（形容运行任务，不是广义上的程序）的独立运行，并发是一种程序设计结构</p>
 <p>并行是一次性运行很多程序，并行是一种程序的运行现象，当成程序设计成并发的，他很容易就变成了并行， 但并行不一定是并发的目的。</p>
@@ -4121,12 +4702,51 @@ Concurrency is not Parallelism by Rob Pike</description>
       <pubDate>Sun, 29 May 2022 20:52:35 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/golang-sync_mutex/</guid>
-      <description>Mutex 数据结构 1 2 3 4 type Mutex struct { state int32 sema uint32 } Mutex 使用过之后是不可被拷贝的 state 等于 0 值的时候才是无锁的状态 sema 字段为信号量字段，通过该字段控制协程的阻塞和唤醒，具体实现在runtime 中。 Mutex 对象总共有三个公开方法
-Lock 尝试抢占互斥锁，如果已经被锁定，则调用协程进入阻塞 TryLock Unlock 解除互斥锁， 解锁未锁定的互斥锁会发生panic Mutex 与协程无法关，允许一个协程锁定，另一个协程进行解锁。
-Mutex 实现了一个 sync.Locker 接口, 该接口只有两个方法
-Lock Unlock Mutex 锁有几种状态
-mutexLocked = 1 已经锁定 mutexWoken = 2 表示当前锁的等待队列，有协程正在活跃地获取锁，可以考虑不用释放信号量 mutexStarving = 4 当前锁已经进入了饥饿状态 其他常量
-mutexWaiterShift = 3 统计的等待在Mutex.state字段等待数量。（前3位，用于表示锁的状态, 即 mutexLocked, mutexWoken, mutexStarving） starvationThresholdNs = 1e6 进入饥饿模式的阈值 1ms Mutex 锁的竞争方式 Mutex 锁有两种状态</description>
+      <description>&lt;h2 id=&#34;mutex-数据结构&#34;&gt;Mutex 数据结构&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Mutex&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nx&#34;&gt;state&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int32&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nx&#34;&gt;sema&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;uint32&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Mutex 使用过之后是不可被拷贝的&lt;/li&gt;
+&lt;li&gt;state 等于 0 值的时候才是无锁的状态&lt;/li&gt;
+&lt;li&gt;sema 字段为信号量字段，通过该字段控制协程的阻塞和唤醒，具体实现在runtime 中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Mutex 对象总共有三个公开方法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lock 尝试抢占互斥锁，如果已经被锁定，则调用协程进入阻塞&lt;/li&gt;
+&lt;li&gt;TryLock&lt;/li&gt;
+&lt;li&gt;Unlock 解除互斥锁， &lt;strong&gt;解锁未锁定的互斥锁会发生panic&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Mutex 与协程无法关，允许一个协程锁定，另一个协程进行解锁。&lt;/p&gt;
+&lt;p&gt;Mutex 实现了一个 &lt;code&gt;sync.Locker&lt;/code&gt; 接口, 该接口只有两个方法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lock&lt;/li&gt;
+&lt;li&gt;Unlock&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Mutex 锁有几种状态&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;mutexLocked = 1 已经锁定&lt;/li&gt;
+&lt;li&gt;mutexWoken = 2  表示当前锁的等待队列，有协程正在活跃地获取锁，可以考虑不用释放信号量&lt;/li&gt;
+&lt;li&gt;mutexStarving = 4 当前锁已经进入了饥饿状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其他常量&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;mutexWaiterShift = 3 统计的等待在&lt;code&gt;Mutex.state&lt;/code&gt;字段等待数量。（前3位，用于表示锁的状态, 即 mutexLocked, mutexWoken, mutexStarving）&lt;/li&gt;
+&lt;li&gt;starvationThresholdNs = 1e6 进入饥饿模式的阈值 1ms&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;mutex-锁的竞争方式&#34;&gt;Mutex 锁的竞争方式&lt;/h2&gt;
+&lt;p&gt;Mutex 锁有两种状态&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="mutex-数据结构">Mutex 数据结构</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -4491,12 +5111,67 @@ mutexWaiterShift = 3 统计的等待在Mutex.state字段等待数量。（前3�
       <pubDate>Sat, 02 Apr 2022 10:09:22 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/golang-channel/</guid>
-      <description>Go 中 channel 中用法和实现总结 以下分析和源码都是基于 go1.17 版本
-channel 简介 Go 语言的基础类型之一, 用于在协程与协程之间传递数据 (channel 数据的传输方式也是值传递, Go语言的数据传输只有值传递)
-Do not communicate by sharing memory; instead, share memory by communicating.
-channel 保证:
-数据的先入先出 并发情况下的数据安全 已经关闭的 channel 不可重开 channel 的实现 channel 在内部实现的结构体为 runtime.hchan
-有一个环形链表, 暂存要传输的数据. 无 buffer 的channel 该队列长度为0, 所以不进行数据缓冲. 有一把互斥锁mutex, 在并发情况下, 保护自身数据结构的一致性 有两个协程等待链表, 用于挂载因为发送/接收而阻塞在该 channel 上的协程 1 2 3 4 5 6 7 8 9 10 11 12 13 14 type hchan struct { qcount uint // 当前 buffer 中有暂存着多少个数据 dataqsiz uint // 环形数组的buffer个数, 由 make 初始化的时候第二个参数容量决定的 buf unsafe.</description>
+      <description>&lt;h1 id=&#34;go-中-channel-中用法和实现总结&#34;&gt;Go 中 channel 中用法和实现总结&lt;/h1&gt;
+&lt;p&gt;以下分析和源码都是基于 go1.17 版本&lt;/p&gt;
+&lt;h2 id=&#34;channel-简介&#34;&gt;channel 简介&lt;/h2&gt;
+&lt;p&gt;Go 语言的基础类型之一, 用于在协程与协程之间传递数据 (&lt;strong&gt;channel 数据的传输方式也是值传递, Go语言的数据传输只有值传递&lt;/strong&gt;)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Do not communicate by sharing memory; instead, share memory by communicating.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;channel 保证:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;数据的先入先出&lt;/li&gt;
+&lt;li&gt;并发情况下的数据安全&lt;/li&gt;
+&lt;li&gt;已经关闭的 channel 不可重开&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;channel-的实现&#34;&gt;channel 的实现&lt;/h2&gt;
+&lt;p&gt;channel 在内部实现的结构体为 &lt;code&gt;runtime.hchan&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;有一个环形链表, 暂存要传输的数据. 无 buffer 的channel 该队列长度为0, 所以不进行数据缓冲.&lt;/li&gt;
+&lt;li&gt;有一把互斥锁&lt;code&gt;mutex&lt;/code&gt;, 在并发情况下, 保护自身数据结构的一致性&lt;/li&gt;
+&lt;li&gt;有两个协程等待链表, 用于挂载因为&lt;strong&gt;发送/接收&lt;/strong&gt;而阻塞在该 channel 上的协程&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;hchan&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nx&#34;&gt;qcount&lt;/span&gt;   &lt;span class=&#34;kt&#34;&gt;uint&lt;/span&gt;           &lt;span class=&#34;c1&#34;&gt;// 当前 buffer 中有暂存着多少个数据
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;nx&#34;&gt;dataqsiz&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;uint&lt;/span&gt;           &lt;span class=&#34;c1&#34;&gt;// 环形数组的buffer个数, 由 make 初始化的时候第二个参数容量决定的
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;nx&#34;&gt;buf&lt;/span&gt;      &lt;span class=&#34;nx&#34;&gt;unsafe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Pointer&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 环形数组开始地址
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;nx&#34;&gt;elemsize&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;uint16&lt;/span&gt;         &lt;span class=&#34;c1&#34;&gt;// channel 传输的元素大小, 用于计算内存大小
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;nx&#34;&gt;closed&lt;/span&gt;   &lt;span class=&#34;kt&#34;&gt;uint32&lt;/span&gt;         &lt;span class=&#34;c1&#34;&gt;// channel 是否已经关闭 0未关闭, 非0关闭
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;nx&#34;&gt;elemtype&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;_type&lt;/span&gt;         &lt;span class=&#34;c1&#34;&gt;// element type # channel 元素的类型
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;nx&#34;&gt;sendx&lt;/span&gt;    &lt;span class=&#34;kt&#34;&gt;uint&lt;/span&gt;           &lt;span class=&#34;c1&#34;&gt;// 环形链表中, 发送数据存储的下标
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;nx&#34;&gt;recvx&lt;/span&gt;    &lt;span class=&#34;kt&#34;&gt;uint&lt;/span&gt;           &lt;span class=&#34;c1&#34;&gt;// 环形链表中, 接受数据获取数据的下标
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;nx&#34;&gt;recvq&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;waitq&lt;/span&gt;          &lt;span class=&#34;c1&#34;&gt;// 阻塞在该 channel 等待获取数据的 Groutine 列表
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;nx&#34;&gt;sendq&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;waitq&lt;/span&gt;          &lt;span class=&#34;c1&#34;&gt;// 阻塞在该 channel 等待写入数据的 Groutine 列表
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nx&#34;&gt;lock&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;mutex&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// # 互斥锁 用于保护自身数据变更
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;初始化&#34;&gt;初始化&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;channel 传递的元素不能太大&lt;/li&gt;
+&lt;li&gt;如果是空结构体或者无缓冲队列, 是不需要分配环形队列内存&lt;/li&gt;
+&lt;li&gt;如果传递数据类型有内含指针, 需要将环形队列分配到堆上&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;内部实现函数&lt;code&gt;runtime.makechan&lt;/code&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h1 id="go-中-channel-中用法和实现总结">Go 中 channel 中用法和实现总结</h1>
 <p>以下分析和源码都是基于 go1.17 版本</p>
 <h2 id="channel-简介">channel 简介</h2>
@@ -5392,17 +6067,75 @@ channel 保证:
       <pubDate>Fri, 01 Apr 2022 19:56:59 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/golang-cmd/</guid>
-      <description>工具分类 go build 编译源代码文件
--race 编译出的目标程序，会启用数据竞争检测
-go doc 查看包的文档(定义于doc.go的注释中), 于包中公开的函数签名
-example
-1 2 3 go doc go doc encoding/json go env 查看 go 相关的环境变量
-1 2 3 4 5 # -w 设置环境变量 go env -w GOPAHT=&amp;#39;/some/path&amp;#39; # -u 恢复成默认设置 go env -u GOPATH go generate 扫描文件中的指令并执行, 相关指令目的应该是“生成或者修改源文件”
-注释的指令格式
-//go:generate command argument...
-ps: wire 也是利用命令, 生成依赖注入文件
-go get 管理当前module依赖
-1 2 3 4 5 6 7 8 # 添加依赖包 go get example.</description>
+      <description>&lt;h1 id=&#34;工具分类&#34;&gt;工具分类&lt;/h1&gt;
+&lt;h2 id=&#34;go-build&#34;&gt;go build&lt;/h2&gt;
+&lt;p&gt;编译源代码文件&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-race&lt;/code&gt;
+编译出的目标程序，会启用数据竞争检测&lt;/p&gt;
+&lt;h2 id=&#34;go-doc&#34;&gt;go doc&lt;/h2&gt;
+&lt;p&gt;查看包的文档(定义于&lt;code&gt;doc.go&lt;/code&gt;的注释中), 于包中公开的函数签名&lt;/p&gt;
+&lt;p&gt;example&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;go doc
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;go doc encoding/json
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;go-env&#34;&gt;go env&lt;/h2&gt;
+&lt;p&gt;查看 go 相关的环境变量&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# -w 设置环境变量&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;go env -w &lt;span class=&#34;nv&#34;&gt;GOPAHT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;/some/path&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# -u 恢复成默认设置&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;go env -u GOPATH
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;go-generate&#34;&gt;go generate&lt;/h2&gt;
+&lt;p&gt;扫描文件中的指令并执行, 相关指令目的应该是“生成或者修改源文件”&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注释的指令格式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;//go:generate command argument...&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;ps: wire 也是利用命令, 生成依赖注入文件&lt;/p&gt;
+&lt;h2 id=&#34;go-get&#34;&gt;go get&lt;/h2&gt;
+&lt;p&gt;管理当前module依赖&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 添加依赖包
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;go get example.com/pkg
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 指定包版本
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;go get example.com/pkg@1.2.3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 移除依赖
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;go get example.com/pkg@none
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;go-install&#34;&gt;go install&lt;/h2&gt;
+&lt;p&gt;获取包文件，并编译和安装。可执行文件编译到&lt;code&gt;$GOBIN&lt;/code&gt;路径下, 包文件编译到&lt;code&gt;$GOPATH/pkg&lt;/code&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h1 id="工具分类">工具分类</h1>
 <h2 id="go-build">go build</h2>
 <p>编译源代码文件</p>

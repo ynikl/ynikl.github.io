@@ -20,11 +20,62 @@
       <pubDate>Thu, 09 Jun 2022 23:52:30 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/golang-reslicing-slice/</guid>
-      <description>今天, 突然被同事卷到了, 被问到 golang 中 slice 的三个参数是干嘛的? 我突然一时间忘记了, golang 的重切片居然是可以接受第三个参数的, 枉费我已经了写了快两年的 go 了. 赶紧 google 一下, 并总结备忘.
-简单介绍 slice 的数据结构 首先, 介绍一下 golang 中切片的结构体:
-1 2 3 4 5 type slice struct { array unsafe.Pointer len int cap int } 有三个字段:
-array 是切片所指向的底层数组数据 len 就是切片的长度 cap 即容量, 很明显 源码地址
-简单版重切片 a[low:high] 接受切片中的开始下标和结束下标, &amp;ldquo;左闭右开原则&amp;rdquo; 即重的切片数据会包含 low 下标的值, 但没有 high 下标的值 新切片的 容量(cap) 即为开始下标到原 slice 数据容量结束, 即&amp;quot;cap(a) - low&amp;quot; low 参数可以省略, 默认从 0 下标开始 high 参数也可以省略, 默认就是 slice 的长度, 即 len 的 value 1 2 3 4 5 6 7 8 a := [10]int{} oldSlice := a[:5] newSlice := a[2:4] fmt.</description>
+      <description>&lt;p&gt;今天, 突然被同事卷到了, 被问到 golang 中 slice 的三个参数是干嘛的? 我突然一时间忘记了, golang 的重切片居然是可以接受第三个参数的, 枉费我已经了写了快两年的 go 了. 赶紧 google 一下, 并总结备忘.&lt;/p&gt;
+&lt;h2 id=&#34;简单介绍-slice-的数据结构&#34;&gt;简单介绍 slice 的数据结构&lt;/h2&gt;
+&lt;p&gt;首先, 介绍一下 golang 中切片的结构体:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;type slice struct {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	array unsafe.Pointer
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	len   int
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	cap   int
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;有三个字段:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;array 是切片所指向的底层数组数据&lt;/li&gt;
+&lt;li&gt;len 就是切片的长度&lt;/li&gt;
+&lt;li&gt;cap 即容量, 很明显&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://cs.opensource.google/go/go/+/master:src/runtime/slice.go;l=15?q=slice&amp;amp;ss=go%2Fgo&#34;&gt;源码地址&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;简单版重切片-alowhigh&#34;&gt;简单版重切片 &lt;code&gt;a[low:high]&lt;/code&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;接受切片中的开始下标和结束下标, &amp;ldquo;左闭右开原则&amp;rdquo; 即重的切片数据会包含 low 下标的值, 但没有 high 下标的值&lt;/li&gt;
+&lt;li&gt;新切片的 容量(cap) 即为开始下标到原 slice 数据容量结束, 即&amp;quot;cap(a) - low&amp;quot;&lt;/li&gt;
+&lt;li&gt;low 参数可以省略, 默认从 0 下标开始&lt;/li&gt;
+&lt;li&gt;high 参数也可以省略, 默认就是 slice 的长度, 即 len 的 value&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;a := [10]int{}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;oldSlice := a[:5]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;newSlice := a[2:4]
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;fmt.Printf(&amp;#34;b: len %d, cap %d, c: len %d, c:cap %d&amp;#34;, len(b), cap(b), len(c), cap(c))
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;输出:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;b: len 5, cap 10, c: len 2, c:cap 8
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;底层分配情况如下:&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>今天, 突然被同事卷到了, 被问到 golang 中 slice 的三个参数是干嘛的? 我突然一时间忘记了, golang 的重切片居然是可以接受第三个参数的, 枉费我已经了写了快两年的 go 了. 赶紧 google 一下, 并总结备忘.</p>
 <h2 id="简单介绍-slice-的数据结构">简单介绍 slice 的数据结构</h2>
 <p>首先, 介绍一下 golang 中切片的结构体:</p>
@@ -186,10 +237,18 @@ array 是切片所指向的底层数组数据 len 就是切片的长度 cap 即�
       <pubDate>Sun, 15 May 2022 16:33:13 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/hugo_%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%BF%9E%E6%8E%A5/</guid>
-      <description>hugo 的默认内容都是在 content/ 路径下方
-在 markdown 文章中使用 { {&amp;lt; ref &amp;quot;/blog/my-first-post.md&amp;quot; &amp;gt;}}(两个左花括号中间是没有空格的), 会在编译时发生地址替换, 带/ 是表示从 content/ 目录下的下一个绝对路径
-1 [我的文章]({ {&amp;lt; ref &amp;#34;/blog/my-first-post.md&amp;#34; }}) 记得是已经发布的文章, 如果使用不存在, 或者是不参加发布的草稿文章就会发生报错
-hugo官方文档</description>
+      <description>&lt;p&gt;hugo 的默认内容都是在 &lt;code&gt;content/&lt;/code&gt; 路径下方&lt;/p&gt;
+&lt;p&gt;在 markdown 文章中使用 &lt;code&gt;{ {&amp;lt; ref &amp;quot;/blog/my-first-post.md&amp;quot; &amp;gt;}}&lt;/code&gt;(两个左花括号中间是没有空格的), 会在编译时发生地址替换, 带&lt;code&gt;/&lt;/code&gt; 是表示从 &lt;code&gt;content/&lt;/code&gt; 目录下的下一个绝对路径&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[我的文章]({ {&amp;lt; ref &amp;#34;/blog/my-first-post.md&amp;#34; }})
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;记得是已经发布的文章, 如果使用不存在, 或者是不参加发布的草稿文章就会发生报错&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://gohugo.io/content-management/cross-references/&#34;&gt;hugo官方文档&lt;/a&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>hugo 的默认内容都是在 <code>content/</code> 路径下方</p>
 <p>在 markdown 文章中使用 <code>{ {&lt; ref &quot;/blog/my-first-post.md&quot; &gt;}}</code>(两个左花括号中间是没有空格的), 会在编译时发生地址替换, 带<code>/</code> 是表示从 <code>content/</code> 目录下的下一个绝对路径</p>
 <div class="highlight"><div class="chroma">

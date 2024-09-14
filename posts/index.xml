@@ -13,17 +13,18 @@
     <managingEditor>gilfoyle.k@outlook.com (潜水员)</managingEditor>
     <webMaster>gilfoyle.k@outlook.com (潜水员)</webMaster>
     <copyright>2022 Ian Lin All rights reserved</copyright>
-    <lastBuildDate>Tue, 05 Mar 2024 20:27:39 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 18 Apr 2024 16:13:36 +0800</lastBuildDate><atom:link href="https://ynikl.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>md5 128位但长度为32位</title>
       <link>https://ynikl.github.io/posts/md5-length/</link>
       <pubDate>Tue, 05 Mar 2024 20:27:39 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/md5-length/</guid>
-      <description>背景：
-后端（Golang) 接口卡控前端给的md5 值的长度， 百度md5 结构为128位长度，心理默认8位为一个字符。卡控判断md5 长度为16位，但是前端时间传入 md5 长度位32字符
-原因：
-golang 的 len 判断的是 字符数（bytes) md5 的结果是128位， 也即是16bytes 没错，但是通常md5会原先转成16进制，即4位一个字符，即转化成一个128/4=32 字符的字符串。传递到后端即为32位字符。</description>
+      <description>&lt;p&gt;背景：&lt;/p&gt;
+&lt;p&gt;后端（Golang) 接口卡控前端给的md5 值的长度， 百度md5 结构为128位长度，心理默认8位为一个字符。卡控判断md5 长度为16位，但是前端时间传入 md5 长度位32字符&lt;/p&gt;
+&lt;p&gt;原因：&lt;/p&gt;
+&lt;p&gt;golang 的 len 判断的是 字符数（bytes)
+md5 的结果是128位， 也即是16bytes 没错，但是通常md5会原先转成16进制，即4位一个字符，即转化成一个128/4=32 字符的字符串。传递到后端即为32位字符。&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>背景：</p>
 <p>后端（Golang) 接口卡控前端给的md5 值的长度， 百度md5 结构为128位长度，心理默认8位为一个字符。卡控判断md5 长度为16位，但是前端时间传入 md5 长度位32字符</p>
 <p>原因：</p>
@@ -38,17 +39,32 @@ md5 的结果是128位， 也即是16bytes 没错，但是通常md5会原先转�
       <pubDate>Mon, 20 Nov 2023 13:50:52 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/go-build-time-variable/</guid>
-      <description>使用背景
-一套程序代码，配置文件，需要同时在不同的云厂商运行。
-通过修改 jenkins, 的部署 pipeline , 让开发人员准确的获取到当前程序的运行环境 还能保持代码统一.
-ldflags 修改的变量, 无大小写限制, 小写变量也可修改编译过程进行修改
-变量引用需要 fullpath. 例如 main 文件中的变量 go build -ldflags=&amp;quot;-X &#39;main/varName=xxx&#39;
-子包，需要当前 mod 包名称开头。 可以查看第二篇文章
-go build variable
-https://programmingpercy.tech/blog/modify-variables-during-build/
-发现更加简单的解决方案
-go build -tags targetCloud
-https://pkg.go.dev/go/build#hdr-Build_Constraints </description>
+      <description>&lt;p&gt;使用背景&lt;/p&gt;
+&lt;p&gt;一套程序代码，配置文件，需要同时在不同的云厂商运行。&lt;/p&gt;
+&lt;p&gt;通过修改 jenkins, 的部署 pipeline , 让开发人员准确的获取到当前程序的运行环境
+还能保持代码统一.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;ldflags 修改的变量, 无大小写限制, 小写变量也可修改编译过程进行修改&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;变量引用需要 fullpath. 例如 main 文件中的变量 &lt;code&gt;go build -ldflags=&amp;quot;-X &#39;main/varName=xxx&#39;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;子包，需要当前 mod 包名称开头。 可以查看第二篇文章&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://belief-driven-design.com/build-time-variables-in-go-51439b26ef9/&#34;&gt;go build variable&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://programmingpercy.tech/blog/modify-variables-during-build/&#34;&gt;https://programmingpercy.tech/blog/modify-variables-during-build/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;发现更加简单的解决方案&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;go build -tags targetCloud&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://pkg.go.dev/go/build#hdr-Build_Constraints&#34;&gt;https://pkg.go.dev/go/build#hdr-Build_Constraints&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
       <content:encoded><![CDATA[<p>使用背景</p>
 <p>一套程序代码，配置文件，需要同时在不同的云厂商运行。</p>
 <p>通过修改 jenkins, 的部署 pipeline , 让开发人员准确的获取到当前程序的运行环境
@@ -84,18 +100,30 @@ https://pkg.go.dev/go/build#hdr-Build_Constraints </description>
       <pubDate>Sat, 21 Oct 2023 22:43:30 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/what-i-want/</guid>
-      <description>思考什么 知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得
-思考自己的人生的究极目标是什么:
-取舍 假设，如果赚大钱不是我的人生目标，我现在为了工资，而牺牲掉，提前 20 年度过我想要的人生的机会，那就舍近求远了。
-决定 知道自己应该要做什么，走什么路线可以帮助自己达到自己的“止” &amp;ndash; 人生理想
-幻想 超级幻想 我梦想中的生活并不会幻想着天天开着跑车，出入高贵的奢华场所。大富大贵非吾生所愿。 我想要的是更多的选择，可以走出办公室，房车旅行，随时随地可以办公，驱车到一个风景好的地方，冲上一杯咖啡，写上一两个小时代码，可以游走于山川大河 &amp;mdash;- 一直在路上的车，载着生活和梦想
-所以， 我的梦想就是： 不想被困在办公室
-小幻想 如果不能房车旅行世界， 退而求其次，
-我想要的是一种 cozy 的生活， 舒缓。 按点上下班，工作生活平衡，下班之后没有电话骚扰。 上班路上可以不堵车，居住环境要有家的感觉。
-早上 6 点起床，面朝大海，做一顿早餐， 7 点到达健身房，驱车 15 分钟上班。可以沉浸在自己代码世界中，下午 5 点可以伴着夕阳，回到家中，与家人一起做一顿晚餐，休闲时光，入睡。
-太有规律的生活，好像都很难有漂亮的故事展开。没有矛盾，没有剧情
-现实 略
-每个人都有自己生活, 自己烦恼, 自己的路线</description>
+      <description>&lt;h2 id=&#34;思考什么&#34;&gt;思考什么&lt;/h2&gt;
+&lt;p&gt;知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得&lt;/p&gt;
+&lt;p&gt;思考自己的人生的&lt;strong&gt;究极目标&lt;/strong&gt;是什么:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;取舍&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;假设，如果赚大钱不是我的人生目标，我现在为了工资，而牺牲掉，提前 20 年度过我想要的人生的机会，那就舍近求远了。&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;决定&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;知道自己应该要做什么，走什么路线可以帮助自己达到自己的“止” &amp;ndash; 人生理想&lt;/p&gt;
+&lt;h2 id=&#34;幻想&#34;&gt;幻想&lt;/h2&gt;
+&lt;h3 id=&#34;超级幻想&#34;&gt;超级幻想&lt;/h3&gt;
+&lt;p&gt;我梦想中的生活并不会幻想着天天开着跑车，出入高贵的奢华场所。大富大贵非吾生所愿。
+我想要的是更多的选择，可以走出办公室，房车旅行，随时随地可以办公，驱车到一个风景好的地方，冲上一杯咖啡，写上一两个小时代码，可以游走于山川大河 &amp;mdash;- 一直在路上的车，载着生活和梦想&lt;/p&gt;
+&lt;p&gt;所以， 我的梦想就是： 不想被困在办公室&lt;/p&gt;
+&lt;h3 id=&#34;小幻想&#34;&gt;小幻想&lt;/h3&gt;
+&lt;p&gt;如果不能房车旅行世界， 退而求其次，&lt;/p&gt;
+&lt;p&gt;我想要的是一种 cozy 的生活， 舒缓。 按点上下班，工作生活平衡，下班之后没有电话骚扰。 上班路上可以不堵车，居住环境要有家的感觉。&lt;/p&gt;
+&lt;p&gt;早上 6 点起床，面朝大海，做一顿早餐， 7 点到达健身房，驱车 15 分钟上班。可以沉浸在自己代码世界中，下午 5 点可以伴着夕阳，回到家中，与家人一起做一顿晚餐，休闲时光，入睡。&lt;/p&gt;
+&lt;p&gt;太有规律的生活，好像都很难有漂亮的故事展开。没有矛盾，没有剧情&lt;/p&gt;
+&lt;h2 id=&#34;现实&#34;&gt;现实&lt;/h2&gt;
+&lt;p&gt;略&lt;/p&gt;
+&lt;p&gt;每个人都有自己生活, 自己烦恼, 自己的路线&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="思考什么">思考什么</h2>
 <p>知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得</p>
 <p>思考自己的人生的<strong>究极目标</strong>是什么:</p>
@@ -129,28 +157,28 @@ https://pkg.go.dev/go/build#hdr-Build_Constraints </description>
       <pubDate>Mon, 08 May 2023 19:52:59 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/the-seven-levels-of-busy/</guid>
-      <description>生活的忙碌可以分成七个层次。
-大家可以对照一下，自己属于哪个层次？
-第 1 级：一点不忙。
-时间很自由，怎么安排都可以，没有一定要去完成的事项，周末想睡多久就多久。
-第 2 级：有一些小事。
-你记得有一些事要做。这些事情是合理的事项，没有截止期，但是你知道这些事迟早要做。
-第 3 级：有一些重要的事。
-你有必须要做的事情，需要及时跟踪，不能拖延，你会时刻提醒自己这些事情。
-第 4 级：日程排满了。
-你的日程排满了，不得不经常问自己&amp;quot;什么事情更重要？&amp;quot;，以便决定先做哪些事，后做哪些事。
-你没有计划外的时间，不过你还能控制日程。
-第 5 级：生活出现混乱。
-你的事情在工作时间做不完，你开始加班了。
-你经常因为事情来不及，而对别人说&amp;quot;对不起&amp;quot;。那些事情并没有被你放弃，只是你不得不赶时间，有些事情执行变得草率。
-第 6 级：任务做不完。
-你需要做的事情，超过了你安排日程的能力。即使放弃某些事情，你依然做不完剩下的事情。
-你的工作时间大大延长，影响到正常生活。你感到非常疲劳。
-第 7 级：日子过不下去。
-各种任务塞满了你醒着的每一分钟。吃饭和其他生活必需的事情，都是抽时间来做。你忙起来的时候，甚至饭也没时间吃。
-你不写日程安排了，因为根本没有时间做计划，每个小时情况都在发生变化。
-你走路也心不在焉，常常觉得要崩溃，日子过不下去了。
-来源: 阮一峰周报</description>
+      <description>&lt;p&gt;生活的忙碌可以分成七个层次。&lt;/p&gt;
+&lt;p&gt;大家可以对照一下，自己属于哪个层次？&lt;/p&gt;
+&lt;p&gt;第 1 级：一点不忙。&lt;/p&gt;
+&lt;p&gt;时间很自由，怎么安排都可以，没有一定要去完成的事项，周末想睡多久就多久。&lt;/p&gt;
+&lt;p&gt;第 2 级：有一些小事。&lt;/p&gt;
+&lt;p&gt;你记得有一些事要做。这些事情是合理的事项，没有截止期，但是你知道这些事迟早要做。&lt;/p&gt;
+&lt;p&gt;第 3 级：有一些重要的事。&lt;/p&gt;
+&lt;p&gt;你有必须要做的事情，需要及时跟踪，不能拖延，你会时刻提醒自己这些事情。&lt;/p&gt;
+&lt;p&gt;第 4 级：日程排满了。&lt;/p&gt;
+&lt;p&gt;你的日程排满了，不得不经常问自己&amp;quot;什么事情更重要？&amp;quot;，以便决定先做哪些事，后做哪些事。&lt;/p&gt;
+&lt;p&gt;你没有计划外的时间，不过你还能控制日程。&lt;/p&gt;
+&lt;p&gt;第 5 级：生活出现混乱。&lt;/p&gt;
+&lt;p&gt;你的事情在工作时间做不完，你开始加班了。&lt;/p&gt;
+&lt;p&gt;你经常因为事情来不及，而对别人说&amp;quot;对不起&amp;quot;。那些事情并没有被你放弃，只是你不得不赶时间，有些事情执行变得草率。&lt;/p&gt;
+&lt;p&gt;第 6 级：任务做不完。&lt;/p&gt;
+&lt;p&gt;你需要做的事情，超过了你安排日程的能力。即使放弃某些事情，你依然做不完剩下的事情。&lt;/p&gt;
+&lt;p&gt;你的工作时间大大延长，影响到正常生活。你感到非常疲劳。&lt;/p&gt;
+&lt;p&gt;第 7 级：日子过不下去。&lt;/p&gt;
+&lt;p&gt;各种任务塞满了你醒着的每一分钟。吃饭和其他生活必需的事情，都是抽时间来做。你忙起来的时候，甚至饭也没时间吃。&lt;/p&gt;
+&lt;p&gt;你不写日程安排了，因为根本没有时间做计划，每个小时情况都在发生变化。&lt;/p&gt;
+&lt;p&gt;你走路也心不在焉，常常觉得要崩溃，日子过不下去了。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.ruanyifeng.com/blog/2023/05/weekly-issue-253.html&#34;&gt;来源: 阮一峰周报&lt;/a&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>生活的忙碌可以分成七个层次。</p>
 <p>大家可以对照一下，自己属于哪个层次？</p>
 <p>第 1 级：一点不忙。</p>
@@ -182,11 +210,73 @@ https://pkg.go.dev/go/build#hdr-Build_Constraints </description>
       <pubDate>Thu, 27 Apr 2023 22:41:16 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/%E7%A7%9F%E6%88%BF%E6%97%A5%E8%AE%B0/</guid>
-      <description>记最近换出租房的经验教训 换房租不到两个月 这次是从厦门的岛外海沧湾公园, 搬到软件园二期内, 望海公寓.
-我的考虑如下:
-我可以把通勤的时间, 节省下来, 将时间放在提升自己技术能力上. 我可以在园内附近随便找一个健身房, 这样子也很方便 中午我可以回到宿舍, 自己烹煮健康的午餐 可以避免我在海沧的停车不方便, 已经开车的话, 需要双边缴交停车费. 导致我后悔住在那边的原因:
-我并没有办法把时间投放在提升自己的技术能力上, 让自己一直待在同一个地方我自己 的内心会非常的难受. 时间不经意流失了, 原先我在地铁上还可以保持着, 客观的阅读量. 附近的健身房质量偏低, 都比较拥挤, 价格不合适. 让我不太想去练, 只能跑回原来的 健身房, 导致我需要一个小时的通勤健身成本, 开车到一个较远的健身房. 中午的午饭做腻了, 已经不太想在自己做了 居住的空间变小了, 不上不下, 回到卧室之后也不知道干什么 外部环境比较差, 当我不想在公司, 不想在宿舍的时候, 附近没有可以提供我消遣的地方 租金高昂 总结一下让我搬出来原因
-通勤(包括往返健身房) 居住的环境 周边的环境 租金 我个人认为再次挑选租房的因素 居住环境 不喜欢繁华的地区, 还是比较偏远幽静的小区(个人比较喜欢偏远的地区) 房间的大小, 要在房间里面做什么(个人没有玩游戏的需求, 一般会想房里面舒服地, 办公 或者阅读, 如果房间太小, 你就会什么事情都不想干, 就想躺在床上玩手机.) 阳光, hhh, 大家好像都喜欢阳光好的房间 房子内部 空调的能耗等级, 这个觉得了你夏天的好过程度 盥洗盆的水龙头是否有热水, 这个决定了你能否快乐的洗漱 (我现在已经离不开热水了) 通勤 上班的通勤方式, 你能接受的通勤时间. 我对通勤时间有着极大的忍受程度.</description>
+      <description>&lt;h1 id=&#34;记最近换出租房的经验教训&#34;&gt;记最近换出租房的经验教训&lt;/h1&gt;
+&lt;h2 id=&#34;换房租不到两个月&#34;&gt;换房租不到两个月&lt;/h2&gt;
+&lt;p&gt;这次是从厦门的岛外海沧湾公园, 搬到软件园二期内, 望海公寓.&lt;/p&gt;
+&lt;p&gt;我的考虑如下:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;我可以把通勤的时间, 节省下来, 将时间放在提升自己技术能力上.&lt;/li&gt;
+&lt;li&gt;我可以在园内附近随便找一个健身房, 这样子也很方便&lt;/li&gt;
+&lt;li&gt;中午我可以回到宿舍, 自己烹煮健康的午餐&lt;/li&gt;
+&lt;li&gt;可以避免我在海沧的停车不方便, 已经开车的话, 需要双边缴交停车费.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;导致我后悔住在那边的原因:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;我并没有办法把时间投放在提升自己的技术能力上, 让自己一直待在同一个地方我自己
+的内心会非常的难受.&lt;/li&gt;
+&lt;li&gt;时间不经意流失了, 原先我在地铁上还可以保持着, 客观的阅读量.&lt;/li&gt;
+&lt;li&gt;附近的健身房质量偏低, 都比较拥挤, 价格不合适. 让我不太想去练, 只能跑回原来的
+健身房, 导致我需要一个小时的通勤健身成本, 开车到一个较远的健身房.&lt;/li&gt;
+&lt;li&gt;中午的午饭做腻了, 已经不太想在自己做了&lt;/li&gt;
+&lt;li&gt;居住的空间变小了, 不上不下, 回到卧室之后也不知道干什么&lt;/li&gt;
+&lt;li&gt;外部环境比较差, 当我不想在公司, 不想在宿舍的时候, 附近没有可以提供我消遣的地方&lt;/li&gt;
+&lt;li&gt;租金高昂&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;总结一下让我搬出来原因&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通勤(包括往返健身房)&lt;/li&gt;
+&lt;li&gt;居住的环境&lt;/li&gt;
+&lt;li&gt;周边的环境&lt;/li&gt;
+&lt;li&gt;租金&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;我个人认为再次挑选租房的因素&#34;&gt;我个人认为再次挑选租房的因素&lt;/h2&gt;
+&lt;h3 id=&#34;居住环境&#34;&gt;居住环境&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;不喜欢繁华的地区, 还是比较偏远幽静的小区(个人比较喜欢偏远的地区)&lt;/li&gt;
+&lt;li&gt;房间的大小, 要在房间里面做什么(个人没有玩游戏的需求, 一般会想房里面舒服地, 办公
+或者阅读, 如果房间太小, 你就会什么事情都不想干, 就想躺在床上玩手机.)&lt;/li&gt;
+&lt;li&gt;阳光, hhh, 大家好像都喜欢阳光好的房间&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;房子内部&#34;&gt;房子内部&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;空调的能耗等级, 这个觉得了你夏天的好过程度&lt;/li&gt;
+&lt;li&gt;盥洗盆的水龙头是否有热水, 这个决定了你能否快乐的洗漱 (我现在已经离不开热水了)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;通勤&#34;&gt;通勤&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;上班的通勤方式, 你能接受的通勤时间. 我对通勤时间有着极大的忍受程度. (我已经习惯
+在地铁上阅读书籍, 我会把这段时间当作 reading time. 目前单程通勤1.5h)&lt;/li&gt;
+&lt;li&gt;你生活必须的目的地的通勤, 比如, 咖啡馆, 健身房, 图书馆, 或者商场之类的. 考虑进去.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;租金&#34;&gt;租金&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;考虑自己收入和租房预算&lt;/li&gt;
+&lt;li&gt;如果车的话, 还需考虑停车位的费用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;其他&#34;&gt;其他&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;地区政策, 厦门比较特殊岛内不能骑摩托车, 而我最近又疯狂迷恋上骑摩托车.&lt;/li&gt;
+&lt;li&gt;有没有方便的停车棚 (停你的自行车, 摩托车, 电动车)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;对我自己未来居住环境的展望&#34;&gt;对我自己未来居住环境的展望&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;停车棚, 可以让我小摩托不用风吹雨淋&lt;/li&gt;
+&lt;li&gt;有个车库, 可以自己动手摆弄摩托车&lt;/li&gt;
+&lt;li&gt;有一个停车位, 方便停放小车&lt;/li&gt;
+&lt;li&gt;方便去健身房&lt;/li&gt;
+&lt;li&gt;有一个大阳台&lt;/li&gt;
+&lt;li&gt;附近人少&lt;/li&gt;
+&lt;/ul&gt;</description>
       <content:encoded><![CDATA[<h1 id="记最近换出租房的经验教训">记最近换出租房的经验教训</h1>
 <h2 id="换房租不到两个月">换房租不到两个月</h2>
 <p>这次是从厦门的岛外海沧湾公园, 搬到软件园二期内, 望海公寓.</p>
@@ -263,8 +353,12 @@ https://pkg.go.dev/go/build#hdr-Build_Constraints </description>
       <pubDate>Thu, 22 Dec 2022 11:38:36 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/my-engineeringladders/</guid>
-      <description>工程师能力阶梯
-自我能力分析</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/jorgef/engineeringladders&#34;&gt;工程师能力阶梯&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://s2.loli.net/2022/12/22/e7WUb6jY859TrsC.png&#34; alt=&#34;原图&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;自我能力分析&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://s2.loli.net/2022/12/22/tNIgMAXcFoOdRSW.png&#34; alt=&#34;我当前的能力分析&#34;  /&gt;
+&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p><a href="https://github.com/jorgef/engineeringladders">工程师能力阶梯</a></p>
 <p><img loading="lazy" src="https://s2.loli.net/2022/12/22/e7WUb6jY859TrsC.png" alt="原图"  />
 </p>
@@ -280,10 +374,11 @@ https://pkg.go.dev/go/build#hdr-Build_Constraints </description>
       <pubDate>Tue, 30 Aug 2022 14:06:10 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/the-chinese-mayor/</guid>
-      <description>豆瓣因为涉及敏感词不让写, 干脆就写到这里来 (我也没写啥不好的呀 QAQ).
-真正的现实，都是充满着矛盾。对万事万物保持一颗敬畏的心.
-一方面是平民老百姓承受着流离失所的痛苦，一方面他们又可以从老破房子住到新的高楼“不破不立”，改善环境。 既要看到痛苦，也要看到改善。看外该电影， 更加让我懂得，看待事情要怀着敬畏之心，事情都是有双面性的。
-总得来说，还是觉得耿属于“好市长”，在中国经济飞速发展的过程中，为人民干实事，坚定自己的立场，倾听民声（市民赌在司令部门口申诉问题的场景给我印象极深）。</description>
+      <description>&lt;p&gt;豆瓣因为涉及敏感词不让写, 干脆就写到这里来 (我也没写啥不好的呀 QAQ).&lt;/p&gt;
+&lt;p&gt;真正的现实，都是充满着矛盾。对万事万物保持一颗敬畏的心.&lt;/p&gt;
+&lt;p&gt;一方面是平民老百姓承受着流离失所的痛苦，一方面他们又可以从老破房子住到新的高楼“不破不立”，改善环境。
+既要看到痛苦，也要看到改善。看外该电影， 更加让我懂得，看待事情要怀着敬畏之心，事情都是有双面性的。&lt;/p&gt;
+&lt;p&gt;总得来说，还是觉得耿属于“好市长”，在中国经济飞速发展的过程中，为人民干实事，坚定自己的立场，倾听民声（市民赌在司令部门口申诉问题的场景给我印象极深）。&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>豆瓣因为涉及敏感词不让写, 干脆就写到这里来 (我也没写啥不好的呀 QAQ).</p>
 <p>真正的现实，都是充满着矛盾。对万事万物保持一颗敬畏的心.</p>
 <p>一方面是平民老百姓承受着流离失所的痛苦，一方面他们又可以从老破房子住到新的高楼“不破不立”，改善环境。
@@ -298,8 +393,10 @@ https://pkg.go.dev/go/build#hdr-Build_Constraints </description>
       <pubDate>Tue, 09 Aug 2022 23:40:37 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/the-meaning-of-living/</guid>
-      <description>我觉得人生活着没有意义，但是我又为什么还活着呢？今天， 刚好看到了史铁生的《我与地坛》里面给了我答案
-可我为什么还想活呢? 因为你还想得到点儿什么, 你觉得你还是可以得到点儿什么的, 比如说爱情, 比如说价值感之类的, 人真正的名字叫欲望</description>
+      <description>&lt;p&gt;我觉得人生活着没有意义，但是我又为什么还活着呢？今天， 刚好看到了史铁生的《我与地坛》里面给了我答案&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;可我为什么还想活呢? 因为你还想得到点儿什么, 你觉得你还是可以得到点儿什么的, 比如说爱情, 比如说价值感之类的, 人真正的名字叫欲望&lt;/p&gt;
+&lt;/blockquote&gt;</description>
       <content:encoded><![CDATA[<p>我觉得人生活着没有意义，但是我又为什么还活着呢？今天， 刚好看到了史铁生的《我与地坛》里面给了我答案</p>
 <blockquote>
 <p>可我为什么还想活呢? 因为你还想得到点儿什么, 你觉得你还是可以得到点儿什么的, 比如说爱情, 比如说价值感之类的, 人真正的名字叫欲望</p>
@@ -313,8 +410,10 @@ https://pkg.go.dev/go/build#hdr-Build_Constraints </description>
       <pubDate>Fri, 01 Jul 2022 08:55:44 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/life-is-not-short/</guid>
-      <description>The most surprising thing is that you wouldn’t let anyone steal your property, but you consistently let people steal your time, which is infinitely more valuable.
-life if not short</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;The most surprising thing is that you wouldn’t let anyone steal your property, but you consistently let people steal your time, which is infinitely more valuable.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://dkb.show/post/life-is-not-short&#34;&gt;life if not short&lt;/a&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<blockquote>
 <p>The most surprising thing is that you wouldn’t let anyone steal your property, but you consistently let people steal your time, which is infinitely more valuable.</p>
 </blockquote>
@@ -328,9 +427,28 @@ life if not short</description>
       <pubDate>Wed, 08 Jun 2022 20:15:26 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/thinking-choosing-tech/</guid>
-      <description>一个完善的方案的需要考虑的三个方面
-当前需求 理清楚初心，当前方案要解决的问题。聚焦到主要解决的问题。
-结果上下文 好处：当前方案的好处，解决了什么 弊端: 什么是它不能解决的 问题：引入什么新的问题 与其他方案的关系 前导：当前方案是怎么演变出来。 后续：当前方案会引入什么新问题，有什么后续的解决方案 替换：可以解决同样需求的情况下，还没什么备选方案。为什么选择了当前方案 参考《微服务设计模式》的1.6.2&amp;quot;模式和模式语言&amp;quot;, 相对减少了模式关系中的泛化和特化。</description>
+      <description>&lt;p&gt;一个完善的方案的需要考虑的三个方面&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;当前需求&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;理清楚初心，当前方案要解决的问题。聚焦到主要解决的问题。&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;结果上下文&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;好处：当前方案的好处，解决了什么&lt;/li&gt;
+&lt;li&gt;弊端: 什么是它不能解决的&lt;/li&gt;
+&lt;li&gt;问题：引入什么新的问题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;与其他方案的关系&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;前导：当前方案是怎么演变出来。&lt;/li&gt;
+&lt;li&gt;后续：当前方案会引入什么新问题，有什么后续的解决方案&lt;/li&gt;
+&lt;li&gt;替换：可以解决同样需求的情况下，还没什么备选方案。为什么选择了当前方案&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;参考《微服务设计模式》的1.6.2&amp;quot;模式和模式语言&amp;quot;, 相对减少了模式关系中的泛化和特化。&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>一个完善的方案的需要考虑的三个方面</p>
 <ol>
 <li>当前需求</li>
@@ -362,12 +480,17 @@ life if not short</description>
       <pubDate>Mon, 30 May 2022 19:17:51 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/how-make-decisions/</guid>
-      <description>读Randy&amp;rsquo;s的博客遗憾最小化框架有感
-在面对人生岔路口的时候，很多时候就需要对不同决定做取舍，是否勇于打破自己的人生的桎梏。怎么样要做出让自己十年之后的自己不会后悔的决定
-做决定之前，问问自己的内心，如果我不这么做，几年之后，年老之后会不会后悔，会不会遗憾
-Jeff Bezos 曾经谈到了自己是如何做决定的，他称之为 Regret Minimization Framwork (遗憾最小化框架) —— 他会想象自己到了 80 岁的时候，是否会认为不做这件事情会让自己遗憾。尽量让人生的遗憾数量最小化。即使当时的选择后来看来是错误的，但也不会后悔尝试过。
-Bezos的视频地址 Cycle.js 作者 staltz 回答是否会对自己做的库没有像 React / Vue 那样火起来而感到气馁
-Ask yourself: in 10 years from now, will you be proud of having done this? &amp;hellip; Do things that your future self will be proud, is my motto for the time being.</description>
+      <description>&lt;p&gt;读Randy&amp;rsquo;s的博客&lt;a href=&#34;https://lutaonan.com/blog/regret-minimization-framework/&#34;&gt;遗憾最小化框架&lt;/a&gt;有感&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;在面对人生岔路口的时候，很多时候就需要对不同决定做取舍，是否勇于打破自己的人生的桎梏。怎么样要做出让自己十年之后的自己不会后悔的决定&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;做决定之前，问问自己的内心，如果我不这么做，几年之后，年老之后会不会后悔，会不会遗憾&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Jeff Bezos 曾经谈到了自己是如何做决定的，他称之为 Regret Minimization Framwork (遗憾最小化框架) —— 他会想象自己到了 80 岁的时候，是否会认为不做这件事情会让自己遗憾。尽量让人生的遗憾数量最小化。即使当时的选择后来看来是错误的，但也不会后悔尝试过。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=jwG_qR6XmDQ&amp;amp;ab_channel=MickyThompson&#34;&gt;Bezos的视频地址&lt;/a&gt;
+Cycle.js 作者 staltz 回答是否会对自己做的库没有像 React / Vue 那样火起来而感到气馁&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Ask yourself: in 10 years from now, will you be proud of having done this? &amp;hellip; Do things that your future self will be proud, is my motto for the time being.&lt;/p&gt;
+&lt;/blockquote&gt;</description>
       <content:encoded><![CDATA[<p>读Randy&rsquo;s的博客<a href="https://lutaonan.com/blog/regret-minimization-framework/">遗憾最小化框架</a>有感</p>
 <p><em>在面对人生岔路口的时候，很多时候就需要对不同决定做取舍，是否勇于打破自己的人生的桎梏。怎么样要做出让自己十年之后的自己不会后悔的决定</em></p>
 <p><strong>做决定之前，问问自己的内心，如果我不这么做，几年之后，年老之后会不会后悔，会不会遗憾</strong></p>
@@ -388,13 +511,28 @@ Cycle.js 作者 staltz 回答是否会对自己做的库没有像 React / Vue �
       <pubDate>Thu, 26 May 2022 13:29:55 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/2022/0526-why-learn-microservices/</guid>
-      <description>为什么学 高学习产出转化比 助力下一份工作 公司现在正在初步尝试开始引入微服务，现在学习微服务具有较高的学习工作转化比。 后端架构转变的主流方向, 有利于再次找工作。
-怎么学 想要学习好一个技术，就需要有想学习这门技术的动力。
-首先要对它有较全面的理解：
-我们为什么要学习这门技术 技术的使用场景，以及使用的优势和劣势 现在该技术在大环境中的使用情况 再开始学习技术本身。
-针对于“微服务”这种概念性技术。就需要具体落实到某一个框架，进行一个实战项目。过程中掌握框架使用方法，对过程中所涉及到的相关技术有粗略的了解。
-具体方法：
-我想先通过快速通过《微服务设计模式》了解微服务的使用场景，以及如何设计。 使用 go-zero 框架完成一个练手项目开发。 </description>
+      <description>&lt;h2 id=&#34;为什么学&#34;&gt;为什么学&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;高学习产出转化比&lt;/li&gt;
+&lt;li&gt;助力下一份工作&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;公司现在正在初步尝试开始引入微服务，现在学习微服务具有较高的学习工作转化比。
+后端架构转变的主流方向, 有利于再次找工作。&lt;/p&gt;
+&lt;h2 id=&#34;怎么学&#34;&gt;怎么学&lt;/h2&gt;
+&lt;p&gt;想要学习好一个技术，就需要有想学习这门技术的动力。&lt;/p&gt;
+&lt;p&gt;首先要对它有较全面的理解：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;我们为什么要学习这门技术&lt;/li&gt;
+&lt;li&gt;技术的使用场景，以及使用的优势和劣势&lt;/li&gt;
+&lt;li&gt;现在该技术在大环境中的使用情况&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;再开始学习技术本身。&lt;/p&gt;
+&lt;p&gt;针对于“微服务”这种概念性技术。就需要具体落实到某一个框架，进行一个实战项目。过程中掌握框架使用方法，对过程中所涉及到的相关技术有粗略的了解。&lt;/p&gt;
+&lt;p&gt;具体方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;我想先通过快速通过《微服务设计模式》了解微服务的使用场景，以及如何设计。&lt;/li&gt;
+&lt;li&gt;使用 &lt;code&gt;go-zero&lt;/code&gt; 框架完成一个练手项目开发。&lt;/li&gt;
+&lt;/ol&gt;</description>
       <content:encoded><![CDATA[<h2 id="为什么学">为什么学</h2>
 <ol>
 <li>高学习产出转化比</li>
@@ -426,10 +564,19 @@ Cycle.js 作者 staltz 回答是否会对自己做的库没有像 React / Vue �
       <pubDate>Sun, 15 May 2022 17:11:57 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/five-class-engineer/</guid>
-      <description>以前有一段时间, 怀疑过自己&amp;quot;软件工程师&amp;quot;和以前工程意义上的&amp;quot;工程师&amp;quot;有什么区别, 自己只是将需求文档换成了代码, 这种活动并没有什么太大的突破. 然后我在吴军的见识书中看了一个五级工程师的概念, 算是解惑了我做为一个&amp;quot;码农&amp;quot;和工程师的区别.
-(图片来源于图书截图)
-第五级工程师: 有能够独自解决问题的能力, 但是问题规模较小, 属于个人能力可以解决的范围. 第四级工程师: 有沟通和领导能力, 可以带领一个团队, 完成一个规模化的工程. 第三级工程师: 能设计和完成一款产品, 取得市场成功. 对行业的商业环境有较深理解, 且有产品思维. 第二级工程师: 能够在行业做出有创造性, 有突破性的产品. 世界因为能够因为他们有一点点不一样. 第一级工程师: 开创一个行业的鼻祖. 能够改变世界. 反思自己的工程能力, 目前的所有项目技术上的问题都可以独立解决, 也能够针对某一棘手问题独立设计出可行的解决方案. 但是没有带领过团队解决过规模化问题, 亦没有技术创新.
-所以我自己应该就是 5.0, 五级工程师, 五流程序员.</description>
+      <description>&lt;p&gt;以前有一段时间, 怀疑过自己&amp;quot;软件工程师&amp;quot;和以前工程意义上的&amp;quot;工程师&amp;quot;有什么区别, 自己只是将需求文档换成了代码, 这种活动并没有什么太大的突破. 然后我在吴军的&lt;a href=&#34;https://ynikl.github.io/books/%E8%A7%81%E8%AF%86/&#34;&gt;见识&lt;/a&gt;书中看了一个五级工程师的概念, 算是解惑了我做为一个&amp;quot;码农&amp;quot;和工程师的区别.&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;five_class_engineer.png&#34; alt=&#34;五级工程师&#34;  /&gt;
+
+(图片来源于图书截图)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第五级工程师: 有能够独自解决问题的能力, 但是问题规模较小, 属于个人能力可以解决的范围.&lt;/li&gt;
+&lt;li&gt;第四级工程师: 有沟通和领导能力, 可以带领一个团队, 完成一个规模化的工程.&lt;/li&gt;
+&lt;li&gt;第三级工程师: 能设计和完成一款产品, 取得市场成功. 对行业的商业环境有较深理解, 且有产品思维.&lt;/li&gt;
+&lt;li&gt;第二级工程师: 能够在行业做出有创造性, 有突破性的产品. 世界因为能够因为他们有一点点不一样.&lt;/li&gt;
+&lt;li&gt;第一级工程师: 开创一个行业的鼻祖. 能够改变世界.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;反思自己的工程能力, 目前的所有项目技术上的问题都可以独立解决, 也能够针对某一棘手问题独立设计出可行的解决方案. 但是没有带领过团队解决过规模化问题, 亦没有技术创新.&lt;/p&gt;
+&lt;p&gt;所以我自己应该就是 5.0, 五级工程师, 五流程序员.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>以前有一段时间, 怀疑过自己&quot;软件工程师&quot;和以前工程意义上的&quot;工程师&quot;有什么区别, 自己只是将需求文档换成了代码, 这种活动并没有什么太大的突破. 然后我在吴军的<a href="https://ynikl.github.io/books/%E8%A7%81%E8%AF%86/">见识</a>书中看了一个五级工程师的概念, 算是解惑了我做为一个&quot;码农&quot;和工程师的区别.</p>
 <p><img loading="lazy" src="five_class_engineer.png" alt="五级工程师"  />
 
@@ -452,9 +599,9 @@ Cycle.js 作者 staltz 回答是否会对自己做的库没有像 React / Vue �
       <pubDate>Sun, 15 May 2022 16:14:09 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/my-first-post/</guid>
-      <description>我的第一篇杂文
-阅读了卡片写作笔记法, 和Show Your Work之后, 打算重新开始写自己的博客. 用文字记录下自己的想法和收获.
-原先有断断续续写过几次博客, 但是每次都是半途而废的放弃. 希望这次可以坚持的久一点, 目标至少要有一年.</description>
+      <description>&lt;p&gt;我的第一篇杂文&lt;/p&gt;
+&lt;p&gt;阅读了&lt;a href=&#34;https://book.douban.com/subject/35503571/&#34;&gt;卡片写作笔记法&lt;/a&gt;, 和&lt;a href=&#34;https://ynikl.github.io/books/showyourwork/&#34; title=&#34;about me&#34;&gt;Show Your Work&lt;/a&gt;之后, 打算重新开始写自己的博客. 用文字记录下自己的想法和收获.&lt;/p&gt;
+&lt;p&gt;原先有断断续续写过几次博客, 但是每次都是半途而废的放弃. 希望这次可以坚持的久一点, 目标至少要有一年.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>我的第一篇杂文</p>
 <p>阅读了<a href="https://book.douban.com/subject/35503571/">卡片写作笔记法</a>, 和<a href="https://ynikl.github.io/books/showyourwork/" title="about me">Show Your Work</a>之后, 打算重新开始写自己的博客. 用文字记录下自己的想法和收获.</p>
 <p>原先有断断续续写过几次博客, 但是每次都是半途而废的放弃. 希望这次可以坚持的久一点, 目标至少要有一年.</p>
@@ -467,7 +614,9 @@ Cycle.js 作者 staltz 回答是否会对自己做的库没有像 React / Vue �
       <pubDate>Sat, 02 Apr 2022 09:58:23 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/posts/%E6%8F%90%E5%8D%87%E6%96%87%E5%AD%97%E7%95%99%E5%AD%98%E7%8E%87/</guid>
-      <description>如何提高自己的所编写的文字留存问题? 自己经常写了很多文字, 但是每当自己回顾的时候都不是很满意. 然后就会把已经写下的文字和内容删除掉.</description>
+      <description>&lt;p&gt;如何提高自己的所编写的文字留存问题?
+自己经常写了很多文字, 但是每当自己回顾的时候都不是很满意.
+然后就会把已经写下的文字和内容删除掉.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>如何提高自己的所编写的文字留存问题?
 自己经常写了很多文字, 但是每当自己回顾的时候都不是很满意.
 然后就会把已经写下的文字和内容删除掉.</p>

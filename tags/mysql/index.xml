@@ -20,14 +20,47 @@
       <pubDate>Sun, 18 Jun 2023 18:46:44 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/books/mysql-how-to-run/</guid>
-      <description>字符集和比较规则 我们上边说 utf8 字符集表示一个字符需要使用1~4个字节，但是我们常用的一些字符使用1~3个字节就可以表 示了。而在 MySQL 中字符集表示一个字符所用最大字节长度在某些方面会影响系统的存储和性能，所以设计 MySQL 的大叔偷偷的定义了两个概念: utf8mb3 :阉割过的 utf8 字符集，只使用1~3个字节表示字符。 utf8mb4 :正宗的 utf8 字符集，使用1~4个字节表示字符。 有一点需要大家十分的注意，在 MySQL 中 utf8 是 utf8mb3 的别名，所以之后在 MySQL 中提到 utf8 就意味着使 用1~3个字节来表示一个字符，如果大家有使用4字节编码一个字符的情况，比如存储一些emoji表情啥的，那请 使用 utf8mb4 。
-SHOW COLLATION LIKE &amp;lsquo;utf8_%&amp;rsquo;; 字符比较规则
-MySQL 有4个级别的字符集和比较规则，分别是: 服务器级别 数据库级别 表级别 列级别
-1 2 CREATE TABLE 表名 (列的信息) [[DEFAULT] CHARACTER SET 字符集名称] [COLLATE 比较规则名称] 1 2 3 CREATE TABLE 表名( 列名 字符串类型 [CHARACTER SET 字符集名称] [COLLATE 比较规则名称], 其他列... ); InnoDB 而我们知道读写磁盘的速度非常慢，和内存读写差了几个数量级，所以当我 们想从表中获取某些记录时， InnoDB 存储引擎需要一条一条的把记录从磁盘上读出来么?</description>
+      <description>&lt;h3 id=&#34;字符集和比较规则&#34;&gt;字符集和比较规则&lt;/h3&gt;
+&lt;p&gt;我们上边说 utf8 字符集表示一个字符需要使用1&lt;del&gt;4个字节，但是我们常用的一些字符使用1&lt;/del&gt;3个字节就可以表 示了。而在 MySQL 中字符集表示一个字符所用最大字节长度在某些方面会影响系统的存储和性能，所以设计
+MySQL 的大叔偷偷的定义了两个概念: utf8mb3 :阉割过的 utf8 字符集，只使用1&lt;del&gt;3个字节表示字符。
+utf8mb4 :正宗的 utf8 字符集，使用1&lt;/del&gt;4个字节表示字符。
+有一点需要大家十分的注意，在 MySQL 中 utf8 是 utf8mb3 的别名，所以之后在 MySQL 中提到 utf8 就意味着使 用1~3个字节来表示一个字符，如果大家有使用4字节编码一个字符的情况，比如存储一些emoji表情啥的，那请 使用 utf8mb4 。&lt;/p&gt;
+&lt;p&gt;SHOW COLLATION LIKE &amp;lsquo;utf8_%&amp;rsquo;;
+字符比较规则&lt;/p&gt;
+&lt;p&gt;MySQL 有4个级别的字符集和比较规则，分别是:
+服务器级别
+数据库级别
+表级别
+列级别&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CREATE TABLE 表名 (列的信息)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[[DEFAULT] CHARACTER SET 字符集名称] [COLLATE 比较规则名称]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CREATE TABLE 表名(
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;列名 字符串类型 [CHARACTER SET 字符集名称] [COLLATE 比较规则名称], 其他列...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;innodb&#34;&gt;InnoDB&lt;/h3&gt;
+&lt;p&gt;而我们知道读写磁盘的速度非常慢，和内存读写差了几个数量级，所以当我 们想从表中获取某些记录时， InnoDB 存储引擎需要一条一条的把记录从磁盘上读出来么?不，那样会慢死，
+InnoDB 采取的方式是:将数据划分为若干个页，以页作为磁盘和内存之间交互的基本单位，InnoDB中页的大小 一般为 16 KB。也就是在一般情况下，一次最少从磁盘中读取16KB的内容到内存中，一次最少把内存中的16KB 内容刷新到磁盘中。&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h3 id="字符集和比较规则">字符集和比较规则</h3>
-<p>我们上边说 utf8 字符集表示一个字符需要使用1~4个字节，但是我们常用的一些字符使用1~3个字节就可以表 示了。而在 MySQL 中字符集表示一个字符所用最大字节长度在某些方面会影响系统的存储和性能，所以设计
-MySQL 的大叔偷偷的定义了两个概念: utf8mb3 :阉割过的 utf8 字符集，只使用1~3个字节表示字符。
-utf8mb4 :正宗的 utf8 字符集，使用1~4个字节表示字符。
+<p>我们上边说 utf8 字符集表示一个字符需要使用1<del>4个字节，但是我们常用的一些字符使用1</del>3个字节就可以表 示了。而在 MySQL 中字符集表示一个字符所用最大字节长度在某些方面会影响系统的存储和性能，所以设计
+MySQL 的大叔偷偷的定义了两个概念: utf8mb3 :阉割过的 utf8 字符集，只使用1<del>3个字节表示字符。
+utf8mb4 :正宗的 utf8 字符集，使用1</del>4个字节表示字符。
 有一点需要大家十分的注意，在 MySQL 中 utf8 是 utf8mb3 的别名，所以之后在 MySQL 中提到 utf8 就意味着使 用1~3个字节来表示一个字符，如果大家有使用4字节编码一个字符的情况，比如存储一些emoji表情啥的，那请 使用 utf8mb4 。</p>
 <p>SHOW COLLATION LIKE &lsquo;utf8_%&rsquo;;
 字符比较规则</p>
@@ -260,13 +293,56 @@ idx_name_birthday_phone_number 索引的话，有90%多的 id 值需要回表，
       <pubDate>Thu, 27 Apr 2023 16:16:48 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/mysql-partition/</guid>
-      <description>可以解决什么问题 表太大, 无法全部放入内存中 表有热点数据, 其他均是历史数据 分区更容易维护, 批量删除,修复 可以跨多个硬件设备 减少单个索引互斥访问 独立备份和恢复分区 主要目的就是对表, 进行一个粗粒度的过滤;
-原理 将一个表在物理上分层多个更小的部分, 但是在逻辑上, 仍是只有一个表.
-执行 SQL 时, 可以通过合适的过滤今天, 过滤掉那边不需要查询的分区, 以此提高性能.
-支持类型为: 水平分区, 不支持垂直分区;
-分区的数据操作流程 先打开并锁住所有的分区底层表, 过滤掉多余的分区. 再进行操作.
-分区类型 range list hash key 创建分区时, 分区的列, 必须是主键或者唯一索引的一部分
-1 2 3 4 5 6 7 8 9 create table t1 ( col1 int null, col2 int null, col3 int null, unique key(col1, col2, col3) ) partitionby hash(col3) partitions 4; Range 创建分区</description>
+      <description>&lt;h2 id=&#34;可以解决什么问题&#34;&gt;可以解决什么问题&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;表太大, 无法全部放入内存中&lt;/li&gt;
+&lt;li&gt;表有热点数据, 其他均是历史数据&lt;/li&gt;
+&lt;li&gt;分区更容易维护, 批量删除,修复&lt;/li&gt;
+&lt;li&gt;可以跨多个硬件设备&lt;/li&gt;
+&lt;li&gt;减少单个索引互斥访问&lt;/li&gt;
+&lt;li&gt;独立备份和恢复分区&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;主要目的就是对表, 进行一个粗粒度的过滤;&lt;/p&gt;
+&lt;h2 id=&#34;原理&#34;&gt;原理&lt;/h2&gt;
+&lt;p&gt;将一个表在物理上分层多个更小的部分, 但是在逻辑上, 仍是只有一个表.&lt;/p&gt;
+&lt;p&gt;执行 SQL 时, 可以通过合适的过滤今天, 过滤掉那边不需要查询的分区, 以此提高性能.&lt;/p&gt;
+&lt;p&gt;支持类型为: 水平分区, 不支持垂直分区;&lt;/p&gt;
+&lt;h3 id=&#34;分区的数据操作流程&#34;&gt;分区的数据操作流程&lt;/h3&gt;
+&lt;p&gt;先打开并锁住所有的分区底层表, 过滤掉多余的分区. 再进行操作.&lt;/p&gt;
+&lt;h2 id=&#34;分区类型&#34;&gt;分区类型&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;range&lt;/li&gt;
+&lt;li&gt;list&lt;/li&gt;
+&lt;li&gt;hash&lt;/li&gt;
+&lt;li&gt;key&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;创建分区时, 分区的列, 必须是主键或者唯一索引的一部分&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;create table t1 (
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;col1 int null,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;col2 int null, 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;col3 int null,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;unique key(col1, col2, col3)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;partitionby hash(col3)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;partitions 4;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;range&#34;&gt;Range&lt;/h3&gt;
+&lt;p&gt;创建分区&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="可以解决什么问题">可以解决什么问题</h2>
 <ul>
 <li>表太大, 无法全部放入内存中</li>
@@ -493,7 +569,17 @@ idx_name_birthday_phone_number 索引的话，有90%多的 id 值需要回表，
       <pubDate>Tue, 20 Dec 2022 10:55:10 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/mysql-quick-backup-data/</guid>
-      <description>1 2 CREATE TABLE dbto.table_name like dbfrom.table_name; insert into dbto.table_name select * from dbfrom.table_name; 原文</description>
+      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CREATE TABLE dbto.table_name like dbfrom.table_name;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;insert into  dbto.table_name select * from dbfrom.table_name;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/a/63457341/9992963&#34;&gt;原文&lt;/a&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -514,12 +600,82 @@ idx_name_birthday_phone_number 索引的话，有90%多的 id 值需要回表，
       <pubDate>Sun, 31 Jul 2022 17:49:46 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/mysql-data-type-numbers/</guid>
-      <description>概览 Mysql 支持以下数据类型
-数字类型 串类型(字符和字节) 日期和时间 空间 JSON 数字类型 整数类型 Interger 类型 存储大小 bytes 其他别名 TinyInt 1 bool, boolean = tinyint(1) SmallInt 2 MediumInt 3 Int 4 BigInt 8 int(M) 表示显示宽度, 最大显示宽度为(255), M 与存储空间的大小无关. 空间大小由具体类型决定.
-如果具体数值达不到宽度, 左边就会用0值补齐至 M 位.
-浮点 ( Floating-Point ) 类型 存储 补充 范围 Float 4 bytes 单精度 Double 8 bytes 双精度 Float(p) p 表示小数点后的精度位数
-Float(M, D) Mysql 语法: M表示总显示位数, D表示小数点后个数 &amp;ndash; 由Mysql自己做约分处理. Mysql 8.0 后废弃该语法.
-定点 ( Fixed-Point ) 用于需要准备保存字段数据, 如金钱相关字段.</description>
+      <description>&lt;h2 id=&#34;概览&#34;&gt;概览&lt;/h2&gt;
+&lt;p&gt;Mysql 支持以下数据类型&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数字类型&lt;/li&gt;
+&lt;li&gt;串类型(字符和字节)&lt;/li&gt;
+&lt;li&gt;日期和时间&lt;/li&gt;
+&lt;li&gt;空间&lt;/li&gt;
+&lt;li&gt;JSON&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;数字类型&#34;&gt;数字类型&lt;/h2&gt;
+&lt;h3 id=&#34;整数类型-interger&#34;&gt;整数类型 Interger&lt;/h3&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;类型&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;存储大小 bytes&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;其他别名&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;TinyInt&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;1&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;bool, boolean = tinyint(1)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;SmallInt&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;2&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;MediumInt&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;3&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Int&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;4&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;BigInt&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;8&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;int(M) 表示显示宽度, 最大显示宽度为(255), M 与存储空间的大小无关. 空间大小由具体类型决定.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果具体数值达不到宽度, 左边就会用0值补齐至 M 位.&lt;/p&gt;
+&lt;h3 id=&#34;浮点--floating-point-&#34;&gt;浮点 ( Floating-Point )&lt;/h3&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;类型&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;存储&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;补充&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;范围&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Float&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;4 bytes&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;单精度&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Double&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;8 bytes&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;双精度&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;code&gt;Float(p)&lt;/code&gt; p 表示小数点后的精度位数&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Float(M, D)&lt;/code&gt; Mysql 语法: M表示总显示位数, D表示小数点后个数 &amp;ndash; 由Mysql自己做约分处理. Mysql 8.0 后废弃该语法.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="概览">概览</h2>
 <p>Mysql 支持以下数据类型</p>
 <ul>
@@ -532,67 +688,67 @@ Float(M, D) Mysql 语法: M表示总显示位数, D表示小数点后个数 &amp
 <h2 id="数字类型">数字类型</h2>
 <h3 id="整数类型-interger">整数类型 Interger</h3>
 <table>
-<thead>
-<tr>
-<th>类型</th>
-<th>存储大小 bytes</th>
-<th>其他别名</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>TinyInt</td>
-<td>1</td>
-<td>bool, boolean = tinyint(1)</td>
-</tr>
-<tr>
-<td>SmallInt</td>
-<td>2</td>
-<td></td>
-</tr>
-<tr>
-<td>MediumInt</td>
-<td>3</td>
-<td></td>
-</tr>
-<tr>
-<td>Int</td>
-<td>4</td>
-<td></td>
-</tr>
-<tr>
-<td>BigInt</td>
-<td>8</td>
-<td></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">类型</th>
+          <th style="text-align: left">存储大小 bytes</th>
+          <th style="text-align: left">其他别名</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">TinyInt</td>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">bool, boolean = tinyint(1)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">SmallInt</td>
+          <td style="text-align: left">2</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">MediumInt</td>
+          <td style="text-align: left">3</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Int</td>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">BigInt</td>
+          <td style="text-align: left">8</td>
+          <td style="text-align: left"></td>
+      </tr>
+  </tbody>
 </table>
 <p><strong>int(M) 表示显示宽度, 最大显示宽度为(255), M 与存储空间的大小无关. 空间大小由具体类型决定.</strong></p>
 <p>如果具体数值达不到宽度, 左边就会用0值补齐至 M 位.</p>
 <h3 id="浮点--floating-point-">浮点 ( Floating-Point )</h3>
 <table>
-<thead>
-<tr>
-<th>类型</th>
-<th>存储</th>
-<th>补充</th>
-<th>范围</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Float</td>
-<td>4 bytes</td>
-<td>单精度</td>
-<td></td>
-</tr>
-<tr>
-<td>Double</td>
-<td>8 bytes</td>
-<td>双精度</td>
-<td></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">类型</th>
+          <th style="text-align: left">存储</th>
+          <th style="text-align: left">补充</th>
+          <th style="text-align: left">范围</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Float</td>
+          <td style="text-align: left">4 bytes</td>
+          <td style="text-align: left">单精度</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Double</td>
+          <td style="text-align: left">8 bytes</td>
+          <td style="text-align: left">双精度</td>
+          <td style="text-align: left"></td>
+      </tr>
+  </tbody>
 </table>
 <p><code>Float(p)</code> p 表示小数点后的精度位数</p>
 <p><code>Float(M, D)</code> Mysql 语法: M表示总显示位数, D表示小数点后个数 &ndash; 由Mysql自己做约分处理. Mysql 8.0 后废弃该语法.</p>
@@ -650,15 +806,48 @@ Float(M, D) Mysql 语法: M表示总显示位数, D表示小数点后个数 &amp
       <pubDate>Sun, 31 Jul 2022 17:49:46 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/mysql-data-type-date/</guid>
-      <description>概览 Mysql 支持以下数据类型
-数字类型 串类型(字符和字节) 日期类型 空间 JSON 日期类型 Mysql 支持的数据类型
-DATE TIME DATETIME TIMESTAMP YEAR Date 只存储日期数据, 不包含时间. YYYY-MM-DD, 范围是从 &amp;lsquo;1000-01-01&amp;rsquo; to &amp;lsquo;9999-12-31&amp;rsquo;
-DateTime 存储日期, 也存储时间 &#39;YYYY-MM-DD hh:mm:ss&#39;
-范围是从&#39;1000-01-01 00:00:00&amp;rsquo; to &amp;lsquo;9999-12-31 23:59:59&amp;rsquo;
-TIMESTAMP 存储Unix时间戳数据 会受到服务器时区影响&amp;ndash; 存储的时候转化成标准的Unix时间戳(0时区), 取数据时反之 时区环境变量设置 范围 &amp;lsquo;1970-01-01 00:00:01&amp;rsquo; UTC to &amp;lsquo;2038-01-19 03:14:07&amp;rsquo; UTC.
-相关函数:
-FROM_UNIXTIME 把 Unix 时间戳转化成日期 UNIX_TIMESTAMP 把日期转化成 Unix 时间戳 YEAR 显示形式 YYYY, 可选显示位数YYYY(M)
-默认4位显示 &amp;lsquo;1991&amp;rsquo; TIME 只有时间部分,没有日期部分 hh:mm:ss, 范围从 &amp;lsquo;-838:59:59&amp;rsquo; 到 &amp;lsquo;838:59:59&amp;rsquo;</description>
+      <description>&lt;h2 id=&#34;概览&#34;&gt;概览&lt;/h2&gt;
+&lt;p&gt;Mysql 支持以下数据类型&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数字类型&lt;/li&gt;
+&lt;li&gt;串类型(字符和字节)&lt;/li&gt;
+&lt;li&gt;日期类型&lt;/li&gt;
+&lt;li&gt;空间&lt;/li&gt;
+&lt;li&gt;JSON&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;日期类型&#34;&gt;日期类型&lt;/h2&gt;
+&lt;p&gt;Mysql 支持的数据类型&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;DATE&lt;/li&gt;
+&lt;li&gt;TIME&lt;/li&gt;
+&lt;li&gt;DATETIME&lt;/li&gt;
+&lt;li&gt;TIMESTAMP&lt;/li&gt;
+&lt;li&gt;YEAR&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;date&#34;&gt;Date&lt;/h3&gt;
+&lt;p&gt;只存储日期数据, 不包含时间. &lt;code&gt;YYYY-MM-DD&lt;/code&gt;, 范围是从 &amp;lsquo;1000-01-01&amp;rsquo; to &amp;lsquo;9999-12-31&amp;rsquo;&lt;/p&gt;
+&lt;h3 id=&#34;datetime&#34;&gt;DateTime&lt;/h3&gt;
+&lt;p&gt;存储日期, 也存储时间 &lt;code&gt;&#39;YYYY-MM-DD hh:mm:ss&#39;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;范围是从&#39;1000-01-01 00:00:00&amp;rsquo; to &amp;lsquo;9999-12-31 23:59:59&amp;rsquo;&lt;/p&gt;
+&lt;h3 id=&#34;timestamp&#34;&gt;TIMESTAMP&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;存储Unix时间戳数据&lt;/li&gt;
+&lt;li&gt;会受到服务器时区影响&amp;ndash; 存储的时候转化成标准的Unix时间戳(0时区), 取数据时反之&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_time_zone&#34;&gt;时区环境变量设置&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;范围 &amp;lsquo;1970-01-01 00:00:01&amp;rsquo; UTC to &amp;lsquo;2038-01-19 03:14:07&amp;rsquo; UTC.&lt;/p&gt;
+&lt;p&gt;相关函数:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;FROM_UNIXTIME 把 Unix 时间戳转化成日期&lt;/li&gt;
+&lt;li&gt;UNIX_TIMESTAMP 把日期转化成 Unix 时间戳&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;year&#34;&gt;YEAR&lt;/h3&gt;
+&lt;p&gt;显示形式 &lt;code&gt;YYYY&lt;/code&gt;, 可选显示位数&lt;code&gt;YYYY(M)&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;默认4位显示 &amp;lsquo;1991&amp;rsquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;time&#34;&gt;TIME&lt;/h3&gt;
+&lt;p&gt;只有时间部分,没有日期部分 &lt;code&gt;hh:mm:ss&lt;/code&gt;, 范围从 &amp;lsquo;-838:59:59&amp;rsquo; 到 &amp;lsquo;838:59:59&amp;rsquo;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="概览">概览</h2>
 <p>Mysql 支持以下数据类型</p>
 <ul>
@@ -780,8 +969,8 @@ FROM_UNIXTIME 把 Unix 时间戳转化成日期 UNIX_TIMESTAMP 把日期转化�
       <pubDate>Thu, 02 Jun 2022 16:16:58 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/mysql-nested-transactions/</guid>
-      <description>mysql 在事务中再开启事务，前一个事务会被自动提交
-stackoverflow</description>
+      <description>&lt;p&gt;mysql 在事务中再开启事务，前一个事务会被自动提交&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/1306869/are-nested-transactions-allowed-in-mysql&#34;&gt;stackoverflow&lt;/a&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>mysql 在事务中再开启事务，前一个事务会被自动提交</p>
 <p><a href="https://stackoverflow.com/questions/1306869/are-nested-transactions-allowed-in-mysql">stackoverflow</a></p>
 ]]></content:encoded>

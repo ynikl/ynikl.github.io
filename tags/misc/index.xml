@@ -20,9 +20,11 @@
       <pubDate>Sat, 18 Jun 2022 20:04:38 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/what-is-glue-code/</guid>
-      <description>胶水代码(glue code), 可以了解为是大号的适配器, 没有业务意义, 主要的目的是用于 连接 两个 不兼容 的组件, 或是两个不兼容的服务.
-胶水代码可以是一段代码, 也可以是一个脚本文件, 甚至可以是新的组件.
-参考 Quora 回答 wiki</description>
+      <description>&lt;p&gt;胶水代码(glue code), 可以了解为是大号的适配器, 没有业务意义, 主要的目的是用于 &lt;strong&gt;连接&lt;/strong&gt; 两个 &lt;strong&gt;不兼容&lt;/strong&gt; 的组件, 或是两个不兼容的服务.&lt;/p&gt;
+&lt;p&gt;胶水代码可以是一段代码, 也可以是一个脚本文件, 甚至可以是新的组件.&lt;/p&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.quora.com/What-is-glue-code&#34;&gt;Quora 回答&lt;/a&gt;
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Glue_code&#34;&gt;wiki&lt;/a&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>胶水代码(glue code), 可以了解为是大号的适配器, 没有业务意义, 主要的目的是用于 <strong>连接</strong> 两个 <strong>不兼容</strong> 的组件, 或是两个不兼容的服务.</p>
 <p>胶水代码可以是一段代码, 也可以是一个脚本文件, 甚至可以是新的组件.</p>
 <h2 id="参考">参考</h2>

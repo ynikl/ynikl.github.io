@@ -20,20 +20,65 @@
       <pubDate>Thu, 07 Apr 2022 13:34:55 +0800</pubDate>
       <author>gilfoyle.k@outlook.com (潜水员)</author>
       <guid>https://ynikl.github.io/blog/docker-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</guid>
-      <description>启动一个容器 打个样
-1 docker run -itd --rm --name hello image_name &amp;ndash; it 将当前的终端和容器内的终端连接在一起, 正式所谓的交互模式
-&amp;ndash;rm 当容器停止之后, 会自动删除改容器
-外挂文件夹 参数 -v docker run -it -v /home/dock/Downloads:/usr/Downloads ubuntu64 /bin/bash
-与容器交互 进入容器 docker attach
-exec
-docker -it exec CONTAIN_NAME bash
-exex 会再目标容器内部执行一个命令, 命令名为 bash, 就是起一个 shell 咯. 加上 -it, 进入交互的终端模式
-查看日志 docker logs CONTAINER 可以查看容器日志
--f 可以持续输出容器内部的最新日志
-管理容器 启动
-1 docker start CONTAINER 暂停
-1 docker stop CONTAINER 提交
-1 docker commit --author=&amp;#34;ian&amp;#34; CONTAINER NEW-IMAGENAME:TAG 管理镜像 查看所有的镜像列表</description>
+      <description>&lt;h2 id=&#34;启动一个容器&#34;&gt;启动一个容器&lt;/h2&gt;
+&lt;p&gt;打个样&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -itd --rm --name hello image_name 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&amp;ndash; it
+将当前的终端和容器内的终端连接在一起, 正式所谓的交互模式&lt;/p&gt;
+&lt;p&gt;&amp;ndash;rm
+当容器停止之后, 会自动删除改容器&lt;/p&gt;
+&lt;p&gt;外挂文件夹
+参数 &lt;code&gt;-v &lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;docker run -it -v /home/dock/Downloads:/usr/Downloads ubuntu64 /bin/bash&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;与容器交互&#34;&gt;与容器交互&lt;/h2&gt;
+&lt;h3 id=&#34;进入容器&#34;&gt;进入容器&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;docker attach&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;exec&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;docker -it exec CONTAIN_NAME bash&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;exex 会再目标容器内部执行一个命令, 命令名为 bash, 就是起一个 shell 咯.
+加上 &lt;code&gt;-it&lt;/code&gt;, 进入交互的终端模式&lt;/p&gt;
+&lt;h3 id=&#34;查看日志&#34;&gt;查看日志&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;docker logs CONTAINER&lt;/code&gt;
+可以查看容器日志&lt;/p&gt;
+&lt;p&gt;-f
+可以持续输出容器内部的最新日志&lt;/p&gt;
+&lt;h2 id=&#34;管理容器&#34;&gt;管理容器&lt;/h2&gt;
+&lt;p&gt;启动&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker start CONTAINER
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;暂停&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker stop CONTAINER
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;提交&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker commit --author=&amp;#34;ian&amp;#34; CONTAINER NEW-IMAGENAME:TAG
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;管理镜像&#34;&gt;管理镜像&lt;/h2&gt;
+&lt;p&gt;查看所有的镜像列表&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="启动一个容器">启动一个容器</h2>
 <p>打个样</p>
 <div class="highlight"><div class="chroma">
