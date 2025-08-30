@@ -1,0 +1,127 @@
+{
+  "main": {
+    "id": "9eb920655308d695",
+    "type": "split",
+    "children": [
+      {
+        "id": "ac1543a627872e29",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7ab6da12ea836596",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "f47cf7878196e090",
+    "type": "split",
+    "children": [
+      {
+        "id": "7179acac3b5abb1b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5f27950a803acc82",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "254a64847066f231",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "d98a815fce67dfb8",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "7aea45e00a57bf11",
+    "type": "split",
+    "children": [
+      {
+        "id": "7022d3668703ea3a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6d089df87fc8627b",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "6b11ab0950829f48",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "markdown-importer:打开 Markdown 格式转换器": false
+    }
+  },
+  "active": "7ab6da12ea836596",
+  "lastOpenFiles": [
+    "content/blog/golang-client-reuse.md",
+    "content/blog/redis-cooking.md",
+    "content/blog/docker-基本使用.md",
+    "content/blog/data-structures-linkedlist.md",
+    "content/blog/cs-the-slash-meaning-of-ip.md"
+  ]
+}

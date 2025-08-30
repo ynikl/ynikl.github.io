@@ -3,5 +3,6 @@
   "livePreview": true,
   "attachmentFolderPath": "static",
   "vimMode": true,
-  "alwaysUpdateLinks": true
+  "alwaysUpdateLinks": true,
+  "promptDelete": false
 }
